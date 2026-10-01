@@ -1,0 +1,23 @@
+{
+  "schema": "grounded-planning-case/v1",
+  "case_id": "p02",
+  "split": "development",
+  "parent_instance_id": "planning-parent-0",
+  "controls": [
+    "F01:shared-subproof-multiple-goals"
+  ],
+  "hooks": [],
+  "search_budget": {
+    "states": 10000,
+    "transitions": 50000
+  },
+  "expected": {
+    "completed": true,
+    "first_objective": [
+      3,
+      2,
+      3
+    ],
+    "stop_reason": "OBSERVED_GOALS"
+  }
+}

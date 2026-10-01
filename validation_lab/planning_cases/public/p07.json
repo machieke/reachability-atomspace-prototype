@@ -1,0 +1,76 @@
+{
+  "profile": {
+    "schema": "grounded-planning-public/v1",
+    "admission": {
+      "schema": "admission-initial/v1",
+      "atoms": [
+        "a0",
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "rules": [
+        {
+          "conclusion": 4,
+          "premises": [
+            1
+          ],
+          "revision": "1",
+          "rule_id": "r0"
+        },
+        {
+          "conclusion": 4,
+          "premises": [
+            1
+          ],
+          "revision": "1",
+          "rule_id": "r1"
+        }
+      ]
+    },
+    "context_id": "c0",
+    "goals": [
+      4
+    ],
+    "costs": [
+      {
+        "rule_id": "r0",
+        "work": 5,
+        "duration": 1
+      },
+      {
+        "rule_id": "r1",
+        "work": 1,
+        "duration": 5
+      }
+    ],
+    "work_budget": 1,
+    "deadline": 5,
+    "max_steps": 5
+  },
+  "events": [
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e0",
+      "kind": "context",
+      "arguments": {
+        "assumptions": [],
+        "clauses": [],
+        "context_id": "c0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e1",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    }
+  ]
+}

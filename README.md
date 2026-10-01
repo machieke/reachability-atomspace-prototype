@@ -405,6 +405,7 @@ reopens the goal while preserving the completed artifact's lifecycle history.
 | `reachability/trace_protocol.py`, `reachability/deployment_trace.py` | Strict public event protocol and actual deployment trace capture |
 | `reachability/admission_protocol.py`, `reachability/admission_trace.py` | Grounded rule/context/lineage messages and actual admission traces |
 | `reachability/b0.py` | Bounded public deployment candidates, deterministic B0 selection, budgets and scheduling checkpoints |
+| `reachability/grounded_planning.py`, `reachability/planning_session.py` | Complete bounded grounded proof plans, cost/time alternatives and certified first-step execution |
 | `validation_lab/` | Cold oracles, closed-loop B0 worlds, fixed/seeded cases, receipts and M05/M06/M07/M11 witnesses |
 | `adapters.lock.json`, `scripts/build_adapters.py` | Exact upstream revisions and isolated native build |
 | `reachability/adapter_demo.py`, `integration_tests/` | Explicit optional suite using both real runtimes |
@@ -474,6 +475,19 @@ are reported separately. These are conformance results for one controller, with
 no normalized cost comparison or general planning claim. M07 has a two-event,
 deletion-minimal wrong-product witness.
 
+A separate bounded B0 proof-planning profile now searches grounded rules for one
+or more conjunctive goals. It compares complete alternatives by declared proof-work
+cost, finish time and step count, with ordered exact premises, joint constraints
+and exclusive evidence expiry. Run
+`uv run --no-project python -m validation_lab.run_planning`. The independent tiny
+reference enumerates states with Boolean truth tables and checks each complete
+plan witness. Twenty-two fixed cases compare/recover 77 service-event prefixes;
+twelve seeded graphs add 29. Public edits between selection and execution make
+old plans stale and trigger replanning. Admission still uses the existing gates.
+Optimality is confined to each frozen bounded hard-proof problem. Work credits
+are declared inference costs, not physical resources or measured CPU time; this
+profile does not yet choose deployment execution/resource alternatives.
+
 ## Current limits and next work
 
 This is an in-process API with trusted callers, not a sandbox for hostile Python
@@ -493,9 +507,9 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M08/M09/M10/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next extend B0 beyond the single deployment dependency graph, beginning with
-grounded rule candidates, whole alternative plans and a same-information exact
-reference for tiny cases. General trace shrinking, controlled interleavings and
+Next connect bounded whole-plan alternatives to renewable-resource execution
+contracts, with an independent tiny occupancy/time reference and current
+reservation gates. General trace shrinking, controlled interleavings and
 evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding

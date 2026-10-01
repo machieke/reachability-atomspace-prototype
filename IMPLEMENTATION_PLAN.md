@@ -48,12 +48,13 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, twelfth increment): a bounded B0 controller
-now chooses deployment observations and actions through a public candidate/port
-interface, with explicit work budgets and full recomputation. Twelve closed-loop
-worlds add 197 compared/recovered prefixes and a deletion-minimal M07 witness to
-the existing deployment/admission conformance profiles. B0 covers one fixed
-dependency graph; general search and comparative experiments remain open.
+Current checkpoint (1 October 2026, thirteenth increment): a separate bounded B0
+proof planner now searches complete grounded-rule alternatives for conjunctive
+goals, with declared work costs, durations, expiry and whole-state consistency.
+An independent tiny reference checks optimal objectives and complete witnesses;
+22 fixed cases and 12 seeded graphs add 106 compared/recovered service prefixes.
+Public edits invalidate selected plans before execution. Deployment execution
+alternatives, broader planning and comparative experiments remain open.
 Broader phase 1/2 semantics, authoritative native
 storage, family-complete validation and phase 5–8 pressure/attention work remain open.
 The latest execution record below defines the next concrete increment.
@@ -940,3 +941,65 @@ for alternative resource/time choices before comparative scheduling claims.
 General event shrinking, controlled interleavings, evaluator OS isolation and the
 64-fixture target remain separate phase 4 work. Broader phase 1/3 scope and phases
 5–8 remain open.
+
+### Thirteenth increment on 1 October 2026
+
+Implemented the bounded grounded proof-planning increment in four phases:
+
+1. **Public finite planning contract.** Added immutable public rule-cost/goal
+   descriptions, detached current snapshots, complete plan witnesses and explicit
+   search budgets. Snapshot digests bind public configuration, current context and
+   policy revisions, clock, grounded registry, exact support aliases/lifetimes and
+   remaining proof-work/step quotas. Hidden scripts are excluded from this API.
+2. **Whole-plan search and gate-driven execution.** Added uniform-cost search over
+   grounded AND derivations, shared subproofs, conjunctive goals, cycles and integer
+   waits. Complete alternatives must jointly meet their declared cost, deadline,
+   premise freshness and hard policy. All distinct support lifetimes remain
+   available. The controller recomputes each request and executes only the first
+   step through the actual admission gates. Intervening public edits return STALE
+   before work is charged; failed issued commands still consume their quotas.
+3. **Independent exact reference and closed-loop controls.** Added a separate
+   layered state enumerator with exhaustive Boolean worlds, plus complete witness
+   replay. It receives exactly the same frozen public problem. Both implementations
+   report incomplete search explicitly, and no partial reference result establishes
+   an optimum. Twenty-two fixed controls and twelve reproducible seed-4103 graphs
+   exercise complete alternatives and actual admission/recovery prefixes. Selected
+   plans are logged before reference checking or execution.
+4. **Recovery, integration and reproducibility.** Verified exact aliases, symbolic
+   plan references, public edit/replan behavior, explicit budget stops, forged step
+   rejection, controller recreation, same-wrapper service recovery and native
+   AtomSpace readback. Added separate public/evaluator fixtures and a source-pinned
+   corpus receipt; refreshed all existing runtime receipts. Core service schemas,
+   journals, supplied design inputs and designated mutation witnesses are unchanged.
+
+Verification: all 583 default tests pass, including 22 new planning tests; all
+71 optional native tests and all 15 original standalone reference checks pass.
+The final corpus CLI passes all 22 fixed controls. Tests also verify constructor
+input detachment, complete witness rejection, explicit reference exhaustion and
+raw proposal retention when comparison fails. Existing design hashes and
+committed-version journal compatibility checks remain intact.
+
+The fixed cases compare/recover 77 emitted prefixes with 11 completed and 11
+expected unresolved goals. Seeded graphs add 29 prefixes and three completions.
+The exact objective is `(declared proof-work, finish time, steps)` for each frozen
+bounded hard-proof problem; it is not measured compute cost or a prediction of
+future edits. This profile is separate from deployment scheduling. Physical
+resource alternatives, temporal execution portfolios, pressure-driven selection,
+comparative benefit and general B0 remain open. Wrapper quotas are not durable
+resource reservations or a crash-atomic transaction. There are still zero
+family-complete fixtures and no new M08/M09/M10/M12 witnesses.
+
+Next increment, in order:
+
+1. Define bounded alternative execution plans over current renewable resource
+   contracts, including total interval occupancy and immutable rule/action identity.
+2. Add an independent tiny same-information occupancy/time enumerator before
+   connecting plan selection to actual reservation, intent and dispatch gates.
+3. Test fixed alternative portfolios and public changes between selection and
+   reservation, checking every resulting event prefix and observed completion.
+4. Record work separately from declared costs and add applicable family controls
+   before any comparative scheduling claim.
+
+General shrinking, controlled interleavings, evaluator OS isolation and the
+64-fixture target remain separate phase 4 deliverables. Broader phase 1/3 semantics
+and phases 5–8 remain open.

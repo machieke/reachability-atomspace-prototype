@@ -1,0 +1,19 @@
+{
+  "schema": "grounded-planning-case/v1",
+  "case_id": "p18",
+  "split": "development",
+  "parent_instance_id": "planning-parent-0",
+  "controls": [
+    "F13:transition-budget"
+  ],
+  "hooks": [],
+  "search_budget": {
+    "states": 10000,
+    "transitions": 0
+  },
+  "expected": {
+    "completed": false,
+    "first_objective": null,
+    "stop_reason": "BUDGET_EXHAUSTED"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "grounded-planning-case/v1",
+  "case_id": "p15",
+  "split": "development",
+  "parent_instance_id": "planning-parent-0",
+  "controls": [
+    "F01:rule-replacement-after-selection"
+  ],
+  "hooks": [
+    {
+      "request": 0,
+      "events": [
+        {
+          "schema": "admission-event/v1",
+          "event_id": "h0",
+          "kind": "rule",
+          "arguments": {
+            "expected_revision": "1",
+            "rule": {
+              "conclusion": 4,
+              "premises": [
+                3
+              ],
+              "revision": "2",
+              "rule_id": "r0"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "search_budget": {
+    "states": 10000,
+    "transitions": 50000
+  },
+  "expected": {
+    "completed": true,
+    "first_objective": [
+      1,
+      2,
+      1
+    ],
+    "stop_reason": "OBSERVED_GOALS"
+  }
+}

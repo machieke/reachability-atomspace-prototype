@@ -1,0 +1,50 @@
+{
+  "schema": "grounded-planning-case/v1",
+  "case_id": "p14",
+  "split": "development",
+  "parent_instance_id": "planning-parent-0",
+  "controls": [
+    "F08:revocation-after-selection"
+  ],
+  "hooks": [
+    {
+      "request": 0,
+      "events": [
+        {
+          "schema": "admission-event/v1",
+          "event_id": "h0",
+          "kind": "revoke",
+          "arguments": {
+            "evidence_id": "e1"
+          }
+        },
+        {
+          "schema": "admission-event/v1",
+          "event_id": "h1",
+          "kind": "evidence",
+          "arguments": {
+            "context_id": "c0",
+            "literal": 1,
+            "roots": [
+              "s1"
+            ],
+            "valid_until": null
+          }
+        }
+      ]
+    }
+  ],
+  "search_budget": {
+    "states": 10000,
+    "transitions": 50000
+  },
+  "expected": {
+    "completed": true,
+    "first_objective": [
+      1,
+      2,
+      1
+    ],
+    "stop_reason": "OBSERVED_GOALS"
+  }
+}

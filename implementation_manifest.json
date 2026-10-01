@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-deployment-b0-closed-loop-validation",
+  "implementation_stage": "bounded-grounded-proof-planning-validation",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -156,7 +156,11 @@
     "public_deployment_candidate_enumeration": true,
     "closed_loop_deployment_simulator": true,
     "scheduler_work_counters": true,
-    "scheduler_checkpoints": true
+    "scheduler_checkpoints": true,
+    "bounded_grounded_proof_planning": true,
+    "complete_proof_work_time_alternatives": true,
+    "independent_tiny_frozen_planning_reference": true,
+    "certified_grounded_plan_execution": true
   },
   "mutation_witnesses": [
     "M01",
@@ -331,5 +335,57 @@
       "first_divergent_prefix": 2,
       "deletion_minimal": true
     }
+  },
+  "planning_validation": {
+    "variant": "B0-finite-grounded-proof/v1",
+    "public_schema": "grounded-planning-public/v1",
+    "snapshot_schema": "grounded-planning-snapshot/v1",
+    "plan_schema": "grounded-plan/v1",
+    "corpus_manifest": "validation_lab/planning_cases/manifest.json",
+    "mode": "frozen-plans-and-closed-loop",
+    "split": "development",
+    "fixed_cases": 22,
+    "fixed_completed": 11,
+    "fixed_expected_unresolved": 11,
+    "fixed_compared_and_recovered_prefixes": 77,
+    "generated_seed": 4103,
+    "generated_cases": 12,
+    "generated_completed": 3,
+    "generated_compared_and_recovered_prefixes": 29,
+    "family_complete_fixtures": 0,
+    "max_atoms": 8,
+    "max_rules": 8,
+    "max_conjunctive_goals": 8,
+    "max_steps": 8,
+    "max_deadline": 16,
+    "max_declared_work": 1000,
+    "max_rule_work": 100,
+    "max_rule_duration": 8,
+    "default_state_budget": 10000,
+    "default_transition_budget": 50000,
+    "max_state_budget": 100000,
+    "max_transition_budget": 500000,
+    "search": "uniform-cost-forward-over-all-current-literal-lifetime-alternatives",
+    "objective": [
+      "declared-proof-work",
+      "absolute-finish-time",
+      "step-count"
+    ],
+    "oracle": "independent-layered-enumeration-and-exhaustive-boolean-worlds",
+    "witness_check": "independent-complete-ordered-exact-and-symbolic-parent-replay",
+    "optimality_scope": "frozen-bounded-hard-proof-profile-only",
+    "reference_state_limit": 100000,
+    "reference_transition_limit": 500000,
+    "incomplete_reference_status": "NOT_COMPUTED",
+    "execution": "replan-and-submit-first-step-through-certified-admission",
+    "native_projection_recovery_tested": true,
+    "same_wrapper_recovery_tested": true,
+    "durable_work_quota": false,
+    "atomic_controller_action_recovery": false,
+    "physical_resource_planning": false,
+    "future_world_information": false,
+    "comparative_performance": false,
+    "normalized_work_budget": false,
+    "evaluator_process_isolation": false
   }
 }

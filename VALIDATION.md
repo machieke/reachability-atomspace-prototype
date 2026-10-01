@@ -429,9 +429,94 @@ neither shortened stream detects the mutant. This is deletion minimal in the
 declared profile, not a general-purpose shrinking algorithm.
 M08–M10 and M12 remain open.
 
-Next generalize B0 candidate access to grounded rules and whole alternative plans,
-add a same-information exact reference for tiny instances, and extend family
-controls before comparative claims. Complete family coverage,
+Next connect whole-plan choices to renewable-resource execution contracts and
+an independent tiny occupancy/time reference before comparative claims. Complete family coverage,
 general event shrinking, deterministic concurrent interleavings, hidden-world models,
 OS isolation, benchmark cost budgets and all pressure/attention experiments remain
 open in [the phased plan](IMPLEMENTATION_PLAN.md).
+
+## Bounded grounded proof planning
+
+Run `uv run --no-project python -m validation_lab.run_planning`. This is a second
+finite B0 profile, separate from the deployment controller. Public files contain
+only the rule/cost contract, conjunctive goals and already delivered initial
+observations. Evaluator files contain control labels, expectations and future
+public edits. The controller receives only a detached current snapshot and a
+first-step execution port. Import/schema boundaries are tested; this remains a
+shared-process harness, not an OS sandbox.
+
+The finite contract declares at most eight atoms, eight grounded rules, eight
+conjunctive signed goals, eight planning steps and an absolute deadline at integer
+time 0–16. Each rule costs 1–100 proof-work credits and takes 0–8 logical ticks;
+the episode has at most 1,000 credits. Rule identities retain their declared costs
+when an observed registry edit changes a rule version. Every current hard support
+in the selected context carries its exact public alias and earliest leaf expiry.
+Assumptions constrain possible worlds but never become accepted premises. Numeric
+estimates and foreign-context beliefs cannot seed this hard planner.
+
+Uniform-cost forward search minimizes the tuple `(total declared work, absolute
+finish time, step count)` for the current frozen snapshot. It retains all distinct
+literal/lifetime alternatives, exact ordered parents, seeded cycles and shared
+subproofs. Inference must finish strictly before every premise expires. Every
+successor checks the full hard environment against the CNF policy. Integer waits
+may end before the next evidence expiry: p09 waits until tick 1, then performs a
+two-tick derivation after a blocker expires at tick 3. Waiting until expiry would
+miss this plan because the required parent expires at tick 4.
+
+State and transition limits count popped states, attempted rules/waits and parent
+combinations. Incomplete search returns `BUDGET_EXHAUSTED` with no executable
+partial plan, distinct from exhaustively established `UNREACHABLE`. Joint checks,
+duplicate states and loaded supports are reported separately. These are search
+counters, not normalized computational measurements; DPLL internals, memory and
+storage/native I/O remain outside the model.
+
+The independent reference imports only `itertools`. It enumerates Boolean worlds
+and layered lifetime states, including redundant derivations, without runtime
+search, heap ordering, DPLL or runtime pruning. It receives the same public frozen
+problem and no future edits. Its own state/transition limits return `NOT_COMPUTED`
+without an optimality claim. A separate witness replay checks the entire proposed
+plan, including symbolic references to earlier steps, all ordered premises, every
+joint state, total cost/time and final goals. Actual proposals are logged before
+any reference call; reference failure remains a failed comparison with the raw
+proposal retained.
+
+| Controls | Coverage |
+| --- | --- |
+| p01–p04 | Ordered AND chain, shared subproof for two goals, unseeded/seeded cycle |
+| p05–p07, p22 | Complete cost/time alternatives and combined work limits |
+| p08–p10 | Jointly conflicting goals, required wait, exclusive expiry boundary |
+| p11–p13 | Assumptions, numeric estimates and foreign contexts cannot supply hard premises |
+| p14–p16 | Revocation, rule replacement and policy edits after selection |
+| p17–p18 | Explicit state/transition exhaustion without execution |
+| p19–p21 | Exact support lifetimes, already observed goal, repeated/negative premises |
+
+The 22 fixed controls produce 77 compared/recovered admission event prefixes,
+with 11 goal completions and 11 expected unresolved outcomes. Twelve seed-4103
+graphs add 29 prefixes and three completions without outcome filtering. All
+34 cases are development descendants of `planning-parent-0`, with zero complete
+family fixtures. F03 labels here cover declared proof-work/time alternatives;
+they do not establish physical renewable/consumable resource planning. The frozen
+exact reference does not predict hidden future edits or establish globally optimal
+closed-loop behavior. No new designated mutation witness is claimed.
+
+Each request replans, then submits only the first step. A changed snapshot digest
+or rule version returns `STALE` without issuing a command or charging work. Once
+issued, a step consumes its declared credits and step quota even if the authority
+rejects its premises. Time advancement and hard derivation use the existing
+admission trace adapter and pre/infer/post/commit checks. All resulting event
+prefixes are compared with the cold admission oracle and recovered journal state.
+Native tests also compare actual AtomSpace projections before/after recovery for
+chains, expiry, revocation and rule replacement.
+
+Proof-work quotas and observed stream metadata survive service reopenings within
+the same wrapper, and recreating the stateless controller between requests yields
+the same events. They are synchronous wrapper state, not durable reservations or
+an atomic controller/action crash transaction. Physical execution remains under
+the existing resource/intent/dispatch authority. This increment does not change
+that authority, the journal schema, original design inputs or their hashes.
+
+The corpus receipt pins public/evaluator files, all runtime modules, the generator,
+harness and independent references. Regenerate deliberately with
+`python -m validation_lab.generate_planning_cases`; regenerate the admission,
+deployment and deployment-B0 receipts after shared runtime changes. Validation
+checks receipts without silently refreshing them.
