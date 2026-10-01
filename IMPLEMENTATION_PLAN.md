@@ -515,3 +515,71 @@ compatible pinned revisions and building a small storage/inference smoke test.
 Carry the finite service contracts into adapter validation while retaining the
 remaining phase 1 and phase 2 breadth work in the backlog. Phases 3–8 have not passed
 their exit criteria.
+
+### Seventh increment on 1 October 2026
+
+Inspected the actual OpenCog AtomSpace/cogutil and trueagi-io PLN/PeTTa sources,
+selected exact commits in `adapters.lock.json`, and built the C++ AtomSpace target
+with GCC 11 and locally staged Guile development packages. The bootstrap fetches
+exact revisions, verifies package hashes and stages installation without system
+changes or upstream patches. The compiler/runtime versions and native artifact
+hashes are recorded. A second build from empty source/build/install directories
+passed a real storage and formula smoke test on the same host.
+
+Added a bounded native Atoms/Values transport. Typed records, ordered fields,
+context, polarity, provenance and certificate identifiers remain structural;
+exact integers use named decimal StringValues. Probabilistic proposals use a
+named FloatValue with explicit formula, interpretation and proposal markers.
+Native readback verifies canonical identity, outgoing order, final Value updates
+and atom counts. A revision-consistent admission export rebuilds from the existing
+checked SQLite journal; projection failure cannot change the service's authority.
+
+Added pure grounded PLN deduction and finite-weight revision through the pinned
+MeTTa library, using PeTTa on SWI-Prolog 10.0.1. Ordered premise roles and context
+are explicit. Exact rational prechecks reject infeasible conditional probabilities;
+the runtime also checks upstream's conditions so its failed-precondition `(1,0)`
+fallback cannot authorize a proposal. Zero antecedent probability is UNKNOWN.
+The heuristic formula and near-one approximation branch are recorded assumptions.
+Finite empirical truth rejects nonfinite/out-of-range values and confidence one.
+
+Revision requires an explicit independence declaration bound to both supports.
+Common evidence IDs or source roots prevent weight summation even under such a
+declaration. Unknown dependence preserves alternatives, duplicate derivations
+create no new weight, and ancestry blocks cyclic deduction. Every proposal retains
+its snapshot revision, truth model, formula, assumptions and source lineage.
+Malformed/ambiguous runtime output, diagnostics, timeouts and dependency drift fail
+closed. Runtime calls perform no network imports.
+
+Verification for this increment:
+
+- 381 default tests pass, including the unchanged finite-service recovery suite.
+  New checks enumerate 125 exact four-cell probability models and exercise ordered
+  binding, scope, duplicate/cycle guards, dependence assumptions and adapter errors.
+- 14 separate integration tests execute the real C++ and MeTTa runtimes. They cover
+  identity, order, Unicode, numeric Values, exact large integers, alias overwrites,
+  malformed native commands, checked journal reconstruction and revocation.
+- Real deduction and revision outputs match independent rational fixtures, including
+  boundary/near-one cases. Invalid probability domains cannot accept fallback truth;
+  malformed or certain empirical output and process timeouts cannot become support.
+- The native demo computes approximately `(0.68, 0.3136)`, preserves five source
+  roots and verifies the proposal's AtomSpace FloatValue without creating an
+  accepted belief. Missing native dependencies fail the optional suite explicitly.
+- Both the regular and clean native builds pass a storage/inference smoke test.
+  All 15 original standalone numerical/accounting checks remain unchanged and pass.
+
+This completes phase 3's dependency selection/build smoke test and introduces the
+bounded storage/proposal contracts. It does not complete phase 3. AtomSpace is a
+disposable snapshot projection, not a persistent transactional authority. Full
+ledger export, incremental native updates, threshold indexes and native persistence
+remain pending. The pure PLN snapshot and independence declarations are supplied
+by trusted callers; no issued probabilistic certificate or durable numeric belief
+commit exists yet. The adapter does not run PLN search or assert general joint
+consistency or calibrated independence. Attention, FDAS and Freeciv remain absent.
+Builds pin source/package inputs and record the tested toolchain; they are not
+hermetic operating-system images or bit-reproducible artifacts.
+
+Next implement a separately versioned probabilistic belief ledger with exact
+snapshot/lineage binding, issued pre/post certificates, checked durable commits and
+replay. Keep uncertain beliefs distinct from hard commitments and preserve existing
+journal compatibility. Then run common service contracts and the deployment episode
+through the real adapters. The broader phase 1/2 backlog and phases 4–8 remain open.

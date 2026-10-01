@@ -1,0 +1,85 @@
+{
+  "schema": "reachability-adapters/v1",
+  "atomspace_transport": "reachability-atomspace-batch/v1",
+  "record_schema": "atomspace-record/v1",
+  "truth_model": "trueagi-pln-stv-finite-k1/v1",
+  "sources": {
+    "atomspace": {
+      "url": "https://github.com/opencog/atomspace.git",
+      "commit": "c8d633bf272b838c2132c21b7c8ddf169a18dd22"
+    },
+    "cogutil": {
+      "url": "https://github.com/opencog/cogutil.git",
+      "commit": "64dca9083dcfa485dcb70fd6fe7ba1f80e0f4082"
+    },
+    "pln": {
+      "url": "https://github.com/trueagi-io/PLN.git",
+      "commit": "4405956947c4b53c7ff01bd565aa3b114bc970a1",
+      "files": {
+        "lib_pln.metta": "cdfb3f18bd7b336440fc7b4409209afddf0e64c41f17dee7eefc8f02718de433"
+      }
+    },
+    "petta": {
+      "url": "https://github.com/trueagi-io/PeTTa.git",
+      "commit": "ae66fa8e41dcd5539d614706bd4e5cfb34f9608d"
+    }
+  },
+  "toolchain": {
+    "python": "3.11.14",
+    "gcc": "11.4.0",
+    "cmake": "3.16.3",
+    "swipl": "10.0.1",
+    "guile": "3.0.1",
+    "platform": "linux-x86_64"
+  },
+  "debian_sysroot": [
+    {
+      "package": "guile-3.0-dev",
+      "version": "3.0.1+1-2",
+      "architecture": "amd64",
+      "sha256": "fedfa9f19e7878df3dcd3056a9a48d085d7787de3476e3b079d63037c6237886"
+    },
+    {
+      "package": "guile-3.0-libs",
+      "version": "3.0.1+1-2",
+      "architecture": "amd64",
+      "sha256": "858760746fd3cd98c9c43b3377a3a541c8c6a5d2c93f7e87d2c14e568fd1eea4"
+    },
+    {
+      "package": "guile-3.0",
+      "version": "3.0.1+1-2",
+      "architecture": "amd64",
+      "sha256": "bfa924d7ca0b4b85548eb42260ec9bb966a141a70e4b88c0725738af4c6c4517"
+    },
+    {
+      "package": "libffi-dev",
+      "version": "3.3-4",
+      "architecture": "amd64",
+      "sha256": "8c83e874ec75c223774eb0aa083022496a8199f88471f1cb46f5de473d748f71"
+    },
+    {
+      "package": "libgc-dev",
+      "version": "1:7.6.4-0.4ubuntu1",
+      "architecture": "amd64",
+      "sha256": "063637724df5cd7a268fddfb6194ef36fd82d9b6ddbdff94e7dd8ea37f4d6214"
+    },
+    {
+      "package": "libgc1c2",
+      "version": "1:7.6.4-0.4ubuntu1",
+      "architecture": "amd64",
+      "sha256": "71bc639b9c7c6b52bc3a17b8a5dcceef2d85651285c059e72035f8a91693c918"
+    },
+    {
+      "package": "libltdl-dev",
+      "version": "2.4.6-14",
+      "architecture": "amd64",
+      "sha256": "69204e7750988f88dc9b7c58973e7246a0aa175ebeb0d82e249a182739fe08f4"
+    },
+    {
+      "package": "libltdl7",
+      "version": "2.4.6-14",
+      "architecture": "amd64",
+      "sha256": "700aaa2a82aa1cb796aea8e8c02df87e659b6c817b55d074bf3fd6f26dc632e0"
+    }
+  ]
+}

@@ -1,10 +1,12 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "persistent-goal-accounting-and-sampled-durability",
+  "implementation_stage": "pinned-native-projection-and-pure-pln-proposals",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
-  "build_dependencies": {"setuptools": "80.9.0"},
+  "build_dependencies": {
+    "setuptools": "80.9.0"
+  },
   "schema_revision": "finite-records/v2",
   "certificate_schema": "finite-certificate/v2",
   "journal_schema": "admission-journal/v1",
@@ -44,7 +46,10 @@
     "external_dispatch": false,
     "uncertain_remote_occupancy": "blocks-all-claims-on-affected-resources"
   },
-  "requirement_limits": {"nodes": 256, "depth": 32},
+  "requirement_limits": {
+    "nodes": 256,
+    "depth": 32
+  },
   "policy_revision": "finite-hard-policy/v1",
   "checker_revision": "bounded-cnf-dpll/v1",
   "formula_revision": "grounded-hard-implication/v1",
@@ -57,10 +62,36 @@
       "locking": "single-authority-posix-flock",
       "recovery": "checked-full-command-replay"
     },
-    "atomspace": {"status": "not_integrated", "commit": null},
-    "pln": {"status": "not_integrated", "commit": null},
-    "attention": {"status": "not_integrated", "commit": null},
-    "freeciv": {"status": "not_integrated", "commit": null}
+    "atomspace": {
+      "status": "native_snapshot_projection_tested",
+      "commit": "c8d633bf272b838c2132c21b7c8ddf169a18dd22",
+      "cogutil_commit": "64dca9083dcfa485dcb70fd6fe7ba1f80e0f4082",
+      "transport": "reachability-atomspace-batch/v1",
+      "record_schema": "atomspace-record/v1",
+      "persistent_native_storage": false,
+      "commit_authority": false
+    },
+    "pln": {
+      "status": "pure_deduction_and_revision_proposals_tested",
+      "commit": "4405956947c4b53c7ff01bd565aa3b114bc970a1",
+      "petta_commit": "ae66fa8e41dcd5539d614706bd4e5cfb34f9608d",
+      "swipl": "10.0.1",
+      "truth_model": "trueagi-pln-stv-finite-k1/v1",
+      "formulas": [
+        "Truth_Deduction",
+        "Truth_Revision"
+      ],
+      "certified_probabilistic_commits": false,
+      "inference_search": false
+    },
+    "attention": {
+      "status": "not_integrated",
+      "commit": null
+    },
+    "freeciv": {
+      "status": "not_integrated",
+      "commit": null
+    }
   },
   "design_inputs": {
     "reachability_atomspace_specification.md": "6524a7af9d68ab4de4d50c8be7ce6df375e808d5144b38fe633f9747b5b9428d",
@@ -107,8 +138,26 @@
     "finite_deployment_demo": true,
     "pressure_transport_integration": false,
     "complete_64_fixture_benchmark": false,
-    "evaluator_process_isolation": false
+    "evaluator_process_isolation": false,
+    "native_atomspace_projection": true,
+    "pure_pln_proposals": true,
+    "certified_probabilistic_commits": false
   },
-  "mutation_witnesses": ["M01", "M02", "M03", "M04"],
-  "remaining_designated_mutants": ["M05", "M06", "M07", "M08", "M09", "M10", "M11", "M12"]
+  "mutation_witnesses": [
+    "M01",
+    "M02",
+    "M03",
+    "M04"
+  ],
+  "remaining_designated_mutants": [
+    "M05",
+    "M06",
+    "M07",
+    "M08",
+    "M09",
+    "M10",
+    "M11",
+    "M12"
+  ],
+  "optional_dependency_lock": "adapters.lock.json"
 }

@@ -1,1 +1,1 @@
-"""Finite admission prototype; not an AtomSpace or PLN runtime adapter."""
+"""Finite admission authority with optional, separately invoked native adapters."""

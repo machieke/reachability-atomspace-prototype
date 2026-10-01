@@ -598,6 +598,19 @@ class AdmissionService(CompletionMixin, GoalMixin, DispatchMixin, ExecutionMixin
             proposal=proposal, pre_certificate=pre_certificate, post_certificate=post_certificate,
             expected_revision=expected_revision), apply)
 
+    def export_admission(self, context_id: str) -> tuple:
+        """Immutable, revision-consistent diagnostic snapshot for storage adapters.
+
+        Includes historical revisions and freshly checked views. Exporting grants
+        no authority to import native Values as accepted beliefs or certificates.
+        """
+        with self._lock:
+            self._ensure_open()
+            context = self._contexts[context_id]
+            conclusions = sorted({b.conclusion for b in context.beliefs.values()})
+            return (self._authority_id, self.snapshot(context_id),
+                    tuple(self.query_belief(context_id, c) for c in conclusions))
+
     def query_belief(self, context_id: str, conclusion: Literal) -> BeliefView:
         with self._lock:
             self._ensure_open()
