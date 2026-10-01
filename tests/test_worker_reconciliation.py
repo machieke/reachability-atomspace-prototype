@@ -287,7 +287,7 @@ class ReconciliationProcessTests(unittest.TestCase):
             with patch('sys.argv',['run_worker_reconciliation','--output',str(output)]):
                 main()
             report=verify_report(output)
-            self.assertEqual(len(report['results']),50)
+            self.assertEqual(len(report['results']),74)
             report['results'][0]['resolved_status']='PASS'
             (output/'report.json').write_text(canonical(report))
             with self.assertRaisesRegex(ValueError,'results differ'):

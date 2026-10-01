@@ -120,6 +120,41 @@ class NativeWorkerInspectionTests(unittest.TestCase):
 
 
 class NativeWorkerReconciliationTests(unittest.TestCase):
+    def test_native_revision_adoption_preserves_new_and_existing_beliefs_without_native_replay(self):
+        from unittest.mock import patch
+        from reachability.admission_trace import AdmissionSession
+        from reachability.pln_adapter import PeTTaFormulaRuntime
+        from reachability.trace_worker_state import DurableAdmissionSession
+        from reachability.worker_inspection import inspect_worker
+        from reachability.worker_reconciliation import make_request,reconcile
+        from validation_lab.generate_admission_cases import initial,scenarios
+        from validation_lab.run_worker_reconciliation import continuation
+        messages=scenarios()[12]['events']
+        for index in (5,6):
+            with self.subTest(index=index),TemporaryDirectory() as directory:
+                root=Path(directory);state=root/'state';pending=messages[index]
+                with DurableAdmissionSession(initial(),state,native=True) as s:
+                    for message in messages[:index]: s.apply(message)
+                    s.pending=pending;s._save()
+                    original=AdmissionSession.apply(s,pending)
+                    self.assertEqual(original['outcome']['status'],'PASS')
+                    before=project_probability(s.service,'c0')
+                inspect_worker('admission',state,root/'inspection')
+                request=make_request(root/'inspection','native-revision','adopt_persisted_revision')
+                with patch.object(PeTTaFormulaRuntime,'evaluate',side_effect=AssertionError('native recovery inference')):
+                    reconcile(request,state,root/'inspection')
+                with DurableAdmissionSession(initial(),state,resume=True,native=True) as s:
+                    self.assertEqual(project_probability(s.service,'c0'),before)
+                    recovered=s.apply(pending)
+                    self.assertTrue(s.replayed)
+                    self.assertEqual(recovered['diagnostics']['certificates'],original['diagnostics']['certificates'])
+                    self.assertEqual(len(s.service._probability.beliefs),3)
+                    self.assertEqual(s.hard,{})
+                    self.assertEqual(recovered['projection']['aliases']['numeric'][pending['event_id']],'e005')
+                    for message in continuation(dict(event=pending),True): row=s.apply(message)
+                    self.assertEqual(row['outcome']['status'],'PASS')
+                    self.assertEqual(row['projection']['numeric']['revise-after-adoption']['confidence'],.75)
+
     def test_persisted_estimate_restores_native_numeric_graph_and_continues_pln_revision(self):
         from reachability.admission_trace import AdmissionSession
         from reachability.trace_worker_state import DurableAdmissionSession

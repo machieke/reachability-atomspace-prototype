@@ -54,6 +54,12 @@ def cases():
             profile='admission',public=admission_initial().wire(),prefix=numerical['events'][:2],event=numerical['events'][2],
             cut=cut,parent_instance_id=numerical['parent_instance_id'],
             expected=dict(status='pending_journal_progress',completed=2,evidence=2,contexts=1,numerical=2,reports=2,effects=0,dispatch=None)))
+    for variant,index in (('new',5),('existing',6)):
+        for cut in ('revision-commit','after'):
+            result.append(dict(case_id='admission-revision-'+variant+'-'+('commit' if cut=='revision-commit' else 'after'),
+                profile='admission',public=admission_initial().wire(),prefix=numerical['events'][:index],event=numerical['events'][index],
+                cut=cut,parent_instance_id=numerical['parent_instance_id'],
+                expected=dict(status='pending_journal_progress',completed=index,evidence=2,contexts=1,numerical=3,reports=2,effects=0,dispatch=None)))
     for profile,source,index in (('deployment',deployment_cases()[2],6),('dispatch',dispatch_cases()[8],5)):
         result.append(dict(case_id=profile+'-remote-effect',profile=profile,public=asdict(DeploymentInitial()),
             prefix=source['events'][:index],event=source['events'][index],cut='effect',
@@ -93,7 +99,7 @@ def fault_spec(case):
     elif cut=='context':
         name,needle='admission_trace.py','self.contexts.add(ctx)'
         replacement=needle+f'\n            __import__("os")._exit({EXIT_CODE})'
-    elif cut in ('evidence-commit','estimate-commit'):
+    elif cut in ('evidence-commit','estimate-commit','revision-commit'):
         name,needle='admission_trace.py','(self.numeric if numeric else self.hard)[event_id] = result.belief.belief_revision_id'
         replacement=f'__import__("os")._exit({EXIT_CODE})\n        '+needle
     elif cut=='attempt':
@@ -150,6 +156,17 @@ def evaluate(case,report):
                     'record_evidence','record_probability_report','propose_probability',
                     'precertify_probability','postcertify_probability','commit_probability']):
             raise ValueError('persisted estimate differs from expected numerical belief with missing wrapper alias')
+    if case['case_id'].startswith('admission-revision-'):
+        existing='-existing-' in case['case_id']
+        aliases=dict(body['metadata']['numeric'])
+        prior_revision=body['completed'][case['prefix'][-1]['event_id']]['record']['diagnostics']['knowledge_revisions']['c0']
+        current_revision=decode(state['views']['contexts']['c0']).knowledge_revision
+        if (any(ledgers['hard_beliefs'].values()) or len(ledgers['probability']['certificates'])!=(9 if existing else 7)
+                or len(aliases)!=(3 if existing else 2) or case['event']['event_id'] in aliases
+                or current_revision!=prior_revision+int(not existing)
+                or [entry['command'] for entry in report['journals']['authority']['appended']]!=[
+                    'propose_probability','precertify_probability','postcertify_probability','commit_probability']):
+            raise ValueError('persisted revision differs from expected numerical commit and missing alias')
     if case['cut']=='attempt':
         operation=decode(state['views']['operations']['a0']).operation
         if operation.selected or body['metadata']['attempts']:

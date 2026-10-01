@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-persisted-estimate-worker-adoption",
+  "implementation_stage": "bounded-persisted-revision-worker-adoption",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -758,7 +758,7 @@
     "observed_receipts_separate_from_executor_state": true,
     "offline_reproducible_receipt": true,
     "native_projection_parity_tested": true,
-    "development_crash_probes": 20,
+    "development_crash_probes": 24,
     "independent_primitive_expectations": true,
     "completed_reply_public_model_comparison": true,
     "raw_launch_pipe_exit_and_injected_source_evidence": true,
@@ -781,7 +781,7 @@
     "request_schema": "worker-reconciliation-request/v1",
     "prepared_schema": "worker-reconciliation-prepared/v1",
     "result_schema": "worker-reconciliation-result/v1",
-    "probe_schema": "worker-reconciliation-probes/v5",
+    "probe_schema": "worker-reconciliation-probes/v6",
     "supported_profiles": [
       "admission",
       "deployment"
@@ -814,7 +814,7 @@
     "journal_writes": true,
     "prior_remote_uncertainty_preserved": true,
     "native_inference_continuation_tested": true,
-    "actual_crash_probes": 50,
+    "actual_crash_probes": 74,
     "automatic_reconciliation": false,
     "authenticated_storage": false,
     "family_complete_fixtures": 0,
@@ -825,7 +825,8 @@
       "complete_partial_context",
       "adopt_persisted_context",
       "adopt_persisted_evidence",
-      "adopt_persisted_estimate"
+      "adopt_persisted_estimate",
+      "adopt_persisted_revision"
     ],
     "unchanged_journal_tips_required_for_cancellation": true,
     "unchanged_captured_source_bytes_required_before_preparation": true,
@@ -968,6 +969,57 @@
       "native_projection_and_inference_continuation_tested": true,
       "expiry_and_revocation_block_new_revision_tested": true,
       "zero_confidence_remains_numerical_tested": true,
+      "other_progressed_events_refused": true
+    },
+    "revision_prepared_schema": "worker-reconciliation-prepared/v6",
+    "revision_adoption": {
+      "action": "adopt_persisted_revision",
+      "profile": "admission",
+      "saved_numerical_aliases_required": 2,
+      "distinct_premises_and_exact_active_independence_binding": true,
+      "persisted_commands": [
+        "propose_probability",
+        "precertify_probability",
+        "postcertify_probability",
+        "commit_probability"
+      ],
+      "revision_transition_only": true,
+      "exact_saved_counter_and_entry_binding": true,
+      "proposal_runtime": "PinnedFormulaRuntime",
+      "exact_binary64_formula_result_and_provenance": true,
+      "successful_certificates_and_commit_only": true,
+      "new_and_idempotent_belief_commits_supported": true,
+      "idempotent_commit_preserves_canonical_alias_and_authority_revision": true,
+      "committed_numerical_alias_restored": true,
+      "event_historical_certificates_restored": true,
+      "prior_alias_order_and_completed_replies_preserved": true,
+      "checkpoint_status": "PASS",
+      "result_outcome": "adopted",
+      "recovered_reply_identifies_decision": true,
+      "original_elapsed_time_recovered": false,
+      "counter_advance": 4,
+      "journal_entries_appended": 0,
+      "source_sqlite_connections": false,
+      "source_journal_bytes_preserved": true,
+      "exact_captured_bytes_required_during_publication": true,
+      "public_composite_event_replay": false,
+      "native_inference_io": false,
+      "executor_io": false,
+      "hard_assertions_created": false,
+      "retained_authority_entries": 4,
+      "offline_candidate_and_entries_reproduced": true,
+      "source_commit_outcomes": [
+        "new-belief",
+        "idempotent-existing-belief"
+      ],
+      "source_crash_cuts": [
+        "commit-before-numerical-alias",
+        "composite-before-checkpoint"
+      ],
+      "crash_probes": 24,
+      "independent_three_event_continuation_tested": true,
+      "native_projection_and_inference_continuation_tested": true,
+      "expiry_report_and_model_revocation_block_new_revision_tested": true,
       "other_progressed_events_refused": true
     }
   }

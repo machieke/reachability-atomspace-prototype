@@ -1136,7 +1136,7 @@ output left by an interrupted inspector has no valid complete receipt and is not
 usable inspection bundle.
 
 Run `uv run --no-project python -m validation_lab.run_worker_inspection --output artifacts/inspection-probes-1`
-in a new directory for 20 actual child-process crash probes. The evaluator controls
+in a new directory for 24 actual child-process crash probes. The evaluator controls
 fault injection and keeps original runtime hashes, exact injected-source receipts,
 launch records, stdin/stdout/stderr, exit codes, worker stores and inspection bundles.
 Independent primitive expectations check partial context/policy creation, numerical
@@ -1150,6 +1150,11 @@ uncertainty. Completed stdout-loss replies and earlier prefixes are compared wit
 the independent public models. `validation_lab.run_worker_inspection.verify_report`
 checks the source bindings, injection bytes, raw exchanges, expectations, bundles
 and unchanged captured source evidence.
+
+Numerical revisions add four cases: commits of new and existing beliefs, each
+interrupted before alias assignment or before completed-checkpoint publication.
+They verify the expected certificate counts, missing alias and authority revision
+delta; an idempotent commit must not advance the authority revision.
 
 Sixteen new default tests exercise the inspection and evidence contracts. One new
 native test compares the captured typed authority records with the original native
@@ -1204,6 +1209,7 @@ requires a fresh inspection. The original inspection bundle is retained unchange
 | New admission context; both matching context commands persisted; final worker checkpoint missing | Explicit `adopt_persisted_context` |
 | New hard admission evidence; exact five-command successful chain persisted; final worker checkpoint missing | Explicit `adopt_persisted_evidence` |
 | New numerical estimate; exact six-command successful chain persisted; final worker checkpoint missing | Explicit `adopt_persisted_estimate` |
+| Numerical revision; exact four-command successful chain persisted; final worker checkpoint missing | Explicit `adopt_persisted_revision` |
 | Deployment `dispatch`, `reconcile` or `release` event | Refuse, including unchanged journal tips |
 | Any dispatch-profile event | Refuse in this increment |
 | Other partial admission, numerical, lifecycle, goal or executor progress | Refuse and preserve evidence |
@@ -1269,11 +1275,11 @@ clears it. A malformed marker blocks workers, while the separate reconciliation
 path checks its integrity and exact prepared-record binding.
 
 Run `uv run --no-project python -m validation_lab.run_worker_reconciliation --output artifacts/reconciliation-probes-1`
-in a new directory. Fifty actual process probes include twelve cancellation
+in a new directory. Seventy-four actual process probes include twelve cancellation
 probes spanning six crash boundaries for both supported profiles, eight partial-
 context completion probes, six persisted-context adoption probes and twelve
 probes each for persisted-evidence and persisted-estimate adoption described
-below. Raw
+below, plus twenty-four persisted-revision probes. Raw
 launch arguments/environment, stdout/stderr, exit codes, source/fault receipts,
 original inspections, decision archives and continued worker exchanges are
 retained. Independent public models check unchanged state for the cancellation
@@ -1411,7 +1417,7 @@ checkpoint, result and stdout publication. They start with an actual worker cras
 after both context commands, verify zero source journal changes, and then compare
 the restored context and a new numerical admission against the independent public
 model. The v3 probe receipt originally covered 26 reconciliation probes;
-v4 added the evidence cases below, and the current v5 also includes estimates. Twelve
+v4 added evidence, v5 added estimates, and the current v6 adds revisions. Twelve
 new unit tests check entry/counter/policy binding, previous reply preservation,
 budgets, existing-context refusal, source-I/O exclusion, stale evidence, altered
 archives, large typed entries, storage failures, historical retries and
@@ -1474,7 +1480,7 @@ derivation is refused as STALE.
 
 Two actual worker crash cuts cover a successful commit before wrapper alias
 assignment and the completed composite before checkpoint publication. Inspection
-now exercises 20 process cases and verifies the committed belief, both
+now exercises 24 process cases and verifies the committed belief, both
 certificates, missing saved alias and exact five-command suffix at either cut.
 Twelve reconciliation probes cross those two cuts with archive staging, prepared
 assets, marker, checkpoint, result and stdout failures. The v4 report introduced
@@ -1546,15 +1552,89 @@ after its numerical commit before alias assignment or after the composite before
 checkpoint publication. They independently check both numerical beliefs, four
 certificates, one saved alias, the six-entry suffix and no hard beliefs. Twelve
 new reconciliation probes cross these with the six publication cuts, bringing the
-v5 report to 50 cases. Each resumed worker registers independence between the old
-and recovered aliases and revises them; both continuation events are checked
+v5 report to 50 cases; v6 adds the revision cases below. Each resumed worker
+registers independence between the old and recovered aliases and revises them;
+both continuation events are checked
 against the independent public model. Fourteen new unit tests cover exact chain
 and truth-value binding, ordered history, all partial prefixes, failed outcomes,
 event bounds, archive corruption, storage failures, source changes, absent I/O,
 expiry, revocation and numerical/hard separation. One native integration test
 checks the unchanged numerical AtomSpace graph and subsequent real PLN revision.
 
-This action supports successful observation estimates only. Numerical `revise`,
-hard `adopt`/`derive`, partial estimate chains and deployment/dispatch events need
-separately specified transitions. An already completed wrapper continues using
-ordinary exact retry.
+This action supports successful observation estimates only. Numerical `revise`
+uses the separate action below. Hard `adopt`/`derive`, partial estimate chains and
+deployment/dispatch events need separately specified transitions. An already
+completed wrapper continues using ordinary exact retry.
+
+### Adopting a fully persisted numerical revision
+
+`adopt_persisted_revision` handles one pending admission `revise` event with four
+persisted successful commands and no completed wrapper checkpoint. Generate its
+explicit request using:
+
+```sh
+uv run --no-project python -m reachability.worker_reconciliation request \
+  --inspection artifacts/inspection-1 --decision-id adopt-revision-1 \
+  --action adopt_persisted_revision > artifacts/adopt-revision-1.json
+```
+
+Apply or retry it using the existing `apply` command and this request path. The
+exact appended suffix must be `propose_probability`, `precertify_probability`,
+`postcertify_probability`, `commit_probability`. Its keys use the original event
+ID and four consecutive saved counter values. Every command, payload, result
+digest, sequence and chain link must match the privately reconstructed operation.
+The original event must identify two saved numerical aliases in a saved context,
+resolving to distinct belief revisions. The registered, unrevoked independence
+declaration must bind that exact pair. Canonical premise ordering follows the
+existing revision API; it does not assign extra weight to reversed premises.
+
+Preparation validates the previous wrapper on a rewound private copy. It
+reconstructs only the four specified primitives and requires both certificates
+and the commit to pass. The proposal uses `PLNAdapter(PinnedFormulaRuntime())`
+explicitly, including for a native worker. This reproduces the pinned binary64
+result, formula identity, assumptions, source lineage, premise supports and
+revision bindings. It never calls the restored worker's native adapter. A changed
+floating value, formula, provenance or permit cannot be adopted from a merely
+matching command count. Failed, stale, history-limit and partial outcomes refuse
+preparation and preserve source evidence.
+
+The candidate restores the commit's exact numerical belief alias and the event's
+two issued certificates, consumes one event slot and advances the counter by
+four. A PASS commit may have returned an already existing belief. In that case,
+the original belief, canonical alias and belief certificates remain unchanged;
+the recovered event receives its own historical certificate diagnostics and new
+alias. No new belief or authority revision is fabricated. Earlier alias order and
+completed replies are preserved. The recovered reply identifies the decision and
+uses zero for unavailable original timing. An ordinary private resume checks its
+exact retry before publication.
+
+Prepared v6 retains four exact entries and before/after checkpoints. Earlier
+actions retain prepared v1–v5, with request/result, worker and journal schemas
+unchanged. Publication retains the durable worker gate and exact source
+database/sidecar bytes. It opens no source SQLite connection, appends no source
+journal command and issues no public composite, native inference or executor I/O.
+Offline verification reconstructs the same pinned proposal, certificates, alias,
+checkpoint and chain. Complete preparations support exact retries without the
+external inspection; finished results remain historical after later progress.
+
+Expiry of a leaf report, report revocation or revocation of the original
+independence model still retires the recovered revision and prevents subsequent
+revision through it. Exact old replies remain historical PASS records. Recovery
+does not convert a numerical result into a hard assertion or establish statistical
+independence beyond the recorded declaration.
+
+Four new inspection cases cover new-belief and idempotent commits at both source
+crash cuts. Twenty-four new reconciliation probes cross them with all six
+publication cuts, bringing the v6 report to 74 cases. Each resumed worker admits
+a fresh independent report, registers its relation to the recovered alias and
+revises again; every continuation is compared with the independent public model.
+Fourteen new unit tests cover exact bindings, changed formula/truth/provenance,
+failed certificates/commits, partial chains, idempotent aliases, historical
+replies, storage/archive failures, event bounds, absent source/native/executor
+I/O and later dependency retirement. A native integration test covers both commit
+outcomes, blocks native inference during recovery, compares numerical AtomSpace
+graphs, and then continues through actual native PLN revision.
+
+This action supports successful numerical revisions only. Other event kinds,
+partial revisions, numerical deductions and lifecycle/dispatch progress remain
+outside its scope. An already completed checkpoint uses ordinary exact retry.

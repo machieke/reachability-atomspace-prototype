@@ -13,32 +13,35 @@ from reachability.worker_reconciliation import make_request,archive_path,journal
 from reachability.context_reconciliation import ACTION as CONTEXT_ACTION, ADOPT_ACTION
 from reachability.evidence_reconciliation import ACTION as EVIDENCE_ACTION
 from reachability.estimate_reconciliation import ACTION as ESTIMATE_ACTION
+from reachability.revision_reconciliation import ACTION as REVISION_ACTION
 from reachability.admission_protocol import event as admission_event
 from .public_worker import PublicWorker,WorkerError,ROOT,runtime_bundle,write_json
 from .run_public_workers import REFERENCES,compare,check_event
 from .run_worker_inspection import cases as inspection_cases,run_case as inspect_probe,source_files as inspection_sources
 from .shrink_replay import digest_file
 
-SCHEMA='worker-reconciliation-probes/v5'
+SCHEMA='worker-reconciliation-probes/v6'
 EXIT_CODE=83
 CUTS=('archive-file','assets','marker','checkpoint','result','stdout')
 CONTEXT_CUTS=(*CUTS,'transaction','committed')
+REVISION_MODES=('revision-new-commit','revision-new-after','revision-existing-commit','revision-existing-after')
 
 
 def probes():
     return ([(profile,cut) for profile in ('admission','deployment') for cut in CUTS]
         + [('context',cut) for cut in CONTEXT_CUTS] + [('adopt',cut) for cut in CUTS]
-        + [(mode,cut) for mode in ('evidence-commit','evidence-after','estimate-commit','estimate-after') for cut in CUTS])
+        + [(mode,cut) for mode in ('evidence-commit','evidence-after','estimate-commit','estimate-after',*REVISION_MODES) for cut in CUTS])
 
 
 def action(mode):
     return {'context':CONTEXT_ACTION,'adopt':ADOPT_ACTION,
         'evidence-commit':EVIDENCE_ACTION,'evidence-after':EVIDENCE_ACTION,
-        'estimate-commit':ESTIMATE_ACTION,'estimate-after':ESTIMATE_ACTION}.get(mode,ACTION)
+        'estimate-commit':ESTIMATE_ACTION,'estimate-after':ESTIMATE_ACTION,
+        **dict.fromkeys(REVISION_MODES,REVISION_ACTION)}.get(mode,ACTION)
 
 
 def scenario(mode):
-    if mode in ('evidence-commit','evidence-after','estimate-commit','estimate-after'):
+    if mode in ('evidence-commit','evidence-after','estimate-commit','estimate-after',*REVISION_MODES):
         return next(c for c in inspection_cases() if c['case_id']=='admission-'+mode)
     profile='admission' if mode in ('context','adopt') else mode
     suffix={'context':'-partial-context','adopt':'-after'}.get(mode,'-before')
@@ -46,6 +49,13 @@ def scenario(mode):
 
 
 def continuation(case, completing):
+    if case['event']['kind']=='revise' and completing:
+        args=dict(context_id=case['event']['arguments']['context_id'],model_id='model-after-adoption',
+            premises=['fresh-after-adoption',case['event']['event_id']])
+        return [admission_event('fresh-after-adoption','estimate',context_id=args['context_id'],literal=1,
+                    roots=['fresh-after-adoption'],valid_until=None,strength=1.,confidence=.5),
+            admission_event('model-after-adoption','independence',**args,justification='independent fresh report'),
+            admission_event('revise-after-adoption','revise',**args)]
     if case['event']['kind']=='estimate' and completing:
         args=dict(context_id=case['event']['arguments']['context_id'],model_id='model-after-adoption',
             premises=[case['prefix'][-1]['event_id'],case['event']['event_id']])

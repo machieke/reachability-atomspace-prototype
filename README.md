@@ -586,7 +586,15 @@ For a successful numerical `estimate` whose six commands persisted, use
 observation proposal, certificates and commit, then restores the numerical alias
 without changing source journals or calling a native inference engine. Exact truth
 values remain numerical estimates; adoption creates no hard assertion. Partial or
-failed chains and numerical revision events require separate decisions. See
+failed chains remain outside this action.
+
+For a successful numerical `revise` whose four commands persisted, use
+`--action adopt_persisted_revision`. It requires both saved numerical aliases and
+their exact active independence declaration, reconstructs the proposal with the
+pinned local formula checker, and restores the result alias and certificates.
+A commit that reused an existing belief restores only its additional alias;
+adoption adds no weight or journal entry. Native inference is not called during
+recovery. See
 [bounded reconciliation](VALIDATION.md#bounded-explicit-worker-reconciliation)
 for evidence binding, durable decision receipts and crash recovery.
 
@@ -611,8 +619,8 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next define adoption of fully persisted numerical revisions, including exact
-premise aliases, independence declarations, formula results and certificates.
+Next define adoption of fully persisted hard derivations, including exact
+premise aliases, rule revisions, proposals and certificates.
 Specify other admission and lifecycle outcomes separately, then address dispatch
 and executor evidence with observed packets and fencing fully accounted for.
 Remaining designated mutants and evaluator OS isolation remain open. Goal loss

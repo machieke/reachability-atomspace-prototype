@@ -16,6 +16,7 @@ from .codec import decode, encode
 from . import context_reconciliation as context_completion
 from . import evidence_reconciliation as evidence_adoption
 from . import estimate_reconciliation as estimate_adoption
+from . import revision_reconciliation as revision_adoption
 from .dispatch_worker_state import atomic_write, MAX_CHECKPOINT
 from .journal import RecoveryError
 from .reconciliation_state import ARCHIVE, MARKER
@@ -29,12 +30,14 @@ CONTEXT_RECORD_SCHEMA = 'worker-reconciliation-prepared/v2'
 ADOPTION_RECORD_SCHEMA = 'worker-reconciliation-prepared/v3'
 EVIDENCE_RECORD_SCHEMA = 'worker-reconciliation-prepared/v4'
 ESTIMATE_RECORD_SCHEMA = 'worker-reconciliation-prepared/v5'
+REVISION_RECORD_SCHEMA = 'worker-reconciliation-prepared/v6'
 RESULT_SCHEMA = 'worker-reconciliation-result/v1'
 ACTION = 'cancel_unstarted_local'
-ADOPTION_ACTIONS = (context_completion.ADOPT_ACTION, evidence_adoption.ACTION, estimate_adoption.ACTION)
-ACTIONS = (ACTION, *context_completion.ACTIONS, evidence_adoption.ACTION, estimate_adoption.ACTION)
+ADOPTION_ACTIONS = (context_completion.ADOPT_ACTION, evidence_adoption.ACTION, estimate_adoption.ACTION, revision_adoption.ACTION)
+ACTIONS = (ACTION, *context_completion.ACTIONS, evidence_adoption.ACTION, estimate_adoption.ACTION, revision_adoption.ACTION)
 ADOPTION_SCHEMAS = {context_completion.ADOPT_ACTION:ADOPTION_RECORD_SCHEMA,
-    evidence_adoption.ACTION:EVIDENCE_RECORD_SCHEMA, estimate_adoption.ACTION:ESTIMATE_RECORD_SCHEMA}
+    evidence_adoption.ACTION:EVIDENCE_RECORD_SCHEMA, estimate_adoption.ACTION:ESTIMATE_RECORD_SCHEMA,
+    revision_adoption.ACTION:REVISION_RECORD_SCHEMA}
 LOCAL_DEPLOYMENT = frozenset(('fact','forecast','revoke','tick','attempt','reserve','cover','prepare',
     'observation','sample','censor','resume','account','complete','restart'))
 
@@ -51,7 +54,7 @@ def parse_request(value):
     if value['action'] not in ACTIONS or value['profile'] not in PROFILES:
         raise ValueError('unsupported reconciliation action/profile')
     if value['action'] != ACTION and value['profile'] != 'admission':
-        raise ValueError('context/evidence/estimate reconciliation supports only admission')
+        raise ValueError('context/evidence/estimate/revision reconciliation supports only admission')
     for name in ('inspection_digest','checkpoint_sha256','pending_digest'):
         if type(value[name]) is not str or len(value[name]) != 64 or any(c not in '0123456789abcdef' for c in value[name]):
             raise ValueError('invalid reconciliation digest')
@@ -199,6 +202,8 @@ def archive_path(directory, request):
 
 
 def candidate_plan(report, inspection, request):
+    if request['action'] == revision_adoption.ACTION:
+        return revision_adoption.candidate(report, inspection, request)
     if request['action'] == estimate_adoption.ACTION:
         return estimate_adoption.candidate(report, inspection, request)
     if request['action'] == evidence_adoption.ACTION:
@@ -258,6 +263,8 @@ def validate_archive(archive, request):
             validate = evidence_adoption.validate_adoption
         elif request['action'] == estimate_adoption.ACTION:
             validate = estimate_adoption.validate_adoption
+        elif request['action'] == revision_adoption.ACTION:
+            validate = revision_adoption.validate_adoption
         validate(record, decode(before['body']))
     after = json.loads((archive/'after.json').read_text())
     if fingerprint(after['body']) != after['digest']:
