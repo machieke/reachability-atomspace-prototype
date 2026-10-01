@@ -1053,3 +1053,105 @@ This extension adds 18 default tests and two optional native tests. It does not
 provide pending-command reconciliation, automatic migration of old stream
 metadata, a cross-store atomic transaction, hostile-storage authentication,
 evaluator OS isolation, family-complete fixtures or additional designated mutants.
+
+
+## Interrupted-worker inspection
+
+`uv run --no-project python -m reachability.worker_inspection --profile deployment --database-dir /path/to/worker --output artifacts/inspection-1`
+creates a new `worker-inspection/v1` evidence bundle. Admission and dispatch use
+the same command with their profile names. The output must be outside the source
+worker directory and must not already exist. Stop the worker and any direct
+journal owners first. Busy ownership locks refuse capture; missing lock files are
+never recreated. This is an explicit diagnostic action, not a worker resume path.
+
+The inspector acquires the existing worker and journal locks through read-only
+file descriptors. It captures checkpoint, database, WAL, SHM, rollback-journal,
+lock and abandoned checkpoint-temporary files when present. Missing known files
+are recorded explicitly. Capture is bounded to 64 files and 256 MiB; symbolic
+links and nonregular evidence files are refused. Hashes and exact inventory are
+compared before and after copying under the locks. Source databases are **never
+opened through SQLite**: a normal recovery connection could create, checkpoint or
+remove WAL/SHM files. Tests retain source bytes, filenames and modification times.
+Access-time changes caused by reading files are outside this guarantee.
+
+The captured `snapshot/` stays untouched. Analysis copies each required database,
+its WAL and any rollback journal into a disposable directory, rebuilds SHM there,
+checks SQLite structure, and invokes the existing checked journal recovery on that
+private copy. Empty or malformed databases are reported as unavailable; they are
+not accepted as new empty stores. Journal result replay still checks deterministic
+formulas. No public stream event is replayed and no simulator submit/query/release or
+native inference I/O is called. Ownership locks protect capture, not future use of
+the source directory: the report describes the captured boundary, not live state
+that may change after the locks are released.
+
+`report.json` contains:
+
+- The decoded-and-reencoded checkpoint, including its original completed replies,
+  ordered aliases, observed requests/receipts and pending command, when schema,
+  integrity, profile and public-wire checks succeed. Invalid checkpoint data is
+  retained in the raw snapshot and reported as an error; a null pending value in
+  that situation means unknown, not proof that no command was pending.
+- Saved and current journal genesis/sequence/tail digests. `equal` means identical
+  boundaries; `advanced` requires the saved boundary to be an actual prefix of
+  the verified current chain, and includes the appended journal entries. A changed
+  genesis, missing prefix, incorrect tail or backwards sequence is `diverged`.
+  Missing/corrupt stores are `unavailable`; a readable journal with no valid
+  checkpoint binding is `unbound`.
+- Typed authority ledgers and current views, including hard/numerical beliefs,
+  certificates, rule/policy history, operations, intents, resource uncertainty,
+  lifecycle state, goals, samples, coverage and accounting. These do not depend on
+  possibly stale wrapper aliases during an interrupted composite command.
+- Actual simulator profile, request/receipt inventory and effect count, separately
+  from the checkpoint's observed transport buffers. A historical accepted packet
+  stays historical even when the current executor has a newer permanent fence.
+  Newly recovered remote effects do not become locally observed acknowledgements.
+
+The top-level diagnostic classifications and supported decisions are:
+
+| Report status | Evidence | Current supported decision |
+| --- | --- | --- |
+| `no_pending_marker` | Valid checkpoint wire data, no pending marker, equal journal tips | Retain evidence; ordinary explicit resume still performs its own full wrapper validation |
+| `pending_no_journal_change` | Pending marker, both required boundaries unchanged | Retain pending state; no automatic retry or discard |
+| `pending_journal_progress` | Pending marker, at least one verified journal extension | Inspect partial effects; retain resource uncertainty and pending state |
+| `checkpoint_journal_mismatch` | No pending marker but a journal extended beyond the checkpoint | Retain evidence; automatic resume remains refused |
+| `unverified` | Corruption, missing stores, divergence, profile mismatch or unbound evidence | Preserve available bytes; do not infer a reconciliation outcome |
+
+Every report has `continuation_authorized: false`. No status is a repair permit.
+In particular, unchanged journal tips do not establish that all wrapper-only work
+or transport observations are reconstructible. The inspector does not perform the
+full alias/completed-reply validation of the resume adapters. It never clears a
+pending marker, adopts new replies, sends a request, advances a goal, or releases
+resources. Partial numerical evidence, an unselected operation, an admitted but
+unregistered monitor sample and an accepted remote effect are distinct states
+requiring distinct future reconciliation rules.
+
+`receipt.json` binds the report and captured file inventory. Call
+`reachability.worker_inspection.verify_inspection(Path('artifacts/inspection-1'))`
+to check bytes and reproduce the report on new private copies without accessing
+the original worker. Added/missing/changed evidence and a rehashed report that
+contradicts the captured state are rejected. These hashes establish reproducibility
+and accidental-corruption detection, not hostile-storage authentication. Partial
+output left by an interrupted inspector has no valid complete receipt and is not a
+usable inspection bundle.
+
+Run `uv run --no-project python -m validation_lab.run_worker_inspection --output artifacts/inspection-probes-1`
+in a new directory for 16 actual child-process crash probes. The evaluator controls
+fault injection and keeps original runtime hashes, exact injected-source receipts,
+launch records, stdin/stdout/stderr, exit codes, worker stores and inspection bundles.
+Independent primitive expectations check partial context/policy creation, numerical
+report admission, operation selection, hard fact adoption and goal-sample
+registration. All three profiles cover pending-before-execution, after-composite
+execution and completed-checkpoint/lost-stdout boundaries. Deployment and dispatch
+also crash after a committed remote effect, retaining the executor WAL and local
+uncertainty. Completed stdout-loss replies and earlier prefixes are compared with
+the independent public models. `validation_lab.run_worker_inspection.verify_report`
+checks the source bindings, injection bytes, raw exchanges, expectations, bundles
+and unchanged captured source evidence.
+
+Sixteen new default tests exercise the inspection and evidence contracts. One new
+native test compares the captured typed authority records with the original native
+projection. The existing nine corpus receipts are refreshed without changing their
+cases, outcomes, schedules or mutation reductions. No authority/executor/checkpoint
+schema changes, additional family-complete fixtures, designated mutants or OS
+sandbox guarantees are introduced. Explicit pending-command reconciliation,
+M09/M12, the 64-fixture target and broader phases remain open.

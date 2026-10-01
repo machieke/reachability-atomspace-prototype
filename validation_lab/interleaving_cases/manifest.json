@@ -108,6 +108,7 @@
     "reachability/stream_worker.py": "1432b6f712bbd47471b35ab4be8837d2fb1412d384ba3c92040f06b5282bb663",
     "reachability/trace_protocol.py": "74ef7818eb1b480f84298ab063e1a929ece5371e2fffe4e08ec47004b39469aa",
     "reachability/trace_worker_state.py": "8c7dad740bd43109be02f715ca03889b0dff8a93a4faf39fdad145a8b7dcf4d8",
+    "reachability/worker_inspection.py": "cfb4d488694dd83fd7c274c1fb0c2165e416c827e4b5421fe2c131dd52cb0459",
     "validation_lab/admission_oracle.py": "2617e8c53f268be3f319981119cd1a34e1d2db0a878f84ac365896cd019c91fd",
     "validation_lab/deployment_oracle.py": "099713862046c6fa47f5b3c83ef61fceb93b38ff42094952d7a67e91d872e7fe",
     "validation_lab/generate_interleaving_cases.py": "41649e33655a963215a49539a9d5bf15d549e5ed4382464e09370a4cd4a1cc4b",

@@ -91,3 +91,29 @@ class NativeTraceWorkerTests(unittest.TestCase):
                 self.assertEqual(last['outcome']['status'],'PASS')
                 self.assertEqual(last['projection']['aliases']['numeric']['e006'],'e005')
                 self.assertEqual(last['projection']['numeric']['e005']['confidence'],2/3)
+
+
+class NativeWorkerInspectionTests(unittest.TestCase):
+    def test_captured_authority_records_preserve_native_projection(self):
+        from reachability.codec import decode
+        from reachability.trace_worker_state import DurableDeploymentSession
+        from reachability.worker_inspection import inspect_worker,verify_inspection,capture_names,file_inventory
+        from validation_lab.generate_deployment_cases import scenarios as deployment_cases
+        with TemporaryDirectory() as directory:
+            root=Path(directory); state=root/'state'
+            with DurableDeploymentSession(DeploymentInitial(),state) as session:
+                for event in deployment_cases()[0]['events']:
+                    session.apply(event)
+                s=session.service
+                records=(s.snapshot('c0'),s.inspect_lifecycle('episode'),s.inspect_goal('g0'),
+                    s.inspect_resource('slot'),s.inspect_dispatch('a0'),s.inspect_execution_intent('a0'))
+                p=RecordProjection(); p.add(records); before=p.batch.run()
+            evidence=file_inventory(state,capture_names(state))
+            report=inspect_worker('deployment',state,root/'inspection')
+            self.assertEqual(verify_inspection(root/'inspection'),report)
+            views=report['authority']['views']
+            recovered=tuple(decode(views[name][key]) for name,key in (
+                ('contexts','c0'),('lifecycle','episode'),('goals','g0'),('resources','slot'),('dispatch','a0'),('intents','a0')))
+            p=RecordProjection(); p.add(recovered)
+            self.assertEqual(p.batch.run(),before)
+            self.assertEqual(file_inventory(state,capture_names(state)),evidence)

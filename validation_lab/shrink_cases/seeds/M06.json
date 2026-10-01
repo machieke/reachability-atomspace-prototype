@@ -240,7 +240,7 @@
   },
   "source": {
     "corpus_manifest": "validation_lab/deployment_cases/manifest.json",
-    "corpus_digest": "fd70936e0a71ee0b9ada4f4ddd494d36df12dbb3005393c8787a0a1404d9e9f7",
+    "corpus_digest": "1b0c8c1920d6998a2704cf4cee56daa2baadbdeff0730dd484429e50448e3ec8",
     "initial_path": "validation_lab/deployment_cases/public/initial.json",
     "initial_selector": null,
     "case_path": "validation_lab/deployment_cases/evaluator/d01.json",

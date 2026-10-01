@@ -546,6 +546,15 @@ Interrupted commands are refused on automatic resume. See
 [public workers](VALIDATION.md#separate-process-public-workers-and-dispatch-checkpoints)
 for the checkpoint contract and process-isolation limits.
 
+Stopped workers can now be inspected without modifying their checkpoints or
+journals. Run
+`uv run --no-project python -m reachability.worker_inspection --profile deployment --database-dir /path/to/worker --output artifacts/inspection-1`
+with a new output directory outside the worker directory. The bundle retains raw
+checkpoint/database/WAL evidence and reports pending commands, journal progress,
+actual authority records and simulator effects. SQLite recovery runs on private
+copies. See [worker inspection](VALIDATION.md#interrupted-worker-inspection) for
+verification and the decision matrix; inspection does not authorize continuation.
+
 ## Current limits and next work
 
 The authority API has trusted callers. Optional evaluator workers use separate
@@ -567,8 +576,9 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next specify and implement explicit reconciliation for interrupted composite
-commands, starting with evidence-preserving inspection of pending work. Remaining designated
+Next define explicit reconciliation commands bound to an inspection's exact
+journal boundaries and pending-command identity, then implement their bounded
+per-profile outcomes. Remaining designated
 mutants and evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding

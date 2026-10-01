@@ -48,15 +48,16 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, nineteenth increment): completed-command
-recovery now covers all three serial public worker profiles. Thirty-two cases
-compare 361 prefixes across 393 actual worker starts; every prefix is recovered
-in a fresh process and exactly retried. Admission preserves ordered hard/numerical
-aliases, active contexts/rules and command counters. Deployment preserves attempt
-aliases and stream state alongside its actual journals. Pending markers still
-refuse automatic replay of interrupted composite commands. Original design inputs,
-authority schemas, family-complete validation and phases 5–8 remain unchanged or
-open as recorded below; process separation still does not provide an OS sandbox.
+Current checkpoint (1 October 2026, twentieth increment): stopped workers now
+have evidence-preserving inspection across admission, deployment and dispatch.
+Captured checkpoint/database/WAL bytes are replayed only on private copies. Reports
+separate pending commands, journal extensions, authority state, observed transport
+buffers and actual simulator effects. Sixteen real-process crash probes cover
+partial admission, numerical, lifecycle and goal work as well as remote effects and
+lost stdout. Inspection never authorizes continuation or clears pending work.
+Completed-command recovery still covers 32 cases and 361 fresh-process retries.
+Family-complete validation, evaluator OS isolation, M09/M12 and phases 5–8 remain
+open; the detailed execution records below define the next bounded increment.
 
 ## Phase 0 Repository contracts
 
@@ -1394,5 +1395,69 @@ Next increment, in order:
    independent models. Keep operator decisions separate from automated recovery
    and retain conservative resource uncertainty until authoritative fencing or
    equivalent supported evidence permits release.
+4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
+   target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.
+
+### Twentieth increment on 1 October 2026
+
+1. Capture stopped-worker evidence under the existing worker and journal locks.
+   Read existing files without opening the source databases through SQLite; retain
+   checkpoint, database and WAL bytes, and replay only disposable private copies.
+2. Report checkpoint integrity, the pending public command, saved/current journal
+   boundaries and verified prefix relationships. Expose actual recovered authority
+   and executor records separately from checkpointed observations and replies.
+3. Publish a reproducible inspection bundle and verify it from captured bytes.
+   Exercise real process crashes, partial composite commands, remote effects,
+   corruption, missing stores and ownership conflicts without issuing executor I/O.
+4. Document the evidence and decision matrix, refresh source receipts and run the
+   regression/native/reference suites. Inspection does not clear pending markers,
+   replay public commands, release resources or authorize continuation; explicit
+   reconciliation remains the next implementation boundary.
+
+Implemented `worker-inspection/v1` with existing-file ownership locks, bounded
+capture, source-byte/inventory checks and checked replay on disposable copies.
+The output retains raw evidence separately from the derived report and receipt.
+Offline verification recomputes the report without reopening the original stores.
+No pending marker or other worker state is rewritten. Missing, corrupt, unbound
+or divergent stores are reported explicitly while retaining available evidence.
+
+Sixteen development crash probes exercise pending-before-execution,
+after-composite execution and lost stdout after publication in every profile,
+plus partial context/policy setup, numerical-report admission, hard-fact adoption,
+operation selection, goal-sample registration and remote effects in both executor
+profiles. Independent primitive expectations and public-prefix models check raw
+child-process evidence. The verifier binds exact injected source bytes and launch
+records, retains actual WAL evidence, and checks that inspection left source
+bytes unchanged. Historical observed receipts remain separate from current remote
+fences and effects; no inspection query is sent to the executor.
+
+Sixteen new default tests cover capture/ownership, bounds, corruption, missing
+stores, profile mismatch, prefix divergence, exact evidence preservation,
+reproducibility, report tampering and actual crashes. A new native test compares
+captured typed authority records with their original native projection. Existing
+nine corpus receipts are refreshed without changing any public case, outcome,
+schedule or reduced mutation witness. Original design inputs and authority,
+executor, worker and checkpoint schemas remain unchanged. Family-complete fixture
+count remains zero.
+
+Verification: 743 default tests, 79 optional native integration tests and all
+15 standalone reference checks pass. The fresh 16-probe CLI report and its raw
+inspection receipts verify successfully; the full default suite also repeats the
+32-case, 361-prefix completed-command process corpus. Existing mutation reductions
+remain M05 12→5, M06 23→6, M07 2→2, M11 13→1, M08 5→1, M10 6→4,
+cached-send-gate 9→8 and expire-uncertain 8→7.
+
+Next increment, in order:
+
+1. Define explicit reconciliation request/result records bound to the exact
+   pending command and inspected authority/executor genesis/sequence/tail digests.
+   Reject stale evidence before considering a decision; retain the original bundle.
+2. Implement a narrowly specified per-profile reconciliation transition only
+   where the required evidence and wrapper-state reconstruction are defined.
+   Distinguish partial admission/numerical records, lifecycle/goal registration,
+   lost transport observations and actual executor effects. Unchanged journal tips
+   alone do not authorize clearing a pending marker or releasing occupancy.
+3. Exercise each allowed and refused transition with actual crashes, independent
+   state expectations and durable decision receipts before enabling continuation.
 4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
    target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.
