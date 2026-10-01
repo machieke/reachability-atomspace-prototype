@@ -1600,6 +1600,71 @@
           "artifacts/pressure-exhaustion-repeatability.log"
         ]
       }
+    },
+    "public_support_references": {
+      "status": "bounded-adapter-correctness-fix",
+      "generated_names_skip_existing_aliases_and_evidence": true,
+      "revoked_and_failed_admission_names_remain_reserved": true,
+      "observation_cannot_rebind_inference_reference": true,
+      "conflicting_observation_rejected_before_authority_write": true,
+      "unchanged_repeated_observation_preserves_belief_identity": true,
+      "common_read_execute_interface_unchanged": true,
+      "controller_rankings_authority_apis_and_frozen_episodes_changed": false,
+      "interrupted_recovery_added": false,
+      "new_regression_tests": 5,
+      "validation": {
+        "status": "passed",
+        "focused_regression_tests_passed": 83,
+        "deployment_admission_recovery_tests_passed": 70,
+        "standalone_reference_checks_passed": 15,
+        "collision_runs_certified_and_audited": 2,
+        "remaining_failures": 0,
+        "tests_skipped": 0,
+        "suites_not_rerun": [
+          "full default suite",
+          "native integration suite"
+        ],
+        "existing_corpus_receipts_refreshed": 9,
+        "existing_corpus_verifiers_passed": 9,
+        "prior_fixture_semantics_unchanged": true,
+        "controller_runs_passed": 64,
+        "distinct_authorities": 64,
+        "work_limited_repeat_matches": 16,
+        "work_limited_repeat_failures": 0,
+        "work_limited_repeat_inconclusive": 0,
+        "wall_limited_repeat_variations": 5,
+        "audited_selections_per_bundle": [
+          156,
+          155
+        ],
+        "comparison_source_files_verified_per_bundle": 71,
+        "rich_work16_b3_pressure_elapsed_ns_range": [
+          14533521,
+          23677725
+        ],
+        "verification_elapsed_ns": 37963766095,
+        "total_experiment_elapsed_ns": 112706094714,
+        "expected_operation_rejections": {
+          "UNKNOWN": 6,
+          "STALE": 24
+        },
+        "m09_detected_in_both_bundles": true,
+        "recorded_pressure_fields": 187,
+        "all_recorded_pressure_fields_converged": true,
+        "work_limited_outcomes_unchanged": true,
+        "report": "artifacts/pressure-reference-names-repeatability/repeatability.json",
+        "readable_report": "artifacts/pressure-reference-names-repeatability/repeatability.md",
+        "logs": [
+          "artifacts/pressure-reference-names-before.log",
+          "artifacts/pressure-reference-names-focused.log",
+          "artifacts/pressure-reference-names-regressions.log",
+          "artifacts/pressure-reference-names-deployment-regressions.log",
+          "artifacts/pressure-reference-names-reference.log",
+          "artifacts/pressure-reference-names-generation.log",
+          "artifacts/pressure-reference-names-receipts.log",
+          "artifacts/pressure-reference-names-repeatability.log"
+        ]
+      }
     }
   }
 }

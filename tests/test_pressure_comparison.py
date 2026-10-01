@@ -376,6 +376,80 @@ class ComparisonCostTests(unittest.TestCase):
                         self.assertEqual(session.read()['goals'][0]['outstanding'], 1)
 
 
+class SessionReferenceTests(unittest.TestCase):
+    def test_both_controllers_certify_and_audit_an_initial_generated_name_collision(self):
+        from validation_lab.audit_pressure_comparison import audit_run
+        case = deepcopy(episodes()[1]); case['world']['initial'][0]['name'] = 'operation-8'
+        for variant in ('B0', 'B3'):
+            with self.subTest(variant=variant), TemporaryDirectory() as d:
+                path = Path(d)/'run'; config = configurations()[1]
+                result = run_one(case, variant, config, path)
+                self.assertEqual(result['setup_costs']['journal_commands'], 8)
+                self.assertEqual(result['work']['actions'], 2)
+                self.assertEqual(result['final']['certified_weighted_loss'], 0)
+                self.assertEqual(result['failures'], {})
+                supports = {p['reference']: p for p in result['final_snapshot']['supports']}
+                original = result['initial_snapshot']['supports'][0]
+                self.assertEqual(supports['operation-8'], original)
+                self.assertEqual({p['literal'] for p in supports.values()}, {1, 2})
+                self.assertEqual(audit_run(path, case, config, result), 2)
+
+    def test_observation_cannot_overwrite_inference_reference_or_write_authority_state(self):
+        with TemporaryDirectory() as d, ReasoningSession(episodes()[1]['public'], d) as s:
+            s.observe(1, 'seed')
+            snapshot = s.read()
+            candidate = next(c for c in enumerate_work(s.public, snapshot).candidates if c.kind == 'derive')
+            self.assertEqual(s.execute(candidate, fingerprint(snapshot))['status'], 'PASS')
+            name = next(p['reference'] for p in s.read()['supports'] if p['literal'] == 2)
+            state = deepcopy({key: getattr(s.service, key) for key in s.service._STATE_FIELDS})
+            journal = s.service._journal.entries()
+            registry = deepcopy((s.aliases, s.evidence, s.metrics.values, s.read()))
+            with self.assertRaisesRegex(ValueError, 'reference.*already bound'):
+                s.observe(1, name)
+            self.assertEqual(s.service._journal.entries(), journal)
+            self.assertEqual({key: getattr(s.service, key) for key in s.service._STATE_FIELDS}, state)
+            self.assertEqual((s.aliases, s.evidence, s.metrics.values, s.read()), registry)
+
+    def test_unchanged_repeated_observation_keeps_its_belief_and_reference(self):
+        with TemporaryDirectory() as d, ReasoningSession(episodes()[1]['public'], d) as s:
+            first = s.observe(1, 'seed', valid_until=100)
+            snapshot = s.read()
+            repeated = s.observe(1, 'seed', valid_until=100)
+            self.assertEqual(first, repeated)
+            self.assertEqual(s.read(), snapshot)
+            self.assertEqual(s.aliases, {'seed': first.belief_revision_id})
+            self.assertEqual(len(s.service.snapshot(s.context_id).usable), 1)
+
+    def test_generated_reference_skips_multiple_occupied_and_revoked_names(self):
+        with TemporaryDirectory() as d, ReasoningSession(episodes()[1]['public'], d) as s:
+            for name in ('operation-19', 'operation-20', 'operation-21'):
+                s.observe(1, name)
+            s.call('revoke_evidence', 'operation-20')
+            before = dict(s.aliases)
+            snapshot = s.read()
+            candidate = next(c for c in enumerate_work(s.public, snapshot).candidates if c.kind == 'derive')
+            self.assertEqual(s.execute(candidate, fingerprint(snapshot))['status'], 'PASS')
+            self.assertEqual({name: s.aliases[name] for name in before}, before)
+            supports = {p['reference']: p['literal'] for p in s.read()['supports']}
+            self.assertEqual(supports, {'operation-19': 1, 'operation-21': 1, 'operation-22': 2})
+
+    def test_observation_allocation_skips_evidence_retained_after_failed_admission(self):
+        public = deepcopy(episodes()[1]['public']); public['clauses'] = [[-1]]
+        with TemporaryDirectory() as d, ReasoningSession(public, d) as s:
+            with self.assertRaises(AdmissionDenied): s.observe(1, 'operation-9')
+            self.assertIn('operation-9', s.evidence)
+            self.assertNotIn('operation-9', s.aliases)
+            state = s.service.snapshot(s.context_id)
+            s.call('replace_policy', s.context_id, 'allow-seed', (), state.knowledge_revision)
+            snapshot = s.read()
+            candidate = next(c for c in enumerate_work(s.public, snapshot).candidates if c.kind == 'observe')
+            receipt = s.execute(candidate, fingerprint(snapshot), response=dict(literal=1, valid_until=None))
+            self.assertEqual(receipt['status'], 'PASS')
+            self.assertNotIn('operation-9', s.aliases)
+            self.assertEqual(s.read()['supports'][0]['reference'], 'operation-10')
+            self.assertEqual(set(s.evidence), {'operation-9', 'operation-10'})
+
+
 class PressureSummaryTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

@@ -113,6 +113,14 @@ AND premise retains its own exact selected alias. Absence of scheduled expiry is
 not a durability guarantee: revocation and relevant revisions still invalidate
 bound requests and certificates through the existing authority checks.
 
+Public support references remain stable for the session. Generated operation
+names skip every occupied alias or evidence name, including revoked support and
+evidence retained after an unsuccessful admission. An observation cannot reuse
+an inference's reference; it is rejected before any authority write. Repeating
+an unchanged observation retains the same evidence and belief identity through
+the existing authority APIs. This namespacing rule does not resume or reconcile
+interrupted sessions.
+
 Reasoning B0 uses dependency-aware best-first conditional planning over the
 finite fact state space. It keeps all AND premises, coherent OR routes, shared
 prerequisites, public joint constraints and declared costs. It ranks weighted
@@ -446,6 +454,23 @@ B3's worse rich-episode integrated loss. Rich work-16 B3 pressure construction/
 solve time is 15.43–24.90 ms. Reports and complete measured costs are under
 `artifacts/pressure-exhaustion-repeatability/`; these measurements do not establish
 a performance improvement.
+
+The public-reference correction passes 83 focused tests, 70 B0/deployment/
+admission/recovery regressions and 15 reference checks. Five new tests cover
+certified and audited collision runs for both controllers, rejection of reference
+rebinding before authority writes, unchanged repeated observation, revoked names
+and evidence retained after failed admission. Nine refreshed corpus receipts
+verify with unchanged fixture semantics and design hashes. No failures remain or
+tests were skipped in these runs; full default/native suites were not rerun.
+
+Its 64-run experiment passes all sixteen work-limited repeat checks and retains
+five wall-limited variations. Both bundles detect M09, and all 187 recorded fields
+converge. Work-limited work counts and outcomes match the previous frozen run,
+including B3's worse rich work-16 integrated loss (78 versus B0's 72) and the
+neutral control. Rich work-16 B3 pressure construction/solve time is 14.53–23.68 ms.
+Reports, traces and complete measured costs are under
+`artifacts/pressure-reference-names-repeatability/`. These measurements do not
+establish a performance improvement.
 
 This milestone stops here. Adaptive transport, learned conductance, generalized
 recovery, numerical PLN scheduling, broader channels, evaluator OS isolation,

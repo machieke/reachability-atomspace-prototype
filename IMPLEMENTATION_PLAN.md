@@ -80,7 +80,7 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, thirty-third increment): the
+Current checkpoint (1 October 2026, thirty-fourth increment): the
 bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
 saved comparison auditing and reproducibility within that same subset; its full
 32-run bundle audit passes. Two fresh matrices now pass all sixteen work-limited
@@ -2268,4 +2268,53 @@ including a separately recorded 39.15-second final verification phase. Complete
 measured costs remain in the reports; no performance improvement is claimed.
 Results are in `artifacts/pressure-exhaustion-repeatability/repeatability.json`
 and `repeatability.md`. This closes the bounded reporting correction. Transport/M12,
+learned conductance, generalized recovery and the broader benchmark remain deferred.
+
+### Thirty-fourth increment: stable public support references
+
+An initial observation named `operation-8` collides with a generated inference
+reference in the simple profile. The certified inference succeeds but overwrites
+the original alias, so the next public snapshot fails. Preserve every existing
+support reference without changing authority or the frozen comparison episodes.
+
+1. Allocate generated operation references around all occupied alias/evidence
+   names, including revoked support and evidence retained after failed admission.
+2. Reject an observation that reuses an inference reference before any authority
+   write. Preserve unchanged repeated observation admission and its stable belief.
+3. Test actual B0/B3 certified runs and saved-run audits, multiple collisions,
+   revoked names and failed-admission evidence. Refresh source receipts without
+   changing fixtures, run applicable regressions and the frozen repeatability
+   experiment, record results, then commit and push.
+
+Status: complete. Generated references skip occupied alias and evidence names,
+including revoked support and evidence retained after failed admission. An
+observation that reuses an inference reference fails before any authority write;
+unchanged repeated observations retain the same belief and public reference.
+Both controllers use the same corrected adapter. Authority APIs, rankings,
+budgets, frozen episodes and interrupted-session blocking remain unchanged.
+
+Verification: all 83 pressure/comparison/audit/repeatability/manifest tests, 70
+B0/deployment/admission/recovery regressions and 15 standalone reference checks
+pass, with no remaining failures or skipped tests. Five new tests cover certified
+and audited B0/B3 collision runs, rejection without state or journal changes,
+idempotent repeated observation, multiple occupied/revoked names and evidence
+retained after failed admission. All nine refreshed corpus receipts verify;
+fixture semantics, shrink reductions and pinned design hashes remain unchanged.
+Full default and native integration suites were not rerun for this adapter fix.
+
+The fresh experiment passes 64 controller runs over 64 distinct authorities, with
+156 and 155 audited selections and 71 verified source files per bundle. All
+sixteen work-limited repeat comparisons match, with no failures or inconclusive
+cases; five wall-limited comparisons retain measured variation. Both bundles
+detect M09, and all 187 recorded pressure fields converge. Six UNKNOWN and 24 STALE
+operation replies remain visible as expected rejections, with no harness failures.
+
+Work-limited work counts and outcomes match the previous frozen run: both
+controllers reach zero rich-episode loss in 13 requests at work-16, with integrated
+loss 78 for B3 versus 72 for B0. The simple control remains neutral. Rich work-16
+B3 pressure construction/solve time spans 14.53–23.68 ms. Total experiment time is
+112.71 seconds, including a separately recorded 37.96-second final verification
+phase. Complete costs remain in the reports; no performance improvement is claimed.
+Results are in `artifacts/pressure-reference-names-repeatability/repeatability.json`
+and `repeatability.md`. This closes the bounded adapter correction. Transport/M12,
 learned conductance, generalized recovery and the broader benchmark remain deferred.

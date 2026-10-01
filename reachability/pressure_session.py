@@ -63,6 +63,14 @@ class ReasoningSession:
     def key(self):
         return 'comparison:'+str(next(self.ids))
 
+    def _operation_alias(self):
+        # Fixture evidence and generated operations share the public reference
+        # namespace. Retain names even after revocation or failed admission.
+        while True:
+            alias = 'operation-'+str(next(self.ids))
+            if alias not in self.aliases and alias not in self.evidence:
+                return alias
+
     def literal(self, value):
         return Literal(Statement('comparison:atom', (self.public['admission']['atoms'][abs(value)-1],)), value > 0)
 
@@ -93,6 +101,8 @@ class ReasoningSession:
         return result.belief
 
     def observe(self, value, name, *, valid_until=None, source='sensor'):
+        if name in self.aliases and name not in self.evidence:
+            raise ValueError('observation reference is already bound to an inference')
         literal = self.literal(value) if type(value) is int else value
         now = self.service.snapshot(self.context_id).logical_time
         self.call('record_evidence', Evidence(name, self.context_id, literal, source, now, (name,), valid_until))
@@ -148,7 +158,7 @@ class ReasoningSession:
                 raise AdmissionDenied(Status.STALE, 'public snapshot changed before operation')
             if candidate not in enumerate_work(self.public, snapshot).candidates:
                 raise AdmissionDenied(Status.FAIL, 'operation not in the shared public frontier')
-            args, alias = dict(candidate.arguments), 'operation-'+str(next(self.ids))
+            args, alias = dict(candidate.arguments), self._operation_alias()
             if candidate.kind == 'derive':
                 parents = tuple(self.aliases[name] for name in json.loads(args['premises']))
                 transition = self.call('propose_transition', self.context_id, args['rule_id'], parents)
