@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-serial-renewable-execution-planning",
+  "implementation_stage": "bounded-failure-preserving-event-trace-shrinking",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -164,7 +164,12 @@
     "serial_renewable_execution_planning": true,
     "whole_execution_contract_alternatives": true,
     "independent_tiny_occupancy_planning_reference": true,
-    "closed_loop_resource_portfolio_validation": true
+    "closed_loop_resource_portfolio_validation": true,
+    "bounded_event_trace_shrinking": true,
+    "exact_mutation_failure_preservation": true,
+    "independent_shrink_control_replays": true,
+    "trace_deletion_minimality_audits": true,
+    "source_bound_shrink_bundle_replay": true
   },
   "mutation_witnesses": [
     "M01",
@@ -450,5 +455,76 @@
     "normalized_work_budget": false,
     "comparative_performance": false,
     "evaluator_process_isolation": false
+  },
+  "trace_shrink_validation": {
+    "result_schema": "trace-shrink-result/v1",
+    "signature_schema": "trace-failure-signature/v1",
+    "bundle_schema": "trace-shrink-bundle/v1",
+    "corpus_manifest": "validation_lab/shrink_cases/manifest.json",
+    "mode": "conformance",
+    "split": "development",
+    "profiles": [
+      "admission-event/v1",
+      "deployment-event/v1"
+    ],
+    "mutants": [
+      "M05",
+      "M06",
+      "M07",
+      "M11"
+    ],
+    "original_events": {
+      "M05": 12,
+      "M06": 23,
+      "M07": 2,
+      "M11": 13
+    },
+    "reduced_events": {
+      "M05": 5,
+      "M06": 6,
+      "M07": 2,
+      "M11": 1
+    },
+    "predicate_calls": {
+      "M05": 25,
+      "M06": 47,
+      "M07": 6,
+      "M11": 10
+    },
+    "final_single_deletion_checks": 14,
+    "max_events": 128,
+    "default_evaluations": 256,
+    "max_evaluations": 4096,
+    "reduction": "deterministic-order-preserving-whole-event-deletion",
+    "signature_fields": [
+      "profile",
+      "initial_digest",
+      "mutant",
+      "event_id",
+      "path",
+      "expected",
+      "actual"
+    ],
+    "control": "fresh-unmodified-independent-cold-oracle-with-every-prefix-journal-recovery",
+    "final_validation": "fresh-witness-replay-and-complete-single-event-deletion-audit",
+    "incomplete_statuses": [
+      "BUDGET_EXHAUSTED",
+      "SEED_NOT_WITNESSED",
+      "FINAL_REPLAY_FAILED",
+      "MINIMALITY_UNPROVEN"
+    ],
+    "error_or_oracle_gap_proves_minimality": false,
+    "raw_offending_output_retained": true,
+    "semantic_replay_tested": true,
+    "native_reduced_M05_tested": true,
+    "single_deletion_minimal": true,
+    "global_minimum": false,
+    "argument_shrinking": false,
+    "initial_state_shrinking": false,
+    "concurrent_schedule_shrinking": false,
+    "evaluator_process_isolation": false,
+    "normalized_work_budget": false,
+    "wall_clock_bound": false,
+    "family_complete_fixtures": 0
   }
 }

@@ -1,0 +1,957 @@
+{
+  "schema": "trace-shrink-result/v1",
+  "status": "ONE_MINIMAL",
+  "original_digest": "d9b8190827a93ac55e49c44a1e97dd9ae32a3a1ebd845540f3004d108db09411",
+  "reduced_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+  "original_events": [
+    {
+      "arguments": {
+        "assumptions": [],
+        "clauses": [],
+        "context_id": "c0"
+      },
+      "event_id": "e000",
+      "kind": "context",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "confidence": 0.5,
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "strength": 0.25,
+        "valid_until": null
+      },
+      "event_id": "e001",
+      "kind": "estimate",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "confidence": 0.5,
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "strength": 0.75,
+        "valid_until": null
+      },
+      "event_id": "e002",
+      "kind": "estimate",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "context_id": "c0",
+        "justification": "declared-study",
+        "model_id": "m0",
+        "premises": [
+          "e001",
+          "e002"
+        ]
+      },
+      "event_id": "e003",
+      "kind": "independence",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "context_id": "c0",
+        "model_id": "m0",
+        "premises": [
+          "e001",
+          "e002"
+        ]
+      },
+      "event_id": "e004",
+      "kind": "revise",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      },
+      "event_id": "e005",
+      "kind": "evidence",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "context_id": "c0",
+        "literal": 2,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      },
+      "event_id": "e006",
+      "kind": "evidence",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e005"
+        ],
+        "rule_id": "r2"
+      },
+      "event_id": "e007",
+      "kind": "derive",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e006"
+        ],
+        "rule_id": "r3"
+      },
+      "event_id": "e008",
+      "kind": "derive",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e007"
+        ],
+        "rule_id": "r1"
+      },
+      "event_id": "e009",
+      "kind": "derive",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e008"
+        ],
+        "rule_id": "r1"
+      },
+      "event_id": "e010",
+      "kind": "derive",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "evidence_id": "e005"
+      },
+      "event_id": "e011",
+      "kind": "revoke",
+      "schema": "admission-event/v1"
+    }
+  ],
+  "reduced_events": [
+    {
+      "arguments": {
+        "assumptions": [],
+        "clauses": [],
+        "context_id": "c0"
+      },
+      "event_id": "e000",
+      "kind": "context",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "confidence": 0.5,
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "strength": 0.25,
+        "valid_until": null
+      },
+      "event_id": "e001",
+      "kind": "estimate",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "confidence": 0.5,
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "strength": 0.75,
+        "valid_until": null
+      },
+      "event_id": "e002",
+      "kind": "estimate",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "context_id": "c0",
+        "justification": "declared-study",
+        "model_id": "m0",
+        "premises": [
+          "e001",
+          "e002"
+        ]
+      },
+      "event_id": "e003",
+      "kind": "independence",
+      "schema": "admission-event/v1"
+    },
+    {
+      "arguments": {
+        "context_id": "c0",
+        "model_id": "m0",
+        "premises": [
+          "e001",
+          "e002"
+        ]
+      },
+      "event_id": "e004",
+      "kind": "revise",
+      "schema": "admission-event/v1"
+    }
+  ],
+  "signature": {
+    "actual": "PASS",
+    "event_id": "e004",
+    "expected": "UNKNOWN",
+    "initial_digest": "6e3366f1bdfb25fabf31aca65c644ec504f4baaacf4504b24267b4e1982533bc",
+    "mutant": "M05",
+    "path": "outcome.status",
+    "profile": "admission",
+    "schema": "trace-failure-signature/v1"
+  },
+  "removed_event_ids": [
+    "e005",
+    "e006",
+    "e007",
+    "e008",
+    "e009",
+    "e010",
+    "e011"
+  ],
+  "one_minimal": true,
+  "global_minimum": false,
+  "minimality_domain": "order-preserving whole-event deletions with valid protocol, passing unmodified oracle control and identical first-divergence signature",
+  "evaluations": 25,
+  "selected_trial": 13,
+  "final_trial": 24,
+  "accepted": [
+    {
+      "trial": 2,
+      "from_digest": "d9b8190827a93ac55e49c44a1e97dd9ae32a3a1ebd845540f3004d108db09411",
+      "to_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "removed": [
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011"
+      ]
+    },
+    {
+      "trial": 13,
+      "from_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "to_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "removed": [
+        "e005"
+      ]
+    }
+  ],
+  "deletion_checks": [
+    {
+      "removed_event_id": "e000",
+      "trial": 19,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    },
+    {
+      "removed_event_id": "e001",
+      "trial": 20,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    },
+    {
+      "removed_event_id": "e002",
+      "trial": 21,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    },
+    {
+      "removed_event_id": "e003",
+      "trial": 22,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    },
+    {
+      "removed_event_id": "e004",
+      "trial": 23,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    }
+  ],
+  "trials": [
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 0,
+      "phase": "original",
+      "parent_digest": "d9b8190827a93ac55e49c44a1e97dd9ae32a3a1ebd845540f3004d108db09411",
+      "candidate_digest": "d9b8190827a93ac55e49c44a1e97dd9ae32a3a1ebd845540f3004d108db09411",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "deleted_event_ids": [],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 12,
+        "first_divergent_prefix": 5,
+        "invocations": 7,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "PASS",
+          "event_id": "e004",
+          "expected": "UNKNOWN",
+          "initial_digest": "6e3366f1bdfb25fabf31aca65c644ec504f4baaacf4504b24267b4e1982533bc",
+          "mutant": "M05",
+          "path": "outcome.status",
+          "profile": "admission",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 1,
+      "phase": "chunk",
+      "parent_digest": "d9b8190827a93ac55e49c44a1e97dd9ae32a3a1ebd845540f3004d108db09411",
+      "candidate_digest": "ccea8a8dd9b2252f94e6e72902b98208ee3aa4fa825639d061eabd72e55b1c70",
+      "event_ids": [
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 2,
+      "phase": "chunk",
+      "parent_digest": "d9b8190827a93ac55e49c44a1e97dd9ae32a3a1ebd845540f3004d108db09411",
+      "candidate_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "first_divergent_prefix": 5,
+        "invocations": 7,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "PASS",
+          "event_id": "e004",
+          "expected": "UNKNOWN",
+          "initial_digest": "6e3366f1bdfb25fabf31aca65c644ec504f4baaacf4504b24267b4e1982533bc",
+          "mutant": "M05",
+          "path": "outcome.status",
+          "profile": "admission",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 3,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "9fbd5fbcc74dd4825944adc63928a01b701a60fe6c4c77c85ad54f5b2f3e9f4b",
+      "event_ids": [
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001",
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 3,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 4,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "29ef62913c20958c17cee0546fcafba650d0580639956550ae2b7cfee09f50cb",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002"
+      ],
+      "deleted_event_ids": [
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 3,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 5,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "491cd6a8bff66d2109dbbc96ecbfd0ac362c3da5c0880626d9465f99e7a5f83d",
+      "event_ids": [
+        "e002",
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 6,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "b464224fdfa4605a999d43f9706ce99188264d6bc30395e21c984beb5c0d9a54",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e002",
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 7,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "a84fdfb70b955e1a47055751b81f4053334aa27a18fea888dbf583a5089b12f6",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003"
+      ],
+      "deleted_event_ids": [
+        "e004",
+        "e005"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 8,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "270d4814ea0258cae8e8a45ea9451a3fbd78a395bdadd351e1f3801b55dad73b",
+      "event_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e000"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 9,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "f5681c569aa6833619b6ea42f0de8a253e629883f75592441b0f19a6e5c31097",
+      "event_ids": [
+        "e000",
+        "e002",
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 10,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "c6a78d2b323a429e973c5625b23b21b35f9832488451a6f6c168172f54f0f05f",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 11,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "d42ebf20c15e088a0e8505151b344ad04a74f33a3ac46534e262968b42e9c1a4",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 12,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "43245fdae9b21f2e05d6200a0065683c42d71c522988c70d2c7446df70f300a4",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e004"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 13,
+      "phase": "chunk",
+      "parent_digest": "5b3b08a1af2fb11d01a91512916ddd40bd6621b611bc87b3a2fe5c9182f2d3d6",
+      "candidate_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e005"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "first_divergent_prefix": 5,
+        "invocations": 7,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "PASS",
+          "event_id": "e004",
+          "expected": "UNKNOWN",
+          "initial_digest": "6e3366f1bdfb25fabf31aca65c644ec504f4baaacf4504b24267b4e1982533bc",
+          "mutant": "M05",
+          "path": "outcome.status",
+          "profile": "admission",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 14,
+      "phase": "chunk",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "6b057969ba263431af9316060bcc0d70e11a56fdc2752a9fd712e5d7ee454eff",
+      "event_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e000"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 15,
+      "phase": "chunk",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "896c7329fdbd0412b8366094b3a6c104505831a81e439f6d50f00fc687eed7d9",
+      "event_ids": [
+        "e000",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 16,
+      "phase": "chunk",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "b1134b5cdafbe656c0b6c0ad28bd5cec3778c76b0e2aacdb31ebbddb65d7f82c",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e003",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 17,
+      "phase": "chunk",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "1deae87813652d8d2e37f6741e3593ced65491a45fd0759683cd9a2dc9f5cc63",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 18,
+      "phase": "chunk",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "a84fdfb70b955e1a47055751b81f4053334aa27a18fea888dbf583a5089b12f6",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003"
+      ],
+      "deleted_event_ids": [
+        "e004"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 19,
+      "phase": "single-deletion",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "6b057969ba263431af9316060bcc0d70e11a56fdc2752a9fd712e5d7ee454eff",
+      "event_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e000"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 20,
+      "phase": "single-deletion",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "896c7329fdbd0412b8366094b3a6c104505831a81e439f6d50f00fc687eed7d9",
+      "event_ids": [
+        "e000",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 21,
+      "phase": "single-deletion",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "b1134b5cdafbe656c0b6c0ad28bd5cec3778c76b0e2aacdb31ebbddb65d7f82c",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e003",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 22,
+      "phase": "single-deletion",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "1deae87813652d8d2e37f6741e3593ced65491a45fd0759683cd9a2dc9f5cc63",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 23,
+      "phase": "single-deletion",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "a84fdfb70b955e1a47055751b81f4053334aa27a18fea888dbf583a5089b12f6",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003"
+      ],
+      "deleted_event_ids": [
+        "e004"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 24,
+      "phase": "final-replay",
+      "parent_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "candidate_digest": "60f08896f985e5faa27e12d93a3b11284b9e15a7696cbfa6ada707ca31c32f65",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "deleted_event_ids": [],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "first_divergent_prefix": 5,
+        "invocations": 7,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "PASS",
+          "event_id": "e004",
+          "expected": "UNKNOWN",
+          "initial_digest": "6e3366f1bdfb25fabf31aca65c644ec504f4baaacf4504b24267b4e1982533bc",
+          "mutant": "M05",
+          "path": "outcome.status",
+          "profile": "admission",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    }
+  ]
+}

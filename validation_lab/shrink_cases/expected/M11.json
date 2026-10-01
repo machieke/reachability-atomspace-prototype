@@ -1,0 +1,501 @@
+{
+  "schema": "trace-shrink-result/v1",
+  "status": "ONE_MINIMAL",
+  "original_digest": "d9b892411d0fd902e15360f9be1936f85e75488a691abf2731d49b29440aa95b",
+  "reduced_digest": "40b0422cd5662e62f8f668a4be6c80ad08692f155a2848f2edca55019ecefa0e",
+  "original_events": [
+    {
+      "arguments": {
+        "name": "product",
+        "valid_until": null
+      },
+      "event_id": "e000",
+      "kind": "fact",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "healthy": true
+      },
+      "event_id": "e001",
+      "kind": "sample",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {},
+      "event_id": "e002",
+      "kind": "censor",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "healthy": true
+      },
+      "event_id": "e003",
+      "kind": "sample",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {},
+      "event_id": "e004",
+      "kind": "account",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "time": 1
+      },
+      "event_id": "e005",
+      "kind": "tick",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {},
+      "event_id": "e006",
+      "kind": "resume",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "healthy": true
+      },
+      "event_id": "e007",
+      "kind": "sample",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "time": 2
+      },
+      "event_id": "e008",
+      "kind": "tick",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "healthy": true
+      },
+      "event_id": "e009",
+      "kind": "sample",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "time": 3
+      },
+      "event_id": "e010",
+      "kind": "tick",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "healthy": true
+      },
+      "event_id": "e011",
+      "kind": "sample",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {},
+      "event_id": "e012",
+      "kind": "account",
+      "schema": "deployment-event/v1"
+    }
+  ],
+  "reduced_events": [
+    {
+      "arguments": {},
+      "event_id": "e002",
+      "kind": "censor",
+      "schema": "deployment-event/v1"
+    }
+  ],
+  "signature": {
+    "actual": "OBSERVED_FAILURE",
+    "event_id": "e002",
+    "expected": "CENSORED",
+    "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+    "mutant": "M11",
+    "path": "projection.goal.label",
+    "profile": "deployment",
+    "schema": "trace-failure-signature/v1"
+  },
+  "removed_event_ids": [
+    "e000",
+    "e001",
+    "e003",
+    "e004",
+    "e005",
+    "e006",
+    "e007",
+    "e008",
+    "e009",
+    "e010",
+    "e011",
+    "e012"
+  ],
+  "one_minimal": true,
+  "global_minimum": false,
+  "minimality_domain": "order-preserving whole-event deletions with valid protocol, passing unmodified oracle control and identical first-divergence signature",
+  "evaluations": 10,
+  "selected_trial": 7,
+  "final_trial": 9,
+  "accepted": [
+    {
+      "trial": 2,
+      "from_digest": "d9b892411d0fd902e15360f9be1936f85e75488a691abf2731d49b29440aa95b",
+      "to_digest": "7b93384e212ceea7aac9c4f408064749042948cbf0b9840f43183240bf60b38b",
+      "removed": [
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011",
+        "e012"
+      ]
+    },
+    {
+      "trial": 4,
+      "from_digest": "7b93384e212ceea7aac9c4f408064749042948cbf0b9840f43183240bf60b38b",
+      "to_digest": "32116d1fdc1d110bf5135f7935840eb6efb32e4a3a6361ced194127f11ab77fc",
+      "removed": [
+        "e004",
+        "e005",
+        "e006"
+      ]
+    },
+    {
+      "trial": 5,
+      "from_digest": "32116d1fdc1d110bf5135f7935840eb6efb32e4a3a6361ced194127f11ab77fc",
+      "to_digest": "4c71c8ce864a4de82d86b983394548bb33637b9ea022eb98d04b050deaf6a9c1",
+      "removed": [
+        "e000",
+        "e001"
+      ]
+    },
+    {
+      "trial": 7,
+      "from_digest": "4c71c8ce864a4de82d86b983394548bb33637b9ea022eb98d04b050deaf6a9c1",
+      "to_digest": "40b0422cd5662e62f8f668a4be6c80ad08692f155a2848f2edca55019ecefa0e",
+      "removed": [
+        "e003"
+      ]
+    }
+  ],
+  "deletion_checks": [
+    {
+      "removed_event_id": "e002",
+      "trial": 8,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    }
+  ],
+  "trials": [
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 0,
+      "phase": "original",
+      "parent_digest": "d9b892411d0fd902e15360f9be1936f85e75488a691abf2731d49b29440aa95b",
+      "candidate_digest": "d9b892411d0fd902e15360f9be1936f85e75488a691abf2731d49b29440aa95b",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011",
+        "e012"
+      ],
+      "deleted_event_ids": [],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 13,
+        "first_divergent_prefix": 3,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_FAILURE",
+          "event_id": "e002",
+          "expected": "CENSORED",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M11",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 1,
+      "phase": "chunk",
+      "parent_digest": "d9b892411d0fd902e15360f9be1936f85e75488a691abf2731d49b29440aa95b",
+      "candidate_digest": "5500be871211c4d350324d48c86c55c3c4d600353f7c8d336edc4d206aabcc51",
+      "event_ids": [
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011",
+        "e012"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 2,
+      "phase": "chunk",
+      "parent_digest": "d9b892411d0fd902e15360f9be1936f85e75488a691abf2731d49b29440aa95b",
+      "candidate_digest": "7b93384e212ceea7aac9c4f408064749042948cbf0b9840f43183240bf60b38b",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011",
+        "e012"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "first_divergent_prefix": 3,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_FAILURE",
+          "event_id": "e002",
+          "expected": "CENSORED",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M11",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 3,
+      "phase": "chunk",
+      "parent_digest": "7b93384e212ceea7aac9c4f408064749042948cbf0b9840f43183240bf60b38b",
+      "candidate_digest": "9dcefd3e99d1239d5089b66fffdee9573a272b66fd842e5e3cb55a13e194717b",
+      "event_ids": [
+        "e004",
+        "e005",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 3,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 4,
+      "phase": "chunk",
+      "parent_digest": "7b93384e212ceea7aac9c4f408064749042948cbf0b9840f43183240bf60b38b",
+      "candidate_digest": "32116d1fdc1d110bf5135f7935840eb6efb32e4a3a6361ced194127f11ab77fc",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003"
+      ],
+      "deleted_event_ids": [
+        "e004",
+        "e005",
+        "e006"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 4,
+        "first_divergent_prefix": 3,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_FAILURE",
+          "event_id": "e002",
+          "expected": "CENSORED",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M11",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 5,
+      "phase": "chunk",
+      "parent_digest": "32116d1fdc1d110bf5135f7935840eb6efb32e4a3a6361ced194127f11ab77fc",
+      "candidate_digest": "4c71c8ce864a4de82d86b983394548bb33637b9ea022eb98d04b050deaf6a9c1",
+      "event_ids": [
+        "e002",
+        "e003"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 2,
+        "first_divergent_prefix": 1,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_FAILURE",
+          "event_id": "e002",
+          "expected": "CENSORED",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M11",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 6,
+      "phase": "chunk",
+      "parent_digest": "4c71c8ce864a4de82d86b983394548bb33637b9ea022eb98d04b050deaf6a9c1",
+      "candidate_digest": "84d7a0800b110d2933f2d2524fa4cc5c86cde15782522a5440a3ddc13d58a989",
+      "event_ids": [
+        "e003"
+      ],
+      "deleted_event_ids": [
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 1,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 7,
+      "phase": "chunk",
+      "parent_digest": "4c71c8ce864a4de82d86b983394548bb33637b9ea022eb98d04b050deaf6a9c1",
+      "candidate_digest": "40b0422cd5662e62f8f668a4be6c80ad08692f155a2848f2edca55019ecefa0e",
+      "event_ids": [
+        "e002"
+      ],
+      "deleted_event_ids": [
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 1,
+        "first_divergent_prefix": 1,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_FAILURE",
+          "event_id": "e002",
+          "expected": "CENSORED",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M11",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 8,
+      "phase": "single-deletion",
+      "parent_digest": "40b0422cd5662e62f8f668a4be6c80ad08692f155a2848f2edca55019ecefa0e",
+      "candidate_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_ids": [],
+      "deleted_event_ids": [
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 0,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 9,
+      "phase": "final-replay",
+      "parent_digest": "40b0422cd5662e62f8f668a4be6c80ad08692f155a2848f2edca55019ecefa0e",
+      "candidate_digest": "40b0422cd5662e62f8f668a4be6c80ad08692f155a2848f2edca55019ecefa0e",
+      "event_ids": [
+        "e002"
+      ],
+      "deleted_event_ids": [],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 1,
+        "first_divergent_prefix": 1,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_FAILURE",
+          "event_id": "e002",
+          "expected": "CENSORED",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M11",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    }
+  ]
+}

@@ -48,13 +48,12 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, fourteenth increment): a bounded serial
-execution planner now chooses whole renewable-resource contracts for up to three
-products. An independent occupancy/time enumerator checks complete schedules;
-actual service gates still control reservation and dispatch, with observed
-outcomes and fenced release between jobs. Twenty fixed and eight seeded cases
-add 163 compared/recovered event prefixes. Concurrent portfolios, combined
-proof/execution search, broader planning and comparative experiments remain open.
+Current checkpoint (1 October 2026, fifteenth increment): a bounded event-trace
+reducer now preserves exact first-divergence signatures and independently passing
+unmodified controls. Existing M05/M06/M07/M11 traces reduce from 12/23/2/13 events
+to 5/6/2/1, with complete single-event deletion audits, fresh witness replays,
+source/split receipts and retained raw evidence. Global minimality, argument
+shrinking, controlled concurrency and broader mutation coverage remain open.
 Broader phase 1/2 semantics, authoritative native
 storage, family-complete validation and phase 5–8 pressure/attention work remain open.
 The latest execution record below defines the next concrete increment.
@@ -1071,3 +1070,61 @@ Next increment, in order:
    minimization facility; keep deterministic interleavings, remaining designated
    mutants, evaluator OS isolation and the 64-fixture target visible as phase 4
    work. Broader phase 1/3 semantics and phases 5–8 remain open.
+
+### Fifteenth increment on 1 October 2026
+
+Implemented the scoped general event-deletion reducer around the independent
+admission/deployment prefix oracles. Work proceeded through four stages:
+
+1. **Bounded reduction and exact failure identity.** Added a reusable deterministic
+   chunk/single-event deletion engine, unique-event and evaluation bounds, detached
+   candidate inputs and structured outcomes. Reductions retain identities,
+   arguments and order. The original profile, initial-state digest, mutant,
+   divergent event, path and exact expected/actual values bind every acceptance.
+2. **Independent controls and live mutation replays.** Added strict protocol
+   adapters that run each candidate unmodified against its cold oracle and recover
+   every prefix before invoking a canary-backed mutation. Oracle gaps and errors
+   cannot establish minimality. Every final deletion is tested and the retained
+   witness replays again. Exhaustion and failed final replay stay explicit.
+3. **Recorded evidence and reproducibility.** Added source-pinned development
+   seeds, deterministic expected decisions, explicit generation, a CLI and bundle
+   verification/replay. Candidate requests are flushed before execution; actual
+   control/mutant records are retained before comparison. Receipts bind source
+   files, the dependency lock, original corpus ancestry and raw file inventories.
+   Runs use new directories; timing/UUID variation is kept out of semantic
+   reproducibility comparisons while remaining present in raw evidence.
+4. **Adversarial verification and native integration.** Added tests for failure
+   drift, boolean/numeric distinctions, callback mutation, unknown/error handling,
+   budgets, non-global minimality, final replay failure, checkpoint positions,
+   canaries, source drift, corrupt evidence and CLI replay/nonzero failure exits.
+   Independent fresh replays check all reduced witnesses and every remaining
+   deletion. Native PLN reproduces M05 and its five necessary events.
+
+The reductions are M05 12→5 events, M06 23→6, M07 2→2 and M11 13→1. Across 88
+predicate calls, each retained failure keeps its original signature and passing
+unmodified control. All fourteen final deletion checks remove that failure.
+All 638 default tests pass, including thirty new tests for this increment. All
+73 optional native tests and all 15 original standalone reference checks pass.
+The corpus CLI reproduces all four expected reductions and verifies every saved
+bundle. Original design hashes, all earlier corpus receipts and committed-version
+journal compatibility checks remain intact.
+
+This completes bounded whole-event deletion for the two public trace protocols
+and four existing mutant branches. It makes no global-minimum claim and adds no
+new designated mutant or family-complete fixture. The engine is reusable through
+an evidence-bearing predicate; initial/argument shrinking, reference repair and
+concurrent schedule reduction require separate semantics. Runtime code, authority
+schemas, original design inputs and all five prior corpus receipts are unchanged.
+
+Next increment, in order:
+
+1. Add deterministic interleaving control around certified admission and resource
+   reservation, with explicit observation points and reproducible schedules.
+2. Check newly inserted blockers and competing capacity claims against the
+   independent model; wire M08/M10 witnesses only when their changed branches and
+   passing unmodified controls are demonstrated.
+3. Retain and reduce failing schedules through the new evidence pipeline, keeping
+   evaluator scheduling metadata distinct from public event semantics.
+4. Continue phase 4 family coverage and evaluator OS isolation. M09/M12 depend on
+   their pressure/transport mechanisms; do not mark them covered early. The
+   64-family-fixture target, broader phase 1/3 semantics and phases 5–8 remain open.

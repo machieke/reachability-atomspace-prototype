@@ -1,0 +1,220 @@
+{
+  "schema": "trace-shrink-result/v1",
+  "status": "ONE_MINIMAL",
+  "original_digest": "288d4b7c8d28483aaa39c6fd5cd419c38ffee53d1ff6f8c8be5f7cbf5884e334",
+  "reduced_digest": "288d4b7c8d28483aaa39c6fd5cd419c38ffee53d1ff6f8c8be5f7cbf5884e334",
+  "original_events": [
+    {
+      "arguments": {
+        "attempt_id": "a0"
+      },
+      "event_id": "m0",
+      "kind": "attempt",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0",
+        "milestone": "exact_product_observed",
+        "product_id": "p00"
+      },
+      "event_id": "m1",
+      "kind": "observation",
+      "schema": "deployment-event/v1"
+    }
+  ],
+  "reduced_events": [
+    {
+      "arguments": {
+        "attempt_id": "a0"
+      },
+      "event_id": "m0",
+      "kind": "attempt",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0",
+        "milestone": "exact_product_observed",
+        "product_id": "p00"
+      },
+      "event_id": "m1",
+      "kind": "observation",
+      "schema": "deployment-event/v1"
+    }
+  ],
+  "signature": {
+    "actual": "PASS",
+    "event_id": "m1",
+    "expected": "FAIL",
+    "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+    "mutant": "M07",
+    "path": "outcome.status",
+    "profile": "deployment",
+    "schema": "trace-failure-signature/v1"
+  },
+  "removed_event_ids": [],
+  "one_minimal": true,
+  "global_minimum": false,
+  "minimality_domain": "order-preserving whole-event deletions with valid protocol, passing unmodified oracle control and identical first-divergence signature",
+  "evaluations": 6,
+  "selected_trial": 0,
+  "final_trial": 5,
+  "accepted": [],
+  "deletion_checks": [
+    {
+      "removed_event_id": "m0",
+      "trial": 3,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    },
+    {
+      "removed_event_id": "m1",
+      "trial": 4,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    }
+  ],
+  "trials": [
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 0,
+      "phase": "original",
+      "parent_digest": "288d4b7c8d28483aaa39c6fd5cd419c38ffee53d1ff6f8c8be5f7cbf5884e334",
+      "candidate_digest": "288d4b7c8d28483aaa39c6fd5cd419c38ffee53d1ff6f8c8be5f7cbf5884e334",
+      "event_ids": [
+        "m0",
+        "m1"
+      ],
+      "deleted_event_ids": [],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 2,
+        "first_divergent_prefix": 2,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "PASS",
+          "event_id": "m1",
+          "expected": "FAIL",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M07",
+          "path": "outcome.status",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 1,
+      "phase": "chunk",
+      "parent_digest": "288d4b7c8d28483aaa39c6fd5cd419c38ffee53d1ff6f8c8be5f7cbf5884e334",
+      "candidate_digest": "2c34b900829b254ad5e8d54eead9a1d2512f0ddce60d2b5f2afb525d5a92576c",
+      "event_ids": [
+        "m1"
+      ],
+      "deleted_event_ids": [
+        "m0"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 1,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 2,
+      "phase": "chunk",
+      "parent_digest": "288d4b7c8d28483aaa39c6fd5cd419c38ffee53d1ff6f8c8be5f7cbf5884e334",
+      "candidate_digest": "345e2285fdfbabb50a12a349f39b4f270c990e1d80e6094022242466ea91229f",
+      "event_ids": [
+        "m0"
+      ],
+      "deleted_event_ids": [
+        "m1"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 1,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 3,
+      "phase": "single-deletion",
+      "parent_digest": "288d4b7c8d28483aaa39c6fd5cd419c38ffee53d1ff6f8c8be5f7cbf5884e334",
+      "candidate_digest": "2c34b900829b254ad5e8d54eead9a1d2512f0ddce60d2b5f2afb525d5a92576c",
+      "event_ids": [
+        "m1"
+      ],
+      "deleted_event_ids": [
+        "m0"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 1,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 4,
+      "phase": "single-deletion",
+      "parent_digest": "288d4b7c8d28483aaa39c6fd5cd419c38ffee53d1ff6f8c8be5f7cbf5884e334",
+      "candidate_digest": "345e2285fdfbabb50a12a349f39b4f270c990e1d80e6094022242466ea91229f",
+      "event_ids": [
+        "m0"
+      ],
+      "deleted_event_ids": [
+        "m1"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 1,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 5,
+      "phase": "final-replay",
+      "parent_digest": "288d4b7c8d28483aaa39c6fd5cd419c38ffee53d1ff6f8c8be5f7cbf5884e334",
+      "candidate_digest": "288d4b7c8d28483aaa39c6fd5cd419c38ffee53d1ff6f8c8be5f7cbf5884e334",
+      "event_ids": [
+        "m0",
+        "m1"
+      ],
+      "deleted_event_ids": [],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 2,
+        "first_divergent_prefix": 2,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "PASS",
+          "event_id": "m1",
+          "expected": "FAIL",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M07",
+          "path": "outcome.status",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    }
+  ]
+}

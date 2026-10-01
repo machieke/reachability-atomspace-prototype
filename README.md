@@ -501,6 +501,18 @@ only actual observations and fenced release allow the controller to proceed.
 This profile preserves the service's conservative remote-occupancy rule and does
 not combine proof search with execution planning or schedule concurrent work.
 
+The evaluator now shrinks bounded admission/deployment event traces while keeping
+the exact first failure and a passing independent unmodified control. Run
+`uv run --no-project python -m validation_lab.run_shrink --output artifacts/shrink-run-1`
+with a new output directory. M05/M06/M07/M11 reduce from 12/23/2/13 events to
+5/6/2/1. Every remaining single-event deletion is checked, followed by a fresh
+witness replay. Original/reduced streams, all attempted replays, source receipts
+and deletion evidence are retained. These are development witnesses with verified
+single-event deletion minimality; global minimality, argument shrinking and
+concurrent schedule reduction are outside this increment. See
+[trace shrinking](VALIDATION.md#bounded-event-trace-shrinking) for replay commands
+and incomplete-result semantics.
+
 ## Current limits and next work
 
 This is an in-process API with trusted callers, not a sandbox for hostile Python
@@ -520,9 +532,9 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M08/M09/M10/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next generalize event-trace shrinking with preserved failure signatures and
-reproducible mutation witnesses. Controlled interleavings and
-evaluator OS isolation remain open. Goal loss
+Next add deterministic interleaving controls around admission and resource
+reservation, using the new failure-preserving reducer for reproducible witnesses.
+Remaining designated mutants and evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding
 remain explicit phase 1 backlog items.

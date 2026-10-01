@@ -1,0 +1,1723 @@
+{
+  "schema": "trace-shrink-result/v1",
+  "status": "ONE_MINIMAL",
+  "original_digest": "33b25471cef68b87d1ad7172ab9822f3aa0b5e5a319c51e4313cc0ccf35ec85a",
+  "reduced_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+  "original_events": [
+    {
+      "arguments": {
+        "name": "tested",
+        "valid_until": null
+      },
+      "event_id": "e000",
+      "kind": "fact",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "name": "credential",
+        "valid_until": 1
+      },
+      "event_id": "e001",
+      "kind": "fact",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "confidence": 0.8,
+        "strength": 0.8,
+        "valid_until": 1
+      },
+      "event_id": "e002",
+      "kind": "forecast",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0"
+      },
+      "event_id": "e003",
+      "kind": "attempt",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0"
+      },
+      "event_id": "e004",
+      "kind": "reserve",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0",
+        "units": 6,
+        "valid_until": 10
+      },
+      "event_id": "e005",
+      "kind": "cover",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0",
+        "fault": "none"
+      },
+      "event_id": "e006",
+      "kind": "dispatch",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "time": 1
+      },
+      "event_id": "e007",
+      "kind": "tick",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "name": "product",
+        "valid_until": null
+      },
+      "event_id": "e008",
+      "kind": "fact",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0",
+        "milestone": "completion_observed",
+        "product_id": "p0"
+      },
+      "event_id": "e009",
+      "kind": "observation",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0",
+        "milestone": "exact_product_observed",
+        "product_id": "p0"
+      },
+      "event_id": "e010",
+      "kind": "observation",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "healthy": true
+      },
+      "event_id": "e011",
+      "kind": "sample",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "time": 2
+      },
+      "event_id": "e012",
+      "kind": "tick",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "healthy": true
+      },
+      "event_id": "e013",
+      "kind": "sample",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "time": 3
+      },
+      "event_id": "e014",
+      "kind": "tick",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "healthy": true
+      },
+      "event_id": "e015",
+      "kind": "sample",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {},
+      "event_id": "e016",
+      "kind": "account",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0"
+      },
+      "event_id": "e017",
+      "kind": "complete",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0"
+      },
+      "event_id": "e018",
+      "kind": "release",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {},
+      "event_id": "e019",
+      "kind": "restart",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "time": 4
+      },
+      "event_id": "e020",
+      "kind": "tick",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "healthy": false
+      },
+      "event_id": "e021",
+      "kind": "sample",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {},
+      "event_id": "e022",
+      "kind": "account",
+      "schema": "deployment-event/v1"
+    }
+  ],
+  "reduced_events": [
+    {
+      "arguments": {
+        "name": "tested",
+        "valid_until": null
+      },
+      "event_id": "e000",
+      "kind": "fact",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "name": "credential",
+        "valid_until": 1
+      },
+      "event_id": "e001",
+      "kind": "fact",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "confidence": 0.8,
+        "strength": 0.8,
+        "valid_until": 1
+      },
+      "event_id": "e002",
+      "kind": "forecast",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0"
+      },
+      "event_id": "e003",
+      "kind": "attempt",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0"
+      },
+      "event_id": "e004",
+      "kind": "reserve",
+      "schema": "deployment-event/v1"
+    },
+    {
+      "arguments": {
+        "attempt_id": "a0",
+        "fault": "none"
+      },
+      "event_id": "e006",
+      "kind": "dispatch",
+      "schema": "deployment-event/v1"
+    }
+  ],
+  "signature": {
+    "actual": "OBSERVED_SUCCESS",
+    "event_id": "e006",
+    "expected": "PENDING",
+    "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+    "mutant": "M06",
+    "path": "projection.goal.label",
+    "profile": "deployment",
+    "schema": "trace-failure-signature/v1"
+  },
+  "removed_event_ids": [
+    "e005",
+    "e007",
+    "e008",
+    "e009",
+    "e010",
+    "e011",
+    "e012",
+    "e013",
+    "e014",
+    "e015",
+    "e016",
+    "e017",
+    "e018",
+    "e019",
+    "e020",
+    "e021",
+    "e022"
+  ],
+  "one_minimal": true,
+  "global_minimum": false,
+  "minimality_domain": "order-preserving whole-event deletions with valid protocol, passing unmodified oracle control and identical first-divergence signature",
+  "evaluations": 47,
+  "selected_trial": 33,
+  "final_trial": 46,
+  "accepted": [
+    {
+      "trial": 2,
+      "from_digest": "33b25471cef68b87d1ad7172ab9822f3aa0b5e5a319c51e4313cc0ccf35ec85a",
+      "to_digest": "2e53eb1e13cd8b43c61112b4165d35da7bd6c6261464b86b61dd2e374c3fb81b",
+      "removed": [
+        "e012",
+        "e013",
+        "e014",
+        "e015",
+        "e016",
+        "e017",
+        "e018",
+        "e019",
+        "e020",
+        "e021",
+        "e022"
+      ]
+    },
+    {
+      "trial": 8,
+      "from_digest": "2e53eb1e13cd8b43c61112b4165d35da7bd6c6261464b86b61dd2e374c3fb81b",
+      "to_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "removed": [
+        "e009",
+        "e010",
+        "e011"
+      ]
+    },
+    {
+      "trial": 16,
+      "from_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "to_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "removed": [
+        "e008"
+      ]
+    },
+    {
+      "trial": 26,
+      "from_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "to_digest": "e775c082725df06199460176766fc9e7fce4f85e436447dd476f9ff0f962a5f1",
+      "removed": [
+        "e005"
+      ]
+    },
+    {
+      "trial": 33,
+      "from_digest": "e775c082725df06199460176766fc9e7fce4f85e436447dd476f9ff0f962a5f1",
+      "to_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "removed": [
+        "e007"
+      ]
+    }
+  ],
+  "deletion_checks": [
+    {
+      "removed_event_id": "e000",
+      "trial": 40,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    },
+    {
+      "removed_event_id": "e001",
+      "trial": 41,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    },
+    {
+      "removed_event_id": "e002",
+      "trial": 42,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    },
+    {
+      "removed_event_id": "e003",
+      "trial": 43,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    },
+    {
+      "removed_event_id": "e004",
+      "trial": 44,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    },
+    {
+      "removed_event_id": "e006",
+      "trial": 45,
+      "kind": "NO_WITNESS",
+      "preserves_signature": false
+    }
+  ],
+  "trials": [
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 0,
+      "phase": "original",
+      "parent_digest": "33b25471cef68b87d1ad7172ab9822f3aa0b5e5a319c51e4313cc0ccf35ec85a",
+      "candidate_digest": "33b25471cef68b87d1ad7172ab9822f3aa0b5e5a319c51e4313cc0ccf35ec85a",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011",
+        "e012",
+        "e013",
+        "e014",
+        "e015",
+        "e016",
+        "e017",
+        "e018",
+        "e019",
+        "e020",
+        "e021",
+        "e022"
+      ],
+      "deleted_event_ids": [],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 23,
+        "first_divergent_prefix": 7,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_SUCCESS",
+          "event_id": "e006",
+          "expected": "PENDING",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M06",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 1,
+      "phase": "chunk",
+      "parent_digest": "33b25471cef68b87d1ad7172ab9822f3aa0b5e5a319c51e4313cc0ccf35ec85a",
+      "candidate_digest": "c34b232dd32ca8b554cc85d9b1b201648e8f15d21ecb741d606c8a0dd80048e6",
+      "event_ids": [
+        "e012",
+        "e013",
+        "e014",
+        "e015",
+        "e016",
+        "e017",
+        "e018",
+        "e019",
+        "e020",
+        "e021",
+        "e022"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 11,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 2,
+      "phase": "chunk",
+      "parent_digest": "33b25471cef68b87d1ad7172ab9822f3aa0b5e5a319c51e4313cc0ccf35ec85a",
+      "candidate_digest": "2e53eb1e13cd8b43c61112b4165d35da7bd6c6261464b86b61dd2e374c3fb81b",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "deleted_event_ids": [
+        "e012",
+        "e013",
+        "e014",
+        "e015",
+        "e016",
+        "e017",
+        "e018",
+        "e019",
+        "e020",
+        "e021",
+        "e022"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 12,
+        "first_divergent_prefix": 7,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_SUCCESS",
+          "event_id": "e006",
+          "expected": "PENDING",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M06",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 3,
+      "phase": "chunk",
+      "parent_digest": "2e53eb1e13cd8b43c61112b4165d35da7bd6c6261464b86b61dd2e374c3fb81b",
+      "candidate_digest": "ded42bf0feb12bee49eac346addcb31bb9601bd4d58b66af890fb8966120191b",
+      "event_ids": [
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 4,
+      "phase": "chunk",
+      "parent_digest": "2e53eb1e13cd8b43c61112b4165d35da7bd6c6261464b86b61dd2e374c3fb81b",
+      "candidate_digest": "2b8730c62826256007643aa46327a6c2490eefe6cfacda4c1227ba9a5c979033",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 5,
+      "phase": "chunk",
+      "parent_digest": "2e53eb1e13cd8b43c61112b4165d35da7bd6c6261464b86b61dd2e374c3fb81b",
+      "candidate_digest": "ab235ae96fd0fa4729a1a95efe10f2d581cf15b1b73b92427221dc210b00996b",
+      "event_ids": [
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001",
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 9,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 6,
+      "phase": "chunk",
+      "parent_digest": "2e53eb1e13cd8b43c61112b4165d35da7bd6c6261464b86b61dd2e374c3fb81b",
+      "candidate_digest": "32237fe141c9d52af705413556ccd92069e40cef9977b22bedd6689c6ac5fd17",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e006",
+        "e007",
+        "e008",
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "deleted_event_ids": [
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 9,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 7,
+      "phase": "chunk",
+      "parent_digest": "2e53eb1e13cd8b43c61112b4165d35da7bd6c6261464b86b61dd2e374c3fb81b",
+      "candidate_digest": "8668958cbe33f39906667b2e2db9c7179d7c892f2c80a609621e0aeb5dc11452",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "deleted_event_ids": [
+        "e006",
+        "e007",
+        "e008"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 9,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 8,
+      "phase": "chunk",
+      "parent_digest": "2e53eb1e13cd8b43c61112b4165d35da7bd6c6261464b86b61dd2e374c3fb81b",
+      "candidate_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007",
+        "e008"
+      ],
+      "deleted_event_ids": [
+        "e009",
+        "e010",
+        "e011"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 9,
+        "first_divergent_prefix": 7,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_SUCCESS",
+          "event_id": "e006",
+          "expected": "PENDING",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M06",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 9,
+      "phase": "chunk",
+      "parent_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "candidate_digest": "8b9a9a2f9f68e9f70e83c8b3bb929582e9fbf260b1206f8d4825314882ed0531",
+      "event_ids": [
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007",
+        "e008"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001",
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 10,
+      "phase": "chunk",
+      "parent_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "candidate_digest": "38335eda8274122b2cd457db205e8f04b0a837c63db1a74d1c4993fe4e3c904a",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e006",
+        "e007",
+        "e008"
+      ],
+      "deleted_event_ids": [
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 11,
+      "phase": "chunk",
+      "parent_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "candidate_digest": "2b8730c62826256007643aa46327a6c2490eefe6cfacda4c1227ba9a5c979033",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e006",
+        "e007",
+        "e008"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 12,
+      "phase": "chunk",
+      "parent_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "candidate_digest": "986ab18119b6a7677dda212d02cabce55f23cd301c0ce09afca9c2caf0f1fec8",
+      "event_ids": [
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007",
+        "e008"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 13,
+      "phase": "chunk",
+      "parent_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "candidate_digest": "4e2908947ad8b9fd8a7e6e5501ee4818d40c6a7b111079d51d270c61e9548888",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e004",
+        "e005",
+        "e006",
+        "e007",
+        "e008"
+      ],
+      "deleted_event_ids": [
+        "e002",
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 14,
+      "phase": "chunk",
+      "parent_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "candidate_digest": "c7db6c5697d710889173d0c85e8805fbff7ef9232ab25deefd77e8f029e6fc2a",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e006",
+        "e007",
+        "e008"
+      ],
+      "deleted_event_ids": [
+        "e004",
+        "e005"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 15,
+      "phase": "chunk",
+      "parent_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "candidate_digest": "9ebd9c86c2574a06d8cf9788f37f903ff2713bcb57dc517eabcb73dfa342397f",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e008"
+      ],
+      "deleted_event_ids": [
+        "e006",
+        "e007"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 16,
+      "phase": "chunk",
+      "parent_digest": "f8b9fc0ea457def70a53e873402c678da3e8df397fda2d5e145367802dec8fd7",
+      "candidate_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e008"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 8,
+        "first_divergent_prefix": 7,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_SUCCESS",
+          "event_id": "e006",
+          "expected": "PENDING",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M06",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 17,
+      "phase": "chunk",
+      "parent_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "candidate_digest": "2dfe5f82f89085ba4eadb5155c53b607f6b87cabbef84bb9af746b235d2c4da9",
+      "event_ids": [
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e000",
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 18,
+      "phase": "chunk",
+      "parent_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "candidate_digest": "07de442e508b9dbe2e72d93ca6b098eb55bae521fb33cecb1de8d0349a84db56",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e004",
+        "e005",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e002",
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 19,
+      "phase": "chunk",
+      "parent_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "candidate_digest": "acd797ca0576acd319923b21b9b583bc5e2b564ccc7a501bf5d12f192230c661",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e004",
+        "e005"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 20,
+      "phase": "chunk",
+      "parent_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "candidate_digest": "2b8730c62826256007643aa46327a6c2490eefe6cfacda4c1227ba9a5c979033",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005"
+      ],
+      "deleted_event_ids": [
+        "e006",
+        "e007"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 21,
+      "phase": "chunk",
+      "parent_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "candidate_digest": "7c89de48b64337855f26a09e56b75438f4385f3491e1099b4393255291c5169c",
+      "event_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e000"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 22,
+      "phase": "chunk",
+      "parent_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "candidate_digest": "7a5596921401aac550ae22bcc16104f9e4cf0b7c1e0f3859ca0e0ed5b3a974f4",
+      "event_ids": [
+        "e000",
+        "e002",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 23,
+      "phase": "chunk",
+      "parent_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "candidate_digest": "699d87f44ce7f19c5ab736c5e17432d0a3b82db967dbf2145713c2f4bdc4d36f",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e003",
+        "e004",
+        "e005",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 24,
+      "phase": "chunk",
+      "parent_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "candidate_digest": "3501c8224e46cab6106d4c870ea25064a6d49790752072e6191ede4935809b7b",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e004",
+        "e005",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 25,
+      "phase": "chunk",
+      "parent_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "candidate_digest": "19afd65ba02c129e288c0269acff15362f0ac4526b94d503279d8ac3cd890e5b",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e005",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e004"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 26,
+      "phase": "chunk",
+      "parent_digest": "8707973bdbf16b105037045e1187eb30bdac74e3f73d2ad6b6c1181747307cb1",
+      "candidate_digest": "e775c082725df06199460176766fc9e7fce4f85e436447dd476f9ff0f962a5f1",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e005"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 7,
+        "first_divergent_prefix": 6,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_SUCCESS",
+          "event_id": "e006",
+          "expected": "PENDING",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M06",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 27,
+      "phase": "chunk",
+      "parent_digest": "e775c082725df06199460176766fc9e7fce4f85e436447dd476f9ff0f962a5f1",
+      "candidate_digest": "528a801edb3f991bf781ad032f12c7aefa53bc966279e09f59c505820ae5d160",
+      "event_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e000"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 28,
+      "phase": "chunk",
+      "parent_digest": "e775c082725df06199460176766fc9e7fce4f85e436447dd476f9ff0f962a5f1",
+      "candidate_digest": "366601980550c2c35fe274c1d5a7da0f57e4b31d73db6f19c5ebd39a123c8502",
+      "event_ids": [
+        "e000",
+        "e002",
+        "e003",
+        "e004",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 29,
+      "phase": "chunk",
+      "parent_digest": "e775c082725df06199460176766fc9e7fce4f85e436447dd476f9ff0f962a5f1",
+      "candidate_digest": "44d5133a283d5402bc700557c6084649a9684187badb60e45fca096845b393a8",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e003",
+        "e004",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 30,
+      "phase": "chunk",
+      "parent_digest": "e775c082725df06199460176766fc9e7fce4f85e436447dd476f9ff0f962a5f1",
+      "candidate_digest": "74f559ffb3c9659f875f302a1313cfbc2c7000bf5c1fd87ee0916d3f61fa3509",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e004",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 31,
+      "phase": "chunk",
+      "parent_digest": "e775c082725df06199460176766fc9e7fce4f85e436447dd476f9ff0f962a5f1",
+      "candidate_digest": "acd797ca0576acd319923b21b9b583bc5e2b564ccc7a501bf5d12f192230c661",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e006",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e004"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 32,
+      "phase": "chunk",
+      "parent_digest": "e775c082725df06199460176766fc9e7fce4f85e436447dd476f9ff0f962a5f1",
+      "candidate_digest": "4fb6661082edf591b00ee510ef5e5051e2d35fccd168023434709f4a469f7d4c",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e007"
+      ],
+      "deleted_event_ids": [
+        "e006"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 33,
+      "phase": "chunk",
+      "parent_digest": "e775c082725df06199460176766fc9e7fce4f85e436447dd476f9ff0f962a5f1",
+      "candidate_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e007"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "first_divergent_prefix": 6,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_SUCCESS",
+          "event_id": "e006",
+          "expected": "PENDING",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M06",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 34,
+      "phase": "chunk",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "e66fe22c3d352d5ca8575076f9d8f5360def86604fbbc3b9eae9ab85bf5dfe79",
+      "event_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e000"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 35,
+      "phase": "chunk",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "ac173850f7c4a41e92159c2535ac5f2ee3f631446d2b69afc941a7a05a28ee6f",
+      "event_ids": [
+        "e000",
+        "e002",
+        "e003",
+        "e004",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 36,
+      "phase": "chunk",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "efdb1e27bb9d0ea27f8adf452cd810ef2f1ccdffcd712c0c85cda7ef5e18343c",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e003",
+        "e004",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 37,
+      "phase": "chunk",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "7817629f1b146d47a88e63aa6a439d876bd1a0d42d10ed09c4255e8e06b35ccb",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e004",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 38,
+      "phase": "chunk",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "4dbd9c94a4ced93109bbb4baad48bbb567eddb384700fd403d91a8ad54833094",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e004"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 39,
+      "phase": "chunk",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "f3a785159e2f07a0c40261830d832e6378da7c1faa36d80f811974f325a59b6c",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e006"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 40,
+      "phase": "single-deletion",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "e66fe22c3d352d5ca8575076f9d8f5360def86604fbbc3b9eae9ab85bf5dfe79",
+      "event_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e000"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 41,
+      "phase": "single-deletion",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "ac173850f7c4a41e92159c2535ac5f2ee3f631446d2b69afc941a7a05a28ee6f",
+      "event_ids": [
+        "e000",
+        "e002",
+        "e003",
+        "e004",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e001"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 42,
+      "phase": "single-deletion",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "efdb1e27bb9d0ea27f8adf452cd810ef2f1ccdffcd712c0c85cda7ef5e18343c",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e003",
+        "e004",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e002"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 43,
+      "phase": "single-deletion",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "7817629f1b146d47a88e63aa6a439d876bd1a0d42d10ed09c4255e8e06b35ccb",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e004",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e003"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 44,
+      "phase": "single-deletion",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "4dbd9c94a4ced93109bbb4baad48bbb567eddb384700fd403d91a8ad54833094",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e006"
+      ],
+      "deleted_event_ids": [
+        "e004"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 45,
+      "phase": "single-deletion",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "f3a785159e2f07a0c40261830d832e6378da7c1faa36d80f811974f325a59b6c",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "deleted_event_ids": [
+        "e006"
+      ],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 5,
+        "invocations": 0,
+        "kind": "NO_WITNESS"
+      },
+      "preserves_signature": false
+    },
+    {
+      "schema": "trace-shrink-trial/v1",
+      "trial": 46,
+      "phase": "final-replay",
+      "parent_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "candidate_digest": "43f434af638ae46f36407019db7f8e49d87b22712279260faee8b6bd14d0fe3f",
+      "event_ids": [
+        "e000",
+        "e001",
+        "e002",
+        "e003",
+        "e004",
+        "e006"
+      ],
+      "deleted_event_ids": [],
+      "assessment": {
+        "control_passed": true,
+        "control_recovered_prefixes": 6,
+        "first_divergent_prefix": 6,
+        "invocations": 1,
+        "kind": "WITNESS",
+        "signature": {
+          "actual": "OBSERVED_SUCCESS",
+          "event_id": "e006",
+          "expected": "PENDING",
+          "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+          "mutant": "M06",
+          "path": "projection.goal.label",
+          "profile": "deployment",
+          "schema": "trace-failure-signature/v1"
+        }
+      },
+      "preserves_signature": true
+    }
+  ]
+}

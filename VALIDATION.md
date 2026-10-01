@@ -417,7 +417,8 @@ the first divergent prefix and writes the offending actual trace:
 | M07 similar product treated as exact | b0-m07, prefix 2, event m1 | FAIL → PASS for exact-product observation of `p00` instead of `p0` |
 | M11 censored outcome labeled failure | d07, prefix 3, event e002 | CENSORED → OBSERVED_FAILURE |
 
-The witnesses are first divergent prefixes, not generally minimized event sets.
+The table records the original first divergent prefixes. The bounded reducer
+below now produces deletion-minimal event sets for these four witnesses.
 M05 replaces shared measurement roots with separate report IDs during numerical
 revision; its canary confirms this defect ran. It is an evaluator-only patch and
 is removed before subsequent controls. M01–M04 retain their unit witnesses.
@@ -426,12 +427,11 @@ observation checks enabled. Its two-event witness creates an attempt and present
 a wrong-product report. The unmodified control fails registration; the mutant
 registers the wrong product. Tests delete each event in turn and confirm that
 neither shortened stream detects the mutant. This is deletion minimal in the
-declared profile, not a general-purpose shrinking algorithm.
+declared profile; the new reducer independently reproduces that result.
 M08–M10 and M12 remain open.
 
-Next generalize trace shrinking while preserving independent failure signatures
-and passing controls before comparative claims. Complete family coverage,
-general event shrinking, deterministic concurrent interleavings, hidden-world models,
+Next add deterministic interleavings and extend designated mutation coverage.
+Complete family coverage, argument/initial-state shrinking, hidden-world models,
 OS isolation, benchmark cost budgets and all pressure/attention experiments remain
 open in [the phased plan](IMPLEMENTATION_PLAN.md).
 
@@ -623,3 +623,83 @@ module, generator, harness and independent reference. Refresh explicitly with
 also require refreshing all four earlier corpus receipts; validators never rewrite
 receipts automatically. The original design pack and core authority/journal
 schemas are unchanged.
+
+## Bounded event-trace shrinking
+
+Run the four source-pinned development seeds with a fresh destination:
+
+```sh
+uv run --no-project python -m validation_lab.run_shrink --output artifacts/shrink-run-1
+uv run --no-project python -m validation_lab.run_shrink --replay-bundle artifacts/shrink-run-1/M05 --output artifacts/shrink-replay-1
+```
+
+The reusable `validation_lab.trace_shrink.shrink` engine accepts at most 128
+uniquely identified events and a replay predicate. It tries contiguous chunk
+deletions, then single-event deletions, without changing event identities,
+arguments, references or order. Each accepted reduction restarts the necessary
+deletion audit. A final fresh replay must reproduce the original structured
+signature: profile, initial-state digest, mutant, event ID, comparison path and
+exact JSON expected/actual values. Prefix positions can change when events are
+removed; they are evidence, not part of failure identity.
+
+`ReplayPredicate` supports the strict admission and deployment protocols and
+existing M05/M06/M07/M11 mutation branches. Each candidate first runs against the
+unmodified service and independent cold oracle, reopening durable journals after
+every event. Only a passing control permits mutation replay. A mutation invocation
+canary and a matching first divergence are required to accept a deletion. The
+original seed's positional checkpoints are checked on its first replay; reduced
+streams use the independent prefix oracle, without transplanting those positions.
+The runtime receives only public initial data and one event at a time.
+
+| Mutant | Original events | Reduced events | Predicate calls | Preserved failure |
+| --- | ---: | ---: | ---: | --- |
+| M05 | 12 | 5 | 25 | e004: outcome.status UNKNOWN → PASS |
+| M06 | 23 | 6 | 47 | e006: projection.goal.label PENDING → OBSERVED_SUCCESS |
+| M07 | 2 | 2 | 6 | m1: outcome.status FAIL → PASS |
+| M11 | 13 | 1 | 10 | e002: projection.goal.label CENSORED → OBSERVED_FAILURE |
+
+All fourteen final single-event deletion checks remove the required divergence;
+the four final witnesses pass fresh replays. The 88 predicate calls include all
+attempts, rejected deletions, originals and final replays. The native integration
+test separately reproduces reduced M05 with actual pinned PLN inference and
+checks all five deletions. These counts describe validation work, not normalized
+runtime or performance improvements. No new designated mutant is claimed.
+
+The default limit is 256 predicate calls; `--max-evaluations` accepts 0–4096.
+Exhaustion preserves the last witnessed candidate, reports `BUDGET_EXHAUSTED`, and
+does not claim minimality. A zero budget has no witnessed candidate. A failed
+initial witness yields `SEED_NOT_WITNESSED`; a failed final replay yields
+`FINAL_REPLAY_FAILED`. Unsupported oracle cases and unexpected errors remain
+explicit `ORACLE_GAP`/`ERROR` evidence and cannot prove a deletion impossible.
+If either occurs in the final deletion audit, status is `MINIMALITY_UNPROVEN`.
+Protocol rejection and a failing unmodified control exclude a candidate from this
+declared witness domain. A different failure signature also cannot replace the
+original. The CLI exits nonzero for incomplete or unexpected reductions.
+
+Each bundle includes `seed.json`, `original.json`, `reduced.json`, a flushed
+`attempts.jsonl`, and per-trial candidate, assessment, control and mutant files.
+Actual outputs are logged before oracle comparison, including the offending
+mutation record. `report.json` binds source hashes, ancestry, replay outcomes,
+accepted reductions, deletion audits and a complete file inventory. Output
+directories cannot be reused. `verify_bundle` checks recorded file integrity and
+evidence consistency; it does not execute the runtime or authenticate who made
+the receipt. `--replay-bundle` verifies current source bindings, reruns the saved
+seed and requires identical semantic decisions. Raw elapsed times and generated
+certificate IDs can differ across runs and remain preserved in each bundle.
+
+The separate `validation_lab/shrink_cases/manifest.json` pins evaluator/runtime
+sources, the native dependency lock, seeds, expected semantic decisions and the
+three upstream corpus receipts/fixtures. Reductions retain their original
+development split and parent instance; they create no held-out or family-complete
+fixtures. Regenerate explicitly with
+`uv run --no-project python -m validation_lab.generate_shrink_cases --output artifacts/shrink-generation-1`.
+Validation never refreshes receipts automatically. The five earlier corpora,
+runtime authority and original design files are unchanged.
+
+Minimality means no **single** whole-event deletion preserves this exact witness
+and passing control. It is not a globally shortest trace: multiple simultaneous
+deletions can expose a smaller witness even after this audit passes. Initial-state
+or argument simplification, identity renaming, dependency repair, arbitrary new
+mutants, concurrent schedule reduction, process isolation and wall-clock bounds
+are not provided. Mutation patches remain process-global and replays run
+sequentially within each evaluator process.

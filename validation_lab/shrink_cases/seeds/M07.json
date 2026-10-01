@@ -1,0 +1,61 @@
+{
+  "schema": "trace-shrink-seed/v1",
+  "mutant": "M07",
+  "profile": "deployment",
+  "initial": {
+    "context_id": "c0",
+    "product_id": "p0",
+    "goal_id": "g0",
+    "loss": 10,
+    "capacity": 1,
+    "lease_duration": 10,
+    "min_strength": 0.65,
+    "min_confidence": 0.35,
+    "schema": "deployment-initial/v1"
+  },
+  "case": {
+    "schema": "deployment-case/v1",
+    "case_id": "b0-m07",
+    "parent_instance_id": "deployment-b0-parent-0",
+    "split": "development",
+    "controls": [
+      "M07:deletion-minimal"
+    ],
+    "events": [
+      {
+        "schema": "deployment-event/v1",
+        "event_id": "m0",
+        "kind": "attempt",
+        "arguments": {
+          "attempt_id": "a0"
+        }
+      },
+      {
+        "schema": "deployment-event/v1",
+        "event_id": "m1",
+        "kind": "observation",
+        "arguments": {
+          "attempt_id": "a0",
+          "milestone": "exact_product_observed",
+          "product_id": "p00"
+        }
+      }
+    ],
+    "checkpoints": [
+      {
+        "step": 2,
+        "path": "outcome.status",
+        "expected": "FAIL"
+      }
+    ]
+  },
+  "source": {
+    "corpus_manifest": "validation_lab/b0_cases/manifest.json",
+    "corpus_digest": "12372cfaf924ab3cdfccc9a52915d4267eeaf35b32ebb3eab535d917050ae22b",
+    "initial_path": "validation_lab/b0_cases/public/b01.json",
+    "initial_selector": "deployment",
+    "case_path": "validation_lab/b0_cases/mutations/M07.json",
+    "parent_instance_id": "deployment-b0-parent-0",
+    "split": "development"
+  }
+}
