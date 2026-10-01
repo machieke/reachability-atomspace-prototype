@@ -1,0 +1,69 @@
+{
+  "producer_commit": "3e2516ea2205a90aa6d414588b810dde7324e65c",
+  "metadata": "{\"$map\":{\"initial\":{\"$map\":{\"authority_id\":\"a5b9b4d7-7a9d-4b24-8f5f-1427b6f852ed\",\"implementation\":\"finite-admission/v2\",\"max_variables\":16,\"rules\":{\"$tuple\":[]}}},\"schema\":\"admission-journal/v1\"}}",
+  "events": [
+    [
+      1,
+      "open_context",
+      "context",
+      "{\"$map\":{\"assumptions\":{\"$tuple\":[]},\"constraints\":{\"$tuple\":[]},\"context_id\":\"legacy\",\"policy_revision\":\"finite-hard-policy/v1\"}}",
+      "65f295f77c92c11c671805af676752a0e2f92b989ed27e09734997c671568ed1",
+      "a75913899070a90c6311b8164bc47a7c21a3aea2027ed222aead91bf5416d287",
+      "e5c7a112db4e314e94745e74c71327a928a30f890232417f53bcdb24505b4c1f"
+    ],
+    [
+      2,
+      "record_evidence",
+      "record",
+      "{\"$map\":{\"evidence\":{\"$record\":\"Evidence\",\"fields\":{\"content\":{\"$record\":\"Literal\",\"fields\":{\"positive\":true,\"statement\":{\"$record\":\"Statement\",\"fields\":{\"arguments\":{\"$tuple\":[]},\"predicate\":\"A\"}}}},\"context_id\":\"legacy\",\"evidence_id\":\"legacy-evidence\",\"lineage_roots\":{\"$tuple\":[\"root\"]},\"observed_at\":0,\"source\":\"sensor\",\"valid_until\":5}}}}",
+      "8d60723c60eac06f84b385b23f912028458aee5124da393a3481735a7075b01f",
+      "e5c7a112db4e314e94745e74c71327a928a30f890232417f53bcdb24505b4c1f",
+      "3f67d09d9402e58a92a8e2969908051dad120e5950f1a6b33cc663065591074d"
+    ],
+    [
+      3,
+      "propose_evidence",
+      "propose",
+      "{\"$map\":{\"context_id\":\"legacy\",\"evidence_id\":\"legacy-evidence\"}}",
+      "60da6498c15874af4adf160c3c5f1002a272dca1963afe22b651b6e75e03085f",
+      "3f67d09d9402e58a92a8e2969908051dad120e5950f1a6b33cc663065591074d",
+      "fb5f50b5b62fd683c793811fb2100284cfde290be68169f117cbbae80ba1d1ad"
+    ],
+    [
+      4,
+      "precertify",
+      "pre",
+      "{\"$map\":{\"expected_revision\":1,\"transition\":{\"$record\":\"Transition\",\"fields\":{\"conclusion\":{\"$record\":\"Literal\",\"fields\":{\"positive\":true,\"statement\":{\"$record\":\"Statement\",\"fields\":{\"arguments\":{\"$tuple\":[]},\"predicate\":\"A\"}}}},\"context_id\":\"legacy\",\"evidence_id\":\"legacy-evidence\",\"premise_revision_ids\":{\"$tuple\":[]},\"rule_id\":null,\"rule_revision\":null,\"transition_id\":\"transition/v1:5494ff387e481772b3bee5c5dec54db950a3da11dff486aac49524928b0cee5c\"}}}}",
+      "fd5d13ce1c4e4a9f84e6654ee7e0f77568fdd0973aad32ee3efc37fe0d984653",
+      "fb5f50b5b62fd683c793811fb2100284cfde290be68169f117cbbae80ba1d1ad",
+      "5a8c387a732ea211ecef3c4d61aeea1d72d9242a9cb94dcc756cb7b63980ba65"
+    ],
+    [
+      5,
+      "postcertify",
+      "post",
+      "{\"$map\":{\"pre_certificate\":{\"$record\":\"Certificate\",\"fields\":{\"certificate_id\":\"certificate/v2:ea5a40ad4e54fc1f691e714b88edea9ef76a210c28991a7410ac61b80a298fee\",\"checker_version\":\"bounded-cnf-dpll/v1\",\"checks\":{\"$tuple\":[{\"$record\":\"Check\",\"fields\":{\"detail\":\"full context revision comparison\",\"name\":\"snapshot\",\"status\":{\"$status\":\"PASS\"}}},{\"$record\":\"Check\",\"fields\":{\"detail\":\"report must belong to the exact context\",\"name\":\"evidence_context\",\"status\":{\"$status\":\"PASS\"}}},{\"$record\":\"Check\",\"fields\":{\"detail\":\"report must be observed, unrevoked and within its validity interval\",\"name\":\"evidence_current\",\"status\":{\"$status\":\"PASS\"}}},{\"$record\":\"Check\",\"fields\":{\"detail\":\"complete finite CNF model found\",\"name\":\"joint_pre_state\",\"status\":{\"$status\":\"PASS\"}}}]},\"constraint_digest\":\"constraints/v1:643d5437104296e21d906ecb15b2c96ad278f20cfc4af53b12bb6069bd853726\",\"context_id\":\"legacy\",\"evidence_lineage_digest\":\"lineage/v1:f4014caba2d825f606d479d8b912af425610d475ab2c7938735a30f4f714c69f\",\"formula_id\":\"grounded-hard-implication/v1\",\"knowledge_revision\":1,\"logical_time\":0,\"policy_revision\":\"finite-hard-policy/v1\",\"premise_revision_ids\":{\"$tuple\":[]},\"rule_revision\":null,\"schema_version\":\"finite-certificate/v2\",\"stage\":\"pre\",\"subject_id\":\"transition/v1:5494ff387e481772b3bee5c5dec54db950a3da11dff486aac49524928b0cee5c\",\"transition_id\":\"transition/v1:5494ff387e481772b3bee5c5dec54db950a3da11dff486aac49524928b0cee5c\",\"valid_until\":5,\"witness\":{\"$tuple\":[]}}},\"proposal\":{\"$record\":\"Proposal\",\"fields\":{\"conclusion\":{\"$record\":\"Literal\",\"fields\":{\"positive\":true,\"statement\":{\"$record\":\"Statement\",\"fields\":{\"arguments\":{\"$tuple\":[]},\"predicate\":\"A\"}}}},\"context_id\":\"legacy\",\"evidence_ids\":{\"$tuple\":[\"legacy-evidence\"]},\"formula_id\":\"grounded-hard-implication/v1\",\"lineage_roots\":{\"$tuple\":[\"root\"]},\"premise_revision_ids\":{\"$tuple\":[]},\"proposal_id\":\"proposal/v1:2a42237793a6d1cb054313ed92e4c0a955094e31aca673496e99ab202857aad1\",\"transition_id\":\"transition/v1:5494ff387e481772b3bee5c5dec54db950a3da11dff486aac49524928b0cee5c\"}}}}",
+      "6ed8fe74908add603302b2da1810df28cc0b7dd5d32db6bba158dbd11908b473",
+      "5a8c387a732ea211ecef3c4d61aeea1d72d9242a9cb94dcc756cb7b63980ba65",
+      "3bedee52f2de152c60261e17284304627b5b82ec2fb45df1acf25fd546158d3f"
+    ],
+    [
+      6,
+      "commit",
+      "commit",
+      "{\"$map\":{\"expected_revision\":1,\"post_certificate\":{\"$record\":\"Certificate\",\"fields\":{\"certificate_id\":\"certificate/v2:cf5aa936debeac6be342199cd18c4b6e99314689785164215ac1ea073551de93\",\"checker_version\":\"bounded-cnf-dpll/v1\",\"checks\":{\"$tuple\":[{\"$record\":\"Check\",\"fields\":{\"detail\":\"verified service-issued contract\",\"name\":\"pre_permit\",\"status\":{\"$status\":\"PASS\"}}},{\"$record\":\"Check\",\"fields\":{\"detail\":\"replay the complete grounded proposal\",\"name\":\"formula_and_provenance\",\"status\":{\"$status\":\"PASS\"}}},{\"$record\":\"Check\",\"fields\":{\"detail\":\"complete finite CNF model found\",\"name\":\"joint_post_state\",\"status\":{\"$status\":\"PASS\"}}}]},\"constraint_digest\":\"constraints/v1:643d5437104296e21d906ecb15b2c96ad278f20cfc4af53b12bb6069bd853726\",\"context_id\":\"legacy\",\"evidence_lineage_digest\":\"lineage/v1:f4014caba2d825f606d479d8b912af425610d475ab2c7938735a30f4f714c69f\",\"formula_id\":\"grounded-hard-implication/v1\",\"knowledge_revision\":1,\"logical_time\":0,\"policy_revision\":\"finite-hard-policy/v1\",\"premise_revision_ids\":{\"$tuple\":[]},\"rule_revision\":null,\"schema_version\":\"finite-certificate/v2\",\"stage\":\"post\",\"subject_id\":\"proposal/v1:2a42237793a6d1cb054313ed92e4c0a955094e31aca673496e99ab202857aad1\",\"transition_id\":\"transition/v1:5494ff387e481772b3bee5c5dec54db950a3da11dff486aac49524928b0cee5c\",\"valid_until\":5,\"witness\":{\"$tuple\":[{\"$tuple\":[{\"$record\":\"Statement\",\"fields\":{\"arguments\":{\"$tuple\":[]},\"predicate\":\"A\"}},true]}]}}},\"pre_certificate\":{\"$record\":\"Certificate\",\"fields\":{\"certificate_id\":\"certificate/v2:ea5a40ad4e54fc1f691e714b88edea9ef76a210c28991a7410ac61b80a298fee\",\"checker_version\":\"bounded-cnf-dpll/v1\",\"checks\":{\"$tuple\":[{\"$record\":\"Check\",\"fields\":{\"detail\":\"full context revision comparison\",\"name\":\"snapshot\",\"status\":{\"$status\":\"PASS\"}}},{\"$record\":\"Check\",\"fields\":{\"detail\":\"report must belong to the exact context\",\"name\":\"evidence_context\",\"status\":{\"$status\":\"PASS\"}}},{\"$record\":\"Check\",\"fields\":{\"detail\":\"report must be observed, unrevoked and within its validity interval\",\"name\":\"evidence_current\",\"status\":{\"$status\":\"PASS\"}}},{\"$record\":\"Check\",\"fields\":{\"detail\":\"complete finite CNF model found\",\"name\":\"joint_pre_state\",\"status\":{\"$status\":\"PASS\"}}}]},\"constraint_digest\":\"constraints/v1:643d5437104296e21d906ecb15b2c96ad278f20cfc4af53b12bb6069bd853726\",\"context_id\":\"legacy\",\"evidence_lineage_digest\":\"lineage/v1:f4014caba2d825f606d479d8b912af425610d475ab2c7938735a30f4f714c69f\",\"formula_id\":\"grounded-hard-implication/v1\",\"knowledge_revision\":1,\"logical_time\":0,\"policy_revision\":\"finite-hard-policy/v1\",\"premise_revision_ids\":{\"$tuple\":[]},\"rule_revision\":null,\"schema_version\":\"finite-certificate/v2\",\"stage\":\"pre\",\"subject_id\":\"transition/v1:5494ff387e481772b3bee5c5dec54db950a3da11dff486aac49524928b0cee5c\",\"transition_id\":\"transition/v1:5494ff387e481772b3bee5c5dec54db950a3da11dff486aac49524928b0cee5c\",\"valid_until\":5,\"witness\":{\"$tuple\":[]}}},\"proposal\":{\"$record\":\"Proposal\",\"fields\":{\"conclusion\":{\"$record\":\"Literal\",\"fields\":{\"positive\":true,\"statement\":{\"$record\":\"Statement\",\"fields\":{\"arguments\":{\"$tuple\":[]},\"predicate\":\"A\"}}}},\"context_id\":\"legacy\",\"evidence_ids\":{\"$tuple\":[\"legacy-evidence\"]},\"formula_id\":\"grounded-hard-implication/v1\",\"lineage_roots\":{\"$tuple\":[\"root\"]},\"premise_revision_ids\":{\"$tuple\":[]},\"proposal_id\":\"proposal/v1:2a42237793a6d1cb054313ed92e4c0a955094e31aca673496e99ab202857aad1\",\"transition_id\":\"transition/v1:5494ff387e481772b3bee5c5dec54db950a3da11dff486aac49524928b0cee5c\"}}}}",
+      "88c032f63388304bf5dcf03cadb16c6260d66a523bbc7301c23a8edb90c6d679",
+      "3bedee52f2de152c60261e17284304627b5b82ec2fb45df1acf25fd546158d3f",
+      "9f397df876a6c3a50ed276fe92144169d0deb8485c9abba34832d0a26944412f"
+    ],
+    [
+      7,
+      "advance_clock",
+      "expire",
+      "{\"$map\":{\"context_id\":\"legacy\",\"logical_time\":5}}",
+      "af50851235834729673e988f87dedd69fbd0d4af6c69c85c131b616006de770b",
+      "9f397df876a6c3a50ed276fe92144169d0deb8485c9abba34832d0a26944412f",
+      "4a6e4cf241699aa167324083af22bc0e63b547442878321b4f82cc360c7f659a"
+    ]
+  ]
+}

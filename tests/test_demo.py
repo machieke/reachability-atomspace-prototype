@@ -2,6 +2,7 @@ import unittest
 
 from reachability.demo import run
 from reachability.recovery_demo import run as recover
+from reachability.lifecycle_demo import run as lifecycle
 
 
 class DemoTests(unittest.TestCase):
@@ -22,3 +23,13 @@ class DemoTests(unittest.TestCase):
         self.assertEqual(result["at_credential_expiry"], "STALE")
         self.assertEqual(result["artifact_test_after_expiry"], "PASS")
         self.assertEqual(result["historical_ready_records"], 1)
+
+    def test_lifecycle_history_and_current_validity_are_separate(self):
+        result = lifecycle()
+        self.assertEqual(result["ack_outcome"], "UNKNOWN")
+        self.assertEqual(result["wrong_product"], "FAIL")
+        self.assertEqual(result["stage_after_restart"], "BUILT")
+        self.assertEqual(result["artifact_validity_after_credential_revocation"], "PASS")
+        self.assertEqual(result["stage_after_product_revocation"], "BUILT")
+        self.assertEqual(result["validity_after_product_revocation"], "STALE")
+        self.assertEqual(result["historical_transitions"], 1)

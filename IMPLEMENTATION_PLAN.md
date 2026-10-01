@@ -291,7 +291,49 @@ Boolean oracle and hand-specified event-prefix expectations; a full independent
 lifecycle reference model is still pending. Full-history replay and rollback copies
 are correctness-first reference choices, with costs to measure before optimization.
 
-Next implement pinned lifecycle schemas, typed AND/OR requirement witnesses and
-persistent operation episodes; then add the transactional reservation/intent ledger
-and simulated executor. Context inheritance, variable binding and schema breadth
-remain explicit phase 1 backlog items. Phases 2–8 have not passed their exit criteria.
+### Third increment on 1 October 2026
+
+Implemented grounded, immutable lifecycle schemas and episode pinning; pure
+AND/OR requirement evaluation with exact witnesses; separately certified lifecycle
+transitions; and a durable passive operation ledger. Source requirements, observed
+outcomes and target validity have separate checks. Stage history survives loss of
+current support. Explicit regression/recovery edges can leave an invalid state
+only under their own checked requirements and observed outcomes.
+
+Operations have persistent operation and attempt identity, selection time and
+independent observations. The ledger rejects wrong products, wrong attempts,
+unapproved source IDs, stale supports and synthetic executor observations produced
+by inference. ACK is not completion; completion is not an exact-product observation.
+Late outcomes remain recordable after cancellation. Selection grants no external
+execution authority, and this increment does not infer goal relief or causal credit.
+
+All new mutations share the existing service lock, idempotency and SQLite replay
+boundary. Lifecycle changes advance a separate context-scoped lifecycle revision
+without modifying belief revisions. New schema versions do not invalidate episodes
+pinned to an older schema. Existing admission record layouts remain unchanged.
+
+Verification for this increment:
+
+- 169 tests pass. The lifecycle and operation contract suites run in both memory
+  and durable modes; durable cases compare reconstructed projections after replay.
+- A separate three-valued requirement oracle checks 240 generated expression/world
+  combinations, alongside the existing 400 independent Boolean formula checks.
+- New fault tests cover lifecycle commit crashes, failed appends and lost callback
+  commit responses. Repeated callbacks and replayed commands do not duplicate history.
+- A stored seven-command journal produced by commit `3e2516e` recovers correctly,
+  and accepts the new lifecycle commands without changing earlier results.
+- The lifecycle demo retains BUILT after credential revocation, then reports STALE
+  validity after product support is revoked while preserving the transition.
+
+This completes the scheduled grounded schemas, AND/OR witnesses and passive operation
+episode increment. It does not complete phase 2. Contracts that distinguish
+submission-time prerequisites from completion-time requirements still need the
+intent coordinator and temporal semantics; this fragment checks a transition at
+one current snapshot. General schema migration and entity-variable binding remain
+unsupported rather than inferred from these grounded tests.
+
+Next implement transactional resource claims, reservations and durable operation
+intents; then simulated executor dispatch/reconciliation, goal slices, overlapping
+coverage and observation-defined durability. Context inheritance, variable binding
+and schema breadth remain explicit phase 1 backlog items. Phases 2–8 have not passed
+their exit criteria.

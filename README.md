@@ -1,9 +1,10 @@
 # Reachability AtomSpace prototype
 
 This repository implements the reachability proposals in stages. The current
-increment is a single-authority admission service with optional SQLite recovery for a small grounded
-propositional fragment. It separates stored reports, proposals and accepted hard
-claims, and checks the complete relevant constraint set before acceptance.
+increment combines a single-authority admission service, grounded lifecycle
+schemas and passive operation ledgers, with optional SQLite recovery. It separates
+stored reports, proposals, accepted hard claims, lifecycle history and current
+validity, and checks the complete relevant constraint set before acceptance.
 
 Read [the phased implementation plan](IMPLEMENTATION_PLAN.md) for deliverables,
 dependencies and exit criteria. The original specifications and validation design
@@ -19,6 +20,7 @@ or the pinned interpreter through `uv`:
 ```bash
 uv run --no-project python -m reachability.demo
 uv run --no-project python -m reachability.recovery_demo
+uv run --no-project python -m reachability.lifecycle_demo
 uv run --no-project python -m unittest discover -s tests -v
 uv run --no-project python pressure_field_lifecycle_reference_checks.py
 ```
@@ -124,6 +126,54 @@ Recovery currently replays the complete history, and durable mutations copy work
 state for rollback. These intentionally simple algorithms have unoptimized time
 and memory costs. Schema migration and snapshot acceleration are future work.
 
+## Lifecycle schemas and operation episodes
+
+Schemas are immutable, explicitly registered revisions for a grounded entity. An
+episode pins its schema revision. Registering a new revision cannot silently
+reinterpret an existing episode or change an operation's expected product.
+
+Requirements support `FACT`, `AND`, `OR` and an explicit `ALWAYS` predicate.
+`FACT` requires an exact usable scoped belief revision; absent support is UNKNOWN,
+not false. An OR selects one complete branch, recording its branch path and exact
+witnesses. It cannot combine partial alternatives. Evaluation checks all current
+hard constraints, and returns UNKNOWN beyond the supported operator or expression
+limits (256 nodes, depth 32). Unsupported contracts cannot be registered as active
+schemas. Every transition outcome must require evidence on every permitted branch.
+
+`certify_lifecycle_transition` checks the source stage, current prerequisites,
+observed outcome and target validity. Its permit binds the episode revision,
+context revision, lifecycle revision, policy, schema and exact supports.
+`advance_lifecycle` rechecks that binding and atomically records the historical
+transition. A lifecycle change does not manufacture a new truth-bearing belief.
+
+`inspect_lifecycle` reports historical stage and present validity separately.
+Revoking an old credential need not invalidate a completed artifact whose current
+validity depends on different evidence. Losing the artifact's own support makes
+its validity stale while retaining the stage and events. A declared recovery or
+regression edge can leave an invalid state, but still needs its own complete
+requirements and observed outcome.
+
+The operation ledger records stable operation/attempt identity, planning selection
+and its time, and independent observed milestones. It is **passive**: selection
+does not dispatch an action, reserve resources or authorize execution. Observations
+require accepted direct evidence matching the exact attempt, product and milestone,
+from a source ID allowed by the pinned schema. Evidence ingestion is still a trusted
+in-process API; a real executor adapter must authenticate those sources.
+
+ACK, completion and exact-product observation remain separate. An operation's
+outcome passes only when its completion and product observations are current and
+its declared outcome contract passes. Observations may arrive out of order; a late
+completion after cancellation is retained. Revocation removes the observation's
+current authority without deleting history. These records make no claim of causal
+credit or goal relief.
+
+In this fragment, lifecycle prerequisites and outcomes are checked at the same
+current snapshot. Submission-time versus completion-time requirements will need
+the reservation/intent coordinator and additional temporal contracts. Generic
+entity binding, schema migration, resources, dispatch, goal coverage and durability
+windows remain pending. Existing admission journals from commit `3e2516e` are
+tested for recovery and extension with the new lifecycle commands.
+
 ## Source layout
 
 | Location | Responsibility |
@@ -133,19 +183,27 @@ and memory costs. Schema migration and snapshot acceleration are future work.
 | `reachability/service.py` | Evidence, certificates, commits and invalidation |
 | `reachability/journal.py` | SQLite transactions, integrity and authority locking |
 | `reachability/codec.py` | Explicit typed JSON records without executable deserialization |
+| `reachability/requirements.py` | Grounded AND/OR evaluation and exact support witnesses |
+| `reachability/lifecycle_model.py` | Immutable schemas, lifecycle and operation records |
+| `reachability/lifecycle.py` | Lifecycle certification and passive operation ledger |
 | `reachability/demo.py` | Executable public-API walkthrough |
 | `reachability/recovery_demo.py` | Restart and credential expiry walkthrough |
+| `reachability/lifecycle_demo.py` | Operation milestones and lifecycle validity walkthrough |
 | `tests/oracle.py` | Independent exhaustive Boolean evaluator |
 | `tests/test_admission.py` | Authority, scope, lineage and concurrency checks |
 | `tests/test_mutations.py` | Isolated witnesses for mutants M01–M04 |
 | `tests/test_revisions.py` | Rule/policy changes and temporal boundaries |
 | `tests/test_recovery.py` | Recovery, corruption, storage failures and process crashes |
 | `tests/test_durable_contract.py` | Same admission contracts through durable storage |
+| `tests/test_lifecycle.py`, `tests/test_operations.py` | Lifecycle and observation contracts |
+| `tests/test_durable_lifecycle.py` | The same lifecycle and operation contracts with recovery |
+| `tests/test_lifecycle_recovery.py` | Fault boundaries and committed-version compatibility |
 | `reachability_validation_design/` | Original proposed benchmark, not runtime inputs |
 
 The oracle uses signed-integer formulas and exhaustive truth tables. It imports no
 runtime implementation. Tests compare the runtime checker and returned witnesses
 against it on 400 seeded generated formulas, in addition to hand-authored cases.
+A separate three-valued oracle covers 240 generated requirement/world combinations.
 The evaluator is separated by imports and file location; OS-level isolation is
 still pending.
 
@@ -154,15 +212,15 @@ still pending.
 This is an in-process API with trusted callers, not a sandbox for hostile Python
 code. The current storage lock implementation targets POSIX hosts. Schema migration,
 context inheritance, variable matching, general temporal requirement expressions
-and resource reservations are not implemented. Context assumptions constrain admission but are not automatically
-materialized as premise revisions in this first slice.
+and resource reservations are not implemented. Context assumptions constrain
+admission but are not automatically materialized as premise revisions in this slice.
 
 There is no actual AtomSpace, FDAS, PLN, ECAN or Freeciv adapter yet. Pressure and
 transport remain the supplied standalone numerical examples. The 64-fixture
 target, full deployment episode, M05–M12 mutants and performance experiments are
 still pending. Existing tests establish the stated finite contracts only.
 
-The next increment builds phase 2's lifecycle/operation ledgers on the durable
-boundary, followed by resource reservations, executor reconciliation and exact
-outcome monitoring. General context inheritance and variable binding remain
+The next increment adds transactional resource reservations and operation intents,
+then simulated executor dispatch/reconciliation, goal slices, coverage accounting
+and durability monitoring. General context inheritance and variable binding remain
 explicit phase 1 backlog items.

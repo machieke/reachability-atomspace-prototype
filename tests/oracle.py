@@ -15,3 +15,22 @@ def satisfying_assignment(clauses: tuple[tuple[int, ...], ...]) -> dict[int, boo
                for clause in clauses):
             return assignment
     return None
+
+
+def requirement_truth(expression, facts):
+    """Three-valued reference using plain tuples and Boolean/unknown observations."""
+    operator, *children = expression
+    if operator == "FACT":
+        return facts.get(children[0])
+    if operator == "ALWAYS":
+        return True
+    values = [requirement_truth(child, facts) for child in children]
+    if operator == "AND":
+        if False in values:
+            return False
+        return True if all(value is True for value in values) else None
+    if operator == "OR":
+        if True in values:
+            return True
+        return False if all(value is False for value in values) else None
+    return None

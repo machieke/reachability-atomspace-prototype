@@ -3,11 +3,18 @@ from dataclasses import fields, is_dataclass
 import json
 
 from . import model
+from . import lifecycle_model as lifecycle
+from .requirements import Requirement, RequirementResult, RequirementWitness
 
 RECORDS = {cls.__name__: cls for cls in (
     model.Statement, model.Literal, model.Clause, model.Evidence, model.Rule,
     model.Check, model.Transition, model.Proposal, model.Certificate,
     model.BeliefRevision, model.CommitResult, model.BeliefView, model.ContextSnapshot,
+    Requirement, RequirementResult, RequirementWitness,
+    lifecycle.LifecycleState, lifecycle.LifecycleEdge, lifecycle.LifecycleSchema,
+    lifecycle.LifecycleEvent, lifecycle.LifecycleEpisode, lifecycle.LifecycleView,
+    lifecycle.LifecyclePermit, lifecycle.OperationObservation, lifecycle.OperationEpisode,
+    lifecycle.OperationView,
 )}
 
 
@@ -16,7 +23,7 @@ def encode(value):
         return {"$status": value.value}
     if value is None or type(value) in (str, int, bool):
         return value
-    if is_dataclass(value) and type(value).__name__ in RECORDS:
+    if is_dataclass(value) and RECORDS.get(type(value).__name__) is type(value):
         return {"$record": type(value).__name__, "fields": {
             field.name: encode(getattr(value, field.name)) for field in fields(value)}}
     if isinstance(value, tuple):

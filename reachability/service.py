@@ -13,7 +13,9 @@ from typing import Callable, TypeVar
 from uuid import uuid4
 
 from .codec import dumps, loads
+from .errors import AdmissionDenied, IdempotencyConflict
 from .journal import RecoveryError, SQLiteJournal, digest
+from .lifecycle import LifecycleMixin, LifecycleStore
 from .logic import LogicResult, check_consistency
 from .model import (
     BeliefRevision, BeliefView, Certificate, Check, Clause, CommitResult,
@@ -22,16 +24,6 @@ from .model import (
 )
 
 T = TypeVar("T")
-
-
-class AdmissionDenied(RuntimeError):
-    def __init__(self, status: Status, detail: str):
-        self.status = status
-        super().__init__(detail)
-
-
-class IdempotencyConflict(ValueError):
-    pass
 
 
 @dataclass
@@ -46,14 +38,14 @@ class _Context:
     logical_time: int = 0
 
 
-class AdmissionService:
+class AdmissionService(LifecycleMixin):
     _COMMANDS = frozenset((
         "open_context", "record_evidence", "revoke_evidence", "propose_evidence",
         "propose_transition", "precertify", "postcertify", "commit", "replace_rule",
         "replace_policy", "advance_clock",
-    ))
+    )) | LifecycleMixin.LIFECYCLE_COMMANDS
     _STATE_FIELDS = ("_rules", "_rule_versions", "_policy_versions", "_contexts",
-                     "_evidence", "_revoked", "_transitions", "_certificates", "_commands")
+                     "_evidence", "_revoked", "_transitions", "_certificates", "_commands", "_lifecycle")
 
     def __init__(self, rules: tuple[Rule, ...] | None = None, *,
                  max_variables: int | None = None, database: str | Path | None = None):
@@ -105,6 +97,7 @@ class AdmissionService:
         self._transitions: dict[str, Transition] = {}
         self._certificates: dict[str, Certificate] = {}
         self._commands: dict[str, tuple[str, object]] = {}
+        self._lifecycle = LifecycleStore()
         if self._journal is not None:
             try:
                 self._replaying = True
