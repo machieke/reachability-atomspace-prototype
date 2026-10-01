@@ -1,5 +1,10 @@
 # Event-prefix validation
 
+The new [bounded B0/B3 pressure comparison](PRESSURE_COMPARISON.md) is a separate
+development milestone with shared candidates, real certified inference, explicit
+budgets, numerical reference checks and M09. The earlier deployment, admission,
+planning and recovery regressions below remain unchanged in scope.
+
 The first validation-lab increment adds a versioned public event stream, actual
 semantic traces, an independent cold reference model, and a development corpus.
 It tests the implemented deployment fragment. It is not the full 64-fixture

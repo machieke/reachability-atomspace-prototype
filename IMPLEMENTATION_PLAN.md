@@ -33,6 +33,38 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Immediate priority: executable B0-versus-B3 comparison
+
+This milestone supersedes the recovery expansion listed at the end of the
+historical increments below. Existing safety, admission, execution and recovery
+contracts remain mandatory. Unsupported interrupted operations stay blocked;
+additional recovery automation is backlog work unless a concrete defect prevents
+this comparison from running.
+
+1. Implement a deterministic, revision-bound, read-only pressure projection over
+   authoritative goal slices, support dependencies, lifecycle state and live
+   commitments. Preserve canonical source identities, AND/OR structure,
+   outstanding/open/covered loss, observed relief and monitoring. Use a bounded
+   fixed contraction operator with residuals, convergence and exhaustion reports.
+2. Expose one public reasoning candidate frontier to both controllers. Preserve
+   the deployment B0 and its regressions. Compare a competent dependency-aware
+   B0 ranking with B3 typed pressure and a direct priority queue. Charge shared
+   discovery to both; measure ranking and pressure overhead separately. No
+   adaptive activation transport, hidden world access or weakened authority.
+3. Add independent numerical checks, revision and authority tests, and the M09
+   repeated-source-injection witness. Keep M12 with deferred transport. Exercise
+   real certified inference in a bounded closed-loop episode with competing
+   routes, missing evidence, a shared prerequisite and changing support. Include
+   a simple control and verify that the controller switch changes ranking.
+4. Run a reproducible paired comparison under declared work and time limits;
+   retain machine-readable traces and a readable report with source/configuration
+   bindings, outcomes, failures and measured/unmeasured costs. Run applicable
+   regressions, refresh receipts and record the result without requiring a B3 win.
+
+Stop when this bounded milestone is tested and reproducible. It does not complete
+the full pressure, attention, transport or benchmark design. Learned conductance,
+adaptive transport, generalized recovery and large-scale claims remain deferred.
+
 | Phase | Deliverable | Depends on | Exit evidence |
 | --- | --- | --- | --- |
 | 0 | Repository contracts and reproducible test entry points | Design inputs | Input hashes, clean test command, explicit supported fragment |
@@ -48,17 +80,14 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, twenty-sixth increment): explicit adoption
-recovers a successful numerical revision whose four commands persisted but final
-worker checkpoint did not. Exact saved premise aliases, independence declaration,
-pinned formula result, certificates and counter keys must match. Both new-belief
-and idempotent commits restore their aliases without source writes or native I/O.
-Earlier context/evidence/estimate actions remain separately scoped; all six
-decisions retain the durable worker gate. Seventy-four process probes cover
-publication boundaries; 24 inspection probes include both revision outcomes at
-both source crash cuts. Other progressed events, dispatch and executor I/O remain
-refused. Completed-command recovery still covers 32 cases and 361 fresh-process
-retries; family-complete validation, OS isolation, M09/M12 and phases 5–8 remain open.
+Current checkpoint (1 October 2026, twenty-seventh increment): the next milestone
+is the executable bounded B0/B3 comparison above. Typed read-only pressure now
+feeds a real direct priority queue over the same public inference/observation
+frontier as conditional-planning B0. The development matrix runs 16 controller pairs;
+M09 is detected and validation is complete. Existing recovery
+actions, gates and blocked unsupported cases are preserved. Transport/M12,
+learned conductance, family-complete validation, evaluator OS isolation and the
+broader phases remain deferred; this subset does not complete phases 5–8.
 
 ## Phase 0 Repository contracts
 
@@ -1852,8 +1881,9 @@ designated mutants. All four stages above are complete.
 
 Next increment, in order:
 
-1. Define adoption of fully persisted hard derivations with their exact four
-   transition/certificate/commit entries. Bind saved hard aliases and the rule
+1. Deferred by the twenty-seventh increment: adoption of fully persisted hard
+   derivations with their exact four transition/certificate/commit entries.
+   Bind saved hard aliases and the rule
    revision, reconstruct the grounded proposal and handle both new and idempotent
    belief commits without source writes or changes to historical replies.
 2. Specify other hard-admission, partial numerical, lifecycle and goal outcomes
@@ -1863,3 +1893,79 @@ Next increment, in order:
    preserve unresolved occupancy until supported evidence permits release.
 4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
    target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.
+
+
+### Twenty-seventh increment: bounded B0-versus-B3 comparison
+
+The user's priority change supersedes further recovery expansion. The immediate
+four-step milestone near the top of this plan is implemented as a bounded subset;
+existing unsupported interrupted cases remain explicitly blocked.
+
+1. Added `reachability.pressure`, a deterministic derived view with canonical
+   context/source/slice identities and separate outstanding, predicted-covered,
+   open and observed-relief records. Exact unit conversion and versioned bounded
+   priority factors precede normalized AND/OR propagation. The fixed binary64
+   routing columns are substochastic; contraction iteration reports residuals,
+   error/norm bounds, convergence, SCCs, stranded reasons and exhausted limits.
+   Supported channels are inference and observation only. Covered work retains
+   monitoring pressure. No pressure API receives an authority or executor handle.
+2. Reused the existing public Candidate/Frontier records for both reasoning
+   controllers. Shared discovery binds complete current premise bundles and
+   performs the same pure early joint checks. B0 recomputes competent best-first
+   conditional plans, including shared prerequisites and exact public constraints.
+   B3 schedules typed pressure per declared work using a heap. The existing
+   deployment B0 is unchanged. Every actual result uses the existing certified
+   admission APIs and authoritative goal sample/accounting operations.
+3. Added 25 focused tests, including independent exact rational linear solutions,
+   unchanged reads, duplicate paths, cycles, AND/OR semantics, blocked demand,
+   coverage expiry, relevant revisions, unit conversion, all declared bounds,
+   immutable numerical truth, invalid/stale gate rejection and journal replay.
+   The actual M09 source-injection mutation is detected on an unchanged snapshot.
+   M12 is deferred with transport, not a blocker for this milestone.
+4. Added one command, documented in `PRESSURE_COMPARISON.md`, that writes real
+   authority journals, JSONL traces, source/configuration bindings, selected
+   operations, losses, failures and a readable comparison. Two fixed development
+   seeds, two episodes and four common budget configurations produce 32 runs.
+   Identical-snapshot ranking diagnostics and per-record frontier audits isolate
+   ranking from candidate generation. Both variants use a common sixteen-tick
+   evaluation horizon, including exogenous changes after budget stops without
+   free work. Costs include discovery, pressure, inference, certification,
+   persistence, elapsed/CPU time, setup and evaluation; unmeasured categories are
+   explicit. No training, retuning or performance advantage is claimed.
+
+The rich episode has alternative inference routes, a missing observation, a
+shared prerequisite, and a seed-support revocation between read and execution.
+Both controllers complete under the sixteen-request cap, while the eight-request
+cap exposes incomplete results. B3 leaves less final loss at the smaller cap but
+has worse integrated loss at the larger cap: 78 versus B0's 72, for both seeds.
+The simple control has the same two operations and integrated loss 1. Pressure
+construction and iteration add measurable overhead. These neutral and negative
+results are retained without changing the comparator or episode to force a win.
+
+Verification: the full default suite passes 851 tests; the native integration
+suite passes 85, and all 15 standalone reference checks pass. After the final
+bounded-route diagnostic correction, all 25 affected pressure/comparison tests
+pass again, including cost-sensitive B0 ranking. No tests were skipped and no
+failures remain. The full suite retains the deployment regressions, 24 inspection
+probes, 74 reconciliation probes and 361 public-worker recovery prefixes.
+
+The final isolated comparison passes 32 runs (16 pairs), audits 155 recorded
+candidate frontiers and records four identical-snapshot ranking comparisons.
+M09 is detected and all recorded pressure solves converge. Expected operations
+include three unavailable-observation UNKNOWN replies and twelve STALE replies;
+these are retained, not relabeled as success. Atomic operations may finish beyond
+a wall cap; the maximum observed overrun is 71.49 ms and every run reports its
+actual elapsed time. All nine existing receipts match final sources. Earlier
+fixtures, expected outcomes, reduction results and original design hashes remain
+unchanged. There are still zero family-complete fixtures.
+
+Results and complete cost categories are in
+`artifacts/pressure-comparison/comparison.md` and `report.json`; the command and
+bounded scope are documented in `PRESSURE_COMPARISON.md`. All four immediate
+milestone steps are complete.
+
+Stop at this milestone after final verification. Adaptive activation transport,
+learned conductance, generalized recovery, broader channels, numerical PLN
+scheduling, evaluator OS isolation, the 64-fixture target and large-scale claims
+remain deferred. This subset does not complete the full pressure/attention/
+transport/benchmark design or the broader phases 5–8.

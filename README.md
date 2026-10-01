@@ -598,7 +598,24 @@ recovery. See
 [bounded reconciliation](VALIDATION.md#bounded-explicit-worker-reconciliation)
 for evidence binding, durable decision receipts and crash recovery.
 
-## Current limits and next work
+## Bounded B0-versus-B3 pressure comparison
+
+```bash
+uv run --no-project python -m validation_lab.run_pressure_comparison --output artifacts/pressure-comparison
+```
+
+Use a fresh output directory. This runs both controllers on a reasoning-rich
+episode and a simple control, with two fixed seeds and four common budget
+configurations. It writes `comparison.md`, `report.json`, identical-snapshot
+ranking diagnostics, JSONL selections/receipts and the actual authority journals.
+
+B0 uses dependency-aware conditional planning. B3 uses a read-only typed pressure
+view and a direct priority queue. Both share candidate discovery and the same
+certified inference and observation APIs. This subset supports `infer` and
+`observe`; it does not implement adaptive activation transport or the full
+pressure/attention/benchmark design. See [scope, budgets and results](PRESSURE_COMPARISON.md).
+
+## Current limits and deferred work
 
 The authority API has trusted callers. Optional evaluator workers use separate
 Python processes; their runtime-only bundles and clean environments do not provide
@@ -615,15 +632,14 @@ AtomSpace projection, certified numerical commits and the deployment decision
 episode now use real optional adapters. The native demo runs with
 `uv run --no-project python -m reachability.decision_demo`; see [DECISIONS.md](DECISIONS.md).
 Persistent native storage, FDAS, ECAN and Freeciv integration remain pending.
-Pressure and transport remain the supplied standalone numerical examples. The
-64-fixture target, M09/M12 mutants and performance experiments are still pending.
+Bounded typed pressure and the B0/B3 development comparison are executable.
+Transport, the 64-fixture target, M12 and broader performance experiments remain
+pending. M09 now has a source-duplication mutation witness.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next define adoption of fully persisted hard derivations, including exact
-premise aliases, rule revisions, proposals and certificates.
-Specify other admission and lifecycle outcomes separately, then address dispatch
-and executor evidence with observed packets and fencing fully accounted for.
-Remaining designated mutants and evaluator OS isolation remain open. Goal loss
-models, scheduling priority, wider temporal logic and a full independent event
-reference model still need work. General context inheritance and variable binding
-remain explicit phase 1 backlog items.
+The immediate milestone stops at the tested, reproducible comparison. Further
+recovery automation, including hard-derivation adoption, remains backlog work;
+unsupported interrupted cases remain blocked. Adaptive transport, learned
+conductance, evaluator OS isolation, broader goal models, wider temporal logic
+and a full independent event reference model are deferred. General context
+inheritance and variable binding remain explicit phase 1 backlog items.

@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-persisted-revision-worker-adoption",
+  "implementation_stage": "bounded-b0-b3-pressure-comparison",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -174,7 +174,12 @@
     "independent_two_worker_prefix_oracle": true,
     "source_bound_interleaving_reductions": true,
     "blocker_invalidation_mutation_witness": true,
-    "non_atomic_reservation_mutation_witness": true
+    "non_atomic_reservation_mutation_witness": true,
+    "bounded_revision_bound_pressure": true,
+    "typed_infer_observe_pressure": true,
+    "shared_reasoning_candidate_frontier": true,
+    "bounded_b0_b3_comparison": true,
+    "pressure_source_mutation_witness": true
   },
   "mutation_witnesses": [
     "M01",
@@ -185,11 +190,11 @@
     "M06",
     "M07",
     "M08",
+    "M09",
     "M10",
     "M11"
   ],
   "remaining_designated_mutants": [
-    "M09",
     "M12"
   ],
   "optional_dependency_lock": "adapters.lock.json",
@@ -1021,6 +1026,171 @@
       "native_projection_and_inference_continuation_tested": true,
       "expiry_report_and_model_revocation_block_new_revision_tested": true,
       "other_progressed_events_refused": true
+    }
+  },
+  "pressure_comparison": {
+    "status": "bounded-development-subset",
+    "command": "uv run --no-project python -m validation_lab.run_pressure_comparison --output artifacts/pressure-comparison",
+    "documentation": "PRESSURE_COMPARISON.md",
+    "public_schema": "pressure-work-public/v1",
+    "snapshot_schema": "pressure-work-snapshot/v1",
+    "pressure_schema": "typed-pressure/v1",
+    "trace_schema": "pressure-comparison-step/v1",
+    "report_schema": "b0-b3-comparison/v1",
+    "authoritative_goals_and_overlap_coverage": true,
+    "pressure_authority_writes": false,
+    "canonical_source_identity": [
+      "context_id",
+      "source_id",
+      "slice_id"
+    ],
+    "binding": [
+      "public_snapshot",
+      "knowledge_revision",
+      "policy_revision",
+      "goal_revision",
+      "lifecycle_revision",
+      "resource_revision",
+      "rule_dependencies",
+      "priority_policy",
+      "solver_configuration"
+    ],
+    "source_equation": "D = w*u*kappa*L; open = w*u*kappa*(L-C); monitor = w*u*kappa*C",
+    "solver_equation": "p = d + gamma R p",
+    "column_substochastic": true,
+    "supported_channels": [
+      "infer",
+      "observe"
+    ],
+    "unsupported_channels": [
+      "act",
+      "expand",
+      "retain"
+    ],
+    "supported_dependencies": [
+      "epistemic",
+      "lifecycle",
+      "teleological",
+      "observation"
+    ],
+    "supported_requirements": [
+      "FACT",
+      "AND",
+      "OR"
+    ],
+    "defaults": {
+      "gamma": 0.85,
+      "tolerance": 1e-08,
+      "iterations": 128,
+      "nodes": 128,
+      "edges": 256,
+      "sources": 8
+    },
+    "public_limits": {
+      "atoms": 8,
+      "rules": 8,
+      "probes": 8,
+      "goals": 4,
+      "requirement_nodes": 128,
+      "requirement_depth": 8,
+      "authority_checker_variables": 20
+    },
+    "residual_error_norm_bounds_and_exhaustion_reported": true,
+    "scc_cycle_diagnostics": true,
+    "typed_channel_conversion_with_source_attribution": true,
+    "explicit_goal_unit_conversion": true,
+    "shared_candidate_discovery_charged_to_both": true,
+    "b0": "dependency-aware best-first conditional planning with exact public joint checks",
+    "b3": "typed pressure per declared operation work with direct heap scheduling",
+    "deployment_b0_unchanged": true,
+    "certified_hard_inference_executed": true,
+    "actual_goal_observation_and_reconciliation": true,
+    "same_snapshot_ranking_isolation": true,
+    "episodes": [
+      "competing-routes",
+      "simple-control"
+    ],
+    "seeds": [
+      7,
+      18
+    ],
+    "budget_configurations": [
+      "work-8",
+      "work-16",
+      "time-100ms",
+      "time-500ms"
+    ],
+    "equal_outcome_horizon_ticks": 16,
+    "training_or_tuning_runs": 0,
+    "measured_costs": [
+      "snapshot",
+      "candidate discovery",
+      "B0 ranking",
+      "pressure construction",
+      "pressure solve/diagnostics",
+      "inference",
+      "certification and commit checks",
+      "SQLite append/commit",
+      "authority bookkeeping",
+      "setup",
+      "evaluation tail",
+      "controller elapsed",
+      "total elapsed",
+      "process CPU"
+    ],
+    "unmeasured_costs": [
+      "peak memory",
+      "individual fsync/bytes",
+      "OS scheduling attribution",
+      "real sensor latency"
+    ],
+    "m09_actual_injection_mutant_detected": true,
+    "m12_deferred_with_transport": true,
+    "neutral_and_negative_results_retained": true,
+    "work16_integrated_loss": {
+      "B0": 72,
+      "B3": 78
+    },
+    "simple_control_integrated_loss": {
+      "B0": 1,
+      "B3": 1
+    },
+    "full_pressure_design_complete": false,
+    "full_attention_design_complete": false,
+    "adaptive_transport": false,
+    "learned_conductance": false,
+    "numerical_pln_scheduling": false,
+    "maintenance_after_satisfaction": false,
+    "evaluator_process_isolation": false,
+    "generalized_recovery": false,
+    "interrupted_comparison_resume": false,
+    "family_complete_fixtures": 0,
+    "full_benchmark_complete": false,
+    "stop_condition": "tested pressure, actual B3 use, reproducible comparison; no automatic extension",
+    "controller_runs": 32,
+    "controller_pairs": 16,
+    "validation": {
+      "default_tests_passed": 851,
+      "native_tests_passed": 85,
+      "standalone_reference_checks_passed": 15,
+      "final_affected_tests_passed": 25,
+      "validation_sequence": "full suites followed by the affected suite after the final bounded-route diagnostic correction",
+      "test_failures_remaining": 0,
+      "tests_skipped": 0,
+      "comparison_runs_passed": 32,
+      "candidate_frontiers_audited": 155,
+      "same_snapshot_ranking_cases": 4,
+      "all_recorded_pressure_fields_converged": true,
+      "m09_detected": true,
+      "expected_operation_rejections": {
+        "UNKNOWN": 3,
+        "STALE": 12
+      },
+      "maximum_atomic_wall_overrun_ns": 71489821,
+      "existing_corpus_receipts_refreshed": 9,
+      "prior_fixture_semantics_unchanged": true,
+      "report": "artifacts/pressure-comparison/report.json",
+      "readable_report": "artifacts/pressure-comparison/comparison.md"
     }
   }
 }
