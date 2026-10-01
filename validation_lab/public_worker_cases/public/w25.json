@@ -1,0 +1,44 @@
+{
+  "schema": "admission-initial/v1",
+  "atoms": [
+    "a0",
+    "a1",
+    "a2",
+    "a3"
+  ],
+  "rules": [
+    {
+      "conclusion": 3,
+      "premises": [
+        1,
+        2
+      ],
+      "revision": "1",
+      "rule_id": "r0"
+    },
+    {
+      "conclusion": 4,
+      "premises": [
+        3
+      ],
+      "revision": "1",
+      "rule_id": "r1"
+    },
+    {
+      "conclusion": 3,
+      "premises": [
+        1
+      ],
+      "revision": "1",
+      "rule_id": "r2"
+    },
+    {
+      "conclusion": 3,
+      "premises": [
+        2
+      ],
+      "revision": "1",
+      "rule_id": "r3"
+    }
+  ]
+}

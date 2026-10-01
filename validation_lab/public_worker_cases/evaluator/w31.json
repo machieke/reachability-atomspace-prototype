@@ -1,0 +1,112 @@
+{
+  "schema": "public-worker-case/v1",
+  "case_id": "w31",
+  "profile": "deployment",
+  "parent_instance_id": "deployment-parent-0",
+  "split": "development",
+  "source": {
+    "case_path": "validation_lab/deployment_cases/evaluator/d07.json",
+    "public_path": "validation_lab/deployment_cases/public/initial.json",
+    "manifest": "validation_lab/deployment_cases/manifest.json"
+  },
+  "recovery": "kill-and-retry-every-prefix",
+  "events": [
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e000",
+      "kind": "fact",
+      "arguments": {
+        "name": "product",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e001",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e002",
+      "kind": "censor",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e003",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e004",
+      "kind": "account",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e005",
+      "kind": "tick",
+      "arguments": {
+        "time": 1
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e006",
+      "kind": "resume",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e007",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e008",
+      "kind": "tick",
+      "arguments": {
+        "time": 2
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e009",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e010",
+      "kind": "tick",
+      "arguments": {
+        "time": 3
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e011",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e012",
+      "kind": "account",
+      "arguments": {}
+    }
+  ]
+}

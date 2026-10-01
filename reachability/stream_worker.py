@@ -1,6 +1,6 @@
 """Bounded JSON-lines process boundary for three existing public trace profiles.
 
-Only dispatch has fresh-process checkpoint recovery. The worker receives public
+All profiles support completed-command checkpoint recovery. The worker receives public
 initial state, then one delivered command per response; no evaluator imports.
 """
 import argparse
@@ -8,9 +8,8 @@ from pathlib import Path
 import sys
 
 from .admission_protocol import AdmissionInitial
-from .admission_trace import AdmissionSession
-from .deployment_trace import DeploymentSession
 from .dispatch_worker_state import DurableDispatchSession
+from .trace_worker_state import DurableAdmissionSession, DurableDeploymentSession
 from .trace_protocol import DeploymentInitial, canonical, fingerprint, read_json
 
 SCHEMA = 'public-stream-worker/v1'
@@ -33,24 +32,22 @@ def emit(value):
 
 
 def serve(profile, directory, *, resume=False, input_stream=None):
-    if resume and profile != 'dispatch':
-        raise ValueError('fresh-process resume is supported only for dispatch')
     stream = sys.stdin.buffer if input_stream is None else input_stream
     public = read_frame(stream)
     if public is END:
         raise ValueError('public initial message required')
     if profile == 'admission':
         initial = AdmissionInitial.parse(public)
-        session = AdmissionSession(initial,directory)
+        session = DurableAdmissionSession(initial,directory,resume=resume)
     elif profile in ('deployment','dispatch'):
         initial = DeploymentInitial.parse(public)
         session = (DurableDispatchSession(initial,directory,resume=resume) if profile == 'dispatch'
-                   else DeploymentSession(initial,directory))
+                   else DurableDeploymentSession(initial,directory,resume=resume))
     else:
         raise ValueError('unsupported public worker profile')
     with session:
         ready = dict(schema=SCHEMA,kind='ready',profile=profile,initial_digest=fingerprint(public),
-            completed=len(session.completed) if profile == 'dispatch' else 0,projection=session.projection())
+            completed=len(session.completed),projection=session.projection())
         if profile != 'admission':
             ready['executor_effects'] = session.executor.total_effects
         emit(ready)
@@ -60,7 +57,7 @@ def serve(profile, directory, *, resume=False, input_stream=None):
                 break
             row = session.apply(message)
             emit(dict(schema=SCHEMA,kind='event',profile=profile,event_digest=fingerprint(message),
-                replayed=session.replayed if profile == 'dispatch' else False,record=row))
+                replayed=session.replayed,record=row))
 
 
 def main():

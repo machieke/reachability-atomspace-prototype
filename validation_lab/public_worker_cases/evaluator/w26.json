@@ -1,0 +1,108 @@
+{
+  "schema": "public-worker-case/v1",
+  "case_id": "w26",
+  "profile": "admission",
+  "parent_instance_id": "admission-parent-0",
+  "split": "development",
+  "source": {
+    "case_path": "validation_lab/admission_cases/evaluator/a13.json",
+    "public_path": "validation_lab/admission_cases/public/initial.json",
+    "manifest": "validation_lab/admission_cases/manifest.json"
+  },
+  "recovery": "kill-and-retry-every-prefix",
+  "events": [
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e000",
+      "kind": "context",
+      "arguments": {
+        "assumptions": [],
+        "clauses": [],
+        "context_id": "c0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e001",
+      "kind": "estimate",
+      "arguments": {
+        "confidence": 0.5,
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "strength": 0.25,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e002",
+      "kind": "estimate",
+      "arguments": {
+        "confidence": 0.5,
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s1"
+        ],
+        "strength": 0.75,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e003",
+      "kind": "revise",
+      "arguments": {
+        "context_id": "c0",
+        "model_id": null,
+        "premises": [
+          "e001",
+          "e002"
+        ]
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e004",
+      "kind": "independence",
+      "arguments": {
+        "context_id": "c0",
+        "justification": "declared-study",
+        "model_id": "m0",
+        "premises": [
+          "e001",
+          "e002"
+        ]
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e005",
+      "kind": "revise",
+      "arguments": {
+        "context_id": "c0",
+        "model_id": "m0",
+        "premises": [
+          "e001",
+          "e002"
+        ]
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e006",
+      "kind": "revise",
+      "arguments": {
+        "context_id": "c0",
+        "model_id": "m0",
+        "premises": [
+          "e002",
+          "e001"
+        ]
+      }
+    }
+  ]
+}

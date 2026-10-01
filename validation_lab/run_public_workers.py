@@ -43,7 +43,7 @@ def validate_case(case):
         parse(event)
     if len({e['event_id'] for e in events}) != len(events):
         raise ValueError('duplicate public event identity')
-    if case['recovery'] != ('kill-and-retry-every-prefix' if profile=='dispatch' else 'fresh-worker'):
+    if case['recovery'] not in ('kill-and-retry-every-prefix','fresh-worker'):
         raise ValueError('unsupported process recovery schedule')
 
 
@@ -56,7 +56,7 @@ def check_ready(case,prefix,response):
             or response['kind']!='ready' or response['profile']!=case['profile']
             or response['initial_digest']!=fingerprint(case['public'])
             or type(response['completed']) is not int
-            or response['completed']!=(len(prefix) if case['profile']=='dispatch' else 0)):
+            or response['completed']!=len(prefix)):
         raise ValueError('worker ready envelope differs from public session')
     compare(expected['projection'],response['projection'],'ready')
     if 'executor_effects' in expected:
@@ -120,7 +120,7 @@ def run_case(case,output,*,bundle=None,reference=None):
                 response=exchange(event,'event')
                 prefix.append(event)
                 check_event(case,prefix,response,reference=reference)
-                if case['profile']=='dispatch':
+                if case['recovery']=='kill-and-retry-every-prefix':
                     worker.stop(kill=True)
                     start(True)
                     retry=exchange(event,'retry')
@@ -195,7 +195,7 @@ def verify_report(output):
         expected_requests=[('ready',case['public'])]
         for event in case['events']:
             expected_requests.append(('event',event))
-            if case['profile']=='dispatch':
+            if case['recovery']=='kill-and-retry-every-prefix':
                 expected_requests.extend([('ready',case['public']),('retry',event)])
         if [(r['kind'],r['request']) for r in rows]!=expected_requests:
             raise ValueError('worker exchanges omit, add or reorder public inputs')

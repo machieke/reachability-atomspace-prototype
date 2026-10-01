@@ -56,7 +56,7 @@
     "reachability/dispatch_model.py": "913762efde1a9c32ee7cd574e71d9e21ce4751c4b035bc72db163794a8082d6e",
     "reachability/dispatch_race_protocol.py": "bffb01d0432195cc0e2c4379ee7d0db89e28160739d446c84809e0cb6dabfa32",
     "reachability/dispatch_race_session.py": "c102cc36b1d6d816877c879b3779ce5b508f0319456b98d2204221c7439a35ba",
-    "reachability/dispatch_worker_state.py": "d70a04b3b0a915c9c4858eb3544c85fa8f83f84fbca3d862bd13028860e80bd6",
+    "reachability/dispatch_worker_state.py": "bccac5067bda3493038a2374396c0ad5e84e9274207d47423e207bc05bdacef8",
     "reachability/errors.py": "d3a620e010a257eed034664a3df361b16180b9c743f41c8bd2314b4353075393",
     "reachability/execution.py": "50ddc4eed4e4da91b825ca28840b2345977e2b16f4306aa0a4e3e74e1afb7203",
     "reachability/execution_demo.py": "8b619cc78aef9e0df9bb07c08fb9efd49760efea765891f58d3a416d027f3f7f",
@@ -87,8 +87,9 @@
     "reachability/resources.py": "5c180096b129f8e2da5aef72b10e9b31292968bd30a602a000c1013409b5af03",
     "reachability/service.py": "d7b296d8110c06fc38ee56fd952cf39747e6e458c040ca252fe0cf6b05f40b42",
     "reachability/simulated_executor.py": "1661b3c75680849a5959e2edade8ac585cacb85b65702246b79e9f9d81ea0c3b",
-    "reachability/stream_worker.py": "0862d3317079f7443932f7575c42819930614c5184ded0ce78f7a770f0abf657",
-    "reachability/trace_protocol.py": "74ef7818eb1b480f84298ab063e1a929ece5371e2fffe4e08ec47004b39469aa"
+    "reachability/stream_worker.py": "1432b6f712bbd47471b35ab4be8837d2fb1412d384ba3c92040f06b5282bb663",
+    "reachability/trace_protocol.py": "74ef7818eb1b480f84298ab063e1a929ece5371e2fffe4e08ec47004b39469aa",
+    "reachability/trace_worker_state.py": "8c7dad740bd43109be02f715ca03889b0dff8a93a4faf39fdad145a8b7dcf4d8"
   },
   "family_complete_fixtures": 0,
   "closed_loop": true,

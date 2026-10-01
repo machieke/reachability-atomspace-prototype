@@ -52,7 +52,7 @@ def atomic_write(path, value):
             temporary.unlink(missing_ok=True)
 
 
-def read_checkpoint(path):
+def read_checkpoint(path, *, schema=SCHEMA):
     def unique(pairs):
         result = {}
         for key,value in pairs:
@@ -66,7 +66,7 @@ def read_checkpoint(path):
         if len(data) > MAX_CHECKPOINT:
             raise RecoveryError('worker checkpoint exceeds its size bound')
         value = json.loads(data,object_pairs_hook=unique)
-        if (type(value) is not dict or set(value) != {'schema','body','digest'} or value['schema'] != SCHEMA
+        if (type(value) is not dict or set(value) != {'schema','body','digest'} or value['schema'] != schema
                 or fingerprint(value['body']) != value['digest']):
             raise RecoveryError('worker checkpoint schema/integrity mismatch')
         return decode(value['body'])

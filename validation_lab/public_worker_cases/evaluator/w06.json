@@ -9,7 +9,7 @@
     "public_path": "validation_lab/deployment_cases/public/initial.json",
     "manifest": "validation_lab/deployment_cases/manifest.json"
   },
-  "recovery": "fresh-worker",
+  "recovery": "kill-and-retry-every-prefix",
   "events": [
     {
       "schema": "deployment-event/v1",

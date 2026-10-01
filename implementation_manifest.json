@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "separate-process-public-workers-and-quiescent-dispatch-recovery",
+  "implementation_stage": "completed-command-recovery-for-all-public-worker-profiles",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -664,12 +664,12 @@
       "deployment",
       "dispatch"
     ],
-    "fixed_cases": 16,
-    "compared_prefixes": 186,
-    "worker_starts": 113,
-    "killed_completed_workers": 97,
-    "fresh_process_recovered_prefixes": 97,
-    "exact_retries": 97,
+    "fixed_cases": 32,
+    "compared_prefixes": 361,
+    "worker_starts": 393,
+    "killed_completed_workers": 361,
+    "fresh_process_recovered_prefixes": 361,
+    "exact_retries": 361,
     "runtime_bundle": "reachability-python-files-only",
     "python_startup": [
       "-I",
@@ -682,7 +682,7 @@
     "exchange_deadline_seconds": 15,
     "dispatch_event_limit": 64,
     "admission_deployment_event_limit": 128,
-    "checkpoint_binding": "public-initial-and-both-journal-genesis-sequence-tail-digests",
+    "checkpoint_binding": "profile-public-initial-backend-and-all-required-journal-genesis-sequence-tail-digests",
     "checkpoint_publication": "temporary-file-fsync-atomic-replace-directory-fsync",
     "checkpoint_contents": [
       "observed-requests",
@@ -690,9 +690,13 @@
       "attempt-event-aliases",
       "certificates",
       "completed-commands-and-replies",
-      "pending-command"
+      "pending-command",
+      "ordered-hard-and-numerical-aliases",
+      "active-contexts-and-rule-revisions",
+      "stream-step-prefix-key-counter",
+      "bound-inference-backend"
     ],
-    "recovery": "explicit-resume-at-completed-dispatch-boundaries-only",
+    "recovery": "explicit-resume-at-completed-boundaries-for-all-three-profiles",
     "completed_retry": "historical-reply-without-command-or-executor-io",
     "pending_command": "automatic-resume-refused-explicit-reconciliation-required",
     "same_wrapper_restart_preserves_ownership": true,
@@ -709,10 +713,26 @@
     "authenticated_storage": false,
     "atomic_cross_store_transaction": false,
     "interrupted_command_automatic_recovery": false,
-    "admission_deployment_fresh_process_recovery": false,
+    "admission_deployment_fresh_process_recovery": true,
     "concurrent_schedule_process_control": false,
     "performance_comparison": false,
     "family_complete_fixtures": 0,
-    "new_designated_mutants": []
+    "new_designated_mutants": [],
+    "trace_checkpoint_schema": "trace-worker-checkpoint/v1",
+    "prefixes_by_profile": {
+      "admission": 127,
+      "deployment": 137,
+      "dispatch": 97
+    },
+    "ordered_alias_recovery": true,
+    "active_context_rule_recovery": true,
+    "command_counter_and_event_budget_recovery": true,
+    "exact_diagnostic_reply_recovery": true,
+    "recovered_projection_matches_last_completed": true,
+    "native_backend_binding": true,
+    "native_pln_continuation_tested": true,
+    "deterministic_formula_rechecks_on_journal_recovery": true,
+    "native_inference_io_on_recovery": false,
+    "original_uncheckpointed_stream_migration": false
   }
 }

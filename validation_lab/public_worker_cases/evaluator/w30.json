@@ -1,0 +1,163 @@
+{
+  "schema": "public-worker-case/v1",
+  "case_id": "w30",
+  "profile": "deployment",
+  "parent_instance_id": "deployment-parent-0",
+  "split": "development",
+  "source": {
+    "case_path": "validation_lab/deployment_cases/evaluator/d06.json",
+    "public_path": "validation_lab/deployment_cases/public/initial.json",
+    "manifest": "validation_lab/deployment_cases/manifest.json"
+  },
+  "recovery": "kill-and-retry-every-prefix",
+  "events": [
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e000",
+      "kind": "fact",
+      "arguments": {
+        "name": "tested",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e001",
+      "kind": "fact",
+      "arguments": {
+        "name": "credential",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e002",
+      "kind": "forecast",
+      "arguments": {
+        "confidence": 0.8,
+        "strength": 0.6499999999999999,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e003",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e004",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e005",
+      "kind": "revoke",
+      "arguments": {
+        "evidence_id": "e002"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e006",
+      "kind": "forecast",
+      "arguments": {
+        "confidence": 0.3499999999999999,
+        "strength": 0.65,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e007",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e008",
+      "kind": "revoke",
+      "arguments": {
+        "evidence_id": "e006"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e009",
+      "kind": "forecast",
+      "arguments": {
+        "confidence": 0.35,
+        "strength": 0.65,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e010",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e011",
+      "kind": "forecast",
+      "arguments": {
+        "confidence": 0.8,
+        "strength": 0.8,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e012",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a0",
+        "fault": "none"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e013",
+      "kind": "tick",
+      "arguments": {
+        "time": 10
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e014",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "a1"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e015",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a1"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e016",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a1",
+        "fault": "none"
+      }
+    }
+  ]
+}

@@ -536,9 +536,12 @@ A separate-process evaluator now replays admission, deployment and dispatch
 commands using a runtime-only Python bundle, clean environment and bounded
 JSON-lines pipes. Run
 `uv run --no-project python -m validation_lab.run_public_workers --output artifacts/public-worker-run-1`
-with a new directory. Sixteen cases compare 186 event prefixes; 97 dispatch
-checkpoints survive a killed worker, fresh-process recovery and an exact reply
-retry. Completed dispatch replies and observed transport buffers are durable.
+with a new directory. Thirty-two cases compare 361 event prefixes across all
+three profiles. Every prefix survives a killed worker, fresh-process recovery
+and an exact reply retry. Admission aliases retain their original order; contexts,
+rule revisions, command counters and deployment stream state survive recovery.
+Completed replies preserve their original diagnostics. Dispatch transport buffers
+remain durable.
 Interrupted commands are refused on automatic resume. See
 [public workers](VALIDATION.md#separate-process-public-workers-and-dispatch-checkpoints)
 for the checkpoint contract and process-isolation limits.
@@ -564,8 +567,8 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next extend durable worker checkpoints to admission/deployment stream metadata
-and specify reconciliation for interrupted composite commands. Remaining designated
+Next specify and implement explicit reconciliation for interrupted composite
+commands, starting with evidence-preserving inspection of pending work. Remaining designated
 mutants and evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding

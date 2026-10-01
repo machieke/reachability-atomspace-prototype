@@ -48,16 +48,15 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, eighteenth increment): a separate-process
-public boundary now covers admission, deployment and serial dispatch traces.
-Sixteen cases compare 186 event prefixes across 113 actual worker starts. All 97
-dispatch prefixes recover their observed inbox and exact saved reply in a fresh
-process. Durable pending markers refuse automatic recovery of interrupted
-composite commands. Runtime-only bundles, isolated Python startup and clean
-environments limit accidental evaluator leakage; OS capability/filesystem
-isolation is not implemented. Broader phase 1/2 semantics, authoritative native
-storage, family-complete validation and phases 5–8 remain open. The latest
-execution record below defines the next concrete increment.
+Current checkpoint (1 October 2026, nineteenth increment): completed-command
+recovery now covers all three serial public worker profiles. Thirty-two cases
+compare 361 prefixes across 393 actual worker starts; every prefix is recovered
+in a fresh process and exactly retried. Admission preserves ordered hard/numerical
+aliases, active contexts/rules and command counters. Deployment preserves attempt
+aliases and stream state alongside its actual journals. Pending markers still
+refuse automatic replay of interrupted composite commands. Original design inputs,
+authority schemas, family-complete validation and phases 5–8 remain unchanged or
+open as recorded below; process separation still does not provide an OS sandbox.
 
 ## Phase 0 Repository contracts
 
@@ -1324,3 +1323,76 @@ Next increment, in order:
    criterion, not as a consequence of process separation.
 4. Continue phase 4 family coverage and the 64-fixture target. M09/M12, wider phase
    1/3 semantics and phases 5–8 pressure/attention/transport work remain pending.
+
+### Nineteenth increment on 1 October 2026
+
+Extended completed-command process recovery in four stages:
+
+1. **Persist the remaining stream metadata.** Added a shared serial checkpoint
+   transaction for the existing admission and deployment adapters, using
+   `trace-worker-checkpoint/v1`. It binds the public initial state, profile and
+   admission inference backend to the required journal tips. Admission stores
+   ordered hard/numerical alias pairs, active contexts and current rule revisions;
+   both profiles retain event/step inventories, command prefixes and counters,
+   certificates and exact historical replies. Alias order is significant when
+   multiple public names refer to one belief, so it is explicitly preserved in
+   arrays rather than relying on sorted JSON object keys.
+2. **Restore actual journals and validate wrapper state.** Explicit resume requires
+   the existing stores, checks both their integrity and checkpoint binding, and
+   validates reply identities/digests, contiguous steps and the recovered stream
+   inventory. Admission contexts/rules are checked against the authority; the
+   recovered wrapper projection must equal its last completed projection. No
+   public event is replayed. Journal replay retains deterministic formula checks
+   while avoiding native inference and executor I/O. Completed retries preserve
+   the original diagnostics and do not consume budget or alter counters. In-session
+   restarts retain the wrapper ownership lock.
+3. **Exercise the extended crash and rejection contract.** Added tests for alias
+   ordering, changed rules, multiple contexts, goal/monitor/completion history,
+   128-event budgets across recovery, exact rejected/historical replies and the
+   four-context bound. Tests detect malformed metadata, missing/changed journals,
+   incompatible profile/initial/backend data, storage failure and altered reply
+   identities. Actual child crashes before execution, after a composite command,
+   after a deployment effect and after completed publication distinguish pending
+   refusal from safe exact-reply recovery. No pending-command repair is inferred
+   from a completed command's idempotency behavior.
+4. **Expand independent process conformance and native evidence.** The worker
+   harness now accepts recovery schedules for every profile. The corpus contains
+   all 16 existing admission and all eight deployment cases, plus eight dispatch
+   delivery cases. It compares 127/137/97 prefixes respectively, kills and resumes
+   after all 361, and checks all 361 exact retries across 393 process starts. All
+   events and development ancestry are unchanged; recovery schedules remain in
+   the evaluator. Native projections survive admission/deployment process retries,
+   and real native PLN revision continues after restoring its bound backend and
+   numerical aliases.
+
+All 727 default tests, 78 optional native tests and 15 standalone reference checks
+pass. Eighteen new default tests cover the wrapper/recovery boundaries, and the
+expanded 32-case CLI report verifies raw process evidence and recovery counts.
+The eight earlier corpus receipts are refreshed; their outcomes and reductions
+are unchanged. The process corpus is intentionally expanded and now schedules
+fresh-process recovery for all profiles. Original design inputs, authority and
+executor journal schemas, and the existing dispatch checkpoint schema are
+unchanged. There are still zero family-complete fixtures and no new designated
+mutant witnesses.
+
+The supported recovery transition is from a fully published checkpoint to a new
+worker, with exact completed replies available for retry. A pending marker, journal
+mismatch or corrupted metadata remains an explicit refusal. Existing pre-checkpoint
+admission/deployment stream directories have no wrapper checkpoint and cannot be
+silently upgraded or reconstructed by replaying public events.
+
+Next increment, in order:
+
+1. Add evidence-preserving inspection for interrupted worker commands: report the
+   pending public command, saved versus current journal boundaries and actual
+   authority/executor state without sending requests or rewriting checkpoints.
+2. Define explicit reconciliation decisions for each supported interruption
+   boundary before enabling forward progress. Partial admission, numerical,
+   lifecycle and dispatch effects require different evidence; absence of a reply
+   never proves absence of a remote effect.
+3. Test actual process failures and raw inspection/reconciliation receipts against
+   independent models. Keep operator decisions separate from automated recovery
+   and retain conservative resource uncertainty until authoritative fencing or
+   equivalent supported evidence permits release.
+4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
+   target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.

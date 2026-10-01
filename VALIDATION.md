@@ -895,10 +895,11 @@ remaining phase 4 coverage remain open.
 ## Separate-process public workers and dispatch checkpoints
 
 Run `uv run --no-project python -m validation_lab.run_public_workers --output artifacts/public-worker-run-1`
-with a new directory. Sixteen cases replay pinned development commands: four
-admission, four deployment and eight dispatch cases. They compare 186 event
-prefixes. Each of the 97 dispatch prefixes is followed by a worker kill, fresh
-process startup and exact completed-command retry, for 113 worker starts overall.
+with a new directory. Thirty-two cases replay pinned development commands: all
+16 admission and eight deployment cases, plus eight dispatch cases. They compare
+361 event prefixes (127 admission, 137 deployment and 97 dispatch). Every prefix
+is followed by a worker kill, fresh process startup and exact completed-command
+retry, for 393 worker starts overall.
 Dispatch commands are serial here; the earlier thread-schedule profile remains
 the evidence for concurrent lock behavior.
 
@@ -923,7 +924,8 @@ Stderr, intended input bytes, process IDs, arguments, environment and terminatio
 status are retained separately. Each event reply is correlated to its profile,
 event digest, sequence/identity and projection digest.
 
-Admission and deployment use their existing fresh-session adapters. Dispatch uses
+All profiles now wrap their existing trace adapters with durable completed-command
+checkpoints. Admission/deployment metadata is described below. Dispatch uses
 `DurableDispatchSession`, whose checkpoint is separate from the authority and
 executor journals. The `dispatch-worker-checkpoint/v1` file contains:
 
@@ -982,8 +984,72 @@ certificates. Rerun the CLI in a new directory for fresh execution. Native tests
 compare actual admission, probability, resource, intent and dispatch projections
 before and after a new worker resumes and returns a completed reply.
 
-All eight prior corpus receipts were refreshed for the two new runtime modules;
+All eight prior corpus receipts were refreshed for the current runtime modules;
 earlier expected outcomes and reduced witnesses remain unchanged. This increment
-adds no family-complete fixture or designated mutant. Admission/deployment
-fresh-process stream recovery, pending-command reconciliation, evaluator OS
-isolation, M09/M12 and the 64-fixture target remain open.
+adds no family-complete fixture or designated mutant. Pending-command
+reconciliation, evaluator OS isolation, M09/M12 and the 64-fixture target remain
+open.
+
+### Admission and deployment checkpoint recovery
+
+`DurableAdmissionSession` and `DurableDeploymentSession` extend the same explicit
+create/resume contract to `admission-event/v1` and `deployment-event/v1` streams.
+`reachability.stream_worker --profile admission|deployment --resume` requires the
+public initial message and a completed `trace-worker-checkpoint/v1` checkpoint.
+Resume never creates a missing authority or executor journal. Earlier fresh-only
+stream directories have no such checkpoint and are refused rather than silently
+reconstructed from input events.
+
+The checkpoint binds the profile, exact public initial state and admission
+inference backend to the genesis, sequence and tail digest of every required
+journal: authority only for admission, authority and executor for deployment.
+It persists the 128-event budget, completed-event inventory, step number, command
+prefix/counter, certificates and exact replies. Admission additionally persists
+active contexts, current grounded rule revisions and **ordered** hard/numerical
+alias pairs. Deployment persists its attempt aliases. Goal monitors, observations,
+coverage, accounting, lifecycle state and executor effects are recovered from the
+actual authority/executor journals, not independently recreated in wrapper data.
+
+Alias order determines which public name represents a belief with multiple
+aliases. A late alias that sorts before its original must not rename historical
+beliefs after recovery. The ordered-pair codec and nonlexical hard/numerical alias
+tests enforce this. Rules and contexts are checked against the recovered authority;
+reply identities, digests and contiguous steps are validated, and the wrapper's
+recovered projection must match its last completed projection. The four-context
+and 128-event limits survive fresh processes. Rejected completed commands are
+retriable historical replies, while malformed inputs and exceeded stream limits
+are errors. Exact retries do not consume another event or generate new diagnostics.
+
+Pending and completed publication use the existing fsynced temporary-file/atomic-
+replace/directory-fsync mechanism and independent wrapper ownership lock. Internal
+journal restart commands keep that lock. As with dispatch, a pending marker precedes
+execution, and the completed checkpoint precedes stdout. An exact retry returns
+the original saved row, including original elapsed-time and certificate diagnostics;
+`replayed: true` identifies it as historical. A recovered worker does not re-execute
+public events. Authority journal replay still performs its deterministic formula
+and consistency checks, but invokes neither native inference I/O nor the executor.
+These distinctions are directly tested with public execution, native formula I/O
+and simulator submit/query/release disabled during recovery and exact retry.
+
+The actual process crash tests cover pending-before-execution, completed in memory
+before checkpoint publication, and lost stdout after completed publication for
+both new profiles. A deployment crash after a remote effect leaves that effect
+durable and local dispatch uncertainty intact. Pending commands refuse automatic
+resume at all these pre-publication boundaries, even if a particular command
+happened to write no journal entries. Storage failure also prevents further use
+of the live wrapper. Profile/backend mismatch, missing or changed journals,
+invalid reply inventories and corrupted metadata refuse recovery.
+
+The expanded process corpus preserves the existing public commands and development
+ancestry. All 361 completed prefixes are independently compared, recovered in new
+processes and exactly retried. Reports retain raw stdin/stdout/stderr, launch/exit
+records and actual recovered stores before comparison. Native tests compare
+admission/probability/resource/lifecycle/goal/dispatch projections across worker
+retries; a separate test continues actual native PLN revision after restoring its
+backend binding and numerical aliases. The command-line worker uses the pinned
+formula backend; native inference remains an explicitly selected API mode.
+
+This extension adds 18 default tests and two optional native tests. It does not
+provide pending-command reconciliation, automatic migration of old stream
+metadata, a cross-store atomic transaction, hostile-storage authentication,
+evaluator OS isolation, family-complete fixtures or additional designated mutants.

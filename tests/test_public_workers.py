@@ -40,15 +40,15 @@ class PublicWorkerCorpusTests(unittest.TestCase):
         cls.cases=scenarios()
         cls.results={c['case_id']:run_case(c,cls.root/c['case_id'],bundle=cls.bundle) for c in cls.cases}
 
-    def test_all_profiles_match_models_and_dispatch_replies_recover_in_new_processes(self):
+    def test_all_profiles_match_models_and_replies_recover_in_new_processes(self):
         receipt=verify_corpus()
         self.assertEqual(load_cases(),self.cases)
-        self.assertEqual(receipt['event_prefixes'],186)
+        self.assertEqual(receipt['event_prefixes'],361)
         self.assertEqual(receipt['family_complete_fixtures'],0)
-        self.assertEqual(sum(r['prefixes'] for r in self.results.values()),186)
-        self.assertEqual(sum(r['worker_starts'] for r in self.results.values()),113)
-        self.assertEqual(sum(r['recovered_prefixes'] for r in self.results.values()),97)
-        self.assertEqual(sum(r['exact_retries'] for r in self.results.values()),97)
+        self.assertEqual(sum(r['prefixes'] for r in self.results.values()),361)
+        self.assertEqual(sum(r['worker_starts'] for r in self.results.values()),393)
+        self.assertEqual(sum(r['recovered_prefixes'] for r in self.results.values()),361)
+        self.assertEqual(sum(r['exact_retries'] for r in self.results.values()),361)
 
     def test_workers_receive_only_initial_state_and_delivered_commands(self):
         for case in self.cases:
@@ -96,7 +96,7 @@ class PublicWorkerCorpusTests(unittest.TestCase):
         with patch('sys.argv',['run_public_workers','--output',str(path)]),patch('sys.stdout',new=StringIO()):
             main()
         report=verify_report(path)
-        self.assertEqual(len(report['results']),16)
+        self.assertEqual(len(report['results']),32)
         saved=(path/'report.json').read_text()
         report['results'][8]['recovered_prefixes']-=1
         (path/'report.json').write_text(json.dumps(report))
@@ -306,7 +306,7 @@ class PipeBoundaryTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 read_frame(BytesIO(data))
 
-    def test_bad_initial_fields_and_resume_for_unsupported_profile_fail_without_ack(self):
+    def test_bad_initial_fields_and_resume_without_checkpoint_fail_without_ack(self):
         for profile,public,resume in (('dispatch',dict(asdict(DeploymentInitial()),future=[]),False),
                                       ('deployment',asdict(DeploymentInitial()),True)):
             with TemporaryDirectory() as d:
@@ -379,7 +379,7 @@ class PipeBoundaryTests(unittest.TestCase):
                 self.assertTrue((root/'evidence'/'stdout.jsonl').read_bytes())
 
     def test_runtime_imports_neither_evaluator_nor_process_control(self):
-        for name in ('stream_worker','dispatch_worker_state'):
+        for name in ('stream_worker','dispatch_worker_state','trace_worker_state'):
             tree=ast.parse((ROOT/'reachability'/(name+'.py')).read_text())
             for node in ast.walk(tree):
                 modules=([node.module or ''] if isinstance(node,ast.ImportFrom) else

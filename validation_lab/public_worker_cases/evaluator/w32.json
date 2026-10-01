@@ -1,0 +1,253 @@
+{
+  "schema": "public-worker-case/v1",
+  "case_id": "w32",
+  "profile": "deployment",
+  "parent_instance_id": "deployment-parent-0",
+  "split": "development",
+  "source": {
+    "case_path": "validation_lab/deployment_cases/evaluator/d08.json",
+    "public_path": "validation_lab/deployment_cases/public/initial.json",
+    "manifest": "validation_lab/deployment_cases/manifest.json"
+  },
+  "recovery": "kill-and-retry-every-prefix",
+  "events": [
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e000",
+      "kind": "fact",
+      "arguments": {
+        "name": "tested",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e001",
+      "kind": "fact",
+      "arguments": {
+        "name": "credential",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e002",
+      "kind": "forecast",
+      "arguments": {
+        "confidence": 0.8,
+        "strength": 0.8,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e003",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e004",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e005",
+      "kind": "cover",
+      "arguments": {
+        "attempt_id": "a0",
+        "units": 6,
+        "valid_until": 10
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e006",
+      "kind": "cover",
+      "arguments": {
+        "attempt_id": "a0",
+        "units": 8,
+        "valid_until": 10
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e007",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a0",
+        "fault": "none"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e008",
+      "kind": "tick",
+      "arguments": {
+        "time": 1
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e009",
+      "kind": "fact",
+      "arguments": {
+        "name": "product",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e010",
+      "kind": "observation",
+      "arguments": {
+        "attempt_id": "a0",
+        "milestone": "completion_observed",
+        "product_id": "p0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e011",
+      "kind": "observation",
+      "arguments": {
+        "attempt_id": "a0",
+        "milestone": "exact_product_observed",
+        "product_id": "p0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e012",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e013",
+      "kind": "tick",
+      "arguments": {
+        "time": 2
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e014",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e015",
+      "kind": "tick",
+      "arguments": {
+        "time": 3
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e016",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e017",
+      "kind": "account",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e018",
+      "kind": "revoke",
+      "arguments": {
+        "evidence_id": "e012"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e019",
+      "kind": "account",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e020",
+      "kind": "tick",
+      "arguments": {
+        "time": 4
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e021",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e022",
+      "kind": "tick",
+      "arguments": {
+        "time": 5
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e023",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e024",
+      "kind": "tick",
+      "arguments": {
+        "time": 6
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e025",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e026",
+      "kind": "account",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e027",
+      "kind": "tick",
+      "arguments": {
+        "time": 7
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e028",
+      "kind": "account",
+      "arguments": {}
+    }
+  ]
+}
