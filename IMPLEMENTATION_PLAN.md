@@ -80,7 +80,7 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, thirty-second increment): the
+Current checkpoint (1 October 2026, thirty-third increment): the
 bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
 saved comparison auditing and reproducibility within that same subset; its full
 32-run bundle audit passes. Two fresh matrices now pass all sixteen work-limited
@@ -89,8 +89,9 @@ The prior correction enforces the pressure routing bound on exact stored
 binary64 shares and rejects normalization underflow. Its corrected 64-run
 experiment passes. The shared candidate generator now orders support lifetimes
 exactly, including absence of scheduled expiry. Public operation costs now require
-exact integer work units consistent with budgets and saved-run audits; the fresh
-64-run repeatability check passes. Typed read-only pressure feeds a real direct
+exact integer work units consistent with budgets and saved-run audits. Exhaustion
+summaries now include final pressure evaluations that selected no operation; the
+fresh 64-run repeatability check passes. Typed read-only pressure feeds a real direct
 priority queue over the same public inference/observation frontier as
 conditional-planning B0. The development matrix runs 16 controller pairs; M09 is
 detected and validation is complete. Existing recovery
@@ -2218,3 +2219,53 @@ in the reports; no performance improvement is claimed. Results are in
 `artifacts/pressure-cost-repeatability/repeatability.json` and `repeatability.md`.
 This closes the bounded cost-contract correction. Transport/M12, learned
 conductance, generalized recovery and the broader benchmark remain deferred.
+
+### Thirty-third increment: complete pressure exhaustion reporting
+
+A final pressure evaluation can exhaust a graph or iteration bound without
+selecting an operation. The field retains that diagnostic, but the run summary
+omits it and the auditor accepts the omission. Correct this reporting defect
+without changing pressure, either controller, frozen episodes or authority.
+
+1. Report the sorted unique union of exhausted bounds from all selection fields
+   and the final pressure field. Preserve per-evaluation details in the trace.
+2. Make the audit verify that complete summary and show exhausted bounds in the
+   readable comparison. Reject erased, partial, invented or duplicate summaries.
+3. Add actual bounded graph-stop and iteration-stop witnesses, run the relevant
+   regressions and the frozen repeatability experiment, verify existing source
+   receipts and record results. Commit and push, then stop within this subset.
+
+Status: complete. The run summary includes every evaluated field, including the
+final field when no operation was selected. Bounds are a sorted unique union;
+cached fields cannot duplicate entries and later convergence cannot erase an
+earlier exhaustion. The audit requires that complete summary, and the readable
+comparison lists affected runs and bounds. Individual pressure diagnostics remain
+in the trace. Session budget stops remain separately visible in `stop_reason`.
+
+Verification: all 78 pressure/comparison/audit/repeatability/manifest tests and 15
+standalone reference checks pass, with no failures or skipped tests. Seven new
+tests cover an actual default-limit graph stop with zero requests and four units
+of unresolved loss, iteration exhaustion without selection, duplicate summaries,
+later convergence, no-evaluation cases, readable output and audit rejection of
+erased, partial or invented bounds. Only evaluator aggregation, auditing and
+reporting changed. Runtime controllers, authority, frozen episodes and fixtures
+remain unchanged. All nine existing corpus receipts verify without regeneration.
+Full default, native integration and unrelated deployment/admission/recovery
+suites were not rerun for this evaluator-only correction.
+
+The fresh experiment passes 64 controller runs over 64 distinct authorities, with
+154 and 158 audited selections. All sixteen work-limited repeat comparisons match,
+with no failures or inconclusive cases; five wall-limited comparisons retain
+measured variation. Both bundles detect M09. All 186 pressure fields recorded by
+the frozen comparison converge, while the separate bounded negative controls
+exercise exhaustion. Seven UNKNOWN and 24 STALE operation replies remain visible,
+with no harness failures.
+
+Work-limited outcomes remain unchanged: rich work-16 integrated loss is 78 for B3
+versus 72 for B0, and the simple control remains neutral. Rich work-16 B3 pressure
+construction/solve time spans 15.43–24.90 ms. Total experiment time is 114.70 seconds,
+including a separately recorded 39.15-second final verification phase. Complete
+measured costs remain in the reports; no performance improvement is claimed.
+Results are in `artifacts/pressure-exhaustion-repeatability/repeatability.json`
+and `repeatability.md`. This closes the bounded reporting correction. Transport/M12,
+learned conductance, generalized recovery and the broader benchmark remain deferred.

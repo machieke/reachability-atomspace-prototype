@@ -254,8 +254,10 @@ def audit_run(directory, case, config, result):
     equal(result['failures'], dict(statuses), 'operation failure counts')
     equal(result['ranking_paths'], sorted(rank_paths), 'ranking path summary')
     equal(result['integrated_external_loss'], sum(o['external_weighted_loss'] for o in result['outcomes'][:-1]), 'integrated loss')
-    equal(result['pressure_converged'], all(f['converged'] for f in fields+[stop['last_pressure']] if f), 'convergence summary')
-    equal(result['pressure_exhausted'], [e for f in fields for e in f['exhausted']], 'pressure exhaustion summary')
+    evaluated_fields = fields+([stop['last_pressure']] if stop['last_pressure'] is not None else [])
+    equal(result['pressure_converged'], all(f['converged'] for f in evaluated_fields), 'convergence summary')
+    equal(result['pressure_exhausted'], sorted({e for f in evaluated_fields for e in f['exhausted']}),
+          'pressure exhaustion summary')
     audit_costs(result, receipts)
     return len(selected)
 

@@ -67,6 +67,11 @@ def run_one(case, variant, config, output, *, limits=PressureLimits()):
             'pressure_construction_ns', 'pressure_iteration_ns', 'inference_ns', 'certification_ns',
             'persistence_ns', 'authority_other_ns'))
         timing['other_controller_ns'] = max(0, result['total_elapsed_ns']-measured_exclusive)
+        pressure_fields = [row['pressure'] for row in result['records'] if row['pressure'] is not None]
+        if result['last_pressure'] is not None:
+            # A final solve may stop before selection. It can also be the cached
+            # last selected field; repeating it cannot change either summary.
+            pressure_fields.append(result['last_pressure'])
         return dict(case_id=case['case_id'], seed=case['seed'], variant=variant, configuration=config['name'],
             status='PASS', stop_reason=result['stop_reason'], budget=config['budget'], pressure_limits=asdict(limits),
             initial_snapshot=initial, initial_candidates=initial_candidates,
@@ -80,9 +85,8 @@ def run_one(case, variant, config, output, *, limits=PressureLimits()):
             costs_ns=timing, setup_costs=setup_costs, setup_elapsed_ns=setup_ns,
             controller_elapsed_ns=result['total_elapsed_ns'], wall_overrun_ns=result['wall_overrun_ns'],
             total_elapsed_ns=perf_counter_ns()-start, process_cpu_ns=process_time_ns()-cpu_start,
-            pressure_converged=(all(r['pressure']['converged'] for r in result['records'] if r['pressure'])
-                               and (result['last_pressure'] is None or result['last_pressure']['converged'])),
-            pressure_exhausted=[e for r in result['records'] if r['pressure'] for e in r['pressure']['exhausted']],
+            pressure_converged=all(field['converged'] for field in pressure_fields),
+            pressure_exhausted=sorted({bound for field in pressure_fields for bound in field['exhausted']}),
             last_pressure=result['last_pressure'],
             journal_commands_total=journal_tip,
             unmeasured_costs=['peak memory', 'GPU (unused)', 'OS scheduling attribution',
@@ -145,6 +149,12 @@ def write_comparison(report, path):
             f"{row['final']['external_weighted_loss']:g} | {row['final']['certified_weighted_loss']:g} | "
             f"{row['integrated_external_loss']:g} | {row['work']['actions']} | {row['total_elapsed_ns']/1e6:.2f} | "
             f"{(cost['pressure_construction_ns']+cost['pressure_iteration_ns'])/1e6:.2f} | {row['stop_reason']} |")
+    lines += ['', 'Pressure exhaustion summaries include the final evaluation even when it selected no operation. '
+        'Each bound is listed once; per-evaluation convergence, residuals and limits remain in the trace.', '']
+    exhausted = [f"- {row['case_id']}/{row['seed']}/{row['configuration']}/{row['variant']}: "
+        + ', '.join(row['pressure_exhausted']) for row in report['results']
+        if row['status'] == 'PASS' and row['pressure_exhausted']]
+    lines += exhausted or ['No evaluated pressure field reported exhausted bounds.']
     lines += ['', 'Integrated loss uses fixed evaluation weights over the same sixteen logical ticks. After '
         'a controller stops, exogenous support changes still happen, but it receives no free work '
         'or observations. This is a bounded development comparison, not optimal regret or statistical generalization.', '',

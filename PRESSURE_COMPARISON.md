@@ -83,6 +83,18 @@ advisory. Public profiles are bounded to eight atoms/rules/probes, four goals an
 retains its twenty-variable limit, including observation facts. No capacity is
 silently enlarged or unsupported result treated as a PASS.
 
+Run-level `pressure_exhausted` is the sorted unique union of bounds reported by
+every evaluated pressure field, including a final evaluation that selected no
+operation. A cached last field does not add duplicate entries, and later fields
+cannot erase an earlier exhaustion. Per-source iteration entries retain their
+canonical source identities. Convergence uses all the same fields; individual
+residuals, limits and evaluations remain in the trace. An empty exhaustion list
+does not establish goal completion or imply pressure was evaluated. The audit
+checks this summary against the verified fields, and the readable comparison
+lists runs with exhausted pressure bounds.
+Pressure-session budget exhaustion remains in `stop_reason`, including when no
+field could be evaluated.
+
 ## Controllers and fairness
 
 The existing deployment B0 is unchanged and remains covered by its regression
@@ -415,6 +427,25 @@ integrated loss. Rich work-16 B3 pressure construction/solve time is 15.24–30.
 Reports, complete measured costs and traces are under
 `artifacts/pressure-cost-repeatability/`. The plan and manifest record the scope;
 these measurements do not establish a performance improvement.
+
+The exhaustion-reporting correction passes 78 focused tests and 15 reference
+checks. Seven new tests exercise final unselected graph/iteration bounds, unique
+summaries, preservation of earlier exhaustion after later convergence, no-field
+cases, readable output and audit rejection of missing or invented bounds. The
+default-limit graph witness issues no operation and retains four units of
+unresolved loss. All nine existing corpus receipts verify without regeneration;
+runtime controllers, authority, frozen episodes and fixtures are unchanged.
+Full default, native integration and unrelated deployment/admission/recovery
+suites were not rerun for this evaluator-only correction. No failures remain or
+tests were skipped in the executed suites.
+
+Its 64-run comparison passes all sixteen work-limited repeat checks and retains
+five wall-limited variations. Both bundles detect M09, and all 186 fields in the
+frozen comparison converge. Work-limited outcomes remain unchanged, including
+B3's worse rich-episode integrated loss. Rich work-16 B3 pressure construction/
+solve time is 15.43–24.90 ms. Reports and complete measured costs are under
+`artifacts/pressure-exhaustion-repeatability/`; these measurements do not establish
+a performance improvement.
 
 This milestone stops here. Adaptive transport, learned conductance, generalized
 recovery, numerical PLN scheduling, broader channels, evaluator OS isolation,

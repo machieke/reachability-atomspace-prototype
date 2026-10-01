@@ -1527,6 +1527,79 @@
           "artifacts/pressure-cost-repeatability.log"
         ]
       }
+    },
+    "pressure_exhaustion_reporting": {
+      "status": "bounded-evaluator-correctness-fix",
+      "run_summary": "sorted unique union of exhausted bounds from selection fields and the final pressure field",
+      "unselected_final_evaluation_included": true,
+      "cached_last_field_does_not_duplicate_bounds": true,
+      "earlier_exhaustion_retained_after_later_convergence": true,
+      "per_evaluation_trace_details_preserved": true,
+      "audit_checks_complete_summary": true,
+      "readable_comparison_lists_exhausted_bounds": true,
+      "empty_summary_does_not_imply_pressure_evaluated_or_goal_completion": true,
+      "runtime_controllers_authority_and_frozen_episodes_changed": false,
+      "new_regression_tests": 7,
+      "validation": {
+        "status": "passed",
+        "focused_regression_tests_passed": 78,
+        "standalone_reference_checks_passed": 15,
+        "remaining_failures": 0,
+        "tests_skipped": 0,
+        "suites_not_rerun": [
+          "full default suite",
+          "native integration suite",
+          "unrelated deployment/admission/recovery suites"
+        ],
+        "validation_scope": "Only evaluator aggregation, auditing and readable reporting changed; runtime, frozen episodes and corpus fixtures remain unchanged.",
+        "existing_corpus_receipts_refreshed": 0,
+        "existing_corpus_verifiers_passed": 9,
+        "runtime_and_existing_corpus_receipts_unchanged": true,
+        "unselected_graph_stop_witness": {
+          "limits": "default",
+          "exhausted": [
+            "edges",
+            "nodes"
+          ],
+          "requests": 0,
+          "remaining_certified_loss": 4
+        },
+        "controller_runs_passed": 64,
+        "distinct_authorities": 64,
+        "work_limited_repeat_matches": 16,
+        "work_limited_repeat_failures": 0,
+        "work_limited_repeat_inconclusive": 0,
+        "wall_limited_repeat_variations": 5,
+        "audited_selections_per_bundle": [
+          154,
+          158
+        ],
+        "comparison_source_files_verified_per_bundle": 71,
+        "rich_work16_b3_pressure_elapsed_ns_range": [
+          15426275,
+          24903819
+        ],
+        "verification_elapsed_ns": 39151226443,
+        "total_experiment_elapsed_ns": 114701433461,
+        "expected_operation_rejections": {
+          "UNKNOWN": 7,
+          "STALE": 24
+        },
+        "m09_detected_in_both_bundles": true,
+        "recorded_pressure_fields": 186,
+        "all_recorded_pressure_fields_converged": true,
+        "work_limited_outcomes_unchanged": true,
+        "report": "artifacts/pressure-exhaustion-repeatability/repeatability.json",
+        "readable_report": "artifacts/pressure-exhaustion-repeatability/repeatability.md",
+        "logs": [
+          "artifacts/pressure-exhaustion-before.log",
+          "artifacts/pressure-exhaustion-focused.log",
+          "artifacts/pressure-exhaustion-regressions.log",
+          "artifacts/pressure-exhaustion-reference.log",
+          "artifacts/pressure-exhaustion-receipts.log",
+          "artifacts/pressure-exhaustion-repeatability.log"
+        ]
+      }
     }
   }
 }

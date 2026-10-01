@@ -4,6 +4,7 @@ from copy import deepcopy
 from dataclasses import replace
 import json
 from pathlib import Path
+from random import Random
 from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
@@ -15,8 +16,8 @@ from reachability.pressure_session import ReasoningSession
 from reachability.pressure_work import b0_ranking, build_graph, enumerate_work, validate_public
 from reachability.service import AdmissionDenied, AdmissionService
 from reachability.trace_protocol import fingerprint
-from validation_lab.pressure_episodes import ReasoningWorld, episodes
-from validation_lab.run_pressure_comparison import configurations, fairness_audit, run_one
+from validation_lab.pressure_episodes import ReasoningWorld, episodes, goal
+from validation_lab.run_pressure_comparison import configurations, fairness_audit, run_one, write_comparison
 
 
 class ComparisonTests(unittest.TestCase):
@@ -373,6 +374,107 @@ class ComparisonCostTests(unittest.TestCase):
                         self.assertEqual(result['work']['operation_work'], spent)
                         self.assertEqual(result['work']['observation_work'], observed)
                         self.assertEqual(session.read()['goals'][0]['outstanding'], 1)
+
+
+class PressureSummaryTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.directory = TemporaryDirectory(); cls.addClassCleanup(cls.directory.cleanup)
+        cls.path = Path(cls.directory.name)/'graph-bound'
+        cls.case = deepcopy(episodes()[1]); cls.case['case_id'] = 'graph-bound-control'
+        rng = Random(19)
+        def condition(depth):
+            return (rng.randrange(1, 9) if not depth else
+                    {rng.choice(('AND', 'OR')): [condition(depth-1), condition(depth-1)]})
+        public = cls.case['public']
+        public['admission'].update(atoms=[str(i) for i in range(8)], rules=[])
+        public['costs'] = {}; public['probes'] = []
+        policy = deepcopy(public['priorities']['answer'])
+        public['goals'] = [goal('g'+str(i), condition(6)) for i in range(4)]
+        public['priorities'] = {g['goal_id']: deepcopy(policy) for g in public['goals']}
+        cls.case['world'].update(initial=[], truth=list(range(1, 9)))
+        cls.config = configurations()[1]
+        cls.result = run_one(cls.case, 'B3', cls.config, cls.path)
+
+    def test_final_unselected_graph_exhaustion_is_reported_with_unresolved_demand(self):
+        result = self.result
+        self.assertEqual(result['stop_reason'], 'PRESSURE_GRAPH_BUDGET')
+        self.assertEqual(result['work']['actions'], 0)
+        self.assertEqual(result['work']['inference_calls'], 0)
+        self.assertEqual(set(result['last_pressure']['exhausted']), {'nodes', 'edges'})
+        self.assertEqual(result['pressure_exhausted'], ['edges', 'nodes'])
+        self.assertFalse(result['pressure_converged'])
+        self.assertEqual(result['final']['certified_weighted_loss'], 4)
+        self.assertEqual(sum(s['outstanding_loss'] for s in result['last_pressure']['sources'].values()), 4)
+
+    def test_audit_requires_final_bounds_and_rejects_erased_or_invented_summary(self):
+        from validation_lab.audit_pressure_comparison import audit_run, AuditError
+        result = deepcopy(self.result); result['pressure_exhausted'] = ['edges', 'nodes']
+        self.assertEqual(audit_run(self.path, self.case, self.config, result), 0)
+        for bounds in ([], ['nodes'], ['edges', 'nodes', 'sources'], ['edges', 'nodes', 'nodes']):
+            with self.subTest(bounds=bounds):
+                result['pressure_exhausted'] = bounds
+                with self.assertRaisesRegex(AuditError, 'pressure exhaustion summary'):
+                    audit_run(self.path, self.case, self.config, result)
+
+    def test_iteration_exhaustion_without_selection_is_in_summary(self):
+        config = deepcopy(configurations()[1]); config['budget']['operation_work'] = 0
+        with TemporaryDirectory() as d:
+            result = run_one(episodes()[0], 'B3', config, Path(d)/'run', limits=PressureLimits(iterations=1))
+            self.assertEqual(result['stop_reason'], 'WORK_BUDGET')
+            self.assertEqual(result['work']['actions'], 0)
+            expected = sorted('iterations:'+s for s in result['last_pressure']['sources'])
+            self.assertEqual(result['pressure_exhausted'], expected)
+            self.assertFalse(result['pressure_converged'])
+
+    def test_repeated_iteration_bounds_are_unique_without_rewriting_field_history(self):
+        config = deepcopy(configurations()[1]); config['budget']['actions'] = 3
+        with TemporaryDirectory() as d:
+            path = Path(d)/'run'
+            result = run_one(episodes()[0], 'B3', config, path, limits=PressureLimits(iterations=1))
+            rows = [json.loads(line) for line in (path/'trace.jsonl').read_text().splitlines()]
+            fields = [row['pressure'] for row in rows if row['stage'] == 'selection']
+            bounds = [bound for field in fields for bound in field['exhausted']]
+            self.assertGreater(len(bounds), len(set(bounds)))
+            self.assertEqual(result['pressure_exhausted'], sorted(set(bounds)))
+            self.assertEqual(fingerprint(fields[-1]), fingerprint(result['last_pressure']))
+            self.assertFalse(result['pressure_converged'])
+
+    def test_later_convergence_does_not_erase_prior_iteration_exhaustion(self):
+        case = deepcopy(episodes()[1]); public = case['public']
+        public['admission'].update(atoms=['seed', 'middle', 'answer'], rules=[
+            dict(rule_id='middle', revision='1', premises=[1], conclusion=2),
+            dict(rule_id='answer', revision='1', premises=[2], conclusion=3)])
+        public['costs'] = {'middle': 1, 'answer': 1}
+        public['goals'][0]['condition'] = 3
+        case['world']['truth'] = [1, 2, 3]
+        with TemporaryDirectory() as d:
+            path = Path(d)/'run'
+            result = run_one(case, 'B3', configurations()[1], path, limits=PressureLimits(iterations=2))
+            rows = [json.loads(line) for line in (path/'trace.jsonl').read_text().splitlines()]
+            first = next(row['pressure'] for row in rows if row['stage'] == 'selection')
+            self.assertFalse(first['converged'])
+            self.assertTrue(result['last_pressure']['converged'])
+            self.assertEqual(result['last_pressure']['exhausted'], [])
+            self.assertEqual(result['pressure_exhausted'], sorted(first['exhausted']))
+            self.assertFalse(result['pressure_converged'])
+            self.assertEqual(result['final']['certified_weighted_loss'], 0)
+            self.assertEqual(result['work']['actions'], 3)
+
+    def test_no_evaluation_reports_no_exhaustion_for_either_controller(self):
+        config = deepcopy(configurations()[1]); config['budget']['actions'] = 0
+        for variant in ('B0', 'B3'):
+            with self.subTest(variant=variant), TemporaryDirectory() as d:
+                result = run_one(episodes()[1], variant, config, Path(d)/'run')
+                self.assertEqual(result['pressure_exhausted'], [])
+                self.assertIsNone(result['last_pressure'])
+                self.assertEqual(result['work']['pressure_nodes'], 0)
+
+    def test_readable_report_includes_bounds_from_unselected_evaluation(self):
+        report = dict(source_revision='test-revision', seeds=[7], results=[self.result], m09={'detected': True})
+        with TemporaryDirectory() as d:
+            path = Path(d)/'comparison.md'; write_comparison(report, path)
+            self.assertIn('graph-bound-control/7/work-16/B3: edges, nodes', path.read_text())
 
 
 class ComparisonEpisodeTests(unittest.TestCase):
