@@ -48,15 +48,16 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, seventeenth increment): controlled dispatch
-validation now exercises the real final-send lock against credential revocation
-and lease expiry. Twenty-four cases compare 227 prefixes and recover both journals
-at 220 quiescent checkpoints. The cold model separates queued requests, actual
-remote effects and locally observed receipts. Two diagnostic defects have reduced
-witnesses; they do not add designated M09/M12 coverage. Broader phase 1/2 semantics,
-authoritative native storage, family-complete validation and phase 5–8
-pressure/attention work remain open. The latest execution record below defines
-the next concrete increment.
+Current checkpoint (1 October 2026, eighteenth increment): a separate-process
+public boundary now covers admission, deployment and serial dispatch traces.
+Sixteen cases compare 186 event prefixes across 113 actual worker starts. All 97
+dispatch prefixes recover their observed inbox and exact saved reply in a fresh
+process. Durable pending markers refuse automatic recovery of interrupted
+composite commands. Runtime-only bundles, isolated Python startup and clean
+environments limit accidental evaluator leakage; OS capability/filesystem
+isolation is not implemented. Broader phase 1/2 semantics, authoritative native
+storage, family-complete validation and phases 5–8 remain open. The latest
+execution record below defines the next concrete increment.
 
 ## Phase 0 Repository contracts
 
@@ -1255,3 +1256,71 @@ Next increment, in order:
 4. Continue phase 4 family coverage. M09/M12 await pressure/attention and transport
    mechanisms; broader phase 1/3 semantics, the 64-fixture target and phases 5–8
    remain pending.
+
+### Eighteenth increment on 1 October 2026
+
+Implemented the next process-boundary increment in four stages:
+
+1. **Give runtime workers only current public inputs.** Added a shared serial
+   JSON-lines worker for the existing admission, deployment and dispatch public
+   protocols. The evaluator copies only runtime Python modules into a separately
+   receipted bundle, launches Python with isolated startup and bytecode writes
+   disabled, supplies a minimal environment and separate empty working directory,
+   and exchanges one command per response. The worker imports no evaluator. Pipe
+   deadlines, input/output size bounds, response correlation and raw byte logs
+   distinguish transport/protocol errors from semantic gate results.
+2. **Persist observed dispatch metadata at quiescent boundaries.** Added an
+   explicit create/resume wrapper with an independent POSIX ownership lock. An
+   atomic, fsynced checkpoint holds observed requests, immutable historical
+   receipts, attempt/event aliases, completed commands and their exact replies,
+   bound to both journals' genesis, sequence and tail digests. Resume reopens the
+   actual authority and executor without issuing executor I/O. Exact completed
+   retries return the stored historical reply; changed commands cannot reuse an
+   identity. In-session journal reopenings retain wrapper ownership.
+3. **Define and test the interruption boundary.** A pending marker is published
+   before any command effects, and a completed checkpoint precedes stdout. A
+   worker killed after completed publication but before its reply can resume and
+   return that reply without resending. Crashes before execution, after the remote
+   effect or before completed publication leave an unresolved pending command and
+   refuse automatic resume. Changed/missing journals, stale/corrupt checkpoints,
+   changed initial data and storage failures also fail closed. This intentionally
+   does not claim atomic transactions spanning both journals and wrapper state.
+4. **Replay and retain independent process evidence.** Added 16 cases drawn from
+   pinned existing development ancestry: four admission, four deployment and eight
+   dispatch cases. Every one of their 186 completed prefixes matches the cold
+   independent model. All 97 dispatch prefixes are followed by an actual process
+   kill, new worker startup and exact retry, giving 113 worker starts overall.
+   Evaluator files, scheduling choices and oracle state stay in the parent. Reports
+   bind raw stdin/stdout/stderr, launch/exit evidence, recovered stores, source
+   bundles, corpus ancestry and all exchange/recovery counts.
+
+Verification: 709 default tests, 76 optional native tests and all 15 standalone
+reference checks pass. The new 23 default tests include actual process crashes,
+partial-output timeouts, malformed/oversized frames, JSON-null versus EOF,
+checkpoint/journal mismatches, ownership after restart, event limits across
+recovery, historical retries, source-bound reports and child environment/import
+checks. Native admission/numerical/resource/dispatch projections remain identical
+across a fresh worker's recovered reply retry. All eight prior corpus receipts are
+refreshed; their existing expectations and reductions remain unchanged. Original
+design inputs and authority/executor journal schemas remain unchanged.
+
+The new wrapper supports fresh-process recovery only for completed dispatch
+commands. Admission/deployment workers still create fresh stream sessions, and
+concurrent schedules still belong to the earlier in-process controller. Separate
+processes and runtime-only bundles are not an OS sandbox: workers retain the
+account's filesystem/network capabilities. Checkpoint hashes detect corruption
+and mismatched history, not hostile storage forgery. There are still zero
+family-complete fixtures and no additional designated mutant witnesses.
+
+Next increment, in order:
+
+1. Extend quiescent worker checkpoint recovery to admission/deployment aliases,
+   active contexts/rules, event budgets and their exact completed responses.
+2. Specify an explicit reconciliation protocol for interrupted composite commands
+   before allowing automatic forward progress from a pending marker. Preserve
+   uncertain remote occupancy and immutable observed receipt history throughout.
+3. Add bounded crash/recovery cases and independent raw process evidence for each
+   supported boundary. Treat filesystem/capability isolation as a separate exit
+   criterion, not as a consequence of process separation.
+4. Continue phase 4 family coverage and the 64-fixture target. M09/M12, wider phase
+   1/3 semantics and phases 5–8 pressure/attention/transport work remain pending.

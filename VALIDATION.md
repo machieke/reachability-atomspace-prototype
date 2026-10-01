@@ -891,3 +891,99 @@ family-complete fixture, new designated mutant, authenticated external transport
 arbitrary concurrency exploration, fresh-process inbox recovery, evaluator
 filesystem isolation or performance claim. The 64-fixture target, M09/M12 and the
 remaining phase 4 coverage remain open.
+
+## Separate-process public workers and dispatch checkpoints
+
+Run `uv run --no-project python -m validation_lab.run_public_workers --output artifacts/public-worker-run-1`
+with a new directory. Sixteen cases replay pinned development commands: four
+admission, four deployment and eight dispatch cases. They compare 186 event
+prefixes. Each of the 97 dispatch prefixes is followed by a worker kill, fresh
+process startup and exact completed-command retry, for 113 worker starts overall.
+Dispatch commands are serial here; the earlier thread-schedule profile remains
+the evidence for concurrent lock behavior.
+
+The evaluator copies only `reachability/*.py` into a receipted runtime bundle,
+starts Python with `-I -B`, supplies a minimal environment, and gives each worker
+an empty working directory. The worker receives its profile and store directory
+as arguments, then public initial JSON and one current public event per response.
+Future commands, evaluator labels, recovery scheduling, corpus paths and reference
+state are retained by the parent. The actual child environment and import path
+are tested against parent environment/PYTHONPATH contamination. This is process
+separation and accidental-leakage prevention, **not OS filesystem/network or
+hostile-code isolation**; the worker still has the account's capabilities.
+
+`reachability.stream_worker` emits versioned `public-stream-worker/v1` ready and
+event envelopes around the existing actual trace records. Inputs must be complete
+UTF-8 JSON lines of at most 64 KiB. The parent bounds responses to 4 MiB and each
+exchange to 15 seconds. Partial lines, duplicate fields, malformed JSON,
+unsolicited bytes, size violations, deadlines and nonzero exits are evaluator or
+protocol failures, never semantic UNKNOWN. JSON null is not EOF. Raw stdout bytes
+are saved before parsing, and decoded envelopes are saved before oracle comparison.
+Stderr, intended input bytes, process IDs, arguments, environment and termination
+status are retained separately. Each event reply is correlated to its profile,
+event digest, sequence/identity and projection digest.
+
+Admission and deployment use their existing fresh-session adapters. Dispatch uses
+`DurableDispatchSession`, whose checkpoint is separate from the authority and
+executor journals. The `dispatch-worker-checkpoint/v1` file contains:
+
+- Public initial configuration and the genesis, sequence and tail digest of both
+  journals, binding the wrapper to the exact recovered stores.
+- Observed request objects and immutable receipt objects, including older accepted
+  receipts that must remain older after a newer release fence.
+- Attempt/event aliases, certificates, completed command identities and exact
+  historical replies. The 64-event limit persists across process restarts; exact
+  retries do not consume another event or call the executor.
+- An explicit pending command marker during execution.
+
+The wrapper takes its own POSIX ownership lock, writes a temporary checkpoint,
+fsyncs it, atomically replaces the checkpoint file, then fsyncs the directory.
+The pending marker precedes command execution; the completed checkpoint precedes
+stdout. Explicit `--resume` requires both existing journals, matching initial
+configuration and matching journal tips. It never creates a missing journal or
+silently accepts a changed one. Constructor recovery and exact reply retry are
+also tested with simulator submit/query/release methods disabled. A retry returns
+its stored historical reply, which is identified by `replayed: true`; it does not
+assert that the historical projection is the current state.
+
+The tested failure contract is deliberately precise:
+
+| Failure boundary | Resume behavior |
+| --- | --- |
+| Completed checkpoint, then lost stdout | Recover inbox and exact reply; retry issues no send |
+| Pending marker, before command execution | Refuse automatic resume |
+| Remote effect, before completed checkpoint | Refuse automatic resume; actual executor effect remains durable |
+| Command completed in memory, before checkpoint publication | Refuse automatic resume |
+| Changed/missing journal, stale/corrupt checkpoint or changed initial state | Refuse automatic resume |
+
+Actual child-process exits exercise the three pending-command boundaries and lost
+stdout. Mid-command automatic reconciliation is not implemented: the stores must
+be retained for explicit reconciliation rather than replaying a composite event
+and guessing whether an external effect occurred. Storage errors also prevent
+continued use of the live wrapper. Atomic publication of the wrapper checkpoint
+does not make its writes and both journal transactions one distributed atomic
+operation. The files remain trusted local storage; integrity hashes are not
+cryptographic issuer authentication or protection against deliberate forgery.
+
+The independent models remain in the evaluator and reconstruct each public prefix.
+The dispatch model separately checks remote effects, locally observed receipt
+ordering, uncertain occupancy, release fencing and transport buffers. The new
+corpus pins existing case/public files and their manifests as ancestry, preserving
+their development parent identities. Recovery scheduling never enters public
+messages. Regenerate with
+`uv run --no-project python -m validation_lab.generate_public_worker_cases`.
+
+`validation_lab.run_public_workers.verify_report(path)` checks complete artifact
+hashes, current source/corpus receipts, the exact runtime bundle, saved public
+inputs and response order, every cold-model comparison, identical recovered
+replies, process indices, raw pipe records, exit evidence and recovery counts.
+The raw receipt records are evidence of a run, not authenticated execution
+certificates. Rerun the CLI in a new directory for fresh execution. Native tests
+compare actual admission, probability, resource, intent and dispatch projections
+before and after a new worker resumes and returns a completed reply.
+
+All eight prior corpus receipts were refreshed for the two new runtime modules;
+earlier expected outcomes and reduced witnesses remain unchanged. This increment
+adds no family-complete fixture or designated mutant. Admission/deployment
+fresh-process stream recovery, pending-command reconciliation, evaluator OS
+isolation, M09/M12 and the 64-fixture target remain open.

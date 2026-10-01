@@ -1,0 +1,93 @@
+{
+  "schema": "public-worker-case/v1",
+  "case_id": "w12",
+  "profile": "dispatch",
+  "parent_instance_id": "dispatch-race-parent-0",
+  "split": "development",
+  "source": {
+    "case_path": "validation_lab/dispatch_race_cases/evaluator/dr12.json",
+    "public_path": "validation_lab/dispatch_race_cases/public/dr12.json",
+    "manifest": "validation_lab/dispatch_race_cases/manifest.json"
+  },
+  "recovery": "kill-and-retry-every-prefix",
+  "events": [
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "t",
+      "kind": "fact",
+      "arguments": {
+        "name": "tested",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "c",
+      "kind": "fact",
+      "arguments": {
+        "name": "credential",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "f",
+      "kind": "forecast",
+      "arguments": {
+        "strength": 0.8,
+        "confidence": 0.8,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "a",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "a"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "r",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "s",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a",
+        "fault": "lost_reply"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "release",
+      "kind": "release",
+      "arguments": {
+        "attempt_id": "a"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "ack",
+      "kind": "deliver",
+      "arguments": {
+        "receipt_event": "s"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "retry",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a",
+        "fault": "none"
+      }
+    }
+  ]
+}

@@ -532,10 +532,23 @@ an independent model separates remote effects from local receipt knowledge.
 See [dispatch races](VALIDATION.md#controlled-dispatch-and-delivery-races) for
 scope, diagnostic reductions and the same-wrapper transport-inbox limit.
 
+A separate-process evaluator now replays admission, deployment and dispatch
+commands using a runtime-only Python bundle, clean environment and bounded
+JSON-lines pipes. Run
+`uv run --no-project python -m validation_lab.run_public_workers --output artifacts/public-worker-run-1`
+with a new directory. Sixteen cases compare 186 event prefixes; 97 dispatch
+checkpoints survive a killed worker, fresh-process recovery and an exact reply
+retry. Completed dispatch replies and observed transport buffers are durable.
+Interrupted commands are refused on automatic resume. See
+[public workers](VALIDATION.md#separate-process-public-workers-and-dispatch-checkpoints)
+for the checkpoint contract and process-isolation limits.
+
 ## Current limits and next work
 
-This is an in-process API with trusted callers, not a sandbox for hostile Python
-code. The current storage lock implementation targets POSIX hosts. Schema migration,
+The authority API has trusted callers. Optional evaluator workers use separate
+Python processes; their runtime-only bundles and clean environments do not provide
+an OS filesystem or hostile-code sandbox. Storage locks and checkpoint publication
+target POSIX hosts. Schema migration,
 context inheritance, variable matching and general temporal requirement expressions
 are not implemented. Resource contracts cover integer renewable capacity, local
 leases and simulated executor fencing. Under unresolved occupancy, the coordinator
@@ -551,9 +564,9 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next strengthen the evaluator's separate-process public-command boundary and
-recovery evidence. Transport inbox recovery across fresh processes, remaining
-designated mutants and evaluator OS isolation remain open. Goal loss
+Next extend durable worker checkpoints to admission/deployment stream metadata
+and specify reconciliation for interrupted composite commands. Remaining designated
+mutants and evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding
 remain explicit phase 1 backlog items.
