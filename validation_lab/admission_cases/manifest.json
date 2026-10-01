@@ -51,6 +51,7 @@
     "reachability/dispatch_race_session.py": "c102cc36b1d6d816877c879b3779ce5b508f0319456b98d2204221c7439a35ba",
     "reachability/dispatch_worker_state.py": "fa35fb29e558c645a396903e9eb25cf4ffa33bc8ae6c5addff4e9daf6e16f787",
     "reachability/errors.py": "d3a620e010a257eed034664a3df361b16180b9c743f41c8bd2314b4353075393",
+    "reachability/estimate_reconciliation.py": "139ff8867f666a757eab78efbb89de284f086d351be3a0d1708853dd582f7f58",
     "reachability/evidence_reconciliation.py": "f1e361b0e6a8cbb1f6152dcb4ab24f844cd9dbb86bf37389b2e79a8bda88791a",
     "reachability/execution.py": "50ddc4eed4e4da91b825ca28840b2345977e2b16f4306aa0a4e3e74e1afb7203",
     "reachability/execution_demo.py": "8b619cc78aef9e0df9bb07c08fb9efd49760efea765891f58d3a416d027f3f7f",
@@ -86,7 +87,7 @@
     "reachability/trace_protocol.py": "a8a3e23583df81cca78c1b2c952260db4cea2cbb2f4437a6ee5a61f9a183627d",
     "reachability/trace_worker_state.py": "3040966a8a3be6ee767fcd22bde80146c7bdc6ef4138b9f3fa1305fa9d47d0f7",
     "reachability/worker_inspection.py": "f52c7b9b05522e694eeee578b30b6d53d3981eee0bfe2443fe814e9c84826a0b",
-    "reachability/worker_reconciliation.py": "06565a16fe4f615075c00cca3455ebde63f192a00d6b8a302c129f251a1c9196"
+    "reachability/worker_reconciliation.py": "147f99cbea764f3fcdf9e346a028780296f1239ca2c2bcc76bb948942b5264e4"
   },
   "control_coverage": {
     "F01": {

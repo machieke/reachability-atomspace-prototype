@@ -1136,14 +1136,14 @@ output left by an interrupted inspector has no valid complete receipt and is not
 usable inspection bundle.
 
 Run `uv run --no-project python -m validation_lab.run_worker_inspection --output artifacts/inspection-probes-1`
-in a new directory for 18 actual child-process crash probes. The evaluator controls
+in a new directory for 20 actual child-process crash probes. The evaluator controls
 fault injection and keeps original runtime hashes, exact injected-source receipts,
 launch records, stdin/stdout/stderr, exit codes, worker stores and inspection bundles.
 Independent primitive expectations check partial context/policy creation, numerical
 report admission, operation selection, hard fact adoption and goal-sample
-registration. Two hard-evidence cuts also capture the successful commit before
-alias assignment and the completed composite before its checkpoint. All three
-profiles cover pending-before-execution, after-composite
+registration. Hard evidence and numerical estimates each have two cuts capturing
+the successful commit before alias assignment and the completed composite before
+its checkpoint. All three profiles cover pending-before-execution, after-composite
 execution and completed-checkpoint/lost-stdout boundaries. Deployment and dispatch
 also crash after a committed remote effect, retaining the executor WAL and local
 uncertainty. Completed stdout-loss replies and earlier prefixes are compared with
@@ -1203,6 +1203,7 @@ requires a fresh inspection. The original inspection bundle is retained unchange
 | New admission context; exactly its matching `open_context` entry persisted | Explicit `complete_partial_context` |
 | New admission context; both matching context commands persisted; final worker checkpoint missing | Explicit `adopt_persisted_context` |
 | New hard admission evidence; exact five-command successful chain persisted; final worker checkpoint missing | Explicit `adopt_persisted_evidence` |
+| New numerical estimate; exact six-command successful chain persisted; final worker checkpoint missing | Explicit `adopt_persisted_estimate` |
 | Deployment `dispatch`, `reconcile` or `release` event | Refuse, including unchanged journal tips |
 | Any dispatch-profile event | Refuse in this increment |
 | Other partial admission, numerical, lifecycle, goal or executor progress | Refuse and preserve evidence |
@@ -1268,10 +1269,11 @@ clears it. A malformed marker blocks workers, while the separate reconciliation
 path checks its integrity and exact prepared-record binding.
 
 Run `uv run --no-project python -m validation_lab.run_worker_reconciliation --output artifacts/reconciliation-probes-1`
-in a new directory. Thirty-eight actual process probes include twelve cancellation
+in a new directory. Fifty actual process probes include twelve cancellation
 probes spanning six crash boundaries for both supported profiles, eight partial-
 context completion probes, six persisted-context adoption probes and twelve
-persisted-evidence adoption probes described below. Raw
+probes each for persisted-evidence and persisted-estimate adoption described
+below. Raw
 launch arguments/environment, stdout/stderr, exit codes, source/fault receipts,
 original inspections, decision archives and continued worker exchanges are
 retained. Independent public models check unchanged state for the cancellation
@@ -1408,8 +1410,8 @@ Six actual process probes interrupt archive staging, prepared assets, marker,
 checkpoint, result and stdout publication. They start with an actual worker crash
 after both context commands, verify zero source journal changes, and then compare
 the restored context and a new numerical admission against the independent public
-model. The v3 probe receipt originally covered 26 reconciliation probes; the
-current v4 receipt adds the evidence cases below. Twelve
+model. The v3 probe receipt originally covered 26 reconciliation probes;
+v4 added the evidence cases below, and the current v5 also includes estimates. Twelve
 new unit tests check entry/counter/policy binding, previous reply preservation,
 budgets, existing-context refusal, source-I/O exclusion, stale evidence, altered
 archives, large typed entries, storage failures, historical retries and
@@ -1472,11 +1474,12 @@ derivation is refused as STALE.
 
 Two actual worker crash cuts cover a successful commit before wrapper alias
 assignment and the completed composite before checkpoint publication. Inspection
-now exercises 18 process cases and verifies the committed belief, both
+now exercises 20 process cases and verifies the committed belief, both
 certificates, missing saved alias and exact five-command suffix at either cut.
 Twelve reconciliation probes cross those two cuts with archive staging, prepared
-assets, marker, checkpoint, result and stdout failures. The v4 report covers all
-38 reconciliation cases; it checks unchanged source journals, exact retries and
+assets, marker, checkpoint, result and stdout failures. The v4 report introduced
+38 reconciliation cases; v5 extends it with numerical estimates below. It checks
+unchanged source journals, exact retries and
 subsequent derivation through the restored alias against the independent public
 model. Twelve new unit tests cover every command key, arguments/counters, partial
 or extra progress, failed certificates/commits, archive tampering, publication
@@ -1487,3 +1490,71 @@ This action refuses partial chains, failed outcomes, an existing report identity
 `adopt`/`derive` events, numerical `estimate` events and all deployment/dispatch
 events. Those need separately specified transitions. An already completed wrapper
 uses ordinary exact retry; no adoption decision is needed.
+
+### Adopting a fully persisted numerical estimate
+
+`adopt_persisted_estimate` handles one pending admission `estimate` event whose
+six successful primitive commands persisted before the completed wrapper
+checkpoint. The original pending checkpoint must name a saved context and a new
+evidence/report identity. Generate a bound request:
+
+```sh
+uv run --no-project python -m reachability.worker_reconciliation request \
+  --inspection artifacts/inspection-1 --decision-id adopt-estimate-1 \
+  --action adopt_persisted_estimate > artifacts/adopt-estimate-1.json
+```
+
+Apply or exactly retry it with the existing `apply` command and this request path.
+The complete suffix must be `record_evidence`, `record_probability_report`,
+`propose_probability`, `precertify_probability`, `postcertify_probability`, and
+`commit_probability`. Each entry must match its privately reconstructed primitive,
+including command, arguments, consecutive saved-counter key, result digest,
+sequence and chain. The transition must be the original report's observation;
+both certificates and the commit must pass, and the commit must name a numerical
+belief. Extra, partial, failed, stale or history-limit outcomes cannot be adopted.
+
+Preparation validates the prior wrapper on a rewound private copy. An observation
+proposal carries the report's exact finite truth value and source lineage; its
+construction calls no native inference engine. Probability policy, hard-policy
+revision, authority revision and certificate/proposal bindings are reproduced by
+the ordinary primitive checks. Native/non-native worker identity is retained.
+Strength and confidence, including signed zero, are checked exactly against the
+recorded entries. A zero-confidence observation can be a successful stored
+estimate; it does not become a hard assertion or an independent source by itself.
+
+The candidate restores the numerical alias and both historical certificates,
+advances the global counter by six and consumes the original event ID and stream
+slot. Existing hard and numerical alias order, earlier replies and diagnostics
+remain unchanged. The recovered PASS reply identifies the decision and records
+zero for unavailable original elapsed time. Ordinary private resume verifies the
+candidate and exact event retry before publication. Later expiry or revocation
+still blocks a new revision using the retired estimate; exact old replies remain
+historical.
+
+Prepared v5 retains all six authority entries and exact before/after checkpoint
+bytes. Earlier actions retain their existing prepared formats; request/result,
+worker and authority journal schemas remain unchanged. Publication uses the same
+durable worker gate and preserves captured source database/sidecar bytes. No
+source SQLite connection, source journal append, public composite replay, native
+inference call or executor I/O occurs. Offline audit reproduces the complete
+candidate and entry inventory. A complete preparation supports exact retry
+without the external inspection; a finished decision stays historical after
+later worker progress.
+
+Two new inspection cases start with one saved estimate, then crash the second
+after its numerical commit before alias assignment or after the composite before
+checkpoint publication. They independently check both numerical beliefs, four
+certificates, one saved alias, the six-entry suffix and no hard beliefs. Twelve
+new reconciliation probes cross these with the six publication cuts, bringing the
+v5 report to 50 cases. Each resumed worker registers independence between the old
+and recovered aliases and revises them; both continuation events are checked
+against the independent public model. Fourteen new unit tests cover exact chain
+and truth-value binding, ordered history, all partial prefixes, failed outcomes,
+event bounds, archive corruption, storage failures, source changes, absent I/O,
+expiry, revocation and numerical/hard separation. One native integration test
+checks the unchanged numerical AtomSpace graph and subsequent real PLN revision.
+
+This action supports successful observation estimates only. Numerical `revise`,
+hard `adopt`/`derive`, partial estimate chains and deployment/dispatch events need
+separately specified transitions. An already completed wrapper continues using
+ordinary exact retry.

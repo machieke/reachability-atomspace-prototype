@@ -120,6 +120,36 @@ class NativeWorkerInspectionTests(unittest.TestCase):
 
 
 class NativeWorkerReconciliationTests(unittest.TestCase):
+    def test_persisted_estimate_restores_native_numeric_graph_and_continues_pln_revision(self):
+        from reachability.admission_trace import AdmissionSession
+        from reachability.trace_worker_state import DurableAdmissionSession
+        from reachability.worker_inspection import inspect_worker
+        from reachability.worker_reconciliation import make_request,reconcile
+        from validation_lab.generate_admission_cases import initial,scenarios
+        messages=scenarios()[12]['events'];pending=messages[2]
+        with TemporaryDirectory() as directory:
+            root=Path(directory);state=root/'state'
+            with DurableAdmissionSession(initial(),state,native=True) as s:
+                for message in messages[:2]: s.apply(message)
+                s.pending=pending;s._save()
+                original=AdmissionSession.apply(s,pending)
+                self.assertEqual(original['outcome']['status'],'PASS')
+                before=project_probability(s.service,'c0')
+            inspect_worker('admission',state,root/'inspection')
+            request=make_request(root/'inspection','native-estimate','adopt_persisted_estimate')
+            reconcile(request,state,root/'inspection')
+            with DurableAdmissionSession(initial(),state,resume=True,native=True) as s:
+                self.assertEqual(project_probability(s.service,'c0'),before)
+                recovered=s.apply(pending)
+                self.assertTrue(s.replayed)
+                self.assertEqual(recovered['diagnostics']['certificates'],original['diagnostics']['certificates'])
+                self.assertEqual(s.hard,{})
+                for message in messages[3:]: row=s.apply(message)
+                self.assertEqual(row['outcome']['status'],'PASS')
+                self.assertEqual(row['projection']['numeric']['e005']['strength'],.5)
+                self.assertEqual(row['projection']['numeric']['e005']['confidence'],2/3)
+                self.assertEqual(row['projection']['aliases']['numeric']['e006'],'e005')
+
     def test_persisted_evidence_restores_native_hard_graph_and_supports_pln_continuation(self):
         from reachability.admission_protocol import event
         from reachability.admission_trace import AdmissionSession

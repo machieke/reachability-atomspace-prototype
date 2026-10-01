@@ -12,13 +12,14 @@ from reachability.worker_inspection import capture_names,file_inventory,verify_i
 from reachability.worker_reconciliation import make_request,archive_path,journal_evidence,verify_reconciliation,ACTION
 from reachability.context_reconciliation import ACTION as CONTEXT_ACTION, ADOPT_ACTION
 from reachability.evidence_reconciliation import ACTION as EVIDENCE_ACTION
+from reachability.estimate_reconciliation import ACTION as ESTIMATE_ACTION
 from reachability.admission_protocol import event as admission_event
 from .public_worker import PublicWorker,WorkerError,ROOT,runtime_bundle,write_json
 from .run_public_workers import REFERENCES,compare,check_event
 from .run_worker_inspection import cases as inspection_cases,run_case as inspect_probe,source_files as inspection_sources
 from .shrink_replay import digest_file
 
-SCHEMA='worker-reconciliation-probes/v4'
+SCHEMA='worker-reconciliation-probes/v5'
 EXIT_CODE=83
 CUTS=('archive-file','assets','marker','checkpoint','result','stdout')
 CONTEXT_CUTS=(*CUTS,'transaction','committed')
@@ -27,16 +28,17 @@ CONTEXT_CUTS=(*CUTS,'transaction','committed')
 def probes():
     return ([(profile,cut) for profile in ('admission','deployment') for cut in CUTS]
         + [('context',cut) for cut in CONTEXT_CUTS] + [('adopt',cut) for cut in CUTS]
-        + [(mode,cut) for mode in ('evidence-commit','evidence-after') for cut in CUTS])
+        + [(mode,cut) for mode in ('evidence-commit','evidence-after','estimate-commit','estimate-after') for cut in CUTS])
 
 
 def action(mode):
     return {'context':CONTEXT_ACTION,'adopt':ADOPT_ACTION,
-        'evidence-commit':EVIDENCE_ACTION,'evidence-after':EVIDENCE_ACTION}.get(mode,ACTION)
+        'evidence-commit':EVIDENCE_ACTION,'evidence-after':EVIDENCE_ACTION,
+        'estimate-commit':ESTIMATE_ACTION,'estimate-after':ESTIMATE_ACTION}.get(mode,ACTION)
 
 
 def scenario(mode):
-    if mode in ('evidence-commit','evidence-after'):
+    if mode in ('evidence-commit','evidence-after','estimate-commit','estimate-after'):
         return next(c for c in inspection_cases() if c['case_id']=='admission-'+mode)
     profile='admission' if mode in ('context','adopt') else mode
     suffix={'context':'-partial-context','adopt':'-after'}.get(mode,'-before')
@@ -44,14 +46,19 @@ def scenario(mode):
 
 
 def continuation(case, completing):
+    if case['event']['kind']=='estimate' and completing:
+        args=dict(context_id=case['event']['arguments']['context_id'],model_id='model-after-adoption',
+            premises=[case['prefix'][-1]['event_id'],case['event']['event_id']])
+        return [admission_event('model-after-adoption','independence',**args,justification='independent source reports'),
+            admission_event('revise-after-adoption','revise',**args)]
     if case['event']['kind']=='evidence' and completing:
-        return admission_event('derive-after-adoption','derive',context_id=case['event']['arguments']['context_id'],
-            rule_id='r2',premises=[case['event']['event_id']])
+        return [admission_event('derive-after-adoption','derive',context_id=case['event']['arguments']['context_id'],
+            rule_id='r2',premises=[case['event']['event_id']])]
     if completing:
-        return admission_event('estimate-after-completion','estimate',context_id=case['event']['arguments']['context_id'],
-            literal=1,roots=['sensor-after-completion'],valid_until=None,strength=0.8,confidence=0.6)
+        return [admission_event('estimate-after-completion','estimate',context_id=case['event']['arguments']['context_id'],
+            literal=1,roots=['sensor-after-completion'],valid_until=None,strength=0.8,confidence=0.6)]
     event=deepcopy(case['event']);event['event_id']='new-after-cancel'
-    return event
+    return [event]
 
 
 def fault_spec(cut):
@@ -145,7 +152,7 @@ def run_case(mode,cut,root):
     reply=json.loads((root/'retry'/'stdout.jsonl').read_text())
     if not reply['replayed'] or reply['result']!=verify_reconciliation(archive_path(state,request),inspection):
         raise ValueError('historical decision result differs')
-    next_event=continuation(case,completing)
+    next_events=continuation(case,completing)
     resolved_prefix=[*case['prefix'],*([case['event']] if completing else [])]
     baseline=REFERENCES[profile](case['public'],resolved_prefix)
     worker=PublicWorker(root/'runtime',profile,state,root/'continued-worker',resume=True)
@@ -159,12 +166,13 @@ def run_case(mode,cut,root):
                 or resolved['record']['step']!=completed):
             raise ValueError('resolved command executed or lost its historical reply')
         compare(ready['projection'],resolved['record']['projection'],'resolved-retry')
-        continued=worker.request(next_event)
-        reference=REFERENCES[profile](case['public'],[*resolved_prefix,next_event])
-        compare(reference['status'],continued['record']['outcome']['status'],'new-command','outcome.status')
-        compare(reference['projection'],continued['record']['projection'],'new-command')
-        if continued['record']['step']!=completed+1 or continued['replayed']:
-            raise ValueError('continuation step/replay flag differs')
+        for index,next_event in enumerate(next_events,1):
+            continued=worker.request(next_event)
+            reference=REFERENCES[profile](case['public'],[*resolved_prefix,*next_events[:index]])
+            compare(reference['status'],continued['record']['outcome']['status'],'new-command','outcome.status')
+            compare(reference['projection'],continued['record']['projection'],'new-command')
+            if continued['record']['step']!=completed+index or continued['replayed']:
+                raise ValueError('continuation step/replay flag differs')
     finally:
         worker.stop()
     # Exact decision retry remains historical after later checkpoint publication.
@@ -239,8 +247,8 @@ def verify_report(output):
             raise ValueError('worker continuation gate differs')
         messages=[json.loads(line) for line in (root/'continued-worker'/'stdin.jsonl').read_text().splitlines()]
         rows=[json.loads(line) for line in (root/'continued-worker'/'stdout.jsonl').read_text().splitlines()]
-        next_event=continuation(case,completing)
-        if messages!=[case['public'],case['event'],next_event] or len(rows)!=3:
+        next_events=continuation(case,completing)
+        if messages!=[case['public'],case['event'],*next_events] or len(rows)!=2+len(next_events):
             raise ValueError('continuation raw exchanges differ')
         resolved_prefix=[*case['prefix'],*([case['event']] if completing else [])]
         baseline=REFERENCES[profile](case['public'],resolved_prefix)
@@ -252,14 +260,15 @@ def verify_report(output):
             reference=lambda public,prefix:dict(status=status,projection=baseline['projection']))
         if fingerprint(rows[1]['record'])!=result['reply_digest']:
             raise ValueError('resolved reply differs from decision archive')
-        reference=REFERENCES[profile](case['public'],[*resolved_prefix,next_event])
-        check_event(case,[*case['prefix'],case['event'],next_event],rows[2],reference=lambda public,prefix:reference)
         if rows[0]['completed']!=completed or rows[1]['record']['outcome']['status']!=status or not rows[1]['replayed']:
             raise ValueError('resolved event reply differs')
         compare(rows[0]['projection'],rows[1]['record']['projection'],'resolved')
-        compare(reference['projection'],rows[2]['record']['projection'],'continued')
-        if rows[2]['record']['step']!=completed+1 or rows[2]['record']['outcome']['status']!=reference['status']:
-            raise ValueError('continued event outcome differs')
+        for index,row in enumerate(rows[2:],1):
+            reference=REFERENCES[profile](case['public'],[*resolved_prefix,*next_events[:index]])
+            check_event(case,[*case['prefix'],case['event'],*next_events[:index]],row,reference=lambda public,prefix:reference)
+            compare(reference['projection'],row['record']['projection'],'continued')
+            if row['record']['step']!=completed+index or row['record']['outcome']['status']!=reference['status']:
+                raise ValueError('continued event outcome differs')
         expected.append(dict(profile=profile,action=request['action'],cut=cut,passed=True,resolved_status=status,continued_status=reference['status']))
     if receipt['results']!=expected:
         raise ValueError('reconciliation probe results differ')

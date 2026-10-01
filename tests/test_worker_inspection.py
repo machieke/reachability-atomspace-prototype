@@ -282,7 +282,7 @@ class WorkerInspectionProcessTests(unittest.TestCase):
             with patch('sys.argv',['run_worker_inspection','--output',str(output)]):
                 run_probes()
             report=verify_report(output)
-            self.assertEqual(len(report['results']),18)
+            self.assertEqual(len(report['results']),20)
             remote=output/'dispatch-remote-effect'/'inspection'
             inspection=verify_inspection(remote)
             self.assertGreater(inspection['evidence']['executor.db-wal']['size'],0)

@@ -51,7 +51,7 @@
   },
   "source": {
     "corpus_manifest": "validation_lab/b0_cases/manifest.json",
-    "corpus_digest": "7cc56b5040984d816fa66f4a42cda98cb59c4fb2b56b731be6a27acadc3d7830",
+    "corpus_digest": "77c31b3a380fefd331af069334db17a53e585c5692da1a0cfe84a6dada8b8e5b",
     "initial_path": "validation_lab/b0_cases/public/b01.json",
     "initial_selector": "deployment",
     "case_path": "validation_lab/b0_cases/mutations/M07.json",

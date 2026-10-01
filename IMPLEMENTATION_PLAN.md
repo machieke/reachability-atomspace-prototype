@@ -48,17 +48,17 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, twenty-fourth increment): explicit adoption
-recovers a successful hard admission evidence event whose five commands persisted
-but final worker checkpoint did not. Exact journal entries, results and saved
-counters must match; the restored alias and certificates preserve the committed
-belief and historical decision without authorizing later expired evidence.
-Context adoption, partial context completion and unstarted local cancellation
-remain separately scoped. All four decisions retain the durable worker gate.
-Thirty-eight process probes cover publication boundaries; 18 inspection probes
-include both evidence crash cuts. Other progressed events, dispatch and executor
-I/O remain refused. Completed-command recovery still covers 32 cases and 361
-fresh-process retries; family-complete validation, OS isolation, M09/M12 and
+Current checkpoint (1 October 2026, twenty-fifth increment): explicit adoption
+recovers a successful numerical estimate whose six commands persisted but final
+worker checkpoint did not. Exact truth values, journal results and saved counters
+must match; restored numerical aliases and certificates retain the historical
+decision without creating hard assertions or authorizing expired evidence.
+Hard-evidence/context adoption, partial context completion and unstarted local
+cancellation remain separately scoped. All five decisions retain the durable
+worker gate. Fifty process probes cover publication boundaries; 20 inspection
+probes include both numerical-estimate crash cuts. Other progressed events,
+dispatch and executor I/O remain refused. Completed-command recovery still covers
+32 cases and 361 fresh-process retries; family-complete validation, OS isolation, M09/M12 and
 phases 5–8 remain open.
 
 ## Phase 0 Repository contracts
@@ -1707,6 +1707,79 @@ Next increment, in order:
    report/proposal/certificate/commit entries, restored numerical alias and saved
    counters. Specify deterministic adapter/revision reconstruction and failed
    outcomes before enabling that action.
+2. Specify other hard-admission, partial numerical, lifecycle and goal outcomes
+   separately, including their alias, permit and revision reconstruction rules.
+3. Before dispatch/executor reconciliation, account for queued requests, lost
+   observations, immutable older acknowledgements and authoritative fencing;
+   preserve unresolved occupancy until supported evidence permits release.
+4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
+   target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.
+
+
+### Twenty-fifth increment on 1 October 2026
+
+1. Define successful observation-estimate adoption around exactly six persisted
+   evidence/report/proposal/certificate/commit entries. Bind the original report
+   identity, finite truth values, source lineage, policy/revision state, six saved
+   counter keys and complete result chain. Refuse other numerical operations,
+   partial progress, failed certificates and unsuccessful commits.
+2. Reconstruct those primitives only on private journals, validating the prior
+   wrapper and completed candidate through ordinary resume. Observation proposal
+   construction needs no native inference. Restore the exact numerical alias and
+   both historical certificates, preserving prior ordered aliases and replies;
+   keep numerical truth separate from hard assertions and current validity.
+3. Retain six exact entries in prepared v5 and publish through the existing
+   durable worker gate, with unchanged source journal bytes and no source SQLite,
+   public composite, native inference or executor I/O. Preserve exact decision
+   retries through interrupted publication and after later progress.
+4. Inject process crashes before numerical alias assignment and before final
+   checkpoint publication. Cross both with the six publication cuts; independently
+   check model registration and numerical revision through the recovered alias.
+   Add exact-value, failure, expiry/revocation and native projection checks,
+   refresh all nine receipts, then run every suite before committing and pushing.
+
+The explicit `adopt_persisted_estimate` action implements the six-entry observation
+transition. Both probability certificates and the numerical commit must pass.
+The candidate restores the numerical alias, advances the counter by six, consumes
+one stream slot and publishes a historical PASS reply identifying the decision;
+elapsed_ns remains zero for unavailable original timing. Exact signed zero and
+zero-confidence estimates are preserved without creating a hard assertion.
+
+Prepared v5 retains all six entries and before/after checkpoint bytes. Existing
+actions retain prepared v1 through v4; request/result, worker and journal schemas
+remain unchanged. Earlier replies keep their historical certificates; existing
+hard/numerical alias order and the configured backend are retained. The recovered
+event records its own two original certificates. Expiry and revocation still
+prevent a new revision using retired numerical support, while exact old replies
+remain historical.
+
+Fourteen new unit tests cover every command key, exact report values, partial and
+extra progress, failed post-certification, stale/history-limit commits, budgets,
+ordered history, source changes, publication failures, archive integrity and
+absent source/native/executor I/O. Two new inspection cases bring that report to
+20 cases. Twelve new reconciliation probes bring its v5 report to 50 cases and
+verify independence registration followed by numerical revision against the
+independent public model. One new native integration test checks the numerical
+AtomSpace graph and subsequent real PLN revision.
+
+Verification: 812 default tests, 84 optional native integration tests and all
+15 standalone reference checks pass. The fresh 20-probe inspection report and
+50-probe reconciliation report verify against final sources, as does explicit
+estimate-adoption CLI request binding. The full default suite repeats both probe
+sets and the 32-case, 361-prefix public-worker corpus. All nine source receipts
+are refreshed. Original design hashes, earlier cases, schedules and expected
+outcomes remain unchanged. Existing reductions stay M05 12→5, M06 23→6,
+M07 2→2, M11 13→1, M08 5→1, M10 6→4, cached-send-gate 9→8 and
+expire-uncertain 8→7. There are still zero family-complete fixtures and no new
+designated mutants. All four stages above are complete.
+
+Next increment, in order:
+
+1. Define adoption of a fully persisted numerical revision with exactly its four
+   proposal/certificate/commit entries. Bind both prior numerical aliases, the
+   registered independence declaration, formula identity/result, policy revisions
+   and saved counters. Reconstruct its deterministic proposal without native I/O
+   and retain explicit refusal of failed or partial outcomes.
 2. Specify other hard-admission, partial numerical, lifecycle and goal outcomes
    separately, including their alias, permit and revision reconstruction rules.
 3. Before dispatch/executor reconciliation, account for queued requests, lost

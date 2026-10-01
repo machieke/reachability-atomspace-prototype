@@ -49,6 +49,11 @@ def cases():
             profile='admission',public=admission_initial().wire(),prefix=context['events'][:1],event=context['events'][1],
             cut=cut,parent_instance_id=context['parent_instance_id'],
             expected=dict(status='pending_journal_progress',completed=1,evidence=1,contexts=1,numerical=0,reports=0,effects=0,dispatch=None)))
+    for cut in ('estimate-commit','after'):
+        result.append(dict(case_id='admission-estimate-'+('commit' if cut=='estimate-commit' else 'after'),
+            profile='admission',public=admission_initial().wire(),prefix=numerical['events'][:2],event=numerical['events'][2],
+            cut=cut,parent_instance_id=numerical['parent_instance_id'],
+            expected=dict(status='pending_journal_progress',completed=2,evidence=2,contexts=1,numerical=2,reports=2,effects=0,dispatch=None)))
     for profile,source,index in (('deployment',deployment_cases()[2],6),('dispatch',dispatch_cases()[8],5)):
         result.append(dict(case_id=profile+'-remote-effect',profile=profile,public=asdict(DeploymentInitial()),
             prefix=source['events'][:index],event=source['events'][index],cut='effect',
@@ -88,7 +93,7 @@ def fault_spec(case):
     elif cut=='context':
         name,needle='admission_trace.py','self.contexts.add(ctx)'
         replacement=needle+f'\n            __import__("os")._exit({EXIT_CODE})'
-    elif cut=='evidence-commit':
+    elif cut in ('evidence-commit','estimate-commit'):
         name,needle='admission_trace.py','(self.numeric if numeric else self.hard)[event_id] = result.belief.belief_revision_id'
         replacement=f'__import__("os")._exit({EXIT_CODE})\n        '+needle
     elif cut=='attempt':
@@ -138,6 +143,13 @@ def evaluate(case,report):
                 or [entry['command'] for entry in report['journals']['authority']['appended']]!=[
                     'record_evidence','propose_evidence','precertify','postcertify','commit']):
             raise ValueError('persisted evidence differs from expected committed belief with missing wrapper alias')
+    if case['case_id'].startswith('admission-estimate-'):
+        if (any(ledgers['hard_beliefs'].values()) or len(ledgers['probability']['certificates'])!=4
+                or len(body['metadata']['numeric'])!=1 or case['event']['event_id'] in dict(body['metadata']['numeric'])
+                or [entry['command'] for entry in report['journals']['authority']['appended']]!=[
+                    'record_evidence','record_probability_report','propose_probability',
+                    'precertify_probability','postcertify_probability','commit_probability']):
+            raise ValueError('persisted estimate differs from expected numerical belief with missing wrapper alias')
     if case['cut']=='attempt':
         operation=decode(state['views']['operations']['a0']).operation
         if operation.selected or body['metadata']['attempts']:

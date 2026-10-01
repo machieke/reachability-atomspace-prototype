@@ -579,7 +579,14 @@ exact evidence, proposal, pre-certificate, post-certificate and commit chain,
 restores the belief alias and historical certificates, and preserves source
 journal bytes. Later evidence expiry still invalidates current use of that belief.
 Partial evidence chains, failed commits, numerical estimates, dispatch and
-executor commands remain outside this action. See
+executor commands remain outside this action.
+
+For a successful numerical `estimate` whose six commands persisted, use
+`--action adopt_persisted_estimate`. It verifies the evidence, probability report,
+observation proposal, certificates and commit, then restores the numerical alias
+without changing source journals or calling a native inference engine. Exact truth
+values remain numerical estimates; adoption creates no hard assertion. Partial or
+failed chains and numerical revision events require separate decisions. See
 [bounded reconciliation](VALIDATION.md#bounded-explicit-worker-reconciliation)
 for evidence binding, durable decision receipts and crash recovery.
 
@@ -604,11 +611,11 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next define adoption of fully persisted numerical estimates, including exact
-report, certificate, commit and alias reconstruction. Specify other admission
-and lifecycle outcomes separately, then address dispatch and executor evidence
-with observed packets and fencing fully accounted for. Remaining designated
-mutants and evaluator OS isolation remain open. Goal loss
+Next define adoption of fully persisted numerical revisions, including exact
+premise aliases, independence declarations, formula results and certificates.
+Specify other admission and lifecycle outcomes separately, then address dispatch
+and executor evidence with observed packets and fencing fully accounted for.
+Remaining designated mutants and evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding
 remain explicit phase 1 backlog items.
