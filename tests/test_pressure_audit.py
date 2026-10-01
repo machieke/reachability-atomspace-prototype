@@ -168,6 +168,68 @@ class PressureAuditTests(unittest.TestCase):
         self.result['costs_ns']['other_controller_ns'] += 1
         with self.assertRaisesRegex(AuditError, 'residual controller time'): self.check_run()
 
+    def test_replayed_phase_counts_include_rejections_and_idle_tail_for_both_controllers(self):
+        for variant in ('B0', 'B3'):
+            with self.subTest(variant=variant):
+                result = next(r for r in self.report['results'] if r['case_id'] == self.case['case_id']
+                              and r['configuration'] == self.config['name'] and r['variant'] == variant)
+                self.assertEqual(result['failures']['STALE'], 1)
+                self.assertEqual(result['setup_costs']['inference_calls'], 1)
+                self.assertEqual(result['setup_costs']['certificates'], 2)
+                self.assertEqual(result['evaluation_costs']['inference_calls'], 0)
+                self.assertEqual(result['evaluation_costs']['certificates'], 0)
+                self.assertGreater(result['evaluation_costs']['journal_commands'], 0)
+                rows = [json.loads(line) for line in (self.output/run_name(result)/'trace.jsonl').read_text().splitlines()]
+                receipts = [r['receipt'] for r in rows if r['stage'] == 'receipt']
+                self.assertGreater(result['work']['journal_commands'], sum(r['costs']['journal_commands'] for r in receipts))
+                self.assertEqual(audit_run(self.output/run_name(result), self.case, self.config, result), result['work']['actions'])
+
+    def test_setup_and_evaluation_cannot_invent_inference_or_certificate_counts(self):
+        original = deepcopy(self.result)
+        for phase in ('setup_costs', 'evaluation_costs'):
+            for counter in ('inference_calls', 'certificates'):
+                with self.subTest(phase=phase, counter=counter):
+                    self.result = deepcopy(original); self.result[phase][counter] += 100
+                    with self.assertRaisesRegex(AuditError, 'authority work'): self.check_run()
+
+    def test_balanced_journal_transfers_between_phases_are_rejected(self):
+        from validation_lab.audit_pressure_comparison import audit_costs
+        original = deepcopy(self.result)
+        receipts = [r['receipt'] for r in self.rows() if r['stage'] == 'receipt']
+        phases = ('setup_costs', 'work', 'evaluation_costs')
+        for donor in phases:
+            for recipient in phases:
+                if donor == recipient: continue
+                with self.subTest(donor=donor, recipient=recipient):
+                    self.result = deepcopy(original)
+                    self.result[donor]['journal_commands'] -= 1
+                    self.result[recipient]['journal_commands'] += 1
+                    # Sum-only accounting still balances; certified replay must
+                    # establish where the commands actually occurred.
+                    audit_costs(self.result, receipts)
+                    with self.assertRaisesRegex(AuditError, 'authority work'): self.check_run()
+
+    def test_phase_and_receipt_counter_inventories_must_match_replay(self):
+        original, original_rows = deepcopy(self.result), self.rows()
+        for location in ('setup_costs', 'work', 'evaluation_costs', 'receipt'):
+            for change in ('extra', 'missing'):
+                with self.subTest(location=location, change=change):
+                    self.result = deepcopy(original); rows = deepcopy(original_rows)
+                    counts = rows[1]['receipt']['costs'] if location == 'receipt' else self.result[location]
+                    if change == 'extra': counts['invented_calls'] = 0
+                    else: del counts['inference_calls']
+                    self.write_rows(rows)
+                    with self.assertRaisesRegex(AuditError, 'authority work'): self.check_run()
+
+    def test_phase_count_corruption_is_rejected_after_resealing_complete_bundle(self):
+        report = deepcopy(self.report)
+        result = next(r for r in report['results'] if r['case_id'] == self.case['case_id']
+                      and r['configuration'] == self.config['name'] and r['variant'] == self.result['variant'])
+        result['setup_costs']['journal_commands'] += 1
+        result['evaluation_costs']['journal_commands'] -= 1
+        self.reseal(report)
+        with self.assertRaisesRegex(AuditError, 'setup authority work'): audit_bundle(self.output)
+
     def test_semantic_change_is_rejected_after_resealing_complete_bundle(self):
         rows = self.rows(); rows[0]['ranks'][rows[0]['selected']['candidate_id']][0] = 100
         self.write_rows(rows); self.reseal()

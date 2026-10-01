@@ -1665,6 +1665,70 @@
           "artifacts/pressure-reference-names-repeatability.log"
         ]
       }
+    },
+    "phase_authority_counts": {
+      "status": "bounded-evaluator-correctness-fix",
+      "setup_controller_and_evaluation_counts_bound_to_replay": true,
+      "inference_certificate_and_journal_counts_checked": true,
+      "balanced_cross_phase_transfers_rejected": true,
+      "missing_and_undeclared_counters_rejected": true,
+      "receipt_counter_inventory_checked": true,
+      "historical_timings_remeasured": false,
+      "runtime_controllers_authority_and_frozen_episodes_changed": false,
+      "new_regression_tests": 5,
+      "validation": {
+        "status": "passed",
+        "focused_regression_tests_passed": 88,
+        "standalone_reference_checks_passed": 15,
+        "new_corruption_cases_rejected": 19,
+        "remaining_failures": 0,
+        "tests_skipped": 0,
+        "suites_not_rerun": [
+          "full default suite",
+          "native integration suite",
+          "unrelated deployment/admission/recovery suites"
+        ],
+        "validation_scope": "Only saved-run auditing changed; runtime, frozen episodes and corpus fixtures remain unchanged.",
+        "existing_corpus_receipts_refreshed": 0,
+        "existing_corpus_verifiers_passed": 9,
+        "runtime_and_existing_corpus_receipts_unchanged": true,
+        "controller_runs_passed": 64,
+        "distinct_authorities": 64,
+        "work_limited_repeat_matches": 16,
+        "work_limited_repeat_failures": 0,
+        "work_limited_repeat_inconclusive": 0,
+        "wall_limited_repeat_variations": 6,
+        "audited_selections_per_bundle": [
+          158,
+          153
+        ],
+        "comparison_source_files_verified_per_bundle": 71,
+        "rich_work16_b3_pressure_elapsed_ns_range": [
+          17165367,
+          25886598
+        ],
+        "verification_elapsed_ns": 39369089340,
+        "total_experiment_elapsed_ns": 113841697968,
+        "expected_operation_rejections": {
+          "UNKNOWN": 7,
+          "STALE": 24
+        },
+        "m09_detected_in_both_bundles": true,
+        "recorded_pressure_fields": 187,
+        "all_recorded_pressure_fields_converged": true,
+        "work_limited_outcomes_unchanged": true,
+        "report": "artifacts/pressure-phase-counts-repeatability/repeatability.json",
+        "readable_report": "artifacts/pressure-phase-counts-repeatability/repeatability.md",
+        "logs": [
+          "artifacts/pressure-phase-counts-reproduction.log",
+          "artifacts/pressure-phase-counts-before.log",
+          "artifacts/pressure-phase-counts-focused.log",
+          "artifacts/pressure-phase-counts-regressions.log",
+          "artifacts/pressure-phase-counts-reference.log",
+          "artifacts/pressure-phase-counts-receipts.log",
+          "artifacts/pressure-phase-counts-repeatability.log"
+        ]
+      }
     }
   }
 }

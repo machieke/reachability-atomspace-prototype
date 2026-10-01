@@ -257,6 +257,14 @@ receipt belief references and recorded goal-event IDs. Original files and
 SQLite sidecars remain untouched. Paired differences, M09, same-snapshot ranking
 diagnostics and the readable report must agree with the checked results.
 
+Authority work counts are checked at each recorded phase boundary. Setup,
+controller execution and the evaluation tail must report the exact replayed
+inference, certificate and journal-command counts. The audit rejects transfers
+between phases even when the total balances, as well as invented or omitted
+counters. Controller counts include clock advances and other authority commands
+outside individual operation receipts; every receipt's counter inventory is
+checked separately. Timing remains measured data subject to consistency checks.
+
 Fresh authorities issue different opaque goal-event IDs. Fresh-run comparison
 normalizes those IDs to counts while retaining all other snapshot fields;
 the original journal replay verifies the recorded IDs exactly. Replay uses the
@@ -471,6 +479,23 @@ neutral control. Rich work-16 B3 pressure construction/solve time is 14.53–23.
 Reports, traces and complete measured costs are under
 `artifacts/pressure-reference-names-repeatability/`. These measurements do not
 establish a performance improvement.
+
+The phase-count auditing correction passes 88 focused tests and 15 reference
+checks. Five new tests reject nineteen corruption cases, including balanced
+cross-phase journal transfers, invented work and missing/extra counters. Real
+B0/B3 runs with stale replies and evaluation tails still audit. Nine existing
+corpus receipts verify without regeneration; runtime and frozen episodes are
+unchanged. No failures remain or tests were skipped in the executed suites.
+Full default, native integration and unrelated deployment/admission/recovery
+suites were not rerun for this evaluator-only correction.
+
+Its 64-run experiment passes all sixteen work-limited repeat checks and retains
+six wall-limited variations. Both bundles detect M09, and all 187 recorded fields
+converge. Work counts and outcomes remain unchanged under work limits: rich
+work-16 integrated loss is 78 for B3 versus 72 for B0, and the control is neutral.
+Rich work-16 B3 pressure construction/solve time is 17.17–25.89 ms. Reports, traces
+and complete measured costs are under `artifacts/pressure-phase-counts-repeatability/`.
+These measurements do not establish a performance improvement.
 
 This milestone stops here. Adaptive transport, learned conductance, generalized
 recovery, numerical PLN scheduling, broader channels, evaluator OS isolation,

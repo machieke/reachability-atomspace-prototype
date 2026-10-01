@@ -80,7 +80,7 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, thirty-fourth increment): the
+Current checkpoint (1 October 2026, thirty-fifth increment): the
 bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
 saved comparison auditing and reproducibility within that same subset; its full
 32-run bundle audit passes. Two fresh matrices now pass all sixteen work-limited
@@ -2318,3 +2318,55 @@ phase. Complete costs remain in the reports; no performance improvement is claim
 Results are in `artifacts/pressure-reference-names-repeatability/repeatability.json`
 and `repeatability.md`. This closes the bounded adapter correction. Transport/M12,
 learned conductance, generalized recovery and the broader benchmark remain deferred.
+
+### Thirty-fifth increment: replay-bound authority counts for each phase
+
+Saved-run auditing checks the total journal count but accepts transfers between
+setup, controller execution and the evaluation tail. Setup and evaluation can
+also claim inference or certificate counts that never occurred. Bind each phase
+to the actual replay without changing runtime behavior or the frozen experiment.
+
+1. Capture authoritative work counters at the same phase boundaries as the
+   runner and require exact agreement, including the complete counter inventory.
+   Keep historical timing validation separate from reproducible work counts.
+2. Add corruption witnesses for invented counters, balanced cross-phase transfers,
+   missing/extra counters and complete resealed reports. Preserve passing real
+   B0/B3 runs, including stale replies and the post-budget evaluation tail.
+3. Run applicable pressure/audit/repeatability regressions and numerical references,
+   verify existing corpus receipts, run the frozen comparison twice, record actual
+   results, then commit and push. No recovery or transport expansion is included.
+
+Status: complete. The auditor captures inference, certificate and journal-command
+counts at the runner's setup, controller-stop and evaluation-tail boundaries.
+Each phase must match replay exactly. Receipt counter inventories and the complete
+run work record are also checked, including clock advances outside operation
+receipts. Balanced totals cannot hide phase transfers or invented/omitted counters.
+Historical timings remain measured values subject to consistency checks; they are
+not remeasured by replay. Original artifacts remain read-only.
+
+Verification: all 88 pressure/comparison/audit/repeatability/manifest tests and 15
+standalone reference checks pass, with no failures or skipped tests. Five new
+tests reject nineteen corruption cases: invented setup/evaluation work, all six
+balanced journal transfers, missing/extra counters and a resealed complete report.
+Real B0/B3 runs with stale replies and a post-budget evaluation tail still audit.
+Runtime controllers, authority, frozen episodes and fixtures are unchanged. All
+nine existing corpus receipts verify without regeneration, and pinned design
+hashes match. Full default, native integration and unrelated deployment/admission/
+recovery suites were not rerun for this evaluator-only correction.
+
+The fresh experiment passes 64 runs over 64 distinct authorities, with 158 and
+153 audited selections and 71 verified source files per bundle. All sixteen
+work-limited repeat checks match, with no failures or inconclusive cases; six
+wall-limited comparisons retain measured variation. Both bundles detect M09 and
+all 187 recorded pressure fields converge. Seven UNKNOWN and 24 STALE replies
+remain visible as expected operation rejections, with no harness failures.
+
+Work-limited work counts and outcomes match the previous frozen run. Rich work-16
+integrated loss remains 78 for B3 versus 72 for B0, and the simple control remains
+neutral. Rich work-16 B3 pressure construction/solve time spans 17.17–25.89 ms.
+Total experiment time is 113.84 seconds, including a separately recorded
+39.37-second final verification phase. Reports and complete measured costs are in
+`artifacts/pressure-phase-counts-repeatability/repeatability.json` and
+`repeatability.md`; no performance improvement is claimed. This closes the bounded
+evaluator correction. Transport/M12, learned conductance, generalized recovery and
+the broader benchmark remain deferred.

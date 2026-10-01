@@ -111,6 +111,11 @@ def nonnegative_counts(values, label):
     require(all(type(v) is int and v >= 0 for v in values.values()), label+' requires nonnegative integer counts')
 
 
+def authority_work(metrics):
+    # Counts reproduce across fresh authorities. Historical durations do not.
+    return {key: value for key, value in metrics.items() if not key.endswith('_ns')}
+
+
 def belief_history(authority, context_id):
     beliefs = authority._contexts[context_id].beliefs
     return {b.accepted_at_revision: dict(context=b.context_id, conclusion=asdict(b.conclusion),
@@ -140,6 +145,8 @@ def audit_run(directory, case, config, result):
             equal(semantic_snapshot(result['initial_snapshot']), semantic_snapshot(initial), 'initial snapshot')
             equal(result['initial_candidates'], [c.wire() for c in enumerate_work(public, initial).candidates], 'initial candidates')
             world.sample_outcomes()
+            setup_work = authority_work(session.metrics.values)
+            equal(authority_work(result['setup_costs']), setup_work, 'setup authority work')
             for step in range(1, (len(rows)-1)//2+1):
                 row, reply = rows[2*step-2:2*step]
                 require(row['stage'] == 'selection' and reply['stage'] == 'receipt'
@@ -188,8 +195,7 @@ def audit_run(directory, case, config, result):
                     equal(recorded[key], receipt[key], 'replayed receipt '+key)
                 equal(recorded['belief'] is None, receipt['belief'] is None, 'receipt belief presence')
                 nonnegative_counts(recorded['costs'], 'receipt costs')
-                for key in ('inference_calls', 'certificates', 'journal_commands'):
-                    equal(recorded['costs'][key], receipt['costs'][key], 'receipt '+key)
+                equal(authority_work(recorded['costs']), authority_work(receipt['costs']), 'receipt authority work')
                 receipts.append(recorded)
                 receipt_revisions.append(None if receipt['belief'] is None else
                     session.service._contexts[public['context_id']].beliefs[receipt['belief']].accepted_at_revision)
@@ -198,6 +204,8 @@ def audit_run(directory, case, config, result):
                 selected.append(dict(kind=candidate.kind, arguments=dict(candidate.arguments), status=receipt['status']))
                 rank_paths.add(row['ranking_path'])
             equal(semantic_snapshot(result['controller_stop_snapshot']), semantic_snapshot(session.read()), 'controller stop snapshot')
+            before_evaluation = authority_work(session.metrics.values)
+            controller_work = {key: value-setup_work[key] for key, value in before_evaluation.items()}
             require(result['evaluation_horizon'] == 16, 'evaluation horizon differs')
             world.idle_until(16)
             final = world.sample_outcomes()
@@ -205,6 +213,8 @@ def audit_run(directory, case, config, result):
             equal(result['final'], final, 'final outcomes')
             equal(result['environment_events'], world.events, 'environment events')
             equal(semantic_snapshot(result['final_snapshot']), semantic_snapshot(session.read()), 'final snapshot')
+            evaluation_work = {key: value-before_evaluation[key] for key, value in authority_work(session.metrics.values).items()}
+            equal(authority_work(result['evaluation_costs']), evaluation_work, 'evaluation authority work')
             equal(result['journal_commands_total'], session.service._journal_sequence, 'reproduced journal command count')
             expected_history = belief_history(session.service, public['context_id'])
             expected_current = sorted(b.accepted_at_revision for b in session.service.snapshot(public['context_id']).usable)
@@ -243,6 +253,7 @@ def audit_run(directory, case, config, result):
     equal(stop['reason'], result['stop_reason'], 'stop reason')
     equal(stop['last_pressure'], result['last_pressure'], 'last pressure')
     equal(stop['work'], {key: result['work'][key] for key in WORK_KEYS}, 'stop work accounting')
+    equal(result['work'], dict(stop['work'], **controller_work), 'controller authority work')
     nonnegative_counts(result['work'], 'run work')
     for key in ('actions', 'operation_work', 'observation_work'):
         equal(stop['work'][key], work[key], 'stop '+key)
