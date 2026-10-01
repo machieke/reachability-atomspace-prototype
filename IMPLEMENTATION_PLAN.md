@@ -80,10 +80,12 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, twenty-eighth increment): the
+Current checkpoint (1 October 2026, twenty-ninth increment): the
 bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
 saved comparison auditing and reproducibility within that same subset; its full
-32-run bundle audit passes. Typed read-only pressure feeds a real direct priority queue over the same public inference/observation
+32-run bundle audit passes. Two fresh matrices now pass all sixteen work-limited
+repeatability comparisons across 64 distinct authorities within this same subset. Typed read-only pressure feeds a real
+direct priority queue over the same public inference/observation
 frontier as conditional-planning B0. The development matrix runs 16 controller pairs;
 M09 is detected and validation is complete. Existing recovery
 actions, gates and blocked unsupported cases are preserved. Transport/M12,
@@ -2015,3 +2017,49 @@ and limitations in `PRESSURE_COMPARISON.md`.
 
 This follow-up ends at saved-result verification. It does not change controllers,
 episodes, admission, recovery or the deferred capability list.
+
+### Twenty-ninth increment: fresh-run comparison repeatability
+
+1. Add a bounded evaluator command that runs the frozen matrix twice in separate
+   processes and fresh authority directories, then audits both evidence bundles.
+2. Compare work-limited selections, snapshots, pressure/ranks, work counts,
+   rejections, outcome histories and stop reasons. Normalize only measured times
+   and opaque authority identifiers already checked by each bundle audit.
+3. Report wall-limited differences without treating them as deterministic failures.
+   A wall cap reached in a work-limited configuration makes that comparison
+   inconclusive. Reject reused authorities and source/configuration mismatches.
+4. Add positive and corruption checks, run the repeated matrix and applicable
+   regressions, record the evidence, then commit and push.
+
+Status: complete. `validation_lab.repeat_pressure_comparison` runs two fresh
+comparison processes, audits both bundles and compares semantic results/traces.
+It also accepts two existing bundles for a fresh audit and comparison. Reused
+output directories, reused authorities, source/configuration mismatches and
+changed artifacts are rejected. Measured durations remain visible but are not
+required to match. Reaching a wall safety cap in a work-limited run is explicitly
+inconclusive, with a distinct nonzero exit status. Failed children remain recorded
+and receive no automatic retry. The checker records its own source hash separately
+and supports commit verification alongside the 71 unchanged comparison inputs.
+
+Verification: 14 new repeatability tests, 43 existing pressure/comparison/audit/
+manifest tests and all 15 standalone reference checks pass. No failures remain
+and none of these tests were skipped. The full default, native integration and
+unrelated deployment/recovery suites were not rerun for this evaluator-only
+extension. The runtime controllers, authority, existing auditor, frozen episodes
+and all nine source/corpus receipts remain unchanged.
+
+The full experiment passes 64 controller runs, with 64 distinct authorities and
+154 audited selections in each bundle. All sixteen work-limited repeat comparisons
+match, with no failures or inconclusive cases. Three of sixteen wall-limited
+comparisons retain semantic variation; these are reported rather than erased.
+Both bundles detect M09 and all recorded pressure fields converge. Work-limited
+results preserve the prior neutral/negative outcomes: rich-episode integrated
+loss is 78 for B3 versus 72 for B0 at sixteen requests, and the simple control is
+identical. Total experiment elapsed time is 114.76 seconds, including a separately
+recorded 38.30-second final verification phase; neither is charged to controllers.
+
+Results are in `artifacts/pressure-repeatability/repeatability.json` and
+`repeatability.md`; `PRESSURE_COMPARISON.md` documents fresh-run and saved-bundle
+commands. This is development repeatability evidence, not a statistical or
+scaling claim. Stop here. Transport/M12, learned conductance, generalized recovery
+and the broader benchmark remain deferred.

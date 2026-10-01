@@ -619,6 +619,9 @@ The command also writes an artifact digest inventory and a separately timed audi
 that reproduces saved requests through fresh certified authorities. Recheck a saved
 bundle with `uv run --no-project python -m validation_lab.audit_pressure_comparison artifacts/pressure-comparison`.
 See the comparison document for source-commit verification and audit limitations.
+To execute two fresh matrices and compare audited work-limited behavior, run
+`uv run --no-project python -m validation_lab.repeat_pressure_comparison --output artifacts/pressure-repeatability`.
+Wall-limited variation remains visible; the command makes no statistical advantage claim.
 
 ## Current limits and deferred work
 

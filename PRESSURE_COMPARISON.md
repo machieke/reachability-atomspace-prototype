@@ -235,11 +235,61 @@ is set only after all source blobs match. An older bundle without `bundle.json`
 must be rerun with the documented comparison command; the auditor does not repair,
 resume or reseal it. Audit failures print JSON and exit nonzero.
 
+## Checking fresh-run repeatability
+
+```bash
+uv run --no-project python -m validation_lab.repeat_pressure_comparison --output artifacts/pressure-repeatability
+```
+
+This bounded evaluator command runs the unchanged matrix twice in separate Python
+processes, using fresh authorities, and audits both resulting bundles before
+comparing them. Defaults remain seeds 7 and 18, two episodes, four budgets and
+both controllers: 64 controller runs in total. It writes the two complete bundles,
+child-process logs, `repeatability.json` and `repeatability.md`. Existing output
+directories are refused, and a failed child is retained without automatic retry.
+
+For the work-limited configurations, the check requires identical selected
+operations, public snapshots, ranks, pressure diagnostics, work counts, rejection
+statuses, outcome histories and stop reasons. Only measured durations and opaque
+authority IDs are normalized. Both bundle audits first verify exact identity
+bindings, pressure epochs and original journal event prefixes. Different source
+inputs or configurations are refused, and copied bundles cannot count as repeats:
+their authority identities must be disjoint. This checks evidence reuse within the
+trusted evaluator boundary; it does not attest execution against a hostile writer.
+
+Wall-limited runs retain their measured variations in selections, costs and
+outcomes. They are reported as `MATCH` or `OBSERVED_VARIATION`, without an equality
+requirement. If a work-limited run reaches its wall safety cap, that comparison is
+`INCONCLUSIVE`; two equally truncated runs cannot establish work repeatability.
+The overall exit status is 0 for passing work comparisons, 1 for a failure and 2
+for inconclusive work comparisons. Failures take precedence over inconclusive
+results. No neutral or negative B3 result is discarded.
+
+Already generated bundles can be checked without rerunning the controllers:
+
+```bash
+uv run --no-project python -m validation_lab.repeat_pressure_comparison --bundles artifacts/pressure-repeatability/repeat-1 artifacts/pressure-repeatability/repeat-2 --output artifacts/pressure-repeatability-recheck --source-commit HEAD
+```
+
+The output must be new and outside both input bundles. This performs fresh audits;
+it does not trust their cached `audit.json` files. `--source-commit` is optional and
+verifies all 71 comparison source inputs plus the separate repeatability checker
+against the requested commit. The repeatability report records that checker's
+hash and revision, both bundle audit bindings, semantic hashes, bounded difference
+paths, complete controller cost categories and the separate experiment/verification
+elapsed times. The repeated-run tooling does not change the original bundle schema
+or source inventory. Controller budgets never include audit costs.
+
+Two repeats establish only bounded development repeatability. They do not establish
+statistical significance, a B3 speedup, generalization, process security isolation,
+or completion of the broader benchmark/transport design.
+
 ## Checks and result interpretation
 
 ```bash
 uv run --no-project python -m unittest tests.test_pressure tests.test_pressure_comparison -v
 uv run --no-project python -m unittest tests.test_pressure_audit -v
+uv run --no-project python -m unittest tests.test_pressure_repeatability -v
 ```
 
 Independent small-instance checks solve the linear system with rational Gaussian
@@ -280,6 +330,16 @@ native suites were not rerun for this evaluator-only addition. The prior complet
 suite results above remain historical evidence, not a claim of a new full run.
 The frozen work-limited outcomes are unchanged. New artifacts are under
 `artifacts/pressure-comparison-audited/`.
+
+The fresh-run repeatability extension passes 14 new tests, 43 existing focused
+regressions and 15 reference checks. Its two full matrices pass 64 controller
+runs across distinct authorities, with 154 audited selections per bundle. All 16
+work-limited repeat comparisons match; three wall-limited comparisons show
+semantic variation. None of the work comparisons failed or became inconclusive.
+M09 is detected in both bundles, and the prior neutral/negative work-limited
+outcomes are unchanged. Full default/native and unrelated deployment/recovery
+suites were not rerun for this evaluator-only extension. Results are in
+`artifacts/pressure-repeatability/repeatability.md` and `repeatability.json`.
 
 This milestone stops here. Adaptive transport, learned conductance, generalized
 recovery, numerical PLN scheduling, broader channels, evaluator OS isolation,

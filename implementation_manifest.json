@@ -1246,6 +1246,87 @@
           "artifacts/pressure-audit-reference.log"
         ]
       }
+    },
+    "fresh_run_repeatability": {
+      "status": "bounded-evaluator-subset",
+      "command": "uv run --no-project python -m validation_lab.repeat_pressure_comparison --output artifacts/pressure-repeatability",
+      "schema": "pressure-comparison-repeatability/v1",
+      "default_repeats": 2,
+      "default_controller_runs": 64,
+      "separate_comparison_processes": true,
+      "requires_disjoint_authority_ids": true,
+      "input_bundles_audited_before_comparison": true,
+      "cached_audits_trusted": false,
+      "requires_matching_comparison_sources_and_configuration": true,
+      "checker_source_hash_recorded_separately": true,
+      "optional_commit_verification_includes_checker": true,
+      "work_limited_comparison": [
+        "selected operations",
+        "public snapshots",
+        "rankings",
+        "pressure diagnostics",
+        "work counts",
+        "rejection statuses",
+        "outcome histories",
+        "stop behavior"
+      ],
+      "normalization": [
+        "measured duration fields",
+        "opaque authority IDs independently bound by each bundle audit"
+      ],
+      "wall_limited_differences_reported": true,
+      "work_limited_wall_cap_status": "INCONCLUSIVE",
+      "exit_codes": {
+        "PASS": 0,
+        "FAIL": 1,
+        "INCONCLUSIVE": 2
+      },
+      "audit_and_experiment_elapsed_separate_from_controller_cost": true,
+      "automatic_retry": false,
+      "controller_or_episode_changes": false,
+      "statistical_performance_claim": false,
+      "execution_attestation": false,
+      "validation": {
+        "status": "passed",
+        "new_repeatability_tests_passed": 14,
+        "existing_pressure_audit_manifest_tests_passed": 43,
+        "standalone_reference_checks_passed": 15,
+        "remaining_failures": 0,
+        "tests_skipped": 0,
+        "suites_not_rerun": [
+          "full default suite",
+          "native integration suite",
+          "unrelated deployment/recovery suites"
+        ],
+        "validation_scope": "Only new evaluator orchestration and semantic comparison code changed; existing controllers, authority, auditor, episodes, reference and nine corpus receipts are unchanged.",
+        "controller_runs_passed": 64,
+        "distinct_authorities": 64,
+        "work_limited_repeat_comparisons_passed": 16,
+        "work_limited_repeat_failures": 0,
+        "work_limited_repeat_inconclusive": 0,
+        "wall_limited_repeat_variations": 3,
+        "audited_selections_per_bundle": [
+          154,
+          154
+        ],
+        "comparison_source_files_verified_per_bundle": 71,
+        "repeatability_checker_sha256": "aa90e4051fd29756a7b3c9697d6347f000e7b793acc581f85deadba8e79fedfe",
+        "verification_elapsed_ns": 38301659213,
+        "total_experiment_elapsed_ns": 114764344057,
+        "expected_operation_rejections": {
+          "UNKNOWN": 6,
+          "STALE": 24
+        },
+        "m09_detected_in_both_bundles": true,
+        "all_recorded_pressure_fields_converged": true,
+        "report": "artifacts/pressure-repeatability/repeatability.json",
+        "readable_report": "artifacts/pressure-repeatability/repeatability.md",
+        "logs": [
+          "artifacts/pressure-repeatability-tests.log",
+          "artifacts/pressure-repeatability-regressions.log",
+          "artifacts/pressure-repeatability-reference.log"
+        ]
+      }
     }
   }
 }

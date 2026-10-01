@@ -8,6 +8,9 @@ Completed comparison bundles also have an offline audit for source/artifact
 bindings, recorded ranking and budget decisions, certified request reproduction,
 saved journals and outcome summaries. Audit cost is separate from controller cost;
 see the comparison document for commands and the trusted evaluator boundary.
+A separate fresh-run repeatability command runs the same matrix twice, audits
+both bundles and compares work-limited semantics. Wall-limited differences are
+reported, and work runs that reach their wall safety cap are inconclusive.
 
 The first validation-lab increment adds a versioned public event stream, actual
 semantic traces, an independent cold reference model, and a development corpus.
