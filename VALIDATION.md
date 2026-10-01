@@ -415,10 +415,12 @@ the first divergent prefix and writes the offending actual trace:
 | M05 shared lineage treated as independent evidence | a14, prefix 5, event e004 | UNKNOWN → PASS; duplicated reports gain confidence 2/3 |
 | M06 ACK treated as durable success | d01, prefix 7, event e006 | PENDING → OBSERVED_SUCCESS immediately after acceptance |
 | M07 similar product treated as exact | b0-m07, prefix 2, event m1 | FAIL → PASS for exact-product observation of `p00` instead of `p0` |
+| M08 inserted blocker misses invalidation dependents | i01, prefix 3, event policy | Unrelated fact 2 survives → all facts retired by consistency fallback |
+| M10 capacity checked outside atomic reservation | i06, prefix 5, event rb | STALE → PASS; two claims on one unit |
 | M11 censored outcome labeled failure | d07, prefix 3, event e002 | CENSORED → OBSERVED_FAILURE |
 
 The table records the original first divergent prefixes. The bounded reducer
-below now produces deletion-minimal event sets for these four witnesses.
+now produces deletion-minimal event sets for all six trace witnesses.
 M05 replaces shared measurement roots with separate report IDs during numerical
 revision; its canary confirms this defect ran. It is an evaluator-only patch and
 is removed before subsequent controls. M01–M04 retain their unit witnesses.
@@ -428,9 +430,9 @@ a wrong-product report. The unmodified control fails registration; the mutant
 registers the wrong product. Tests delete each event in turn and confirm that
 neither shortened stream detects the mutant. This is deletion minimal in the
 declared profile; the new reducer independently reproduces that result.
-M08–M10 and M12 remain open.
+The interleaving profile below supplies M08/M10; M09 and M12 remain open.
 
-Next add deterministic interleavings and extend designated mutation coverage.
+Next extend deterministic interleavings to dispatch and acknowledgement races.
 Complete family coverage, argument/initial-state shrinking, hidden-world models,
 OS isolation, benchmark cost budgets and all pressure/attention experiments remain
 open in [the phased plan](IMPLEMENTATION_PLAN.md).
@@ -703,3 +705,105 @@ or argument simplification, identity renaming, dependency repair, arbitrary new
 mutants, concurrent schedule reduction, process isolation and wall-clock bounds
 are not provided. Mutation patches remain process-global and replays run
 sequentially within each evaluator process.
+
+## Deterministic two-worker interleavings
+
+```sh
+uv run --no-project python -m validation_lab.run_interleaving --output artifacts/interleaving-run-1
+```
+
+The bounded public profile contains three grounded atoms, direct evidence,
+two independent lifecycle attempts, one renewable resource with capacity 0–3,
+one-unit claims and fixed four-tick leases. Initial reports are registered before
+the event stream; selected initial facts are explicitly admitted. It supports
+at most 64 unique events: read, prepare, commit, policy, certify and reserve.
+Policies have at most four clauses of three literals. Actor-local certificates
+bind separate preparation and publication calls. Public messages reject evaluator
+labels and scheduling fields. There are no dispatched external effects in this
+profile.
+
+Admission events run in a declared order at public API boundaries. The reservation
+controller additionally uses two actual threads and pauses the first worker after
+the complete reservation checks and before publication. The second worker then
+requests the same real authority RLock. Ownership records establish that it is
+blocked; the controller releases the first worker to publish and observes the
+second worker's stale-certificate rejection. The controller preserves the real
+lock and introduces no production bypass. Watchdog timeouts report evaluator
+failure; elapsed time is never evidence that a worker was blocked.
+Paired checkpoints require fresh attempts with no prior reservation command in
+the schedule; historical retries remain serial. This bound is validated before
+threads start, because a historical retry can pass without advancing occupancy.
+
+The production reservation implementation now has separate private preparation
+and publication helpers, both called inside the original `_mutate` transaction
+and RLock. Certificate checks, prerequisite replay, capacity checks, journal
+publication and duplicate-intent behavior retain their existing contracts.
+This exposes a precise evaluation boundary without adding scheduler controls to
+the public service API or changing journal schemas.
+
+The cold oracle imports only the standard library. It enumerates all eight
+Boolean assignments and reconstructs accepted facts, policy epochs, actor-bound
+certificates and integer occupancy from the public initial state and event prefix.
+It does not use the runtime checker, reservation helpers or actual certificates.
+There are 22 development cases: sixteen direct controls and all six order-preserving
+merges of the two workers' certify/reserve sequences. Nine cases configure a
+reservation pair; two of those reject before reaching the check checkpoint.
+Controls include both first-worker priorities, missing prerequisites, zero
+capacity, unrelated and joint blockers, inconsistent policies, wrong ownership,
+stale admission/reservation and successful fresh two-unit reservations. Six
+additional uncontrolled two-thread rounds check last-unit exclusion.
+
+All 79 emitted prefixes match the cold oracle. Recovery runs at 70 quiescent
+boundaries, after individual serial events or after both workers finish a pair.
+There is deliberately no service reopening in the middle of an active
+transaction. This checks actual durable authority state plus certificates retained
+by the same wrapper; it is not a fresh-process controller recovery protocol.
+Native tests project actual admission and resource/intent records before and
+after recovery for blocker and last-unit episodes.
+
+| Mutant | Changed branch | Original → reduced events | Predicate calls | Preserved divergence |
+| --- | --- | ---: | ---: | --- |
+| M08 | Newly inserted blockers omit their invalidation dependents | 5 → 1 | 6 | policy: usable facts `[2]` → `[]` |
+| M10 | Complete checks run before the atomic reservation transaction | 6 → 4 | 21 | rb: STALE → PASS; occupancy 2 with capacity 1 |
+
+M08 retains all revision checks and the mandatory full-state consistency check.
+Its missed dependency set makes that fallback retire the whole inconsistent
+bundle, unnecessarily losing the unrelated valid fact. The witness detects this
+loss of support; it does **not** claim that an inconsistent state or stale commit
+was accepted. This finite profile has no optimized constraint index: the mutation
+models its missed-dependency failure at the existing invalidation boundary.
+Removing the policy event removes the divergence, with initial facts held fixed.
+
+M10 runs the same preparation checks before acquiring the publication transaction.
+The controller records both workers finishing those checks without holding the
+authority lock, then publishes them in the declared order. Both claims pass and
+the raw record shows over-allocation. The unmodified control holds the lock across
+checking and publication and publishes only one claim. The four reduced events certify
+both workers and reserve both; every single deletion removes the exact failure.
+The defect is an evaluator-only patch, removed before the next control.
+
+Both witnesses require passing unmodified cold-model/recovery controls, invocation
+canaries, identical first-divergence signatures and fresh final replays. Their
+signatures also bind the unchanged evaluator schedule. Dropping one scheduled
+endpoint leaves the surviving command serial; references are not repaired and
+remaining events keep their identities and arguments. All five final deletion
+checks return no witness. This is whole-event deletion minimality with fixed
+initial state and schedule, not global or schedule minimality.
+
+The corpus separates public initial files, evaluator events/schedules and pinned
+mutation decisions. Every candidate, schedule checkpoint, actual output and
+assessment is retained before comparison in a fresh output directory. The root
+report pins the complete output inventory, current sources and corpus ancestry;
+`validation_lab.run_interleaving.verify_report(path)` checks those receipts, all
+recorded unmodified prefixes and the pinned reduction decisions. Rerunning the
+CLI performs fresh executions. Regenerate explicitly with
+`uv run --no-project python -m validation_lab.generate_interleaving_cases --output artifacts/interleaving-generation-1`.
+The existing six corpus receipts were refreshed for the helper refactor and new
+runtime modules; their expected outcomes and earlier reductions are unchanged.
+
+These cases share `interleaving-parent-0` in the development split. They add no
+family-complete fixtures, scheduling-performance claims, arbitrary thread-schedule
+exploration, process isolation or proof of general concurrency safety. Credential
+revocation during final dispatch and lease-expiry/external-acknowledgement races
+remain the next controlled-scheduling work. M09/M12 still await their pressure and
+transport mechanisms, and the 64-family-fixture target remains open.

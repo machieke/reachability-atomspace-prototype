@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-failure-preserving-event-trace-shrinking",
+  "implementation_stage": "deterministic-two-worker-authority-interleavings",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -169,7 +169,12 @@
     "exact_mutation_failure_preservation": true,
     "independent_shrink_control_replays": true,
     "trace_deletion_minimality_audits": true,
-    "source_bound_shrink_bundle_replay": true
+    "source_bound_shrink_bundle_replay": true,
+    "deterministic_reservation_interleavings": true,
+    "independent_two_worker_prefix_oracle": true,
+    "source_bound_interleaving_reductions": true,
+    "blocker_invalidation_mutation_witness": true,
+    "non_atomic_reservation_mutation_witness": true
   },
   "mutation_witnesses": [
     "M01",
@@ -179,12 +184,12 @@
     "M05",
     "M06",
     "M07",
+    "M08",
+    "M10",
     "M11"
   ],
   "remaining_designated_mutants": [
-    "M08",
     "M09",
-    "M10",
     "M12"
   ],
   "optional_dependency_lock": "adapters.lock.json",
@@ -525,6 +530,69 @@
     "evaluator_process_isolation": false,
     "normalized_work_budget": false,
     "wall_clock_bound": false,
+    "family_complete_fixtures": 0
+  },
+  "interleaving_validation": {
+    "initial_schema": "interleaving-initial/v1",
+    "event_schema": "interleaving-event/v1",
+    "trace_schema": "interleaving-trace/v1",
+    "schedule_schema": "interleaving-schedule/v1",
+    "corpus_manifest": "validation_lab/interleaving_cases/manifest.json",
+    "mode": "conformance",
+    "split": "development",
+    "fixed_cases": 22,
+    "exhaustive_two_worker_merges_included": 6,
+    "compared_prefixes": 79,
+    "quiescent_recovery_checkpoints": 70,
+    "configured_reservation_pairs": 9,
+    "early_rejected_pairs": 2,
+    "uncontrolled_stress_rounds": 6,
+    "max_events": 64,
+    "actors": 2,
+    "atoms": 3,
+    "max_clauses": 4,
+    "max_literals_per_clause": 3,
+    "resources": 1,
+    "max_capacity": 3,
+    "claim_quantity": 1,
+    "lease_duration": 4,
+    "control": "real-RLock-owned-through-complete-check-and-publication",
+    "scheduling": "two-thread-checkpoint-control-with-fixed-publication-order",
+    "blocking_evidence": "observed-lock-request-and-current-ownership-not-timing",
+    "oracle": "cold-eight-boolean-worlds-and-integer-occupancy",
+    "checkpoints": "service-reopen-only-after-serial-command-or-paired-worker-completion",
+    "same_wrapper_metadata_recovery": true,
+    "native_projection_recovery_tested": true,
+    "mutants": [
+      "M08",
+      "M10"
+    ],
+    "original_events": {
+      "M08": 5,
+      "M10": 6
+    },
+    "reduced_events": {
+      "M08": 1,
+      "M10": 4
+    },
+    "predicate_calls": {
+      "M08": 6,
+      "M10": 21
+    },
+    "final_deletion_checks": 5,
+    "signature_includes_schedule_digest": true,
+    "M08_detected_effect": "loss-of-unrelated-valid-support-through-mandatory-consistency-fallback",
+    "M08_optimized_index": false,
+    "M10_detected_effect": "two-passing-reservations-on-one-unit-after-checks-outside-transaction",
+    "initial_state_shrinking": false,
+    "schedule_shrinking": false,
+    "global_minimum": false,
+    "arbitrary_thread_schedule_exploration": false,
+    "dispatch_revocation_race": false,
+    "lease_expiry_acknowledgement_race": false,
+    "evaluator_process_isolation": false,
+    "normalized_work_budget": false,
+    "performance_comparison": false,
     "family_complete_fixtures": 0
   }
 }

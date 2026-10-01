@@ -1,0 +1,365 @@
+{
+  "case": {
+    "schema": "interleaving-case/v1",
+    "case_id": "i01",
+    "parent_instance_id": "interleaving-parent-0",
+    "split": "development",
+    "control": "new-blocker-invalidation-and-stale-commit",
+    "public": {
+      "schema": "interleaving-initial/v1",
+      "facts": [
+        1,
+        2
+      ],
+      "capacity": 1
+    },
+    "events": [
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "prepare",
+        "actor": "a",
+        "kind": "prepare",
+        "arguments": {
+          "literal": 3
+        }
+      },
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "read",
+        "actor": "b",
+        "kind": "read",
+        "arguments": {}
+      },
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "policy",
+        "actor": "b",
+        "kind": "policy",
+        "arguments": {
+          "clauses": [
+            [
+              -1
+            ]
+          ]
+        }
+      },
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "commit",
+        "actor": "a",
+        "kind": "commit",
+        "arguments": {
+          "prepared": "prepare"
+        }
+      },
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "end",
+        "actor": "a",
+        "kind": "read",
+        "arguments": {}
+      }
+    ],
+    "schedule": {
+      "schema": "interleaving-schedule/v1",
+      "reserve_pair": []
+    },
+    "mutant": "M08"
+  },
+  "result": {
+    "schema": "trace-shrink-result/v1",
+    "status": "ONE_MINIMAL",
+    "original_digest": "ceadaf64ddb37971722867ea6a6299cb53e510184d3694c88f89acbbd4184989",
+    "reduced_digest": "55eada561b30c7c1d9145e13a8bc582bad37228868931804a6e4da7e95a8a050",
+    "original_events": [
+      {
+        "actor": "a",
+        "arguments": {
+          "literal": 3
+        },
+        "event_id": "prepare",
+        "kind": "prepare",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "b",
+        "arguments": {},
+        "event_id": "read",
+        "kind": "read",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "b",
+        "arguments": {
+          "clauses": [
+            [
+              -1
+            ]
+          ]
+        },
+        "event_id": "policy",
+        "kind": "policy",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "a",
+        "arguments": {
+          "prepared": "prepare"
+        },
+        "event_id": "commit",
+        "kind": "commit",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "a",
+        "arguments": {},
+        "event_id": "end",
+        "kind": "read",
+        "schema": "interleaving-event/v1"
+      }
+    ],
+    "reduced_events": [
+      {
+        "actor": "b",
+        "arguments": {
+          "clauses": [
+            [
+              -1
+            ]
+          ]
+        },
+        "event_id": "policy",
+        "kind": "policy",
+        "schema": "interleaving-event/v1"
+      }
+    ],
+    "signature": {
+      "actual": [],
+      "event_id": "policy",
+      "expected": [
+        2
+      ],
+      "initial_digest": "7b6900f6f1949e2f56b02d56f2db472924ebf52ceb024799ed518576f46df70c",
+      "mutant": "M08",
+      "path": "projection.usable",
+      "profile": "interleaving",
+      "schedule_digest": "997fdcf74137ab7f19c6aa927668e4975aa79a953434acd75a8ebbcac75e5c26",
+      "schema": "trace-failure-signature/v1"
+    },
+    "removed_event_ids": [
+      "prepare",
+      "read",
+      "commit",
+      "end"
+    ],
+    "one_minimal": true,
+    "global_minimum": false,
+    "minimality_domain": "order-preserving whole-event deletions with valid protocol, passing unmodified oracle control and identical first-divergence signature",
+    "evaluations": 6,
+    "selected_trial": 3,
+    "final_trial": 5,
+    "accepted": [
+      {
+        "trial": 2,
+        "from_digest": "ceadaf64ddb37971722867ea6a6299cb53e510184d3694c88f89acbbd4184989",
+        "to_digest": "f2ad9f4196e501f888c0a56f7195d47169f4deaf088210af2dcd28938a529ab6",
+        "removed": [
+          "commit",
+          "end"
+        ]
+      },
+      {
+        "trial": 3,
+        "from_digest": "f2ad9f4196e501f888c0a56f7195d47169f4deaf088210af2dcd28938a529ab6",
+        "to_digest": "55eada561b30c7c1d9145e13a8bc582bad37228868931804a6e4da7e95a8a050",
+        "removed": [
+          "prepare",
+          "read"
+        ]
+      }
+    ],
+    "deletion_checks": [
+      {
+        "removed_event_id": "policy",
+        "trial": 4,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      }
+    ],
+    "trials": [
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 0,
+        "phase": "original",
+        "parent_digest": "ceadaf64ddb37971722867ea6a6299cb53e510184d3694c88f89acbbd4184989",
+        "candidate_digest": "ceadaf64ddb37971722867ea6a6299cb53e510184d3694c88f89acbbd4184989",
+        "event_ids": [
+          "prepare",
+          "read",
+          "policy",
+          "commit",
+          "end"
+        ],
+        "deleted_event_ids": [],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 1,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": [],
+            "event_id": "policy",
+            "expected": [
+              2
+            ],
+            "initial_digest": "7b6900f6f1949e2f56b02d56f2db472924ebf52ceb024799ed518576f46df70c",
+            "mutant": "M08",
+            "path": "projection.usable",
+            "profile": "interleaving",
+            "schedule_digest": "997fdcf74137ab7f19c6aa927668e4975aa79a953434acd75a8ebbcac75e5c26",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 1,
+        "phase": "chunk",
+        "parent_digest": "ceadaf64ddb37971722867ea6a6299cb53e510184d3694c88f89acbbd4184989",
+        "candidate_digest": "d6d76cfee62f1c16456c58002eb0f0b598c67646ae20b80996d6d2fe9e33ba3f",
+        "event_ids": [
+          "commit",
+          "end"
+        ],
+        "deleted_event_ids": [
+          "prepare",
+          "read",
+          "policy"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 2,
+        "phase": "chunk",
+        "parent_digest": "ceadaf64ddb37971722867ea6a6299cb53e510184d3694c88f89acbbd4184989",
+        "candidate_digest": "f2ad9f4196e501f888c0a56f7195d47169f4deaf088210af2dcd28938a529ab6",
+        "event_ids": [
+          "prepare",
+          "read",
+          "policy"
+        ],
+        "deleted_event_ids": [
+          "commit",
+          "end"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 1,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": [],
+            "event_id": "policy",
+            "expected": [
+              2
+            ],
+            "initial_digest": "7b6900f6f1949e2f56b02d56f2db472924ebf52ceb024799ed518576f46df70c",
+            "mutant": "M08",
+            "path": "projection.usable",
+            "profile": "interleaving",
+            "schedule_digest": "997fdcf74137ab7f19c6aa927668e4975aa79a953434acd75a8ebbcac75e5c26",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 3,
+        "phase": "chunk",
+        "parent_digest": "f2ad9f4196e501f888c0a56f7195d47169f4deaf088210af2dcd28938a529ab6",
+        "candidate_digest": "55eada561b30c7c1d9145e13a8bc582bad37228868931804a6e4da7e95a8a050",
+        "event_ids": [
+          "policy"
+        ],
+        "deleted_event_ids": [
+          "prepare",
+          "read"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 1,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": [],
+            "event_id": "policy",
+            "expected": [
+              2
+            ],
+            "initial_digest": "7b6900f6f1949e2f56b02d56f2db472924ebf52ceb024799ed518576f46df70c",
+            "mutant": "M08",
+            "path": "projection.usable",
+            "profile": "interleaving",
+            "schedule_digest": "997fdcf74137ab7f19c6aa927668e4975aa79a953434acd75a8ebbcac75e5c26",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 4,
+        "phase": "single-deletion",
+        "parent_digest": "55eada561b30c7c1d9145e13a8bc582bad37228868931804a6e4da7e95a8a050",
+        "candidate_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "event_ids": [],
+        "deleted_event_ids": [
+          "policy"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 5,
+        "phase": "final-replay",
+        "parent_digest": "55eada561b30c7c1d9145e13a8bc582bad37228868931804a6e4da7e95a8a050",
+        "candidate_digest": "55eada561b30c7c1d9145e13a8bc582bad37228868931804a6e4da7e95a8a050",
+        "event_ids": [
+          "policy"
+        ],
+        "deleted_event_ids": [],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 1,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": [],
+            "event_id": "policy",
+            "expected": [
+              2
+            ],
+            "initial_digest": "7b6900f6f1949e2f56b02d56f2db472924ebf52ceb024799ed518576f46df70c",
+            "mutant": "M08",
+            "path": "projection.usable",
+            "profile": "interleaving",
+            "schedule_digest": "997fdcf74137ab7f19c6aa927668e4975aa79a953434acd75a8ebbcac75e5c26",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      }
+    ]
+  }
+}

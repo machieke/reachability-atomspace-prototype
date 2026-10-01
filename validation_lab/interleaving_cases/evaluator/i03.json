@@ -1,0 +1,45 @@
+{
+  "schema": "interleaving-case/v1",
+  "case_id": "i03",
+  "parent_instance_id": "interleaving-parent-0",
+  "split": "development",
+  "control": "blocked-new-conclusion",
+  "events": [
+    {
+      "schema": "interleaving-event/v1",
+      "event_id": "policy",
+      "actor": "b",
+      "kind": "policy",
+      "arguments": {
+        "clauses": [
+          [
+            -3
+          ]
+        ]
+      }
+    },
+    {
+      "schema": "interleaving-event/v1",
+      "event_id": "prepare",
+      "actor": "a",
+      "kind": "prepare",
+      "arguments": {
+        "literal": 3
+      }
+    },
+    {
+      "schema": "interleaving-event/v1",
+      "event_id": "commit",
+      "actor": "a",
+      "kind": "commit",
+      "arguments": {
+        "prepared": "prepare"
+      }
+    }
+  ],
+  "schedule": {
+    "schema": "interleaving-schedule/v1",
+    "reserve_pair": []
+  },
+  "mutant": null
+}

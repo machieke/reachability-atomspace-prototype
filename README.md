@@ -513,6 +513,16 @@ concurrent schedule reduction are outside this increment. See
 [trace shrinking](VALIDATION.md#bounded-event-trace-shrinking) for replay commands
 and incomplete-result semantics.
 
+Deterministic two-worker validation now covers policy changes before belief
+commit and competing resource reservations. Run
+`uv run --no-project python -m validation_lab.run_interleaving --output artifacts/interleaving-run-1`
+with a new directory. Twenty-two cases compare 79 prefixes and recover at 70
+quiescent checkpoints, including all six merges of two certify/reserve sequences.
+M08 and M10 have reduced, independently checked witnesses: missing blocker
+invalidation loses unrelated valid support, while non-atomic reservation permits
+two claims on one unit. See [interleavings](VALIDATION.md#deterministic-two-worker-interleavings)
+for the precise mutation and scheduling scope.
+
 ## Current limits and next work
 
 This is an in-process API with trusted callers, not a sandbox for hostile Python
@@ -529,12 +539,12 @@ episode now use real optional adapters. The native demo runs with
 `uv run --no-project python -m reachability.decision_demo`; see [DECISIONS.md](DECISIONS.md).
 Persistent native storage, FDAS, ECAN and Freeciv integration remain pending.
 Pressure and transport remain the supplied standalone numerical examples. The
-64-fixture target, M08/M09/M10/M12 mutants and performance experiments are still pending.
+64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next add deterministic interleaving controls around admission and resource
-reservation, using the new failure-preserving reducer for reproducible witnesses.
-Remaining designated mutants and evaluator OS isolation remain open. Goal loss
+Next extend controlled interleavings to credential revocation before dispatch and
+lease expiry versus external acknowledgement. Remaining designated mutants and
+evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding
 remain explicit phase 1 backlog items.

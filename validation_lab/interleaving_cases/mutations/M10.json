@@ -1,0 +1,717 @@
+{
+  "case": {
+    "schema": "interleaving-case/v1",
+    "case_id": "i06",
+    "parent_instance_id": "interleaving-parent-0",
+    "split": "development",
+    "control": "last-unit-a-first",
+    "public": {
+      "schema": "interleaving-initial/v1",
+      "facts": [
+        1,
+        2
+      ],
+      "capacity": 1
+    },
+    "events": [
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "read",
+        "actor": "a",
+        "kind": "read",
+        "arguments": {}
+      },
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "ca",
+        "actor": "a",
+        "kind": "certify",
+        "arguments": {}
+      },
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "cb",
+        "actor": "b",
+        "kind": "certify",
+        "arguments": {}
+      },
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "ra",
+        "actor": "a",
+        "kind": "reserve",
+        "arguments": {
+          "permit": "ca"
+        }
+      },
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "rb",
+        "actor": "b",
+        "kind": "reserve",
+        "arguments": {
+          "permit": "cb"
+        }
+      },
+      {
+        "schema": "interleaving-event/v1",
+        "event_id": "end",
+        "actor": "b",
+        "kind": "read",
+        "arguments": {}
+      }
+    ],
+    "schedule": {
+      "schema": "interleaving-schedule/v1",
+      "reserve_pair": [
+        "ra",
+        "rb"
+      ]
+    },
+    "mutant": "M10"
+  },
+  "result": {
+    "schema": "trace-shrink-result/v1",
+    "status": "ONE_MINIMAL",
+    "original_digest": "cf5e928ec2271cfae3b73238fb9e03d1b2467a6f5f0d4f4dde5c9ecbeef708f2",
+    "reduced_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+    "original_events": [
+      {
+        "actor": "a",
+        "arguments": {},
+        "event_id": "read",
+        "kind": "read",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "a",
+        "arguments": {},
+        "event_id": "ca",
+        "kind": "certify",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "b",
+        "arguments": {},
+        "event_id": "cb",
+        "kind": "certify",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "a",
+        "arguments": {
+          "permit": "ca"
+        },
+        "event_id": "ra",
+        "kind": "reserve",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "b",
+        "arguments": {
+          "permit": "cb"
+        },
+        "event_id": "rb",
+        "kind": "reserve",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "b",
+        "arguments": {},
+        "event_id": "end",
+        "kind": "read",
+        "schema": "interleaving-event/v1"
+      }
+    ],
+    "reduced_events": [
+      {
+        "actor": "a",
+        "arguments": {},
+        "event_id": "ca",
+        "kind": "certify",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "b",
+        "arguments": {},
+        "event_id": "cb",
+        "kind": "certify",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "a",
+        "arguments": {
+          "permit": "ca"
+        },
+        "event_id": "ra",
+        "kind": "reserve",
+        "schema": "interleaving-event/v1"
+      },
+      {
+        "actor": "b",
+        "arguments": {
+          "permit": "cb"
+        },
+        "event_id": "rb",
+        "kind": "reserve",
+        "schema": "interleaving-event/v1"
+      }
+    ],
+    "signature": {
+      "actual": "PASS",
+      "event_id": "rb",
+      "expected": "STALE",
+      "initial_digest": "7b6900f6f1949e2f56b02d56f2db472924ebf52ceb024799ed518576f46df70c",
+      "mutant": "M10",
+      "path": "outcome.status",
+      "profile": "interleaving",
+      "schedule_digest": "76f2e4200a92fd2745455f02f38e0ffe6b21ed551f0bc2f6fc3ce4e553b1ba9d",
+      "schema": "trace-failure-signature/v1"
+    },
+    "removed_event_ids": [
+      "read",
+      "end"
+    ],
+    "one_minimal": true,
+    "global_minimum": false,
+    "minimality_domain": "order-preserving whole-event deletions with valid protocol, passing unmodified oracle control and identical first-divergence signature",
+    "evaluations": 21,
+    "selected_trial": 11,
+    "final_trial": 20,
+    "accepted": [
+      {
+        "trial": 6,
+        "from_digest": "cf5e928ec2271cfae3b73238fb9e03d1b2467a6f5f0d4f4dde5c9ecbeef708f2",
+        "to_digest": "355c30ba04db9cdedc8e2dfcff55f2154360bca87af36e1374358cd6532f5be8",
+        "removed": [
+          "read"
+        ]
+      },
+      {
+        "trial": 11,
+        "from_digest": "355c30ba04db9cdedc8e2dfcff55f2154360bca87af36e1374358cd6532f5be8",
+        "to_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "removed": [
+          "end"
+        ]
+      }
+    ],
+    "deletion_checks": [
+      {
+        "removed_event_id": "ca",
+        "trial": 16,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      },
+      {
+        "removed_event_id": "cb",
+        "trial": 17,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      },
+      {
+        "removed_event_id": "ra",
+        "trial": 18,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      },
+      {
+        "removed_event_id": "rb",
+        "trial": 19,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      }
+    ],
+    "trials": [
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 0,
+        "phase": "original",
+        "parent_digest": "cf5e928ec2271cfae3b73238fb9e03d1b2467a6f5f0d4f4dde5c9ecbeef708f2",
+        "candidate_digest": "cf5e928ec2271cfae3b73238fb9e03d1b2467a6f5f0d4f4dde5c9ecbeef708f2",
+        "event_ids": [
+          "read",
+          "ca",
+          "cb",
+          "ra",
+          "rb",
+          "end"
+        ],
+        "deleted_event_ids": [],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 2,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": "PASS",
+            "event_id": "rb",
+            "expected": "STALE",
+            "initial_digest": "7b6900f6f1949e2f56b02d56f2db472924ebf52ceb024799ed518576f46df70c",
+            "mutant": "M10",
+            "path": "outcome.status",
+            "profile": "interleaving",
+            "schedule_digest": "76f2e4200a92fd2745455f02f38e0ffe6b21ed551f0bc2f6fc3ce4e553b1ba9d",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 1,
+        "phase": "chunk",
+        "parent_digest": "cf5e928ec2271cfae3b73238fb9e03d1b2467a6f5f0d4f4dde5c9ecbeef708f2",
+        "candidate_digest": "018c682cbc32769527fe04b5e92a6fe6291510dc069bc6f356afd2df62c90cd2",
+        "event_ids": [
+          "ra",
+          "rb",
+          "end"
+        ],
+        "deleted_event_ids": [
+          "read",
+          "ca",
+          "cb"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 2,
+        "phase": "chunk",
+        "parent_digest": "cf5e928ec2271cfae3b73238fb9e03d1b2467a6f5f0d4f4dde5c9ecbeef708f2",
+        "candidate_digest": "5c5786f3f8930efa8a40e1d38f36d15ffd1511490e6e5864c9d770ae0669388f",
+        "event_ids": [
+          "read",
+          "ca",
+          "cb"
+        ],
+        "deleted_event_ids": [
+          "ra",
+          "rb",
+          "end"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 3,
+        "phase": "chunk",
+        "parent_digest": "cf5e928ec2271cfae3b73238fb9e03d1b2467a6f5f0d4f4dde5c9ecbeef708f2",
+        "candidate_digest": "0019068294b3d6dc108f62f85726dd7728ac84e1a327458a0a972d562d3ff6f4",
+        "event_ids": [
+          "cb",
+          "ra",
+          "rb",
+          "end"
+        ],
+        "deleted_event_ids": [
+          "read",
+          "ca"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 4,
+        "phase": "chunk",
+        "parent_digest": "cf5e928ec2271cfae3b73238fb9e03d1b2467a6f5f0d4f4dde5c9ecbeef708f2",
+        "candidate_digest": "2217cf7e137b1decfcd3bbf4b6de64b51747340149ce39aaabdc835f5a7ba138",
+        "event_ids": [
+          "read",
+          "ca",
+          "rb",
+          "end"
+        ],
+        "deleted_event_ids": [
+          "cb",
+          "ra"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 5,
+        "phase": "chunk",
+        "parent_digest": "cf5e928ec2271cfae3b73238fb9e03d1b2467a6f5f0d4f4dde5c9ecbeef708f2",
+        "candidate_digest": "8e7a2b2b8d42c9beb34bf349ffce3892310646d1ab777be2b2d440bc21570bdd",
+        "event_ids": [
+          "read",
+          "ca",
+          "cb",
+          "ra"
+        ],
+        "deleted_event_ids": [
+          "rb",
+          "end"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 6,
+        "phase": "chunk",
+        "parent_digest": "cf5e928ec2271cfae3b73238fb9e03d1b2467a6f5f0d4f4dde5c9ecbeef708f2",
+        "candidate_digest": "355c30ba04db9cdedc8e2dfcff55f2154360bca87af36e1374358cd6532f5be8",
+        "event_ids": [
+          "ca",
+          "cb",
+          "ra",
+          "rb",
+          "end"
+        ],
+        "deleted_event_ids": [
+          "read"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 2,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": "PASS",
+            "event_id": "rb",
+            "expected": "STALE",
+            "initial_digest": "7b6900f6f1949e2f56b02d56f2db472924ebf52ceb024799ed518576f46df70c",
+            "mutant": "M10",
+            "path": "outcome.status",
+            "profile": "interleaving",
+            "schedule_digest": "76f2e4200a92fd2745455f02f38e0ffe6b21ed551f0bc2f6fc3ce4e553b1ba9d",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 7,
+        "phase": "chunk",
+        "parent_digest": "355c30ba04db9cdedc8e2dfcff55f2154360bca87af36e1374358cd6532f5be8",
+        "candidate_digest": "0019068294b3d6dc108f62f85726dd7728ac84e1a327458a0a972d562d3ff6f4",
+        "event_ids": [
+          "cb",
+          "ra",
+          "rb",
+          "end"
+        ],
+        "deleted_event_ids": [
+          "ca"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 8,
+        "phase": "chunk",
+        "parent_digest": "355c30ba04db9cdedc8e2dfcff55f2154360bca87af36e1374358cd6532f5be8",
+        "candidate_digest": "adfcb2b9bd47ec988997dda5535ffda40d65d13fb38520e87c98d1f6c9cddce1",
+        "event_ids": [
+          "ca",
+          "ra",
+          "rb",
+          "end"
+        ],
+        "deleted_event_ids": [
+          "cb"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 9,
+        "phase": "chunk",
+        "parent_digest": "355c30ba04db9cdedc8e2dfcff55f2154360bca87af36e1374358cd6532f5be8",
+        "candidate_digest": "2e58f7f2ce04cf8c8339ba2aa0acb1ccab91fd650a82505c801ef90b080d3e94",
+        "event_ids": [
+          "ca",
+          "cb",
+          "rb",
+          "end"
+        ],
+        "deleted_event_ids": [
+          "ra"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 10,
+        "phase": "chunk",
+        "parent_digest": "355c30ba04db9cdedc8e2dfcff55f2154360bca87af36e1374358cd6532f5be8",
+        "candidate_digest": "b134924afa2e56a1fac839b117e19a6c3c7e30f1aee7fd096e3a5979f4f38c11",
+        "event_ids": [
+          "ca",
+          "cb",
+          "ra",
+          "end"
+        ],
+        "deleted_event_ids": [
+          "rb"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 11,
+        "phase": "chunk",
+        "parent_digest": "355c30ba04db9cdedc8e2dfcff55f2154360bca87af36e1374358cd6532f5be8",
+        "candidate_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "event_ids": [
+          "ca",
+          "cb",
+          "ra",
+          "rb"
+        ],
+        "deleted_event_ids": [
+          "end"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 2,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": "PASS",
+            "event_id": "rb",
+            "expected": "STALE",
+            "initial_digest": "7b6900f6f1949e2f56b02d56f2db472924ebf52ceb024799ed518576f46df70c",
+            "mutant": "M10",
+            "path": "outcome.status",
+            "profile": "interleaving",
+            "schedule_digest": "76f2e4200a92fd2745455f02f38e0ffe6b21ed551f0bc2f6fc3ce4e553b1ba9d",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 12,
+        "phase": "chunk",
+        "parent_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "candidate_digest": "dbe140b843cd6f6402627349749c09859b406e090c0947c82dc6140fd2a815ca",
+        "event_ids": [
+          "cb",
+          "ra",
+          "rb"
+        ],
+        "deleted_event_ids": [
+          "ca"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 13,
+        "phase": "chunk",
+        "parent_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "candidate_digest": "8bb8ba55e9a02966f28af87a2f78d19a842b07c58ba24d6b27b3c6cf1f074614",
+        "event_ids": [
+          "ca",
+          "ra",
+          "rb"
+        ],
+        "deleted_event_ids": [
+          "cb"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 14,
+        "phase": "chunk",
+        "parent_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "candidate_digest": "319ec2ad1f9e1390bc4ba9bffc0fc54783f74118d9d8eb8bbf473f6d86272e18",
+        "event_ids": [
+          "ca",
+          "cb",
+          "rb"
+        ],
+        "deleted_event_ids": [
+          "ra"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 15,
+        "phase": "chunk",
+        "parent_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "candidate_digest": "a624b2a9e153fd0356870c54834bd575b02eb2c2f23e29e91e65a15692f917b1",
+        "event_ids": [
+          "ca",
+          "cb",
+          "ra"
+        ],
+        "deleted_event_ids": [
+          "rb"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 16,
+        "phase": "single-deletion",
+        "parent_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "candidate_digest": "dbe140b843cd6f6402627349749c09859b406e090c0947c82dc6140fd2a815ca",
+        "event_ids": [
+          "cb",
+          "ra",
+          "rb"
+        ],
+        "deleted_event_ids": [
+          "ca"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 17,
+        "phase": "single-deletion",
+        "parent_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "candidate_digest": "8bb8ba55e9a02966f28af87a2f78d19a842b07c58ba24d6b27b3c6cf1f074614",
+        "event_ids": [
+          "ca",
+          "ra",
+          "rb"
+        ],
+        "deleted_event_ids": [
+          "cb"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 18,
+        "phase": "single-deletion",
+        "parent_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "candidate_digest": "319ec2ad1f9e1390bc4ba9bffc0fc54783f74118d9d8eb8bbf473f6d86272e18",
+        "event_ids": [
+          "ca",
+          "cb",
+          "rb"
+        ],
+        "deleted_event_ids": [
+          "ra"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 19,
+        "phase": "single-deletion",
+        "parent_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "candidate_digest": "a624b2a9e153fd0356870c54834bd575b02eb2c2f23e29e91e65a15692f917b1",
+        "event_ids": [
+          "ca",
+          "cb",
+          "ra"
+        ],
+        "deleted_event_ids": [
+          "rb"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 20,
+        "phase": "final-replay",
+        "parent_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "candidate_digest": "ff52cd93fd64bc836d4772583ce45f4b20d88fac955c7a755dc019a59c699716",
+        "event_ids": [
+          "ca",
+          "cb",
+          "ra",
+          "rb"
+        ],
+        "deleted_event_ids": [],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 2,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": "PASS",
+            "event_id": "rb",
+            "expected": "STALE",
+            "initial_digest": "7b6900f6f1949e2f56b02d56f2db472924ebf52ceb024799ed518576f46df70c",
+            "mutant": "M10",
+            "path": "outcome.status",
+            "profile": "interleaving",
+            "schedule_digest": "76f2e4200a92fd2745455f02f38e0ffe6b21ed551f0bc2f6fc3ce4e553b1ba9d",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      }
+    ]
+  }
+}

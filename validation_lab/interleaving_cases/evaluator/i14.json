@@ -1,0 +1,30 @@
+{
+  "schema": "interleaving-case/v1",
+  "case_id": "i14",
+  "parent_instance_id": "interleaving-parent-0",
+  "split": "development",
+  "control": "wrong-owner-certificate",
+  "events": [
+    {
+      "schema": "interleaving-event/v1",
+      "event_id": "ca",
+      "actor": "a",
+      "kind": "certify",
+      "arguments": {}
+    },
+    {
+      "schema": "interleaving-event/v1",
+      "event_id": "rb",
+      "actor": "b",
+      "kind": "reserve",
+      "arguments": {
+        "permit": "ca"
+      }
+    }
+  ],
+  "schedule": {
+    "schema": "interleaving-schedule/v1",
+    "reserve_pair": []
+  },
+  "mutant": null
+}

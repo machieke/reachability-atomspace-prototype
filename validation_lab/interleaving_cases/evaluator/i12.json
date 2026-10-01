@@ -1,0 +1,32 @@
+{
+  "schema": "interleaving-case/v1",
+  "case_id": "i12",
+  "parent_instance_id": "interleaving-parent-0",
+  "split": "development",
+  "control": "positive-admission",
+  "events": [
+    {
+      "schema": "interleaving-event/v1",
+      "event_id": "prepare",
+      "actor": "a",
+      "kind": "prepare",
+      "arguments": {
+        "literal": 3
+      }
+    },
+    {
+      "schema": "interleaving-event/v1",
+      "event_id": "commit",
+      "actor": "a",
+      "kind": "commit",
+      "arguments": {
+        "prepared": "prepare"
+      }
+    }
+  ],
+  "schedule": {
+    "schema": "interleaving-schedule/v1",
+    "reserve_pair": []
+  },
+  "mutant": null
+}

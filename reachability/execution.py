@@ -223,43 +223,52 @@ class ExecutionMixin:
             raise ValueError("a typed execution certificate is required")
 
         def apply():
-            if self._execution.permits.get(permit.certificate_id) != permit:
-                raise AdmissionDenied(Status.FAIL, "untrusted or altered execution certificate")
-            previous = self._execution.intents.get(permit.attempt_id)
-            if previous is not None:
-                if previous.certificate_id != permit.certificate_id:
-                    raise IdempotencyConflict("attempt already has an execution intent")
-                return previous  # Historical result; inspect for current status.
-            operation = self._lifecycle.attempts[permit.attempt_id]
-            episode = self._lifecycle.episodes[operation.episode_id]
-            context = self._contexts[operation.context_id]
-            if (permit.knowledge_revision != context.revision or permit.policy_revision != context.policy_revision
-                    or permit.logical_time != context.logical_time or permit.operation_revision != operation.revision
-                    or permit.episode_revision != episode.revision
-                    or permit.lifecycle_revision != self._lifecycle_revision(operation.context_id)
-                    or permit.resource_revision != self._execution.revision
-                    or permit.resource_time != self._execution.logical_time):
-                raise AdmissionDenied(Status.STALE, "execution certificate dependencies changed")
-            if permit.status is not Status.PASS:
-                raise AdmissionDenied(permit.status, "execution contract did not pass")
-            contract = self._execution.contracts[permit.contract_id, permit.contract_revision]
-            checks, prerequisites, action = self._execution_checks(permit.attempt_id, contract, permit.owner_id)
-            checks += self._resource_checks(permit.claims)
-            if conjunction(checks) is not Status.PASS or (prerequisites, action) != (
-                    permit.prerequisites, permit.action_requirements):
-                raise AdmissionDenied(Status.STALE, "execution contract replay changed")
-            intent_id = identity("execution-intent/v1", (self._authority_id, permit.attempt_id))
-            reservations = tuple(Reservation(identity("reservation/v1", (intent_id, claim.resource_id)),
-                intent_id, permit.attempt_id, permit.owner_id, claim) for claim in permit.claims)
-            intent = ExecutionIntent(intent_id, permit.attempt_id, operation.context_id, permit.owner_id,
-                contract.executor_id, operation.product_id, contract.contract_id, contract.revision,
-                permit.certificate_id, permit.resource_time, permit.lease_until, reservations)
-            # All checks precede the only mutation; volatile mode is atomic too.
-            self._execution.intents[permit.attempt_id] = intent
-            self._execution.revision += 1
-            return intent
+            intent = self._prepare_execution_intent(permit)
+            return self._publish_execution_intent(intent)
 
         return self._mutate("reserve_and_record_intent", idempotency_key, dict(permit=permit), apply)
+
+    def _prepare_execution_intent(self, permit: ExecutionPermit) -> ExecutionIntent:
+        """Read/check/build under the caller's authority lock; no publication here."""
+        if self._execution.permits.get(permit.certificate_id) != permit:
+            raise AdmissionDenied(Status.FAIL, "untrusted or altered execution certificate")
+        previous = self._execution.intents.get(permit.attempt_id)
+        if previous is not None:
+            if previous.certificate_id != permit.certificate_id:
+                raise IdempotencyConflict("attempt already has an execution intent")
+            return previous  # Historical result; inspect for current status.
+        operation = self._lifecycle.attempts[permit.attempt_id]
+        episode = self._lifecycle.episodes[operation.episode_id]
+        context = self._contexts[operation.context_id]
+        if (permit.knowledge_revision != context.revision or permit.policy_revision != context.policy_revision
+                or permit.logical_time != context.logical_time or permit.operation_revision != operation.revision
+                or permit.episode_revision != episode.revision
+                or permit.lifecycle_revision != self._lifecycle_revision(operation.context_id)
+                or permit.resource_revision != self._execution.revision
+                or permit.resource_time != self._execution.logical_time):
+            raise AdmissionDenied(Status.STALE, "execution certificate dependencies changed")
+        if permit.status is not Status.PASS:
+            raise AdmissionDenied(permit.status, "execution contract did not pass")
+        contract = self._execution.contracts[permit.contract_id, permit.contract_revision]
+        checks, prerequisites, action = self._execution_checks(permit.attempt_id, contract, permit.owner_id)
+        checks += self._resource_checks(permit.claims)
+        if conjunction(checks) is not Status.PASS or (prerequisites, action) != (
+                permit.prerequisites, permit.action_requirements):
+            raise AdmissionDenied(Status.STALE, "execution contract replay changed")
+        intent_id = identity("execution-intent/v1", (self._authority_id, permit.attempt_id))
+        reservations = tuple(Reservation(identity("reservation/v1", (intent_id, claim.resource_id)),
+            intent_id, permit.attempt_id, permit.owner_id, claim) for claim in permit.claims)
+        intent = ExecutionIntent(intent_id, permit.attempt_id, operation.context_id, permit.owner_id,
+            contract.executor_id, operation.product_id, contract.contract_id, contract.revision,
+            permit.certificate_id, permit.resource_time, permit.lease_until, reservations)
+        return intent
+
+    def _publish_execution_intent(self, intent: ExecutionIntent) -> ExecutionIntent:
+        """Publish under the same lock/transaction as preparation; never revalidate later."""
+        if intent.attempt_id not in self._execution.intents:
+            self._execution.intents[intent.attempt_id] = intent
+            self._execution.revision += 1
+        return intent
 
     def inspect_execution_intent(self, attempt_id: str) -> ExecutionIntentView:
         with self._lock:

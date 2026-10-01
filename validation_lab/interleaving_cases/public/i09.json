@@ -1,0 +1,8 @@
+{
+  "schema": "interleaving-initial/v1",
+  "facts": [
+    1,
+    2
+  ],
+  "capacity": 0
+}

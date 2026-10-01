@@ -1,0 +1,28 @@
+{
+  "schema": "interleaving-case/v1",
+  "case_id": "i04",
+  "parent_instance_id": "interleaving-parent-0",
+  "split": "development",
+  "control": "joint-blocker-clears-conflicting-alternatives",
+  "events": [
+    {
+      "schema": "interleaving-event/v1",
+      "event_id": "policy",
+      "actor": "b",
+      "kind": "policy",
+      "arguments": {
+        "clauses": [
+          [
+            -1,
+            -2
+          ]
+        ]
+      }
+    }
+  ],
+  "schedule": {
+    "schema": "interleaving-schedule/v1",
+    "reserve_pair": []
+  },
+  "mutant": null
+}

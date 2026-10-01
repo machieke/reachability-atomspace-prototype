@@ -4,7 +4,8 @@ Each test first proves the valid service blocks the violation, then deliberately
 breaks one contract and proves the same public scenario exposes that violation.
 This initial set covers M01–M04. M05 lives in test_admission_traces.py;
 M06/M11 live in test_deployment_traces.py. The bounded B0 suite adds the
-deletion-minimal M07 product-binding witness. M08–M10 and M12 stay open.
+deletion-minimal M07 product-binding witness. test_interleaving.py adds reduced
+M08/M10 witnesses. M09 and M12 stay open.
 """
 from dataclasses import replace
 from itertools import combinations

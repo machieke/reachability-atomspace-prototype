@@ -48,12 +48,13 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, fifteenth increment): a bounded event-trace
-reducer now preserves exact first-divergence signatures and independently passing
-unmodified controls. Existing M05/M06/M07/M11 traces reduce from 12/23/2/13 events
-to 5/6/2/1, with complete single-event deletion audits, fresh witness replays,
-source/split receipts and retained raw evidence. Global minimality, argument
-shrinking, controlled concurrency and broader mutation coverage remain open.
+Current checkpoint (1 October 2026, sixteenth increment): deterministic two-worker
+validation now exercises policy/commit boundaries and actual reservation
+check/publication races. Twenty-two cases compare 79 prefixes and recover at 70
+quiescent checkpoints, including all six certify/reserve sequence merges.
+Canary-backed M08/M10 witnesses reduce to one and four events. M08 detects loss of
+unrelated support while consistency remains protected; M10 exposes over-allocation
+under split checks/publication. Controlled dispatch/acknowledgement races remain open.
 Broader phase 1/2 semantics, authoritative native
 storage, family-complete validation and phase 5–8 pressure/attention work remain open.
 The latest execution record below defines the next concrete increment.
@@ -1128,3 +1129,65 @@ Next increment, in order:
 4. Continue phase 4 family coverage and evaluator OS isolation. M09/M12 depend on
    their pressure/transport mechanisms; do not mark them covered early. The
    64-family-fixture target, broader phase 1/3 semantics and phases 5–8 remain open.
+
+### Sixteenth increment on 1 October 2026
+
+Implemented the next bounded interleaving increment in four stages:
+
+1. **Expose the real atomic reservation boundary.** Extracted private read/check/
+   construct and publication helpers inside the existing authority transaction.
+   The public method still holds one RLock across all checks, claims, intent and
+   journal publication. Added a strict three-atom/two-worker public adapter with
+   actor-bound admission and execution certificates; scheduler data remains in
+   the evaluator.
+2. **Control actual threads and independently compare state.** Added a controller
+   that pauses at completed reservation checks, observes a contender requesting
+   the held real lock and chooses publication order. Ownership, not timing,
+   establishes blocking. A cold eight-world Boolean/discrete-occupancy reference
+   checks every completed prefix. Twenty-two cases include sixteen direct controls
+   and all six order-preserving certify/reserve merges. Recovery occurs only after
+   threads are quiescent; native projections and uncontrolled stress supplement
+   the deterministic controls.
+3. **Demonstrate precise M08/M10 defects.** M08 drops newly inserted blockers'
+   invalidation dependents while retaining the full consistency fallback. The
+   reference catches unnecessary loss of unrelated support, not unsafe admission.
+   M10 moves the unchanged complete checks outside atomic publication; both
+   workers can pass before either claims capacity, and the raw output records two
+   claims on one unit. Invocation canaries distinguish exercised defects from
+   no-op patches. The service's normal gates remain enabled in every control.
+4. **Reduce and retain reproducible evidence.** Reused the bounded reducer with
+   signatures that also bind the evaluator schedule. M08 reduces from five to one
+   event, M10 from six to four, in 6 and 21 predicate calls. All five remaining
+   single-event deletions remove the failure, and fresh final replays preserve
+   it. Separate public/evaluator files, mutation decisions, source receipts,
+   schedule logs and raw traces make each run reviewable. A regression catches
+   thread-identifier reuse after rejection before a checkpoint.
+
+The corpus compares 79 prefixes and recovers at 70 quiescent checkpoints; nine
+cases configure paired reservations, including two early-rejection controls.
+The prior four trace reductions reproduce unchanged after refreshing all six
+earlier corpus receipts. Initial-state and schedule shrinking are not claimed.
+Original design inputs and journal schemas remain unchanged. All 664 default
+tests pass, including 26 new tests for this increment. All 74 optional native
+tests and 15 original standalone reference checks pass; the affected native test
+also passes after the final fresh-attempt schedule guard. The final CLI reproduces
+both pinned reductions and verifies its complete evidence report.
+
+This adds two designated mutant witnesses, leaving M09/M12 open. The M08 profile
+models a missing invalidation dependency at the full-scan boundary; it does not
+introduce or claim to validate an optimized constraint index. There are still
+zero family-complete fixtures. General thread scheduling, inter-process isolation,
+multi-resource race enumeration and fresh-process wrapper recovery remain open.
+
+Next increment, in order:
+
+1. Extend controlled scheduling to the actual final dispatch gate, inserting
+   credential revocation after selection/preparation but before external send.
+2. Add lease-expiry versus external-acknowledgement schedules and check durable
+   uncertainty, reconciliation and fencing against an independent model.
+3. Retain reproducible event/schedule evidence and passing controls; extend the
+   reducer's schedule domain only with explicitly defined semantics.
+4. Continue phase 4 family coverage and evaluator process isolation before broad
+   safety or performance claims. M09/M12, pressure/attention mechanisms and phases
+   5–8 remain pending; broader phase 1/3 semantics and the 64-fixture target remain
+   visible backlog items.
