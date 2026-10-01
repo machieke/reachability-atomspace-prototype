@@ -8,10 +8,12 @@ memory; dispatch requires SQLite recovery. Stored reports, accepted claims, life
 history, current validity, estimated coverage and observed goal relief remain
 separate. Acceptance checks the complete relevant constraint set.
 
-The first native adapter increment now runs pinned OpenCog AtomSpace C++ storage
-and trueagi-io PLN formulas on PeTTa. It projects finite records and probabilistic
-proposals into actual Atoms/Values. Probabilistic certification and durable commit
-remain pending; see [native adapter scope and build instructions](ADAPTERS.md).
+Pinned OpenCog AtomSpace C++ storage and trueagi-io PLN formulas on PeTTa now run
+through a separate [certified probabilistic ledger](PROBABILITY.md). Numeric commits
+check exact premise revisions, formula results and the complete three-proposition
+joint model. They recover through the journal and project into real Atoms/Values.
+Uncertain estimates remain separate from hard claims and action gates.
+See [native adapter scope and build instructions](ADAPTERS.md).
 
 Read [the phased implementation plan](IMPLEMENTATION_PLAN.md) for deliverables,
 dependencies and exit criteria. The original specifications and validation design
@@ -392,6 +394,9 @@ reopens the goal while preserving the completed artifact's lifecycle history.
 | `reachability/completion.py` | Historical submission witnesses and current goal-based completion gates |
 | `reachability/atomspace_adapter.py`, `native/atomspace_batch.cc` | Bounded real Atoms/Values projection and verified native readback |
 | `reachability/pln_adapter.py`, `reachability/adapter_runtime.py` | Pinned pure MeTTa deduction/revision and dependency checks |
+| `reachability/probability.py`, `reachability/probability_model.py` | Separate numeric ledger, issued permits, exact dependencies and durable commits |
+| `reachability/probability_formula.py` | Deterministic replay arithmetic and complete three-event joint witness |
+| `reachability/probability_demo.py` | Native inference, numeric certification, projection, recovery and revocation |
 | `adapters.lock.json`, `scripts/build_adapters.py` | Exact upstream revisions and isolated native build |
 | `reachability/adapter_demo.py`, `integration_tests/` | Explicit optional suite using both real runtimes |
 | `reachability/demo.py` | Executable public-API walkthrough |
@@ -441,16 +446,16 @@ conservatively blocks all use of an affected resource, even if its capacity exce
 one. Context assumptions constrain
 admission but are not automatically materialized as premise revisions in this slice.
 
-AtomSpace projection and pure PLN proposals now have real optional adapters.
-Certified probabilistic commits, persistent native storage, FDAS, ECAN and Freeciv
-integration remain pending. Pressure and transport remain the supplied standalone
+AtomSpace projection and certified numerical commits now have real optional adapters.
+Numeric decision contracts for the deployment slice, persistent native storage,
+FDAS, ECAN and Freeciv integration remain pending. Pressure and transport remain the supplied standalone
 numerical examples. The 64-fixture
 target, deployment through real adapters, M05–M12 mutants and performance experiments
 are still pending. The executable deployment demo establishes the stated finite
 simulator contracts only.
 
-Next bring probabilistic proposals through separately versioned service certificates,
-durable commits and recovery, then validate the adapters in the deployment slice. Goal loss
+Next define an explicit probabilistic decision contract and validate both adapters
+in the deployment slice. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding
 remain explicit phase 1 backlog items.

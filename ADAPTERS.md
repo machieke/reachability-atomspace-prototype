@@ -1,11 +1,12 @@
 # Pinned native adapter increment
 
 Phase 3 now has a real C++ AtomSpace projection and a pure PLN formula adapter.
-They run independently of the finite admission service. AtomSpace holds actual
+The inference adapter now connects to a [separate certified numeric ledger](PROBABILITY.md).
+AtomSpace holds actual
 Nodes, ordered ListLinks and named Values; PeTTa executes the selected upstream
 MeTTa formulas. Neither adapter can commit an uncertain proposal to the hard-claim
-ledger. This increment establishes native compatibility and the initial contracts,
-not the phase 3 deployment exit criterion.
+ledger. The service verifies and durably commits estimates under their own
+interpretation. Phase 3's full deployment exit criterion remains open.
 
 ## Dependencies and reproduction
 
@@ -33,6 +34,7 @@ support packages inside `artifacts/`, without sudo or changes to `/etc`:
 uv run --no-project python scripts/build_adapters.py --debian-sysroot
 uv run --no-project python -m unittest discover -s integration_tests -v
 uv run --no-project python -m reachability.adapter_demo
+uv run --no-project python -m reachability.probability_demo
 ```
 
 The Debian option requires the locked Ubuntu amd64 package versions to remain
@@ -97,8 +99,9 @@ transactions remain pending. This is a disposable projection, not a second autho
 `DeductionRule(P,Q,R)` is a grounded schema with ordered premises `P`, `Q`, `R`,
 `P⇒Q`, `Q⇒R`, concluding `P⇒R`. The labels denote proposition identities; there
 is no variable matcher. `ProbabilitySnapshot` binds exact immutable supports to a
-context and knowledge revision. This snapshot is caller supplied and has not yet
-been certified by the admission service.
+context and knowledge revision. Standalone adapter calls accept caller-supplied
+snapshots. The certified service path constructs them from exact current numeric
+revisions after checking an issued pre certificate.
 
 `PLNAdapter` exposes `check_rule_preconditions`, `apply_rule`, `revise` and `explain`.
 The selected truth model is `trueagi-pln-stv-finite-k1/v1`. Input/output strengths
@@ -143,9 +146,9 @@ deduction/revision fixtures, runtime errors, timeout and proposal-to-FloatValue
 readback. The demo produces approximately `(0.68, 0.3136)` and creates no accepted
 beliefs.
 
-Next add a separately versioned probabilistic ledger and its issued pre/post
-certificates, exact snapshot binding and checked durable commit/replay. Numeric
-proposals must remain distinct from hard claims. Then carry the native projection
-and inference adapter through the same service contracts and deployment episode.
-Phase 3 remains open until that integration passes. Attention, FDAS and Freeciv
+The [numeric ledger](PROBABILITY.md) now supplies issued pre/post certificates,
+exact snapshot binding, a complete three-event joint check and durable commit/replay.
+The same service contracts run with finite and native inference, with native
+projection before and after recovery. Next define the numerical decision contract
+for the deployment episode. Phase 3 remains open. Attention, FDAS and Freeciv
 adapters, general context inheritance and variable binding remain pending.

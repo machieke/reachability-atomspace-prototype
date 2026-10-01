@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "pinned-native-projection-and-pure-pln-proposals",
+  "implementation_stage": "certified-probabilistic-ledger-and-checked-recovery",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -72,7 +72,7 @@
       "commit_authority": false
     },
     "pln": {
-      "status": "pure_deduction_and_revision_proposals_tested",
+      "status": "certified-numeric-admission-and-recovery-tested",
       "commit": "4405956947c4b53c7ff01bd565aa3b114bc970a1",
       "petta_commit": "ae66fa8e41dcd5539d614706bd4e5cfb34f9608d",
       "swipl": "10.0.1",
@@ -81,7 +81,7 @@
         "Truth_Deduction",
         "Truth_Revision"
       ],
-      "certified_probabilistic_commits": false,
+      "certified_probabilistic_commits": true,
       "inference_search": false
     },
     "attention": {
@@ -110,7 +110,7 @@
     "variable_binding": false,
     "dynamic_policy_or_rule_replacement": true,
     "temporal_expiry": true,
-    "probabilistic_belief_revision": false,
+    "probabilistic_belief_revision": true,
     "durable_recovery": true,
     "durable_schema_migration": false,
     "pinned_lifecycle_schemas": true,
@@ -141,7 +141,8 @@
     "evaluator_process_isolation": false,
     "native_atomspace_projection": true,
     "pure_pln_proposals": true,
-    "certified_probabilistic_commits": false
+    "certified_probabilistic_commits": true,
+    "complete_three_event_probability_check": true
   },
   "mutation_witnesses": [
     "M01",
@@ -159,5 +160,21 @@
     "M11",
     "M12"
   ],
-  "optional_dependency_lock": "adapters.lock.json"
+  "optional_dependency_lock": "adapters.lock.json",
+  "probability_schema": "probability-ledger/v1",
+  "probability_certificate_schema": "probability-certificate/v1",
+  "probability_fragment": {
+    "interpretation": "scoped-estimate-alternatives/v1",
+    "checker": "pln-binary64-joint3/v1",
+    "codec": "canonical-finite-binary64-hex",
+    "joint_model": "complete-selected-three-proposition-marginals-and-pairs",
+    "joint_witness": "eight-exact-rational-boolean-world-masses",
+    "inference_io": "outside-authority-lock-and-journal-replay",
+    "recovery": "deterministic-formula-and-joint-recheck-without-native-io",
+    "history_limit_default": 256,
+    "history_limit_max": 512,
+    "implicit_boolean_promotion": false,
+    "global_joint_probability_model": false,
+    "numeric_action_contract": false
+  }
 }

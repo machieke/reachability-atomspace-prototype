@@ -1,6 +1,7 @@
 """Versioned JSON record codec with an explicit type allowlist; never pickle."""
 from dataclasses import fields, is_dataclass
 import json
+import math
 
 from . import model
 from . import lifecycle_model as lifecycle
@@ -9,6 +10,9 @@ from . import dispatch_model as dispatch
 from . import goal_model as goal
 from .completion import CompletionContract, CompletionPermit
 from .requirements import Requirement, RequirementResult, RequirementWitness
+from . import probability_model as probability
+from .pln_adapter import (DeductionRule, PLNProposal, ProbabilisticSupport, ProbabilitySnapshot,
+                          TruthValue, IndependenceDeclaration)
 
 RECORDS = {cls.__name__: cls for cls in (
     model.Statement, model.Literal, model.Clause, model.Evidence, model.Rule,
@@ -28,6 +32,10 @@ RECORDS = {cls.__name__: cls for cls in (
     goal.GoalSample, goal.CoverageCommitment, goal.DurabilityResult, goal.GoalSliceView,
     goal.GoalProjection, goal.GoalReliefEvent, goal.GoalAccountingRevision, goal.GoalView,
     CompletionContract, CompletionPermit,
+    TruthValue, ProbabilisticSupport, ProbabilitySnapshot, DeductionRule, PLNProposal, IndependenceDeclaration,
+    probability.ProbabilityPolicy, probability.ProbabilityReport, probability.ProbabilityRule,
+    probability.ProbabilityIndependence, probability.ProbabilityTransition, probability.ProbabilityCertificate,
+    probability.ProbabilityBeliefRevision, probability.ProbabilityCommitResult, probability.ProbabilityView,
 )}
 
 
@@ -36,6 +44,10 @@ def encode(value):
         return {"$status": value.value}
     if value is None or type(value) in (str, int, bool):
         return value
+    if type(value) is float:
+        if not math.isfinite(value):
+            raise ValueError("nonfinite durable number")
+        return {"$float64": value.hex()}
     if is_dataclass(value) and RECORDS.get(type(value).__name__) is type(value):
         return {"$record": type(value).__name__, "fields": {
             field.name: encode(getattr(value, field.name)) for field in fields(value)}}
@@ -55,6 +67,14 @@ def decode(value):
         return [decode(item) for item in value]
     if not isinstance(value, dict):
         raise ValueError("unsupported durable JSON value")
+    if set(value) == {"$float64"} and type(value["$float64"]) is str:
+        try:
+            number = float.fromhex(value["$float64"])
+        except OverflowError as error:
+            raise ValueError("durable binary64 overflow") from error
+        if not math.isfinite(number) or number.hex() != value["$float64"]:
+            raise ValueError("noncanonical or nonfinite durable binary64")
+        return number
     if set(value) == {"$status"}:
         return model.Status(value["$status"])
     if set(value) == {"$tuple"} and isinstance(value["$tuple"], list):

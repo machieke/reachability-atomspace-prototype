@@ -26,6 +26,7 @@ from .model import (
     ContextSnapshot, Evidence, Literal, Proposal, Rule, Status, Transition,
     conjunction, identity, logical_integer, nonempty,
 )
+from .probability import ProbabilityMixin, ProbabilityStore
 
 T = TypeVar("T")
 
@@ -42,16 +43,17 @@ class _Context:
     logical_time: int = 0
 
 
-class AdmissionService(CompletionMixin, GoalMixin, DispatchMixin, ExecutionMixin, LifecycleMixin):
+class AdmissionService(ProbabilityMixin, CompletionMixin, GoalMixin, DispatchMixin, ExecutionMixin, LifecycleMixin):
     _COMMANDS = (frozenset((
         "open_context", "record_evidence", "revoke_evidence", "propose_evidence",
         "propose_transition", "precertify", "postcertify", "commit", "replace_rule",
         "replace_policy", "advance_clock",
     )) | LifecycleMixin.LIFECYCLE_COMMANDS | ExecutionMixin.EXECUTION_COMMANDS
-       | DispatchMixin.DISPATCH_COMMANDS | GoalMixin.GOAL_COMMANDS | CompletionMixin.COMPLETION_COMMANDS)
+       | DispatchMixin.DISPATCH_COMMANDS | GoalMixin.GOAL_COMMANDS | CompletionMixin.COMPLETION_COMMANDS
+       | ProbabilityMixin.PROBABILITY_COMMANDS)
     _STATE_FIELDS = ("_rules", "_rule_versions", "_policy_versions", "_contexts",
                      "_evidence", "_revoked", "_transitions", "_certificates", "_commands", "_lifecycle", "_execution",
-                     "_dispatch", "_goals", "_completion")
+                     "_dispatch", "_goals", "_completion", "_probability")
 
     def __init__(self, rules: tuple[Rule, ...] | None = None, *,
                  max_variables: int | None = None, database: str | Path | None = None):
@@ -108,6 +110,7 @@ class AdmissionService(CompletionMixin, GoalMixin, DispatchMixin, ExecutionMixin
         self._dispatch = DispatchStore()
         self._goals = GoalStore()
         self._completion = CompletionStore()
+        self._probability = ProbabilityStore()
         if self._journal is not None:
             try:
                 self._replaying = True

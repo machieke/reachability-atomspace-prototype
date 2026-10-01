@@ -185,6 +185,8 @@ class RecordProjection:
                 key = self.batch.node("field:" + field.name, predicate=True)
                 if type(item) is int:
                     numeric.append((key, str(item)))
+                elif type(item) is float:
+                    numeric.append((key, (item,)))
                 else:
                     members.append(self.batch.link((key, self.add(item))))
             atom = self.batch.link(tuple(members))
@@ -212,4 +214,11 @@ def project_admission(service, context_id: str, *, root: Path = ROOT / "artifact
     authority, snapshot, views = service.export_admission(context_id)
     projection = RecordProjection()
     projection.add((authority, snapshot, views))
+    return projection.batch.run(root)
+
+
+def project_probability(service, context_id: str, *, root: Path = ROOT / "artifacts") -> NativeGraph:
+    """Project certified numerical views with their distinct interpretation tags."""
+    projection = RecordProjection()
+    projection.add(service.export_probability(context_id))
     return projection.batch.run(root)

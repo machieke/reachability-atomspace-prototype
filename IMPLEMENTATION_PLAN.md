@@ -583,3 +583,74 @@ snapshot/lineage binding, issued pre/post certificates, checked durable commits 
 replay. Keep uncertain beliefs distinct from hard commitments and preserve existing
 journal compatibility. Then run common service contracts and the deployment episode
 through the real adapters. The broader phase 1/2 backlog and phases 4–8 remain open.
+
+### Eighth increment on 1 October 2026
+
+Implemented `probability-ledger/v1` and `probability-certificate/v1` under the same
+single commit authority. Numeric policies pin trusted report sources, truth model,
+interpretation, formula revision and checker. Source reports retain immutable
+evidence identity, provenance and validity. Grounded rules and explicit independence
+models bind exact accepted numeric premise revisions. The new ledger keeps estimates
+as alternatives; none become Boolean facts, lifecycle prerequisites or goal samples.
+
+Added issued pre/post certificates and serialized numerical commits. Certificates
+bind the authority, full current context revision, policies, rule, input records,
+source lineage, time and exact proposal. Native PLN computes outside the authority
+lock; postcertification and commit recheck all captured inputs. Revocation during
+native computation cannot authorize a stale result. Repeated derivations retain the
+same support without new weight. Source expiry/revocation, rule/policy replacement
+and revoked independence models invalidate exact descendants while keeping independent
+alternatives and immutable history.
+
+Implemented a deterministic checker for the pinned binary64 formula expressions,
+including upstream's rounded preconditions. Added a complete exact-rational joint
+check for the three selected propositions, their marginals and all three pair
+intersections including the proposed conclusion. The certificate records eight
+nonnegative world masses. This rejects a concrete near-one upstream approximation
+case that passes all pairwise checks but has no compatible joint distribution.
+Nonfinite intermediates, undefined conditions and altered output/lineage fail closed.
+
+Extended the explicit codec with canonical finite binary64 hexadecimal values and
+new numeric records. Existing finite record layouts and command encodings are
+unchanged. Recovery reconstructs guards, formulas and joint witnesses without
+PeTTa/AtomSpace I/O, and rejects saved success from a broken checker. Journal failure
+rolls back the numeric ledger and its permits; ambiguous commits reconcile by the
+original key. History limits return UNKNOWN without partial publication.
+
+Verification for this increment:
+
+- 454 default tests pass, including all existing finite-service and committed-version
+  journal compatibility checks. The same 31 numerical contracts run in volatile and
+  durable modes with cold reconstruction.
+- 46 native integration tests pass. Those 31 contracts also run with real PLN
+  inference and AtomSpace projection before/after recovery. Generated conformance
+  cases compare 20 deduction and 20 revision results with the replay checker exactly.
+- An independent enumerator constructs every multiset of four Boolean observations
+  and checks 15,625 marginal/pair constraint combinations against the joint checker,
+  including reconstruction of every returned witness.
+- Tests cover forged permits and numerical/provenance changes, ordered/scoped
+  premises, stale snapshots, concurrent commits, source validity, rule/policy/model
+  retirement, alternatives, cycles, idempotency and Boolean gate separation.
+- Recovery tests cover partial certificate allocation, failed writes, ambiguous
+  replies, corrupt history, broken-checker acceptance and real subprocess crashes
+  on both sides of a numerical commit. Native runtime calls are forbidden during
+  the recovery test.
+- The demo commits native deduction at approximately `(0.68, 0.3584)`, records eight
+  exact joint-world masses, recovers an identical numeric view and native projection,
+  and becomes STALE after source revocation. Its hard query remains UNKNOWN.
+- All 15 original standalone numerical/accounting reference checks pass unchanged.
+
+This completes the scoped certified numeric ledger and checked replay increment,
+including common finite/native service contracts. Phase 3 remains open: the native
+store is still a disposable projection, and the full deployment episode does not
+yet use a declared probabilistic decision contract. Numerical alternatives are not
+silently combined into a global joint model. Larger scopes, calibrated loss, PLN
+search, persistent native storage and numeric-to-action policy remain pending.
+Trust remains the existing in-process authority boundary; independence is an explicit
+registered assumption, not an empirical statistical test.
+
+Next define a versioned probabilistic decision contract for the deployment slice,
+with declared units, thresholds/uncertainty and exact current numerical support.
+Carry its decisions through lifecycle/action gates without promoting estimates into
+hard facts, then validate the episode through both real adapters. The remaining
+phase 1/2 breadth items and phases 4–8 remain open.
