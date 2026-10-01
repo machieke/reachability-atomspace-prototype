@@ -1,4 +1,4 @@
-# Deployment event-prefix validation
+# Event-prefix validation
 
 The first validation-lab increment adds a versioned public event stream, actual
 semantic traces, an independent cold reference model, and a development corpus.
@@ -43,8 +43,8 @@ The profile supports at most 128 unique events and twenty simultaneously relevan
 hard statements. A reference exceeding its statement scope is an explicit
 `OracleGap`, not an epistemic UNKNOWN or a guessed answer. All source lineage in
 this fragment is direct and distinct by event ID. General derived proofs, shared
-measurement roots and probabilistic deduction/revision retain their separate unit
-and native contract suites.
+measurement roots are covered by the separate admission profile below. Numerical
+deduction retains its separate unit and native contract suites.
 
 Available events are `fact`, `forecast`, `revoke`, `tick`, `attempt`, `reserve`,
 `cover`, `prepare`, `dispatch`, `reconcile`, `release`, `observation`, `sample`,
@@ -183,6 +183,112 @@ uv run --no-project python -m validation_lab.generate_deployment_cases
 
 Regeneration is explicit; validation does not quietly refresh changed expectations.
 
+## Grounded admission profile
+
+The additive admission profile leaves the deployment v1 wire format unchanged.
+It drives the existing public hard/numerical service APIs using grounded rules,
+explicit contexts and exact prior-event references:
+
+```bash
+uv run --no-project python -m validation_lab.run_admission
+uv run --no-project python -m validation_lab.run_admission --native \
+  --output artifacts/native-admission-validation
+uv run --no-project python -m unittest tests.test_admission_traces -v
+```
+
+The default command uses deterministic checked PLN arithmetic. `--native` uses
+the pinned PeTTa/PLN adapter for inference; the authority continues to check every
+proposal before commit. Both modes compare the same cold reference. The optional
+integration suite also verifies actual AtomSpace projections before and after
+journal replay. AtomSpace remains a disposable diagnostic projection.
+
+| Schema | Public contents |
+| --- | --- |
+| `admission-initial/v1` | One to eight neutral atom IDs and up to eight grounded rules with immutable revisions, ordered premises and a conclusion |
+| `admission-event/v1` | Unique event ID, command kind and exact argument fields |
+| `admission-trace/v1` | Input digests, outcome, historical/current hard and numerical records, exact proof aliases, query statuses, certificates and context revisions |
+
+Signed integers refer to declared atoms; sign denotes polarity. A context contains
+up to eight assumptions and 32 CNF clauses of up to eight literals each. At most
+four contexts and 128 events are supported per trace. Rules have no variables or
+context inheritance. Truth components are finite binary64 values with strength
+in `[0,1]` and confidence in `[0,1)`. Time is an integer in `[0,1000]`; evidence
+expiry is exclusive. These bounds are public validation limits, not search budgets.
+
+The event kinds are `context`, `evidence`, `estimate`, `adopt`, `derive`, `rule`,
+`policy`, `tick`, `revoke`, `independence`, `revise`, `revoke_model` and `restart`.
+`context` opens a hard environment and configures the fixed sensor probability
+policy. Evidence/estimate events create reports under their event IDs and attempt
+admission. `adopt` explicitly requests hard admission of an existing report;
+numerical reports alone never become hard assertions. `derive` binds ordered hard
+premise event aliases; `revise` binds numerical aliases plus a registered model ID
+(or null, which cannot authorize revision). A declaration carries a justification
+and two exact numerical references; distinct report IDs cannot override shared roots.
+`rule` replaces an existing rule with a caller-supplied expected revision;
+`policy` replaces the hard constraints using the current context revision.
+
+Successful admission events become aliases for the actual committed belief
+revision. Duplicate admissions can alias the same record. The projection retains
+exact parent aliases, leaf evidence IDs, lineage roots, historical/current state,
+and separate hard/numerical query statuses for every signed declared atom. An old
+retired proof stays retired when another proof of the same literal becomes usable.
+Re-admission must occur explicitly and can produce a distinct revision. Context
+assumptions constrain consistency but are not automatically admitted premises.
+
+Malformed messages, hidden fields and duplicate event IDs fail at the stream
+boundary. Valid commands requesting unavailable references, immutable identity
+redefinitions or backwards clocks produce recorded rejection outcomes. Missing
+proof premises are UNKNOWN; foreign premises FAIL; retired premises are STALE.
+Successful earlier commands in a composite event remain recorded when admission
+later fails, so a blocked report can be explicitly readmitted after a policy or
+support change. These are per-command journal transactions.
+
+`validation_lab/admission_oracle.py` imports only `copy` and `fractions`. It
+reconstructs each prefix from scratch without service output. It enumerates all
+`2^N` Boolean assignments for hard consistency instead of calling the DPLL checker.
+Its separate proof graph tracks exact dependencies, alternatives, rule/policy
+replacement, context-local clocks and full leaf lineage. Numerical revision uses
+rational operations rounded after each primitive required by the pinned binary64
+expression. Numerical comparisons are exact, with no tolerance that could admit
+changed values. Scope gaps and internal reference-model errors remain harness
+errors; they are not converted into epistemic UNKNOWN.
+
+Sixteen fixed cases cover four controls within each scoped mechanism:
+
+| Cases | Family mechanism | Positive / blocked / boundary / revision change |
+| --- | --- | --- |
+| a01–a04 | F01 ordered AND premises | Complete joint proof / missing or wrong ordered premise / exact expiry / replaced rule and dependent proofs |
+| a05–a08 | F02 joint consistency | Compatible polarity / globally conflicting assertion / delayed readmission / jointly incompatible replacement policy |
+| a09–a12 | F04 context separation | Same atoms in incompatible contexts / cross-context proof and numerical references / separate clocks / local policy and global rule replacement |
+| a13–a16 | F05 lineage reuse | Explicit independent revision / shared roots and alternative proof diamond / zero evidence weight / exact model and leaf retirement |
+
+All are development descendants of `admission-parent-0`. The manifest publishes
+the family/control mapping and hashes of sources and fixtures. There are 127 fixed
+prefixes and eight seed-17041 cases adding 168 prefixes, each compared before and
+after checked journal replay. Additional tests cover identity renaming, commuting
+contexts, eight-atom bounds, negative ordered premises, nested numerical revision,
+subnormal/near-one binary64 boundaries and unmodified raw mutation output.
+
+These remain **zero family-complete fixture claims**: F01 search/distractor behavior,
+F04 changing goals and pressure, and F05 broader noisy hidden-source models are not
+implemented by these admission controls. They establish bounded admission semantics,
+not inference search or calibrated prediction. B0 and normalized work accounting
+remain pending.
+
+To deliberately regenerate this corpus and refresh its source receipts:
+
+```bash
+uv run --no-project python -m validation_lab.generate_admission_cases
+```
+
+Both corpus manifests bind all runtime Python sources. After a runtime change,
+explicitly regenerate both corpora. Validation never refreshes receipts itself.
+The admission worker is `python -m reachability.admission_trace --database-dir PATH`
+(optionally `--native`), with the same one-line initial/event exchange as deployment.
+`restart` reopens the authority while the stream adapter retains observed aliases
+and position; a fresh worker cannot resume an arbitrary old stream directory.
+The normal harness still shares a process with its adapter, without OS isolation.
+
 ## Mutation witnesses and remaining work
 
 The unmodified corpus must pass before the same events are run under evaluator-only
@@ -191,15 +297,19 @@ the first divergent prefix and writes the offending actual trace:
 
 | Mutant | Witness | Reference → faulty output |
 | --- | --- | --- |
+| M05 shared lineage treated as independent evidence | a14, prefix 5, event e004 | UNKNOWN → PASS; duplicated reports gain confidence 2/3 |
 | M06 ACK treated as durable success | d01, prefix 7, event e006 | PENDING → OBSERVED_SUCCESS immediately after acceptance |
 | M11 censored outcome labeled failure | d07, prefix 3, event e002 | CENSORED → OBSERVED_FAILURE |
 
 The witnesses are first divergent prefixes, not generally minimized event sets.
-M01–M04 retain their existing unit witnesses. M05, M07–M10 and M12 remain open.
+M05 replaces shared measurement roots with separate report IDs during numerical
+revision; its canary confirms this defect ran. It is an evaluator-only patch and
+is removed before subsequent controls. M01–M04 retain their unit witnesses.
+M07–M10 and M12 remain open.
 
-Next extend the public trace and independent reference to grounded rule admission,
-multiple contexts, alternate derivations and lineage reuse. Expand the family/control
-matrix before implementing B0 and comparative scheduling. Complete family coverage,
+Next expose bounded public candidates and implement deterministic B0 scheduling
+over the verified interfaces, with explicit work accounting and additional family
+controls before comparative claims. Complete family coverage,
 general event shrinking, deterministic concurrent interleavings, hidden-world models,
 OS isolation, benchmark cost budgets and all pressure/attention experiments remain
 open in [the phased plan](IMPLEMENTATION_PLAN.md).

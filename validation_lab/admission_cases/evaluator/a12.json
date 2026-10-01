@@ -1,0 +1,145 @@
+{
+  "schema": "admission-case/v1",
+  "case_id": "a12",
+  "parent_instance_id": "admission-parent-0",
+  "split": "development",
+  "family": "F04",
+  "control": "revision_change",
+  "family_complete": false,
+  "events": [
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e000",
+      "kind": "context",
+      "arguments": {
+        "assumptions": [],
+        "clauses": [],
+        "context_id": "c0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e001",
+      "kind": "context",
+      "arguments": {
+        "assumptions": [],
+        "clauses": [],
+        "context_id": "c1"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e002",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 2,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e003",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c1",
+        "literal": 2,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e004",
+      "kind": "derive",
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e002"
+        ],
+        "rule_id": "r3"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e005",
+      "kind": "derive",
+      "arguments": {
+        "context_id": "c1",
+        "premises": [
+          "e003"
+        ],
+        "rule_id": "r3"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e006",
+      "kind": "policy",
+      "arguments": {
+        "clauses": [
+          [
+            -2
+          ]
+        ],
+        "context_id": "c0",
+        "revision": "h2"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e007",
+      "kind": "rule",
+      "arguments": {
+        "expected_revision": "1",
+        "rule": {
+          "conclusion": 4,
+          "premises": [
+            2
+          ],
+          "revision": "2",
+          "rule_id": "r3"
+        }
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e008",
+      "kind": "derive",
+      "arguments": {
+        "context_id": "c1",
+        "premises": [
+          "e003"
+        ],
+        "rule_id": "r3"
+      }
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 7,
+      "path": "projection.hard.e004.current",
+      "expected": false
+    },
+    {
+      "step": 7,
+      "path": "projection.hard.e005.current",
+      "expected": true
+    },
+    {
+      "step": 8,
+      "path": "projection.hard.e005.current",
+      "expected": false
+    },
+    {
+      "step": 9,
+      "path": "projection.contexts.c1.hard.4",
+      "expected": "PASS"
+    }
+  ]
+}

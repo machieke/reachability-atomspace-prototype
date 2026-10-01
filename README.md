@@ -403,7 +403,8 @@ reopens the goal while preserving the completed artifact's lifecycle history.
 | `reachability/decisions.py`, `reachability/decision_model.py` | Versioned numerical acceptance contracts and exact action witnesses |
 | `reachability/decision_demo.py` | Full deployment episode with numerical gates, native adapters and checked recovery |
 | `reachability/trace_protocol.py`, `reachability/deployment_trace.py` | Strict public event protocol and actual deployment trace capture |
-| `validation_lab/` | Independent cold deployment oracle, fixed/seeded cases, corpus receipts and M06/M11 witnesses |
+| `reachability/admission_protocol.py`, `reachability/admission_trace.py` | Grounded rule/context/lineage messages and actual admission traces |
+| `validation_lab/` | Independent cold deployment/admission oracles, fixed/seeded cases, receipts and M05/M06/M11 witnesses |
 | `adapters.lock.json`, `scripts/build_adapters.py` | Exact upstream revisions and isolated native build |
 | `reachability/adapter_demo.py`, `integration_tests/` | Explicit optional suite using both real runtimes |
 | `reachability/demo.py` | Executable public-API walkthrough |
@@ -451,6 +452,16 @@ as failure) are detected with first-divergence traces and invocation canaries.
 The public worker accepts one event at a time; the default harness shares a Python
 process with the runtime adapter. No full process/filesystem isolation is claimed.
 
+The separate admission profile adds sixteen fixed controls for grounded rule
+premises, joint consistency, context separation and shared evidence lineage. It
+compares 127 fixed and 168 seeded prefixes, reopening the authority after each.
+Its independent oracle enumerates Boolean worlds and computes finite numerical
+revision with rational operations rounded at the declared binary64 boundaries.
+M05 (duplicate lineage counted as independent evidence) diverges at a14 prefix 5.
+Run `uv run --no-project python -m validation_lab.run_admission`; add `--native`
+to use the pinned PeTTa/PLN adapter. Neither profile changes the core admission
+contracts or claims the full 64-fixture benchmark is complete.
+
 ## Current limits and next work
 
 This is an in-process API with trusted callers, not a sandbox for hostile Python
@@ -467,11 +478,12 @@ episode now use real optional adapters. The native demo runs with
 `uv run --no-project python -m reachability.decision_demo`; see [DECISIONS.md](DECISIONS.md).
 Persistent native storage, FDAS, ECAN and Freeciv integration remain pending.
 Pressure and transport remain the supplied standalone numerical examples. The
-64-fixture target, M05/M07/M08/M09/M10/M12 mutants and performance experiments are still pending.
+64-fixture target, M07/M08/M09/M10/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next extend the trace/oracle to grounded rule admission, multiple contexts and
-lineage reuse, then expand the fixture families and baseline scheduler. Goal loss
+Next add bounded public candidate enumeration and a deterministic B0 scheduler
+over the verified interfaces, with explicit work counters and remaining family
+controls. General trace shrinking and controlled interleavings remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding
 remain explicit phase 1 backlog items.

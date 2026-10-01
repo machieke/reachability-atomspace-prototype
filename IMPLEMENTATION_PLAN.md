@@ -48,10 +48,12 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, tenth increment): the bounded deployment
-episode now has versioned public events and actual traces, an independent cold
-oracle, eight fixed development cases checked at every prefix and recovery boundary,
-and M06/M11 mutation witnesses. Broader phase 1/2 semantics, authoritative native
+Current checkpoint (1 October 2026, eleventh increment): deployment and grounded
+admission now have separate public event/trace profiles and independent cold
+oracles. Sixteen admission controls add rules, contexts, exact alternatives, shared
+lineage and M05 to the existing eight deployment cases and M06/M11 witnesses.
+Every fixed/seeded prefix is checked before and after journal replay.
+Broader phase 1/2 semantics, authoritative native
 storage, family-complete validation and phase 5–8 pressure/attention work remain open.
 The latest execution record below defines the next concrete increment.
 
@@ -799,3 +801,69 @@ control coverage for these mechanisms and the next applicable mutation witnesses
 then develop B0 over the verified public interfaces. General shrinking, controlled
 concurrent interleavings and evaluator process/filesystem isolation remain phase 4
 work. Broader phase 1/3 scope and phases 5–8 remain open.
+
+### Eleventh increment on 1 October 2026
+
+Implemented the grounded rule/context/lineage validation increment in four steps:
+
+1. **Additive public admission profile.** Added `admission-initial/v1`,
+   `admission-event/v1` and `admission-trace/v1`. Up to eight declared atoms and
+   eight grounded rules feed four explicit contexts with finite CNF policies.
+   Events cover ordered derivation, rule/policy replacement, expiry, revocation,
+   independent or shared-root numerical reports and explicit revision models.
+   Nested wire arrays are immutable after validation. Exact event aliases identify
+   actual committed revisions, preserving duplicate admission, alternative proofs
+   and historical retirement without substituting an equivalent parent.
+2. **Independent cold reference and recovery.** Added an evaluator-only oracle
+   importing `copy` and `fractions`. Exhaustive Boolean worlds check consistency
+   independently of runtime DPLL. A separate dependency graph models context-local
+   clocks, exact retirement and shared leaf lineage. Rational operations with
+   explicit binary64 rounding check numerical revision without runtime helpers or
+   tolerance. The shared harness compares complete actual semantic projections
+   and reopens the authority at every prefix. Original deployment schemas, service
+   record layouts, journal commands and admission semantics remain unchanged.
+3. **Scoped four-control matrix.** Added positive, blocked, boundary and revision
+   controls for F01 ordered premises, F02 joint consistency, F04 context separation
+   and F05 lineage reuse. Sixteen fixed cases contain 127 prefixes; eight seed-17041
+   cases add 168 prefixes without outcome filtering. The corpus records neutral
+   public inputs separately from evaluator schedules/checkpoints and pins source
+   and fixture receipts. All descendants stay in the development split. These are
+   bounded mechanism controls, with zero claims of complete benchmark families.
+4. **M05 and native evidence.** The shared-lineage mutant substitutes separate
+   report IDs for measurement roots, incorrectly accepting duplicated reports as
+   independent evidence. The unmodified a14 control blocks revision at prefix 5;
+   M05 instead produces PASS and confidence 2/3. A canary confirms invocation,
+   and the raw offending output is saved before comparison. Optional native runs
+   use actual PeTTa/PLN inference, and integration tests compare AtomSpace hard and
+   numerical projections before and after journal replay.
+
+Verification for this increment:
+
+- 543 default tests pass, including 17 new admission protocol/conformance tests.
+- 69 optional native tests pass, including every fixed admission case against the
+  cold oracle and projection/replay checks across contexts and retired lineage.
+- All 15 original standalone reference checks pass unchanged; supplied design
+  input hashes still match. Existing committed-version journal checks pass.
+- Fixed/seeded admission checks compare and recover 295 prefixes, in addition to
+  the previous 388 deployment prefixes. These counts exclude extra focused and
+  metamorphic cases, which cover renamed identities, commuting contexts, eight-atom
+  bounds, nested numerical revision, exact model retirement, subnormal/near-one
+  rounding, invalid policy replacement and streaming one-event subprocess I/O.
+- Both corpus receipts reject unlisted files and source drift. Actual reports retain
+  failures and mutation traces; no comparator rewrites or repairs emitted output.
+
+This completes the planned grounded admission trace/oracle extension. It does not
+complete phase 4: F01 search, F04 changing goals/fields, broader F05 hidden-source
+models, the 64-fixture target, general shrinking, concurrent interleavings and OS
+isolation remain open. Native AtomSpace is still a disposable projection, and
+numerical deduction retains separate unit/native contracts rather than this trace
+oracle. M01–M06 and M11 have witnesses; M07–M10 and M12 remain open.
+
+Next increment: introduce bounded public candidate enumeration and deterministic
+B0 scheduling over the verified service interfaces. First specify candidate/cost
+records and deterministic ordering, then implement a gate-driven scheduler with
+separate work counters, and finally compare closed-loop prefixes against fixed
+reference episodes. Add applicable family controls and mutation witnesses before
+making comparative performance claims. General shrinking, evaluator OS isolation
+and controlled interleavings remain separate phase 4 deliverables; broader phase
+1/3 items and phases 5–8 remain open.

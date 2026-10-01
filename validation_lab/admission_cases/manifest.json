@@ -1,23 +1,32 @@
 {
-  "schema": "deployment-corpus/v1",
+  "schema": "admission-corpus/v1",
   "split": "development",
-  "parent_instance_id": "deployment-parent-0",
-  "case_count": 8,
-  "event_prefixes": 137,
+  "parent_instance_id": "admission-parent-0",
+  "case_count": 16,
+  "event_prefixes": 127,
   "fixture_files": {
-    "validation_lab/deployment_cases/evaluator/d01.json": "701c49b4344b25051b93ab976bc99e4acecd02d002da73fcb4e671996ccac087",
-    "validation_lab/deployment_cases/evaluator/d02.json": "3042238fe9a3ce32ead21ef59ed60be6496aa540f332186c655b74a05a71ad67",
-    "validation_lab/deployment_cases/evaluator/d03.json": "34584123e8622c565cec0d1a959bcd0ec41d8f4f7aa5e0656c898e2893d1b9ef",
-    "validation_lab/deployment_cases/evaluator/d04.json": "1f6e78948c25b47136552cf44f666e3628fde51dcd50c8e1761a1c7a2c2089b4",
-    "validation_lab/deployment_cases/evaluator/d05.json": "333a377511f151c388b64f65c3d68e9018f8c9195662bfa54efec765d05a31e0",
-    "validation_lab/deployment_cases/evaluator/d06.json": "a2a7f49f03fa7a7d8bc178caeee28d5b55c37ab4bac529eeafc863ff56e84355",
-    "validation_lab/deployment_cases/evaluator/d07.json": "a0f17432be8f4c8f6bb3ab8cea56201de9035cf6c3f4d20c28560c5efce3ffb2",
-    "validation_lab/deployment_cases/evaluator/d08.json": "bccb523ac2b7b37f48cad86e6b82adc370d80633d4de9d7067df70fb2d822e48",
-    "validation_lab/deployment_cases/public/initial.json": "a6358977d9a5dde7080e0a32fa6c3a837e7c487bc217405e1005e3cf973cc87c"
+    "validation_lab/admission_cases/evaluator/a01.json": "74b5909dac0a45445b89589ca47c016d503456c1b51b61b3ab6bf3199d709cb2",
+    "validation_lab/admission_cases/evaluator/a02.json": "424b9cb488481745cfdf39f4cb3c226b7e877c3d49c099c204b775ee23d8828b",
+    "validation_lab/admission_cases/evaluator/a03.json": "484aad953e3026f1ce830f447aea9a2ee926aafc87378f8c430add1de742638d",
+    "validation_lab/admission_cases/evaluator/a04.json": "188c4535a9158c97cb3188fe6765f0e65c9893ab8e1b90928caa2cd0557de2f0",
+    "validation_lab/admission_cases/evaluator/a05.json": "46a2a778678c902e940d7a6d54b8ce8336646d570214fbf4bdfe712fc7e8a9c7",
+    "validation_lab/admission_cases/evaluator/a06.json": "7168e7191cc3a297f78f3a1af4a90c68dcb8dd44427c94d2b70034d132fd4f8e",
+    "validation_lab/admission_cases/evaluator/a07.json": "3a97aecc2941c2f2bc75445b163d2f7d9707780723679722de6293f9d927971c",
+    "validation_lab/admission_cases/evaluator/a08.json": "e1f492d1e0a15d127598a8659a6cba39a59abcfe0a214f709cea197b45d6d636",
+    "validation_lab/admission_cases/evaluator/a09.json": "55d6be6957263a44d815bedf81e6f5c2b0a609faac4a9e9cb6821800516de43c",
+    "validation_lab/admission_cases/evaluator/a10.json": "a2726525827c644a09af36ced22a3e07945863d6faab2c6634fbb96ba62a8650",
+    "validation_lab/admission_cases/evaluator/a11.json": "75e7503e345a2b738e4069f632ead43a7a4eb1f1cf92b8c3b51a3dd246e20877",
+    "validation_lab/admission_cases/evaluator/a12.json": "1c61d2aa2f1b3c9252bf1377f58d9abccc2d3c8b6343bf173bf015fc0c1f0bcb",
+    "validation_lab/admission_cases/evaluator/a13.json": "40bdc00790a7616720f17e7ee3c93ea9737cb2274c7b660b4083c01fa488b736",
+    "validation_lab/admission_cases/evaluator/a14.json": "856549efa55c2dd8e91ea2e1680aaaa91982c6fb880052709587cd31aac23b10",
+    "validation_lab/admission_cases/evaluator/a15.json": "8008e6affb72332685b03f849f011259ed4cc90a4930a35596d391844878e29e",
+    "validation_lab/admission_cases/evaluator/a16.json": "f7ef9ce4a0f6ce836dd67c03edade7874174e9d76aa38fea555b3fc3482e4bbb",
+    "validation_lab/admission_cases/public/initial.json": "952134214f8f57966ece1eb89a25126c186344f2503b800f9d2e8c3936da28ee"
   },
   "source_files": {
-    "validation_lab/deployment_oracle.py": "099713862046c6fa47f5b3c83ef61fceb93b38ff42094952d7a67e91d872e7fe",
-    "validation_lab/generate_deployment_cases.py": "f36feedada2f6f88d02b4c1c88a3eff0374e05da7f0b4ccc0625c308c9ffa72c",
+    "validation_lab/admission_oracle.py": "2617e8c53f268be3f319981119cd1a34e1d2db0a878f84ac365896cd019c91fd",
+    "validation_lab/generate_admission_cases.py": "e7dc8f482501b6622d84de9ca690f4f3ba0526da670ad3da06a6a19ca422100b",
+    "validation_lab/run_admission.py": "801c64f8fa238a413a87c7c2410af4dc781d401285b1502ed4ccfbbb864c38ad",
     "validation_lab/run_deployment.py": "cdef11c1c849b7d440ddea43b099ff0e4b84a47c01798ed61a7c871c6fc257c8",
     "validation_lab/mutations.py": "5bee2e535ef42c724c61c814d97ecc40f36d0eee94f7fd21c888398eb4b06bcf",
     "reachability/__init__.py": "4c10860356f4121048f53b527575b1dc362f2fe9fec45fc2324776107f76d984",
@@ -62,7 +71,33 @@
     "reachability/simulated_executor.py": "1661b3c75680849a5959e2edade8ac585cacb85b65702246b79e9f9d81ea0c3b",
     "reachability/trace_protocol.py": "74ef7818eb1b480f84298ab063e1a929ece5371e2fffe4e08ec47004b39469aa"
   },
+  "control_coverage": {
+    "F01": {
+      "positive": "a01",
+      "blocked": "a02",
+      "boundary": "a03",
+      "revision_change": "a04"
+    },
+    "F02": {
+      "positive": "a05",
+      "blocked": "a06",
+      "boundary": "a07",
+      "revision_change": "a08"
+    },
+    "F04": {
+      "positive": "a09",
+      "blocked": "a10",
+      "boundary": "a11",
+      "revision_change": "a12"
+    },
+    "F05": {
+      "positive": "a13",
+      "blocked": "a14",
+      "boundary": "a15",
+      "revision_change": "a16"
+    }
+  },
   "family_complete_fixtures": 0,
   "target_family_complete_fixtures": 64,
-  "scope": "bounded deployment conformance; partial family coverage; no performance or calibration claim"
+  "scope": "grounded finite admission mechanisms only; no goals, search, inheritance or family-completeness claim"
 }

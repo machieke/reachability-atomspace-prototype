@@ -1,0 +1,115 @@
+{
+  "schema": "admission-case/v1",
+  "case_id": "a08",
+  "parent_instance_id": "admission-parent-0",
+  "split": "development",
+  "family": "F02",
+  "control": "revision_change",
+  "family_complete": false,
+  "events": [
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e000",
+      "kind": "context",
+      "arguments": {
+        "assumptions": [],
+        "clauses": [],
+        "context_id": "c0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e001",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e002",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 2,
+        "roots": [
+          "s1"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e003",
+      "kind": "derive",
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e001",
+          "e002"
+        ],
+        "rule_id": "r0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e004",
+      "kind": "policy",
+      "arguments": {
+        "clauses": [
+          [
+            -1,
+            -2
+          ]
+        ],
+        "context_id": "c0",
+        "revision": "h2"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e005",
+      "kind": "adopt",
+      "arguments": {
+        "context_id": "c0",
+        "evidence_id": "e001"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e006",
+      "kind": "adopt",
+      "arguments": {
+        "context_id": "c0",
+        "evidence_id": "e002"
+      }
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 5,
+      "path": "projection.contexts.c0.hard.1",
+      "expected": "STALE"
+    },
+    {
+      "step": 5,
+      "path": "projection.contexts.c0.hard.2",
+      "expected": "STALE"
+    },
+    {
+      "step": 6,
+      "path": "outcome.status",
+      "expected": "PASS"
+    },
+    {
+      "step": 7,
+      "path": "outcome.status",
+      "expected": "FAIL"
+    }
+  ]
+}

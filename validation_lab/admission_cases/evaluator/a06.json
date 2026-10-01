@@ -1,0 +1,111 @@
+{
+  "schema": "admission-case/v1",
+  "case_id": "a06",
+  "parent_instance_id": "admission-parent-0",
+  "split": "development",
+  "family": "F02",
+  "control": "blocked",
+  "family_complete": false,
+  "events": [
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e000",
+      "kind": "context",
+      "arguments": {
+        "assumptions": [],
+        "clauses": [
+          [
+            -1,
+            -2
+          ]
+        ],
+        "context_id": "c0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e001",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e002",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 2,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e003",
+      "kind": "adopt",
+      "arguments": {
+        "context_id": "c0",
+        "evidence_id": "e002"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e004",
+      "kind": "estimate",
+      "arguments": {
+        "confidence": 0.5,
+        "context_id": "c0",
+        "literal": 2,
+        "roots": [
+          "s0"
+        ],
+        "strength": 0.75,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e005",
+      "kind": "derive",
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e001",
+          "e002"
+        ],
+        "rule_id": "r0"
+      }
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 3,
+      "path": "outcome.status",
+      "expected": "FAIL"
+    },
+    {
+      "step": 5,
+      "path": "projection.contexts.c0.hard.2",
+      "expected": "UNKNOWN"
+    },
+    {
+      "step": 5,
+      "path": "projection.contexts.c0.numeric.2",
+      "expected": "PASS"
+    },
+    {
+      "step": 6,
+      "path": "outcome.status",
+      "expected": "UNKNOWN"
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "schema": "admission-case/v1",
+  "case_id": "a10",
+  "parent_instance_id": "admission-parent-0",
+  "split": "development",
+  "family": "F04",
+  "control": "blocked",
+  "family_complete": false,
+  "events": [
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e000",
+      "kind": "context",
+      "arguments": {
+        "assumptions": [],
+        "clauses": [],
+        "context_id": "c0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e001",
+      "kind": "context",
+      "arguments": {
+        "assumptions": [],
+        "clauses": [],
+        "context_id": "c1"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e002",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e003",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c1",
+        "literal": 2,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e004",
+      "kind": "derive",
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e002",
+          "e003"
+        ],
+        "rule_id": "r0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e005",
+      "kind": "adopt",
+      "arguments": {
+        "context_id": "c1",
+        "evidence_id": "e002"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e006",
+      "kind": "estimate",
+      "arguments": {
+        "confidence": 0.5,
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "strength": 0.25,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e007",
+      "kind": "estimate",
+      "arguments": {
+        "confidence": 0.5,
+        "context_id": "c1",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "strength": 0.75,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e008",
+      "kind": "independence",
+      "arguments": {
+        "context_id": "c0",
+        "justification": "declared-study",
+        "model_id": "m0",
+        "premises": [
+          "e006",
+          "e007"
+        ]
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e009",
+      "kind": "revise",
+      "arguments": {
+        "context_id": "c0",
+        "model_id": "m0",
+        "premises": [
+          "e006",
+          "e007"
+        ]
+      }
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 5,
+      "path": "outcome.status",
+      "expected": "FAIL"
+    },
+    {
+      "step": 6,
+      "path": "outcome.status",
+      "expected": "FAIL"
+    },
+    {
+      "step": 9,
+      "path": "outcome.status",
+      "expected": "FAIL"
+    },
+    {
+      "step": 10,
+      "path": "outcome.status",
+      "expected": "FAIL"
+    }
+  ]
+}

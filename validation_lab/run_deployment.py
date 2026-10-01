@@ -34,22 +34,23 @@ def at(value, path):
     return value
 
 
-def verify_corpus():
-    manifest = json.loads((CORPUS / "manifest.json").read_text())
-    if manifest.get("schema") != "deployment-corpus/v1":
-        raise ValueError("unsupported deployment corpus schema")
+def verify_corpus(*, corpus=None, schema="deployment-corpus/v1", loader=None):
+    corpus = CORPUS if corpus is None else corpus
+    manifest = json.loads((corpus / "manifest.json").read_text())
+    if manifest.get("schema") != schema:
+        raise ValueError("unsupported corpus schema")
     actual_files = {str(path.relative_to(ROOT)) for directory in ("public", "evaluator")
-                    for path in (CORPUS / directory).rglob("*.json")}
+                    for path in (corpus / directory).rglob("*.json")}
     if actual_files != set(manifest["fixture_files"]):
-        raise ValueError("deployment corpus contains missing or unlisted fixture files")
+        raise ValueError("corpus contains missing or unlisted fixture files")
     for section in ("fixture_files", "source_files"):
         for name, expected in manifest[section].items():
             if sha256((ROOT / name).read_bytes()).hexdigest() != expected:
-                raise ValueError("deployment corpus/source receipt mismatch: " + name)
-    _, cases = load_cases()
+                raise ValueError("corpus/source receipt mismatch: " + name)
+    _, cases = (load_cases if loader is None else loader)()
     if (len(cases) != manifest["case_count"] or sum(len(c["events"]) for c in cases) != manifest["event_prefixes"]
             or any(c["split"] != manifest["split"] or c["parent_instance_id"] != manifest["parent_instance_id"] for c in cases)):
-        raise ValueError("deployment corpus counts or split ancestry differ from the receipt")
+        raise ValueError("corpus counts or split ancestry differ from the receipt")
     return manifest
 
 
@@ -59,25 +60,28 @@ def load_cases():
     return initial, cases
 
 
-def run_case(initial, case, *, restart_every_prefix=True, trace_path=None):
+def run_case(initial, case, *, restart_every_prefix=True, trace_path=None,
+             session_factory=DeploymentSession, reference=reference_prefix):
     # Only public initial data enters the runtime constructor. Future events and
     # checkpoint labels stay here and are never passed to service/checker methods.
     events, records = case["events"], []
     output = open(trace_path, "w") if trace_path is not None else None
     try:
-        with TemporaryDirectory() as directory, DeploymentSession(initial, directory) as session:
-            compare(reference_prefix(asdict(initial), ())["projection"], session.projection(), "initial")
+        public_initial = initial.wire() if hasattr(initial, "wire") else asdict(initial)
+        with TemporaryDirectory() as directory, session_factory(initial, directory) as session:
+            compare(reference(public_initial, ())["projection"], session.projection(), "initial")
             for index, message in enumerate(events):
                 record = session.apply(message)
                 records.append(record)
                 if output is not None:
                     output.write(canonical(record) + "\n")
                     output.flush()  # Preserve actual offending output before evaluating it.
-                expected = reference_prefix(asdict(initial), events[:index+1])
+                expected = reference(public_initial, events[:index+1])
                 compare(expected["status"], record["outcome"]["status"], message["event_id"], "outcome.status")
                 compare(expected["projection"], record["projection"], message["event_id"])
-                compare(expected["executor_effects"], record["instrumentation"]["executor_effects"],
-                        message["event_id"], "instrumentation.executor_effects")
+                if "executor_effects" in expected:
+                    compare(expected["executor_effects"], record["instrumentation"]["executor_effects"],
+                            message["event_id"], "instrumentation.executor_effects")
                 if fingerprint(record["projection"]) != record["projection_digest"]:
                     raise ValueError("trace projection digest mismatch")
                 for checkpoint in case.get("checkpoints", ()):
@@ -86,19 +90,20 @@ def run_case(initial, case, *, restart_every_prefix=True, trace_path=None):
                 if restart_every_prefix:
                     session.restart()
                     compare(expected["projection"], session.projection(), message["event_id"], "recovered_projection")
-                    compare(expected["executor_effects"], session.executor.total_effects,
-                            message["event_id"], "recovered_executor_effects")
+                    if "executor_effects" in expected:
+                        compare(expected["executor_effects"], session.executor.total_effects,
+                                message["event_id"], "recovered_executor_effects")
         return records
     finally:
         if output is not None:
             output.close()
 
 
-def mutation_witness(initial, case, name, *, trace_path=None):
+def mutation_witness(initial, case, name, *, trace_path=None, **run_options):
     from .mutations import mutate
     with mutate(name) as canary:
         try:
-            run_case(initial, case, restart_every_prefix=False, trace_path=trace_path)
+            run_case(initial, case, restart_every_prefix=False, trace_path=trace_path, **run_options)
         except ConformanceMismatch as error:
             if canary["calls"] == 0:
                 raise AssertionError("mutation was not invoked") from error

@@ -1,0 +1,115 @@
+{
+  "schema": "admission-case/v1",
+  "case_id": "a02",
+  "parent_instance_id": "admission-parent-0",
+  "split": "development",
+  "family": "F01",
+  "control": "blocked",
+  "family_complete": false,
+  "events": [
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e000",
+      "kind": "context",
+      "arguments": {
+        "assumptions": [],
+        "clauses": [],
+        "context_id": "c0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e001",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e002",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 4,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e003",
+      "kind": "derive",
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e001"
+        ],
+        "rule_id": "r0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e004",
+      "kind": "derive",
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e001",
+          "e002"
+        ],
+        "rule_id": "r0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e005",
+      "kind": "derive",
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "e002",
+          "e001"
+        ],
+        "rule_id": "r0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e006",
+      "kind": "derive",
+      "arguments": {
+        "context_id": "c0",
+        "premises": [
+          "absent",
+          "e001"
+        ],
+        "rule_id": "r0"
+      }
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 4,
+      "path": "outcome.status",
+      "expected": "UNKNOWN"
+    },
+    {
+      "step": 5,
+      "path": "outcome.status",
+      "expected": "FAIL"
+    },
+    {
+      "step": 7,
+      "path": "outcome.status",
+      "expected": "FAIL"
+    }
+  ]
+}

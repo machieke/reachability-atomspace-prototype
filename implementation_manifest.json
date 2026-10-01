@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "deployment-event-traces-and-independent-prefix-validation",
+  "implementation_stage": "grounded-admission-context-lineage-prefix-validation",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -148,18 +148,21 @@
     "native_deployment_decision_demo": true,
     "versioned_deployment_event_traces": true,
     "independent_deployment_prefix_oracle": true,
-    "streamed_public_event_worker": true
+    "streamed_public_event_worker": true,
+    "versioned_admission_event_traces": true,
+    "independent_admission_prefix_oracle": true,
+    "shared_lineage_mutation_witness": true
   },
   "mutation_witnesses": [
     "M01",
     "M02",
     "M03",
     "M04",
+    "M05",
     "M06",
     "M11"
   ],
   "remaining_designated_mutants": [
-    "M05",
     "M07",
     "M08",
     "M09",
@@ -223,5 +226,44 @@
     "implicit_boolean_promotion": false,
     "calibrated_risk_guarantee": false,
     "joint_probability_across_criteria": false
+  },
+  "admission_validation": {
+    "initial_schema": "admission-initial/v1",
+    "event_schema": "admission-event/v1",
+    "trace_schema": "admission-trace/v1",
+    "corpus_manifest": "validation_lab/admission_cases/manifest.json",
+    "mode": "conformance",
+    "split": "development",
+    "fixed_cases": 16,
+    "fixed_compared_and_recovered_prefixes": 127,
+    "generated_seed": 17041,
+    "generated_cases": 8,
+    "generated_compared_and_recovered_prefixes": 168,
+    "scoped_family_controls": {
+      "F01": 4,
+      "F02": 4,
+      "F04": 4,
+      "F05": 4
+    },
+    "family_complete_fixtures": 0,
+    "family_complete_target": 64,
+    "max_events_per_trace": 128,
+    "max_atoms": 8,
+    "max_rules": 8,
+    "max_contexts": 4,
+    "max_clauses_per_context": 32,
+    "max_literals_per_clause": 8,
+    "sources": "explicit-shared-or-disjoint-lineage-roots",
+    "oracle": "cold-exhaustive-boolean-worlds-and-rational-binary64-revision",
+    "numerical_comparison": "exact-no-tolerance",
+    "numerical_deduction": false,
+    "inference_search": false,
+    "native_revision_inference_tested": true,
+    "native_projection_recovery_tested": true,
+    "default_harness_process": "shared-with-runtime-adapter",
+    "separate_process_worker_tested": true,
+    "filesystem_isolation": false,
+    "normalized_performance_budget": false,
+    "closed_loop_scheduler": false
   }
 }

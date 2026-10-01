@@ -2,8 +2,8 @@
 
 Each test first proves the valid service blocks the violation, then deliberately
 breaks one contract and proves the same public scenario exposes that violation.
-This initial set covers M01–M04. Deployment trace witnesses for M06/M11 live
-in test_deployment_traces.py; the remaining designated mutants stay open.
+This initial set covers M01–M04. M05 lives in test_admission_traces.py;
+M06/M11 live in test_deployment_traces.py. The other mutants stay open.
 """
 from dataclasses import replace
 from itertools import combinations

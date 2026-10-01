@@ -1,0 +1,100 @@
+{
+  "schema": "admission-case/v1",
+  "case_id": "a07",
+  "parent_instance_id": "admission-parent-0",
+  "split": "development",
+  "family": "F02",
+  "control": "boundary",
+  "family_complete": false,
+  "events": [
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e000",
+      "kind": "context",
+      "arguments": {
+        "assumptions": [],
+        "clauses": [
+          [
+            -1,
+            -2
+          ]
+        ],
+        "context_id": "c0"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e001",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 1,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": 2
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e002",
+      "kind": "evidence",
+      "arguments": {
+        "context_id": "c0",
+        "literal": 2,
+        "roots": [
+          "s0"
+        ],
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e003",
+      "kind": "tick",
+      "arguments": {
+        "context_id": "c0",
+        "time": 1
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e004",
+      "kind": "adopt",
+      "arguments": {
+        "context_id": "c0",
+        "evidence_id": "e002"
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e005",
+      "kind": "tick",
+      "arguments": {
+        "context_id": "c0",
+        "time": 2
+      }
+    },
+    {
+      "schema": "admission-event/v1",
+      "event_id": "e006",
+      "kind": "adopt",
+      "arguments": {
+        "context_id": "c0",
+        "evidence_id": "e002"
+      }
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 5,
+      "path": "outcome.status",
+      "expected": "FAIL"
+    },
+    {
+      "step": 7,
+      "path": "outcome.status",
+      "expected": "PASS"
+    }
+  ]
+}
