@@ -8,10 +8,10 @@
     "validation_lab/shrink_cases/expected/M06.json": "a7017065b50142953395e151251406f9800658a0cd2a74759cb7e2ad810de2d7",
     "validation_lab/shrink_cases/expected/M07.json": "1881554d56f81b51492578aaaa33a2e6e39f4813a530a38622f5692b7a2417fa",
     "validation_lab/shrink_cases/expected/M11.json": "01122b579a75125d5b69f2b2110a6eb2e489643289375d000764b074418c21d2",
-    "validation_lab/shrink_cases/seeds/M05.json": "135395df0bcf818019aad5570993ad618c9fa3ed676e6cfff481eb97265e21fa",
-    "validation_lab/shrink_cases/seeds/M06.json": "fbbf91ceefdc017b4b8be776e2d1753d9261943ffec0e50f7977ec808ba5066d",
-    "validation_lab/shrink_cases/seeds/M07.json": "8ee23ae02ff4986c83601f2e4c6d3d0d20491d657922b0e109bb4da1b48f0b87",
-    "validation_lab/shrink_cases/seeds/M11.json": "b9ae9f8c28ac09f94cdfbbfb3321e6ab28782e453bc8529c443e5d5c04128a59"
+    "validation_lab/shrink_cases/seeds/M05.json": "2e811282a8ca49ad35a986888035ee6fa80b4f79f63ecacaf5134cb27c9c9b0c",
+    "validation_lab/shrink_cases/seeds/M06.json": "63598359cc9b8c26745be97b40bbb763e2ded843e869cd8387e12b4e7f860960",
+    "validation_lab/shrink_cases/seeds/M07.json": "f1d1b8c5abaa348c5bcad423f9531e5386d3321fe97a4ff5bdd22b52caa705cd",
+    "validation_lab/shrink_cases/seeds/M11.json": "4817095e847f87fdf05d132b7039e59daf535da64ae179f5ea64c9beb9ae4fe7"
   },
   "source_files": {
     "adapters.lock.json": "373850b8382999d4e8c600f43608d1a404ff57ee20966c93c2b8988bba1bb0d3",
@@ -24,6 +24,7 @@
     "reachability/b0.py": "be8c36c8a4c1aa169aa003ff0b933a1c8a77e077d8e81b33ec8ccf5ddf512416",
     "reachability/codec.py": "f8392309c754c84333562e5f07d3d6533cefe9e9077c6a1e49f97c13449463df",
     "reachability/completion.py": "3a6c55c63e9aad9aa7968f4924ccf292c1be053a007b970614195586f89e7d2e",
+    "reachability/context_reconciliation.py": "02f2366c94ec78602b4650bb9ce38cd334a7bd5e2f0f88920a3653e6009b6192",
     "reachability/decision_demo.py": "aacc26df6b082b7a5eebffdaf833518f9e85126d04cabc7737897c80c7ec9585",
     "reachability/decision_model.py": "1aaacf83d33300b925f0419f1a34cfbb2037188dffd761e1439b580b2c5685c9",
     "reachability/decisions.py": "2b7faf21f773b160586c5bea520d5e6c682eb04ab2d910e6e4d6768e24d76210",
@@ -70,7 +71,7 @@
     "reachability/trace_protocol.py": "74ef7818eb1b480f84298ab063e1a929ece5371e2fffe4e08ec47004b39469aa",
     "reachability/trace_worker_state.py": "3040966a8a3be6ee767fcd22bde80146c7bdc6ef4138b9f3fa1305fa9d47d0f7",
     "reachability/worker_inspection.py": "f52c7b9b05522e694eeee578b30b6d53d3981eee0bfe2443fe814e9c84826a0b",
-    "reachability/worker_reconciliation.py": "10ae561838b85c569e811f469a1bc86a45b47818fb0eccd0481770b78a7a0984",
+    "reachability/worker_reconciliation.py": "b6fc47ade56b6707d47910e32af4d76acea849bb162a6742b01aa4641f33b68f",
     "validation_lab/admission_oracle.py": "2617e8c53f268be3f319981119cd1a34e1d2db0a878f84ac365896cd019c91fd",
     "validation_lab/b0_environment.py": "fb43b8746c924e43d7c0b19c8a1a9c70c5288d1403aa3e81dbd5772bb1e3d7d9",
     "validation_lab/deployment_oracle.py": "099713862046c6fa47f5b3c83ef61fceb93b38ff42094952d7a67e91d872e7fe",
@@ -85,14 +86,14 @@
   },
   "upstream_files": {
     "validation_lab/admission_cases/evaluator/a14.json": "856549efa55c2dd8e91ea2e1680aaaa91982c6fb880052709587cd31aac23b10",
-    "validation_lab/admission_cases/manifest.json": "818df6df5ff76df9564153b63f82e37b1bc251ebe9f02fccfba4ea39f14571cf",
+    "validation_lab/admission_cases/manifest.json": "d184e0158f55595ba344f77eb8ae53f3501b5e532102efee0ad61140dbfa2de3",
     "validation_lab/admission_cases/public/initial.json": "952134214f8f57966ece1eb89a25126c186344f2503b800f9d2e8c3936da28ee",
-    "validation_lab/b0_cases/manifest.json": "6924bdd743ba014087d7ea6c04427c443ff9653215f71165610a8f2f61143737",
+    "validation_lab/b0_cases/manifest.json": "e46a660543b0fb6a50e7c16d3ab51e8ca53c877e9d53bd5ce6ad33a8256ab1dd",
     "validation_lab/b0_cases/mutations/M07.json": "e860af37cebac916f792af22a24974e99e75f4d26db3c9cc6b4b520049ec10b7",
     "validation_lab/b0_cases/public/b01.json": "692152f61de2e7cc7804da8a271e3bc748e803c6dd3bc1a737104e9bf22f4ea4",
     "validation_lab/deployment_cases/evaluator/d01.json": "701c49b4344b25051b93ab976bc99e4acecd02d002da73fcb4e671996ccac087",
     "validation_lab/deployment_cases/evaluator/d07.json": "a0f17432be8f4c8f6bb3ab8cea56201de9035cf6c3f4d20c28560c5efce3ffb2",
-    "validation_lab/deployment_cases/manifest.json": "45f281adc2bad58fd537e36faf5f551f4ce405af87899d6e7fc30f6f26dbc2be",
+    "validation_lab/deployment_cases/manifest.json": "114bd14339c885f83c67f3939dd9e711b8e472e28e4fb381709e48e9b79dcd79",
     "validation_lab/deployment_cases/public/initial.json": "a6358977d9a5dde7080e0a32fa6c3a837e7c487bc217405e1005e3cf973cc87c"
   },
   "scope": "bounded order-preserving whole-event deletion; identical first divergence with a passing independent control; no global minimum claim"

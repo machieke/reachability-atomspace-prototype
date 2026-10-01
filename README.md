@@ -561,8 +561,13 @@ its inspected journals have not advanced. Generate a bound request with
 then apply it with
 `uv run --no-project python -m reachability.worker_reconciliation apply --request artifacts/cancel-1.json --inspection artifacts/inspection-1 --database-dir /path/to/worker`.
 The event is consumed with an exact historical `UNKNOWN` cancellation reply;
-new events can proceed after publication completes. Dispatch, executor commands
-and partial journal progress remain refused. See
+new events can proceed after publication completes.
+
+For an admission `context` event interrupted after exactly its `open_context`
+entry, generate the request with `--action complete_partial_context`. This verifies
+the stored command against the saved arguments and counter, appends only its
+missing probability-policy command, and publishes a historical `PASS` reply.
+Dispatch, executor commands and all other partial progress remain refused. See
 [bounded reconciliation](VALIDATION.md#bounded-explicit-worker-reconciliation)
 for evidence binding, durable decision receipts and crash recovery.
 
@@ -587,7 +592,8 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next extend explicit reconciliation to carefully specified partial local commands,
+Next extend explicit reconciliation beyond partial context creation to separately
+specified admission, numerical and lifecycle outcomes,
 then to dispatch and executor evidence where observed packets and fencing are
 fully accounted for. Remaining designated
 mutants and evaluator OS isolation remain open. Goal loss

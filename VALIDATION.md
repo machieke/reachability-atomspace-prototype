@@ -1198,9 +1198,10 @@ requires a fresh inspection. The original inspection bundle is retained unchange
 | --- | --- |
 | Admission event; no journal progress; complete saved wrapper validates | Explicit cancellation |
 | Local deployment event; no journal progress; complete saved wrapper validates | Explicit cancellation |
+| New admission context; exactly its matching `open_context` entry persisted | Explicit `complete_partial_context` |
 | Deployment `dispatch`, `reconcile` or `release` event | Refuse, including unchanged journal tips |
 | Any dispatch-profile event | Refuse in this increment |
-| Partial admission, numerical, lifecycle, goal or executor progress | Refuse and preserve evidence |
+| Other partial admission, numerical, lifecycle, goal or executor progress | Refuse and preserve evidence |
 | Stale/unverified evidence, changed command, invalid wrapper metadata or exhausted event budget | Refuse before publishing a decision |
 
 Local deployment events are `fact`, `forecast`, `revoke`, `tick`, `attempt`,
@@ -1210,7 +1211,7 @@ The whitelist excludes operations that might have performed executor I/O or lost
 transport-only observations without a new journal entry. Unchanged tips alone
 remain insufficient outside this explicitly supported set.
 
-The original wrapper is fully validated on private copies with the pending field
+For cancellation, the original wrapper is fully validated on private copies with the pending field
 removed there only. Its inventory, aliases, current rules, counters, historical
 replies and last projection must satisfy ordinary resume validation. The candidate
 checkpoint adds a cancellation reply, updates the event inventory/step/prefix,
@@ -1222,7 +1223,7 @@ issued. Existing uncertain remote occupancy and actual effects remain unchanged,
 including after lease expiry. Native numerical inference can continue later in a
 normally resumed worker with its original backend and aliases.
 
-Publication uses fsynced files, atomic replacement and directory fsync:
+Cancellation publication uses fsynced files, atomic replacement and directory fsync:
 
 1. Retain an immutable prepared record and exact before/after checkpoint files in
    `worker-reconciliations/<hash-of-decision-id>/`. Public IDs are hashed before
@@ -1263,8 +1264,9 @@ clears it. A malformed marker blocks workers, while the separate reconciliation
 path checks its integrity and exact prepared-record binding.
 
 Run `uv run --no-project python -m validation_lab.run_worker_reconciliation --output artifacts/reconciliation-probes-1`
-in a new directory. Twelve actual process probes span six crash boundaries for
-both supported profiles, including staging before an archive-file rename. Raw
+in a new directory. Twenty actual process probes include twelve cancellation
+probes spanning six crash boundaries for both supported profiles, and eight
+partial-context completion probes described below. Raw
 launch arguments/environment, stdout/stderr, exit codes, source/fault receipts,
 original inspections, decision archives and continued worker exchanges are
 retained. Independent public models check unchanged state for the cancellation
@@ -1277,5 +1279,70 @@ refusals, archive integrity, budgets, native continuation and crash publication.
 Existing worker/checkpoint, authority and executor schemas are unchanged. All nine
 existing corpus receipts are refreshed without changing cases, expected outcomes,
 schedules or reduced witnesses. No automatic interrupted-event replay, remote
-release, partial-command repair, new designated mutant, family-complete fixture
+release, general partial-command repair, new designated mutant, family-complete fixture
 or evaluator OS sandbox is introduced. Broader reconciliation remains open.
+
+### Completing a partially persisted context
+
+`complete_partial_context` supports a new admission context whose journal contains
+exactly the `open_context` entry after the saved wrapper boundary. Generate its
+bound request using:
+
+```sh
+uv run --no-project python -m reachability.worker_reconciliation request \
+  --inspection artifacts/inspection-1 --decision-id finish-context-1 \
+  --action complete_partial_context > artifacts/finish-context-1.json
+```
+
+Apply or retry it with the same `apply` command above and the new request path.
+Cancellation remains the default action and still refuses every partial command.
+
+Preparation rewinds only a disposable copy of the captured journal to the saved
+checkpoint boundary. Ordinary worker restoration validates all prior wrapper
+metadata, aliases, rules, replies and projection. The pending command must name a
+new context, fit the context and event bounds, and use a fresh event ID. The
+reconciler constructs the two known primitive commands on that private copy.
+Its first journal entry must exactly equal the captured `open_context`, including
+key, payload, result digest, sequence and hash chain. The key uses the saved global
+counter; the policy command uses the next value. No public composite event runs.
+
+The candidate adds the context alias, consumes one stream event, advances the
+counter by two, and stores a `PASS` reply with reconciliation diagnostics. Ordinary
+private restoration checks that checkpoint and its exact reply. A prepared v2
+record retains the single proposed policy entry in addition to the original and
+candidate checkpoints. Request/result schemas and existing worker/journal schemas
+are unchanged; cancellation continues using prepared v1 records.
+
+After the durable marker gates worker startup, the reconciler retains the same
+worker and journal locks and opens the existing authority SQLite database. A FULL
+synchronous transaction verifies the genesis and entire journal chain. It accepts
+only the inspected boundary or that boundary plus the exact prepared policy row.
+At the inspected boundary it inserts that one validated row. At the completed
+boundary it recognizes the earlier commit without inserting again. It never
+replaces a source database with its private candidate. Unrelated executor and
+ownership files must remain unchanged. SQLite may legitimately change authority
+database/WAL/SHM layout after preparation; logical journal boundaries govern these
+retries. Before preparation, the full captured byte inventory must still match.
+
+The completed checkpoint is published only after the policy commit. A published
+checkpoint with a missing policy entry is refused, as are extra or divergent
+journal entries. The durable result records the resulting journal tip and precedes
+marker removal. Exact retries can finish without the external inspection after
+preparation, and remain historical after later worker events. Offline verification
+reconstructs both the checkpoint and exact policy suffix from the original bundle.
+
+Eight process probes cover the six archive/checkpoint/result boundaries plus
+interruption inside the SQLite transaction and immediately after COMMIT. Each
+requires a gated worker until completion, exactly one appended command, an exact
+historical PASS reply and successful subsequent numerical admission checked by
+the independent public model. The v2 probe receipt retains original and completed
+inspections, process exchanges, fault/source hashes and decision archives.
+Thirteen additional unit tests cover mismatched arguments/counters/identity,
+budgets, existing contexts, wrong or extra progress, storage failure, retained
+ownership, historical retries and absent public/native/executor replay. One added
+native test continues through real PLN revision after completing the context.
+
+This action refuses unchanged journals, a fully persisted two-command context
+without a completed wrapper reply, existing-context events and all other partial
+admission/numerical/lifecycle/goal/dispatch commands. Those outcomes require
+separate transitions; none is inferred from this policy-suffix repair.

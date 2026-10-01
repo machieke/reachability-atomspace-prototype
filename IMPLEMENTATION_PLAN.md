@@ -48,16 +48,16 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, twenty-first increment): explicit cancellation
-now handles unstarted admission and local deployment events with unchanged
-inspected evidence and fully validated wrapper state. It consumes the original
-event ID with a durable UNKNOWN reply, preserves journals and remote uncertainty,
-and permits later new events. Prepared decisions gate all current worker profiles
-until checkpoint/result publication finishes. Twelve real-process probes exercise
-six reconciliation crash boundaries and exact retries. Partial progress, dispatch
-and executor I/O remain refused. Completed-command recovery still covers 32 cases
-and 361 fresh-process retries; family-complete validation, OS isolation, M09/M12
-and phases 5–8 remain open.
+Current checkpoint (1 October 2026, twenty-second increment): explicit context
+completion handles an admission command interrupted after its exact open_context
+entry. It validates the saved wrapper/counter, appends only the missing probability
+policy, and publishes a durable PASS reply under the worker gate. Cancellation
+still handles unstarted local events with UNKNOWN and unchanged journals. Twenty
+real-process probes cover both decisions, including crashes inside the policy
+transaction and immediately after commit. Other partial progress, dispatch and
+executor I/O remain refused. Completed-command recovery still covers 32 cases and
+361 fresh-process retries; family-complete validation, OS isolation, M09/M12 and
+phases 5–8 remain open.
 
 ## Phase 0 Repository contracts
 
@@ -1524,5 +1524,63 @@ Next increment, in order:
 3. Before adding dispatch/executor reconciliation, account for queued requests,
    lost observations, immutable older acknowledgements and authoritative fencing.
    Preserve unresolved occupancy until supported evidence permits its release.
+4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
+   target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.
+
+
+### Twenty-second increment on 1 October 2026
+
+1. Define the admission context boundary precisely: one matching open_context
+   entry after the saved wrapper tip, with arguments and idempotency key derived
+   from the original pending command and saved global counter. Refuse all other
+   progress, existing contexts, exhausted context/event bounds and stale evidence.
+2. Reconstruct and validate the prior wrapper and completed candidate on private
+   journals. Retain the exact missing probability-policy entry in a versioned
+   prepared archive; preserve all existing aliases, rules and historical replies.
+3. Publish the worker gate before a single FULL synchronous SQLite append under
+   retained worker/journal ownership. Recognize either the inspected boundary or
+   its exact completed suffix on retry. Publish the PASS checkpoint and result
+   before clearing the gate, without copying a private database into the source.
+4. Exercise refusal cases, crashes inside/beyond COMMIT, exact decision/event
+   retries, native PLN continuation and independent process expectations. Refresh
+   all nine corpus receipts and run the full default/native/reference suites
+   before committing and pushing.
+
+Implemented all four stages above. The new explicit complete_partial_context
+action uses prepared v2 records, while cancellation
+retains prepared v1. Request/result, worker and authority journal schemas remain
+unchanged. The result binds the completed journal tip; it remains historical after
+later events. Offline reproduction checks the exact missing entry as well as the
+before/after checkpoint bytes. No public composite event or executor I/O executes.
+
+Thirteen new unit tests exercise exact prefix/alias/counter preservation, refused
+progress and limits, checkpoint storage failure, absent inspection during retry,
+extra authority progress, missing committed work and retained ownership. Eight
+new process probes extend the existing twelve cancellation probes to twenty,
+including interruption before and after the SQLite COMMIT. Independent public
+models verify the completed context and subsequent numerical admission. A native
+integration check continues through real PLN revision after context completion.
+
+Verification: 774 default tests, 81 optional native integration tests and all
+15 standalone reference checks pass. The fresh 20-probe reconciliation report
+verifies successfully, as does the new CLI request binding. The full suite also
+repeats the 16 inspection probes and 32-case, 361-prefix public-worker corpus.
+All nine corpus receipts are refreshed; original design inputs, prior case
+schedules and expected outcomes remain unchanged. Existing reductions remain
+M05 12→5, M06 23→6, M07 2→2, M11 13→1, M08 5→1, M10 6→4,
+cached-send-gate 9→8 and expire-uncertain 8→7. There are still zero family-complete
+fixtures and no new designated mutants.
+
+Next increment, in order:
+
+1. Define adoption of an entirely persisted local composite whose final wrapper
+   checkpoint was lost, starting with the two-command admission context. Require
+   exact command/key/result chains and reconstructed counters, rather than a
+   blanket journal-advanced decision. Preserve immutable historical diagnostics.
+2. Specify additional partial admission/numerical/lifecycle/goal transitions
+   separately, with explicit alias, permit and revision reconstruction rules.
+3. Before dispatch/executor reconciliation, account for queued requests, lost
+   observations, immutable older acknowledgements and authoritative fencing;
+   preserve unresolved occupancy until supported evidence permits release.
 4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
    target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.

@@ -1,6 +1,5 @@
-"""Explicit cancellation of an unstarted local event, bound to captured evidence.
+"""Explicit bounded local decisions, bound to captured worker evidence.
 
-No authority journal command, public event or executor operation is executed.
 A prepared marker blocks worker startup until the exact decision is finished.
 """
 from copy import deepcopy
@@ -14,6 +13,7 @@ from tempfile import TemporaryDirectory, NamedTemporaryFile
 
 from .admission_protocol import AdmissionInitial, ARGUMENTS as ADMISSION_KINDS
 from .codec import decode, encode
+from . import context_reconciliation as context_completion
 from .dispatch_worker_state import atomic_write, MAX_CHECKPOINT
 from .journal import RecoveryError
 from .reconciliation_state import ARCHIVE, MARKER
@@ -23,6 +23,7 @@ from .worker_inspection import verify_inspection, owned_worker, capture_names, f
 
 REQUEST_SCHEMA = 'worker-reconciliation-request/v1'
 RECORD_SCHEMA = 'worker-reconciliation-prepared/v1'
+CONTEXT_RECORD_SCHEMA = 'worker-reconciliation-prepared/v2'
 RESULT_SCHEMA = 'worker-reconciliation-result/v1'
 ACTION = 'cancel_unstarted_local'
 LOCAL_DEPLOYMENT = frozenset(('fact','forecast','revoke','tick','attempt','reserve','cover','prepare',
@@ -38,8 +39,10 @@ def parse_request(value):
     if type(value) is not dict or set(value) != fields or value['schema'] != REQUEST_SCHEMA:
         raise ValueError('invalid reconciliation request fields/schema')
     identifier(value['decision_id'])
-    if value['action'] != ACTION or value['profile'] not in PROFILES:
+    if value['action'] not in (ACTION, context_completion.ACTION) or value['profile'] not in PROFILES:
         raise ValueError('unsupported reconciliation action/profile')
+    if value['action'] == context_completion.ACTION and value['profile'] != 'admission':
+        raise ValueError('context completion supports only admission')
     for name in ('inspection_digest','checkpoint_sha256','pending_digest'):
         if type(value[name]) is not str or len(value[name]) != 64 or any(c not in '0123456789abcdef' for c in value[name]):
             raise ValueError('invalid reconciliation digest')
@@ -56,11 +59,11 @@ def parse_request(value):
     return deepcopy(value)
 
 
-def make_request(inspection, decision_id):
+def make_request(inspection, decision_id, action=ACTION):
     report = verify_inspection(Path(inspection))
     if report['pending'] is None or report['checkpoint'] is None or report['errors']:
         raise RecoveryError('a verified pending command is required')
-    return parse_request(dict(schema=REQUEST_SCHEMA, decision_id=decision_id, action=ACTION, profile=report['profile'],
+    return parse_request(dict(schema=REQUEST_SCHEMA, decision_id=decision_id, action=action, profile=report['profile'],
         inspection_digest=fingerprint(report), checkpoint_sha256=report['evidence']['worker-checkpoint.json']['sha256'],
         pending_digest=fingerprint(report['pending']), journals={k:v['current'] for k,v in report['journals'].items()}))
 
@@ -116,8 +119,8 @@ def control(value):
 
 
 def journal_evidence(evidence):
-    # Checkpoint publication and its leftover temporary files are controlled by
-    # this decision. Database bytes and sidecars must remain exactly unchanged.
+    # Separate journal evidence from checkpoint/control publication. Cancellation
+    # preserves these bytes; context completion checks its exact logical suffix.
     return {k:v for k,v in evidence.items() if k == 'worker.lock' or k.startswith(('admission.db','executor.db'))}
 
 
@@ -182,18 +185,37 @@ def archive_path(directory, request):
     return directory/ARCHIVE/fingerprint(request['decision_id'])
 
 
+def candidate_plan(report, inspection, request):
+    if request['action'] == context_completion.ACTION:
+        return context_completion.candidate(report, inspection, request)
+    after, row = candidate_checkpoint(report, inspection, request)
+    return after, row, None
+
+
+def target_journals(record):
+    tips = deepcopy(record['request']['journals'])
+    if record['request']['action'] == context_completion.ACTION:
+        tips['authority'] = context_completion.target_tip(tips['authority'], record['authority_append'])
+    return tips
+
+
 def expected_result(record):
     return dict(schema=RESULT_SCHEMA, decision_id=record['request']['decision_id'],
-        request_digest=fingerprint(record['request']), action=ACTION, profile=record['request']['profile'],
-        event_id=record['event_id'], status='APPLIED', outcome='cancelled',
+        request_digest=fingerprint(record['request']), action=record['request']['action'], profile=record['request']['profile'],
+        event_id=record['event_id'], status='APPLIED',
+        outcome='cancelled' if record['request']['action'] == ACTION else 'completed',
         before_checkpoint_sha256=record['before_sha256'], after_checkpoint_sha256=record['after_sha256'],
-        journals=record['request']['journals'], reply_digest=record['reply_digest'])
+        journals=target_journals(record), reply_digest=record['reply_digest'])
 
 
 def validate_archive(archive, request):
     record = read_control(archive/'prepared.json')
-    if (type(record) is not dict or set(record) != {'schema','request','event_id','before_sha256','after_sha256','journal_files','reply_digest'}
-            or record['schema'] != RECORD_SCHEMA or record['request'] != request
+    completing = request['action'] == context_completion.ACTION
+    fields = {'schema','request','event_id','before_sha256','after_sha256','journal_files','reply_digest'}
+    if completing:
+        fields.add('authority_append')
+    if (type(record) is not dict or set(record) != fields
+            or record['schema'] != (CONTEXT_RECORD_SCHEMA if completing else RECORD_SCHEMA) or record['request'] != request
             or record['before_sha256'] != request['checkpoint_sha256']):
         raise RecoveryError('decision identity or prepared record differs')
     expected_files={'worker.lock'} | {base+suffix for base in ('admission.db','executor.db')
@@ -204,13 +226,18 @@ def validate_archive(archive, request):
         path=archive/name
         if not path.is_file() or path.stat().st_size > MAX_CHECKPOINT or digest_bytes(path.read_bytes()) != digest:
             raise RecoveryError('reconciliation checkpoint archive differs')
+    if completing:
+        before = json.loads((archive/'before.json').read_text())
+        if fingerprint(before['body']) != before['digest']:
+            raise RecoveryError('original checkpoint integrity differs')
+        context_completion.validate_append(record, decode(before['body']))
     after = json.loads((archive/'after.json').read_text())
     if fingerprint(after['body']) != after['digest']:
         raise RecoveryError('candidate checkpoint integrity differs')
     body=decode(after['body'])
     saved=body['completed'][record['event_id']]
     if (body['pending'] is not None or fingerprint(saved['command']) != request['pending_digest']
-            or fingerprint(saved['record']) != record['reply_digest'] or body['journals'] != request['journals']):
+            or fingerprint(saved['record']) != record['reply_digest'] or body['journals'] != target_journals(record)):
         raise RecoveryError('candidate reply/boundary differs')
     return record
 
@@ -219,15 +246,21 @@ def finish(directory, archive, record):
     marker=directory/MARKER
     if read_control(marker) != record:
         raise RecoveryError('another or corrupted reconciliation is pending')
-    actual=file_inventory(directory, sorted(record['journal_files']))
-    if actual != record['journal_files']:
-        raise RecoveryError('journal evidence changed during reconciliation')
     path=directory/'worker-checkpoint.json'
     current=digest_bytes(path.read_bytes())
     if current not in (record['before_sha256'],record['after_sha256']):
         raise RecoveryError('checkpoint changed during reconciliation')
+    actual=file_inventory(directory, sorted(record['journal_files']))
+    if record['request']['action'] == context_completion.ACTION:
+        mutable = {'admission.db'+suffix for suffix in ('','-wal','-shm','-journal')}
+        if any(actual[name] != value for name,value in record['journal_files'].items() if name not in mutable):
+            raise RecoveryError('unrelated journal evidence changed during reconciliation')
+        context_completion.append_under_ownership(directory,record,allow_append=current == record['before_sha256'])
+        sync_directory(directory)
+    elif actual != record['journal_files']:
+        raise RecoveryError('journal evidence changed during reconciliation')
     if current == record['before_sha256']:
-        atomic_write(path, json.loads((archive/'after.json').read_text()))  # Publish cancellation.
+        atomic_write(path, json.loads((archive/'after.json').read_text()))  # Publish the prepared reply.
     if digest_bytes(path.read_bytes()) != record['after_sha256']:
         raise RecoveryError('published checkpoint differs from prepared decision')
     result=expected_result(record)
@@ -275,11 +308,13 @@ def reconcile(request, directory, inspection):
             raise RecoveryError('request differs from inspected pending command/boundaries')
         if file_inventory(directory,capture_names(directory)) != report['evidence']:
             raise RecoveryError('inspection is stale; worker evidence changed')
-        after, row=candidate_checkpoint(report,inspection,request)
+        after, row, appended=candidate_plan(report,inspection,request)
         before=(directory/'worker-checkpoint.json').read_bytes()
         record=dict(schema=RECORD_SCHEMA, request=request, event_id=report['pending']['event_id'],
             before_sha256=digest_bytes(before), after_sha256=digest_bytes(after),
             journal_files=journal_evidence(report['evidence']), reply_digest=fingerprint(row))
+        if appended is not None:
+            record.update(schema=CONTEXT_RECORD_SCHEMA,authority_append=appended)
         mkdir_durable(directory/ARCHIVE)
         mkdir_durable(archive)
         # Preparation is repeatable after a crash before marker publication. Never
@@ -304,20 +339,20 @@ def verify_reconciliation(archive, inspection):
     request=parse_request(prepared['request'])
     record=validate_archive(archive,request)
     report=verify_inspection(inspection)
-    if make_request(inspection,request['decision_id']) != request:
+    if make_request(inspection,request['decision_id'],request['action']) != request:
         raise RecoveryError('decision differs from original inspection')
-    after,row=candidate_checkpoint(report,inspection,request)
+    after,row,appended=candidate_plan(report,inspection,request)
     if (after != (archive/'after.json').read_bytes()
             or (inspection/'snapshot'/'worker-checkpoint.json').read_bytes() != (archive/'before.json').read_bytes()
             or journal_evidence(report['evidence']) != record['journal_files']
-            or fingerprint(row) != record['reply_digest']):
+            or fingerprint(row) != record['reply_digest'] or appended != record.get('authority_append')):
         raise RecoveryError('decision cannot be reproduced from original evidence')
     if (archive/'result.json').exists():
         result=read_control(archive/'result.json')
         if result != expected_result(record):
             raise RecoveryError('durable reconciliation result differs')
         return result
-    return dict(schema=RECORD_SCHEMA,status='PREPARED',request_digest=fingerprint(request))
+    return dict(schema=record['schema'],status='PREPARED',request_digest=fingerprint(request))
 
 
 def main():
@@ -326,12 +361,13 @@ def main():
     prepare=sub.add_parser('request',help='print a request bound to an inspection; no worker mutation')
     prepare.add_argument('--inspection',required=True,type=Path)
     prepare.add_argument('--decision-id',required=True)
+    prepare.add_argument('--action',choices=(ACTION,context_completion.ACTION),default=ACTION)
     apply=sub.add_parser('apply',help='apply or exactly retry an explicit reconciliation request')
     apply.add_argument('--request',required=True,type=Path)
     apply.add_argument('--inspection',required=True,type=Path)
     apply.add_argument('--database-dir',required=True,type=Path)
     args=parser.parse_args()
-    result=(make_request(args.inspection,args.decision_id) if args.command=='request' else
+    result=(make_request(args.inspection,args.decision_id,args.action) if args.command=='request' else
             reconcile(read_json(args.request.read_text()),args.database_dir,args.inspection))
     print(canonical(result),flush=True)
 

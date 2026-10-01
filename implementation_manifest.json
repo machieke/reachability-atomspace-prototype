@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-explicit-local-worker-reconciliation",
+  "implementation_stage": "bounded-partial-context-worker-reconciliation",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -781,8 +781,7 @@
     "request_schema": "worker-reconciliation-request/v1",
     "prepared_schema": "worker-reconciliation-prepared/v1",
     "result_schema": "worker-reconciliation-result/v1",
-    "probe_schema": "worker-reconciliation-probes/v1",
-    "action": "cancel_unstarted_local",
+    "probe_schema": "worker-reconciliation-probes/v2",
     "supported_profiles": [
       "admission",
       "deployment"
@@ -793,8 +792,6 @@
       "reconcile",
       "release"
     ],
-    "unchanged_journal_tips_required": true,
-    "unchanged_captured_source_bytes_required": true,
     "binding": [
       "inspection-digest",
       "checkpoint-bytes",
@@ -810,19 +807,50 @@
     "result_durable_before_marker_removal": true,
     "exact_decision_retry_after_later_progress": true,
     "offline_candidate_reproduction": true,
-    "source_sqlite_connections": false,
+    "source_sqlite_connections": true,
     "public_event_replay": false,
     "executor_io": false,
     "native_inference_io": false,
-    "journal_writes": false,
+    "journal_writes": true,
     "prior_remote_uncertainty_preserved": true,
-    "partial_journal_progress_refused": true,
     "native_inference_continuation_tested": true,
-    "actual_crash_probes": 12,
-    "crash_boundaries_per_profile": 6,
+    "actual_crash_probes": 20,
     "automatic_reconciliation": false,
     "authenticated_storage": false,
     "family_complete_fixtures": 0,
-    "new_designated_mutants": []
+    "new_designated_mutants": [],
+    "context_prepared_schema": "worker-reconciliation-prepared/v2",
+    "actions": [
+      "cancel_unstarted_local",
+      "complete_partial_context"
+    ],
+    "unchanged_journal_tips_required_for_cancellation": true,
+    "unchanged_captured_source_bytes_required_before_preparation": true,
+    "partial_journal_progress_refused_except": "admission-context-with-exact-open_context-entry",
+    "cancellation_crash_boundaries_per_profile": 6,
+    "context_completion": {
+      "action": "complete_partial_context",
+      "profile": "admission",
+      "new_context_only": true,
+      "persisted_commands": [
+        "open_context"
+      ],
+      "remaining_commands": [
+        "configure_probability_policy"
+      ],
+      "exact_saved_counter_and_payload_binding": true,
+      "checkpoint_status": "PASS",
+      "counter_advance": 2,
+      "journal_entries_appended": 1,
+      "before_or_exact_after_journal_boundary_on_retry": true,
+      "sqlite_full_synchronous_transaction": true,
+      "ownership_retained_through_append": true,
+      "database_replacement": false,
+      "crash_probes": 8,
+      "native_inference_continuation_tested": true,
+      "other_partial_commands_refused": true
+    },
+    "source_sqlite_connection_scope": "context-completion-only-under-existing-ownership",
+    "journal_write_scope": "exact-single-validated-context-policy-entry-only"
   }
 }

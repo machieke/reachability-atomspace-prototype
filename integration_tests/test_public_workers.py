@@ -120,6 +120,29 @@ class NativeWorkerInspectionTests(unittest.TestCase):
 
 
 class NativeWorkerReconciliationTests(unittest.TestCase):
+    def test_partial_context_completion_supports_native_probability_and_revision(self):
+        from reachability.trace_worker_state import DurableAdmissionSession
+        from reachability.worker_inspection import inspect_worker
+        from reachability.worker_reconciliation import make_request,reconcile
+        from validation_lab.generate_admission_cases import initial,scenarios
+        messages=scenarios()[12]['events']
+        with TemporaryDirectory() as directory:
+            root=Path(directory);state=root/'state';pending=messages[0]
+            with DurableAdmissionSession(initial(),state,native=True) as s:
+                s.pending=pending;s._save();s._prefix=pending['event_id']
+                s.service.open_context('c0',idempotency_key=s.key())
+            inspect_worker('admission',state,root/'inspection')
+            request=make_request(root/'inspection','native-context','complete_partial_context')
+            reconcile(request,state,root/'inspection')
+            with DurableAdmissionSession(initial(),state,resume=True,native=True) as s:
+                self.assertEqual(s.apply(pending)['outcome']['status'],'PASS')
+                self.assertTrue(s.replayed)
+                for message in messages[1:]:
+                    row=s.apply(message)
+                self.assertEqual(row['outcome']['status'],'PASS')
+                self.assertEqual(row['projection']['numeric']['e005']['confidence'],2/3)
+                self.assertTrue(project_probability(s.service,'c0'))
+
     def test_cancellation_preserves_native_state_and_allows_later_native_inference(self):
         from reachability.admission_protocol import event
         from reachability.trace_worker_state import DurableAdmissionSession
