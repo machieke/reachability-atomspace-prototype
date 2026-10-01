@@ -523,6 +523,15 @@ invalidation loses unrelated valid support, while non-atomic reservation permits
 two claims on one unit. See [interleavings](VALIDATION.md#deterministic-two-worker-interleavings)
 for the precise mutation and scheduling scope.
 
+Controlled dispatch validation now covers credential revocation at the final
+send boundary, lease expiry, delayed requests and out-of-order acknowledgements.
+Run `uv run --no-project python -m validation_lab.run_dispatch_races --output artifacts/dispatch-race-run-1`
+with a new directory. Twenty-four cases compare 227 prefixes and reopen both
+journals at 220 quiescent checkpoints. Actual lock attempts establish blocking;
+an independent model separates remote effects from local receipt knowledge.
+See [dispatch races](VALIDATION.md#controlled-dispatch-and-delivery-races) for
+scope, diagnostic reductions and the same-wrapper transport-inbox limit.
+
 ## Current limits and next work
 
 This is an in-process API with trusted callers, not a sandbox for hostile Python
@@ -542,9 +551,9 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next extend controlled interleavings to credential revocation before dispatch and
-lease expiry versus external acknowledgement. Remaining designated mutants and
-evaluator OS isolation remain open. Goal loss
+Next strengthen the evaluator's separate-process public-command boundary and
+recovery evidence. Transport inbox recovery across fresh processes, remaining
+designated mutants and evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding
 remain explicit phase 1 backlog items.

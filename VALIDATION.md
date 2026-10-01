@@ -803,7 +803,91 @@ runtime modules; their expected outcomes and earlier reductions are unchanged.
 
 These cases share `interleaving-parent-0` in the development split. They add no
 family-complete fixtures, scheduling-performance claims, arbitrary thread-schedule
-exploration, process isolation or proof of general concurrency safety. Credential
-revocation during final dispatch and lease-expiry/external-acknowledgement races
-remain the next controlled-scheduling work. M09/M12 still await their pressure and
-transport mechanisms, and the 64-family-fixture target remains open.
+exploration, process isolation or proof of general concurrency safety. The next
+section extends controlled scheduling to final dispatch and lease-expiry/
+acknowledgement races. M09/M12 still await their pressure and transport mechanisms,
+and the 64-family-fixture target remains open.
+
+## Controlled dispatch and delivery races
+
+Run `uv run --no-project python -m validation_lab.run_dispatch_races --output artifacts/dispatch-race-run-1`
+with a new directory. The 24 development cases compare 227 completed prefixes and
+reopen both real journals at 220 quiescent boundaries. The runtime accepts one
+strict `dispatch-race-event/v1` command at a time; the separate evaluator schedule
+selects one adjacent dispatch/revocation or dispatch/clock pair. Four cases pause
+before send or before acknowledgement, and three paired controls finish without
+sending because the dispatch is rejected or already accepted.
+
+At a submission checkpoint, the first thread owns the actual authority RLock. The
+second thread tries that same lock with `blocking=False`; failure proves blocking
+without a timing assumption. The evaluator then holds the contender outside the
+lock until the first completed state is recorded. It does not add an outer lock
+around dispatch. A test replacing dispatch with an unlocked send is detected.
+Watchdog timeouts terminate broken evaluator runs; they never count as a semantic
+PASS or proof of blocking. Recovery starts only after both threads are quiescent.
+
+The public adapter stores only requests and receipts it has actually observed.
+`queued` retains an exact request without submitting it yet; `arrive` later sends
+it to the real simulator. `lost_reply` retains the real accepted receipt while
+leaving the authority uncertain; `deliver` supplies that immutable receipt later.
+`before_effect` retains no deliverable request. Duplicate arrivals use the same
+idempotency identity. No future delivery schedule or expected result is passed to
+the runtime. The inbox is in memory and survives same-wrapper journal reopenings;
+reconstructing it in a fresh process is outside this profile.
+
+The cold evaluator model builds on the independent standard-library deployment
+model and separately enumerates remote request state, global executor sequence,
+immutable packet contents and local receipt knowledge. It imports no runtime
+service or projection code. Compared output includes hard and numerical support,
+intent and dispatch state, renewable occupancy and uncertainty, lifecycle/goal
+state, transport buffers, remote state and historical effect counts. The cases
+establish that:
+
+- Revocation or lease expiry before the final gate rejects sending; restoring a
+  credential permits a valid send. Changes contending inside the locked boundary
+  are applied after the dispatch and receipt recording finish.
+- Lease expiry can drop local lease usage to zero while durable remote uncertainty
+  still blocks another reservation. A delayed accepted acknowledgement does not
+  create completion observations or goal relief.
+- A request queued before expiry may take effect after expiry. An authoritative
+  release fence before arrival instead prevents that effect permanently.
+- An older accepted acknowledgement cannot undo a newer release or erase the
+  historical effect count. Repeated arrivals, receipts and retries do not add
+  effects; an absent query does not prove release.
+
+Two evaluator-only diagnostic mutations check sensitivity. These are additional
+checks of existing dispatch invariants, not designated M09/M12 witnesses:
+
+| Diagnostic | Original → reduced events | Predicate calls | Preserved first divergence |
+| --- | ---: | ---: | --- |
+| cached-send-gate | 9 → 8 | 34 | send after revocation: UNKNOWN → PASS |
+| expire-uncertain | 8 → 7 | 30 | expired prepared intent: reconciliation_required → expired |
+
+Both require passing unmodified controls, an exercised invocation canary, the
+identical first-failure signature and a fresh final replay. All fifteen remaining
+single-event deletions remove that exact failure. The initial state and schedule
+are fixed; deleting a paired endpoint makes its survivor serial. These witnesses
+are serial and do not establish schedule minimality. No global-minimum claim,
+argument repair or timing-based schedule exploration is made.
+
+Public initial inputs, evaluator commands/schedules and mutation decisions are
+stored separately under `validation_lab/dispatch_race_cases`. Each run preserves
+raw states and checkpoint logs before reference comparison. Its report records
+the complete artifact inventory and source/corpus receipts.
+`validation_lab.run_dispatch_races.verify_report(path)` checks those receipts,
+all saved prefixes/effects, recovery counts, schedule observations and pinned
+reduction decisions. Hashes are integrity receipts, not authenticated execution
+certificates; rerunning the CLI performs fresh executions. Regenerate explicitly
+with `uv run --no-project python -m validation_lab.generate_dispatch_race_cases --output artifacts/dispatch-race-generation-1`.
+
+Native tests project actual admission, numerical, resource, intent and dispatch
+records before and after recovery. A default test disables simulator submit,
+query and release methods while reopening journals to check replay does no
+executor I/O. All seven earlier corpus receipts were refreshed for the new runtime
+adapter modules; their existing expectations and reductions are unchanged.
+
+This profile shares `dispatch-race-parent-0` in the development split. It adds no
+family-complete fixture, new designated mutant, authenticated external transport,
+arbitrary concurrency exploration, fresh-process inbox recovery, evaluator
+filesystem isolation or performance claim. The 64-fixture target, M09/M12 and the
+remaining phase 4 coverage remain open.

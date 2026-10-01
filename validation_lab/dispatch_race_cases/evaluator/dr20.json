@@ -1,0 +1,100 @@
+{
+  "schema": "dispatch-race-case/v1",
+  "case_id": "dr20",
+  "parent_instance_id": "dispatch-race-parent-0",
+  "split": "development",
+  "control": "queued-send-before-revocation-still-arrives",
+  "events": [
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "t",
+      "kind": "fact",
+      "arguments": {
+        "name": "tested",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "c",
+      "kind": "fact",
+      "arguments": {
+        "name": "credential",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "f",
+      "kind": "forecast",
+      "arguments": {
+        "strength": 0.8,
+        "confidence": 0.8,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "a",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "a"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "r",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "s",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a",
+        "fault": "queued"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "v",
+      "kind": "revoke",
+      "arguments": {
+        "evidence_id": "c"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "arrive",
+      "kind": "arrive",
+      "arguments": {
+        "request_event": "s"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "ack",
+      "kind": "deliver",
+      "arguments": {
+        "receipt_event": "arrive"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "release",
+      "kind": "release",
+      "arguments": {
+        "attempt_id": "a"
+      }
+    }
+  ],
+  "schedule": {
+    "schema": "dispatch-race-schedule/v1",
+    "pair": [],
+    "checkpoint": "before_send"
+  },
+  "mutant": null
+}

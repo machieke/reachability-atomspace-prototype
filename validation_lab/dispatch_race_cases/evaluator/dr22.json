@@ -1,0 +1,125 @@
+{
+  "schema": "dispatch-race-case/v1",
+  "case_id": "dr22",
+  "parent_instance_id": "dispatch-race-parent-0",
+  "split": "development",
+  "control": "old-request-fenced-while-another-is-accepted",
+  "events": [
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "t",
+      "kind": "fact",
+      "arguments": {
+        "name": "tested",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "c",
+      "kind": "fact",
+      "arguments": {
+        "name": "credential",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "f",
+      "kind": "forecast",
+      "arguments": {
+        "strength": 0.8,
+        "confidence": 0.8,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "a",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "a"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "r",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "s",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a",
+        "fault": "lost_reply"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "release",
+      "kind": "release",
+      "arguments": {
+        "attempt_id": "a"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "b",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "b"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "rb",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "b"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "sb",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "b",
+        "fault": "none"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "ack",
+      "kind": "deliver",
+      "arguments": {
+        "receipt_event": "s"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "old-arrive",
+      "kind": "arrive",
+      "arguments": {
+        "request_event": "s"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "old-ack",
+      "kind": "deliver",
+      "arguments": {
+        "receipt_event": "old-arrive"
+      }
+    }
+  ],
+  "schedule": {
+    "schema": "dispatch-race-schedule/v1",
+    "pair": [],
+    "checkpoint": "before_send"
+  },
+  "mutant": null
+}

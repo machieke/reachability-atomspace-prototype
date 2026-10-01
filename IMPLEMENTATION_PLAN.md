@@ -48,16 +48,15 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, sixteenth increment): deterministic two-worker
-validation now exercises policy/commit boundaries and actual reservation
-check/publication races. Twenty-two cases compare 79 prefixes and recover at 70
-quiescent checkpoints, including all six certify/reserve sequence merges.
-Canary-backed M08/M10 witnesses reduce to one and four events. M08 detects loss of
-unrelated support while consistency remains protected; M10 exposes over-allocation
-under split checks/publication. Controlled dispatch/acknowledgement races remain open.
-Broader phase 1/2 semantics, authoritative native
-storage, family-complete validation and phase 5–8 pressure/attention work remain open.
-The latest execution record below defines the next concrete increment.
+Current checkpoint (1 October 2026, seventeenth increment): controlled dispatch
+validation now exercises the real final-send lock against credential revocation
+and lease expiry. Twenty-four cases compare 227 prefixes and recover both journals
+at 220 quiescent checkpoints. The cold model separates queued requests, actual
+remote effects and locally observed receipts. Two diagnostic defects have reduced
+witnesses; they do not add designated M09/M12 coverage. Broader phase 1/2 semantics,
+authoritative native storage, family-complete validation and phase 5–8
+pressure/attention work remain open. The latest execution record below defines
+the next concrete increment.
 
 ## Phase 0 Repository contracts
 
@@ -1191,3 +1190,68 @@ Next increment, in order:
    safety or performance claims. M09/M12, pressure/attention mechanisms and phases
    5–8 remain pending; broader phase 1/3 semantics and the 64-fixture target remain
    visible backlog items.
+
+### Seventeenth increment on 1 October 2026
+
+Implemented the controlled dispatch increment in four stages:
+
+1. **Expose actual deliveries without scheduler knowledge.** Added a strict
+   64-event public adapter around the existing authority and durable simulator.
+   Queued requests and lost acknowledgements retain actual immutable request and
+   receipt objects. Later commands deliver those objects. Public messages carry
+   no schedule, expected result or future information. Final-send gates, resource
+   uncertainty rules and journal schemas remain unchanged.
+2. **Exercise both sides of the atomic send boundary.** The evaluator pauses an
+   actual dispatch immediately before simulator submission or after its effect
+   but before its receipt returns. A second thread actually tries the held RLock
+   without blocking, establishing that revocation or clock advancement cannot
+   enter. It then waits outside the lock until the first completed state has
+   been recorded. Early rejection and already-accepted retries finish without a
+   fabricated submission checkpoint. An unlocked-send negative control verifies
+   that the scheduler detects a missing authority lock.
+3. **Independently model delayed requests and local knowledge.** Extended the
+   standard-library cold deployment model with global remote receipt sequences,
+   immutable transport packets and locally observed receipt ordering. Twenty-four
+   cases cover final-gate rejection and restored credentials, four real paired
+   send/acknowledgement checkpoints, three no-send pairs, lease expiry with lost
+   replies, uncertain capacity, authoritative release before delayed arrival,
+   old acknowledgements after fencing, duplicate delivery, reconciliation and
+   missing references. Every completed prefix is compared before journal reopen;
+   native tests project actual hard/numeric/resource/dispatch records on both
+   sides of recovery. Replay is also checked with executor I/O disabled.
+4. **Retain and reduce diagnostic failures.** Added invocation-backed evaluator
+   patches for using preparation-time gates at send and retiring uncertain intent
+   state at lease expiry. The former reduces from nine to eight events in 34
+   predicate calls; the latter from eight to seven in 30. All fifteen remaining
+   single-event deletions remove the exact failure, and fresh final witnesses
+   reproduce it. Initial state and scheduling metadata remain fixed. Raw actual
+   states and schedule evidence precede oracle comparison; reports verify complete
+   file inventories, source receipts, schedule observations and pinned reductions.
+
+The corpus compares 227 prefixes and reopens the authority and executor journals
+at 220 quiescent boundaries. Transport inbox metadata survives only in the same
+wrapper; no fresh-process inbox recovery or external network protocol is claimed.
+Seven prior corpus receipts are refreshed for the two new runtime modules; prior
+expected outcomes and reductions remain unchanged. Original design hashes,
+authority semantics and journal schemas remain intact.
+
+Verification: 686 default tests, 75 optional native tests and all 15 original
+standalone reference checks pass. The new corpus CLI reproduces both diagnostic
+reductions and verifies its saved report. These are bounded development controls,
+with zero family-complete fixtures and no new designated mutant coverage.
+
+Next increment, in order:
+
+1. Strengthen the separate-process public-command boundary: give workers only
+   their public initial state and delivered commands, with evaluator-only
+   schedules, labels and reference state retained by the controller.
+2. Define and test explicit worker failure/restart semantics, including what
+   observed transport metadata must be persisted before fresh-process recovery
+   can be claimed. Keep authority/executor journal recovery separate from inbox
+   and controller recovery.
+3. Preserve raw worker output before independent comparison, source receipts and
+   reproducible failure evidence; distinguish process separation from actual
+   filesystem/capability isolation.
+4. Continue phase 4 family coverage. M09/M12 await pressure/attention and transport
+   mechanisms; broader phase 1/3 semantics, the 64-fixture target and phases 5–8
+   remain pending.

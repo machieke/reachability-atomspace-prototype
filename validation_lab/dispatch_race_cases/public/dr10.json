@@ -1,0 +1,11 @@
+{
+  "context_id": "c0",
+  "product_id": "p0",
+  "goal_id": "g0",
+  "loss": 10,
+  "capacity": 1,
+  "lease_duration": 10,
+  "min_strength": 0.65,
+  "min_confidence": 0.35,
+  "schema": "deployment-initial/v1"
+}

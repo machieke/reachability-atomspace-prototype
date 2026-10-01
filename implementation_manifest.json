@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "deterministic-two-worker-authority-interleavings",
+  "implementation_stage": "controlled-dispatch-and-delayed-delivery-races",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -590,6 +590,64 @@
     "arbitrary_thread_schedule_exploration": false,
     "dispatch_revocation_race": false,
     "lease_expiry_acknowledgement_race": false,
+    "evaluator_process_isolation": false,
+    "normalized_work_budget": false,
+    "performance_comparison": false,
+    "family_complete_fixtures": 0
+  },
+  "dispatch_race_validation": {
+    "initial_schema": "deployment-initial/v1",
+    "event_schema": "dispatch-race-event/v1",
+    "trace_schema": "dispatch-race-trace/v1",
+    "schedule_schema": "dispatch-race-schedule/v1",
+    "corpus_manifest": "validation_lab/dispatch_race_cases/manifest.json",
+    "mode": "conformance",
+    "split": "development",
+    "fixed_cases": 24,
+    "compared_prefixes": 227,
+    "quiescent_recovery_checkpoints": 220,
+    "configured_pairs": 7,
+    "actual_submission_pairs": 4,
+    "no_submission_pairs": 3,
+    "max_events": 64,
+    "control": "actual-authority-RLock-held-across-final-gate-submit-and-receipt",
+    "blocking_evidence": "failed-nonblocking-acquire-of-real-lock",
+    "checkpoints": [
+      "before_send",
+      "before_ack"
+    ],
+    "public_transport_commands": [
+      "arrive",
+      "deliver"
+    ],
+    "oracle": "cold-independent-deployment-model-with-remote-sequences-and-local-receipt-knowledge",
+    "recovery": "authority-and-executor-journal-reopen-with-same-wrapper-inbox",
+    "diagnostic_mutations": [
+      "cached-send-gate",
+      "expire-uncertain"
+    ],
+    "new_designated_mutants": [],
+    "original_events": {
+      "cached-send-gate": 9,
+      "expire-uncertain": 8
+    },
+    "reduced_events": {
+      "cached-send-gate": 8,
+      "expire-uncertain": 7
+    },
+    "predicate_calls": {
+      "cached-send-gate": 34,
+      "expire-uncertain": 30
+    },
+    "final_deletion_checks": 15,
+    "native_projection_recovery_tested": true,
+    "journal_replay_without_executor_io_tested": true,
+    "initial_state_shrinking": false,
+    "schedule_shrinking": false,
+    "global_minimum": false,
+    "fresh_process_inbox_recovery": false,
+    "authenticated_external_transport": false,
+    "arbitrary_thread_schedule_exploration": false,
     "evaluator_process_isolation": false,
     "normalized_work_budget": false,
     "performance_comparison": false,

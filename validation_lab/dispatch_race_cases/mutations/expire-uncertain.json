@@ -1,0 +1,1054 @@
+{
+  "case": {
+    "schema": "dispatch-race-case/v1",
+    "case_id": "dr03",
+    "parent_instance_id": "dispatch-race-parent-0",
+    "split": "development",
+    "control": "lease-expired-before-final-send",
+    "public": {
+      "context_id": "c0",
+      "product_id": "p0",
+      "goal_id": "g0",
+      "loss": 10,
+      "capacity": 1,
+      "lease_duration": 10,
+      "min_strength": 0.65,
+      "min_confidence": 0.35,
+      "schema": "deployment-initial/v1"
+    },
+    "events": [
+      {
+        "schema": "dispatch-race-event/v1",
+        "event_id": "t",
+        "kind": "fact",
+        "arguments": {
+          "name": "tested",
+          "valid_until": null
+        }
+      },
+      {
+        "schema": "dispatch-race-event/v1",
+        "event_id": "c",
+        "kind": "fact",
+        "arguments": {
+          "name": "credential",
+          "valid_until": null
+        }
+      },
+      {
+        "schema": "dispatch-race-event/v1",
+        "event_id": "f",
+        "kind": "forecast",
+        "arguments": {
+          "strength": 0.8,
+          "confidence": 0.8,
+          "valid_until": null
+        }
+      },
+      {
+        "schema": "dispatch-race-event/v1",
+        "event_id": "a",
+        "kind": "attempt",
+        "arguments": {
+          "attempt_id": "a"
+        }
+      },
+      {
+        "schema": "dispatch-race-event/v1",
+        "event_id": "r",
+        "kind": "reserve",
+        "arguments": {
+          "attempt_id": "a"
+        }
+      },
+      {
+        "schema": "dispatch-race-event/v1",
+        "event_id": "p",
+        "kind": "prepare",
+        "arguments": {
+          "attempt_id": "a"
+        }
+      },
+      {
+        "schema": "dispatch-race-event/v1",
+        "event_id": "x",
+        "kind": "tick",
+        "arguments": {
+          "time": 10
+        }
+      },
+      {
+        "schema": "dispatch-race-event/v1",
+        "event_id": "s",
+        "kind": "dispatch",
+        "arguments": {
+          "attempt_id": "a",
+          "fault": "none"
+        }
+      }
+    ],
+    "schedule": {
+      "schema": "dispatch-race-schedule/v1",
+      "pair": [],
+      "checkpoint": "before_send"
+    },
+    "mutant": "expire-uncertain"
+  },
+  "result": {
+    "schema": "trace-shrink-result/v1",
+    "status": "ONE_MINIMAL",
+    "original_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+    "reduced_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+    "original_events": [
+      {
+        "arguments": {
+          "name": "tested",
+          "valid_until": null
+        },
+        "event_id": "t",
+        "kind": "fact",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "name": "credential",
+          "valid_until": null
+        },
+        "event_id": "c",
+        "kind": "fact",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "confidence": 0.8,
+          "strength": 0.8,
+          "valid_until": null
+        },
+        "event_id": "f",
+        "kind": "forecast",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "attempt_id": "a"
+        },
+        "event_id": "a",
+        "kind": "attempt",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "attempt_id": "a"
+        },
+        "event_id": "r",
+        "kind": "reserve",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "attempt_id": "a"
+        },
+        "event_id": "p",
+        "kind": "prepare",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "time": 10
+        },
+        "event_id": "x",
+        "kind": "tick",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "attempt_id": "a",
+          "fault": "none"
+        },
+        "event_id": "s",
+        "kind": "dispatch",
+        "schema": "dispatch-race-event/v1"
+      }
+    ],
+    "reduced_events": [
+      {
+        "arguments": {
+          "name": "tested",
+          "valid_until": null
+        },
+        "event_id": "t",
+        "kind": "fact",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "name": "credential",
+          "valid_until": null
+        },
+        "event_id": "c",
+        "kind": "fact",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "confidence": 0.8,
+          "strength": 0.8,
+          "valid_until": null
+        },
+        "event_id": "f",
+        "kind": "forecast",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "attempt_id": "a"
+        },
+        "event_id": "a",
+        "kind": "attempt",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "attempt_id": "a"
+        },
+        "event_id": "r",
+        "kind": "reserve",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "attempt_id": "a"
+        },
+        "event_id": "p",
+        "kind": "prepare",
+        "schema": "dispatch-race-event/v1"
+      },
+      {
+        "arguments": {
+          "time": 10
+        },
+        "event_id": "x",
+        "kind": "tick",
+        "schema": "dispatch-race-event/v1"
+      }
+    ],
+    "signature": {
+      "actual": "expired",
+      "event_id": "x",
+      "expected": "reconciliation_required",
+      "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+      "mutant": "expire-uncertain",
+      "path": "projection.attempts.a.intent.state",
+      "profile": "dispatch_race",
+      "schedule_digest": "013903d575812d6eb60d84b8e849333947d6303a59f2790b29291db9b4403a57",
+      "schema": "trace-failure-signature/v1"
+    },
+    "removed_event_ids": [
+      "s"
+    ],
+    "one_minimal": true,
+    "global_minimum": false,
+    "minimality_domain": "order-preserving whole-event deletions with valid protocol, passing unmodified oracle control and identical first-divergence signature",
+    "evaluations": 30,
+    "selected_trial": 14,
+    "final_trial": 29,
+    "accepted": [
+      {
+        "trial": 14,
+        "from_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "to_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "removed": [
+          "s"
+        ]
+      }
+    ],
+    "deletion_checks": [
+      {
+        "removed_event_id": "t",
+        "trial": 22,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      },
+      {
+        "removed_event_id": "c",
+        "trial": 23,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      },
+      {
+        "removed_event_id": "f",
+        "trial": 24,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      },
+      {
+        "removed_event_id": "a",
+        "trial": 25,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      },
+      {
+        "removed_event_id": "r",
+        "trial": 26,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      },
+      {
+        "removed_event_id": "p",
+        "trial": 27,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      },
+      {
+        "removed_event_id": "x",
+        "trial": 28,
+        "kind": "NO_WITNESS",
+        "preserves_signature": false
+      }
+    ],
+    "trials": [
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 0,
+        "phase": "original",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "r",
+          "p",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 3,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": "expired",
+            "event_id": "x",
+            "expected": "reconciliation_required",
+            "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+            "mutant": "expire-uncertain",
+            "path": "projection.attempts.a.intent.state",
+            "profile": "dispatch_race",
+            "schedule_digest": "013903d575812d6eb60d84b8e849333947d6303a59f2790b29291db9b4403a57",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 1,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "f9fbb07f2d0f0ad0e0c85f549d502d99dc3b193fc386cb2b1508c06d80fc1f63",
+        "event_ids": [
+          "r",
+          "p",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "t",
+          "c",
+          "f",
+          "a"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 2,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "8438ba2f305a8861cc36f5185201fa2cb2157f5f1795b0c56297fdb956d247c5",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a"
+        ],
+        "deleted_event_ids": [
+          "r",
+          "p",
+          "x",
+          "s"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 3,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "4ddabb500273388e5d5a26106e69db826ed996667ab6c3eccb3034f81d8b750a",
+        "event_ids": [
+          "f",
+          "a",
+          "r",
+          "p",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "t",
+          "c"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 4,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "fa39633419341c41fc74d5997e6cf283b1152836d771fd2b2a646a2f2befc0b5",
+        "event_ids": [
+          "t",
+          "c",
+          "r",
+          "p",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "f",
+          "a"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 5,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "41c44856181fcfad389aeaa034799b42061c3e2d46952e5f3ca1417a49750b44",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "r",
+          "p"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 6,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "f6c0eefce5a877ddaa63df869eb00c02b0f976978a6089c616757da644e6d5a7",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "r",
+          "p"
+        ],
+        "deleted_event_ids": [
+          "x",
+          "s"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 7,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "25df2258adddc91b5383aef98552bb3f775e5b83c4a878321e5acd8e8d35d064",
+        "event_ids": [
+          "c",
+          "f",
+          "a",
+          "r",
+          "p",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "t"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 8,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "99fb16bdb2aa36eb5938e0dbe4ebea43e79d20fbb94cbfee399393ab7b875fda",
+        "event_ids": [
+          "t",
+          "f",
+          "a",
+          "r",
+          "p",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "c"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 9,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "9a51d9084f3a7378a125de017ced3983a7636ccece243cf85fee104cc64e02f0",
+        "event_ids": [
+          "t",
+          "c",
+          "a",
+          "r",
+          "p",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "f"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 10,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "b9a509f7a07149ad56dd31343d56f0391e98c0aa8de957818908a4070762c6b1",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "r",
+          "p",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "a"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 11,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "ffb8844e41e9ba40f63ae23c3810119f8727e936e9b2c684118fb32442e2f3eb",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "p",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "r"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 12,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "ea7a616a6c05437740e720e75dc84fcf0d611445c482662d4dbebb85552eabdc",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "r",
+          "x",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "p"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 13,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "eae2b545104b1b14d24fbcbc7a9b33711729ac8e15fc6a2aef162e0989481dd5",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "r",
+          "p",
+          "s"
+        ],
+        "deleted_event_ids": [
+          "x"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 14,
+        "phase": "chunk",
+        "parent_digest": "45ae495a31c39103c9303000be23412576878ba84832a003d863cac75130b952",
+        "candidate_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "r",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "s"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 3,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": "expired",
+            "event_id": "x",
+            "expected": "reconciliation_required",
+            "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+            "mutant": "expire-uncertain",
+            "path": "projection.attempts.a.intent.state",
+            "profile": "dispatch_race",
+            "schedule_digest": "013903d575812d6eb60d84b8e849333947d6303a59f2790b29291db9b4403a57",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 15,
+        "phase": "chunk",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "5556f151b9954e32e271714ac1a46f2bf7e8adf265a3293c3969caa825a67e16",
+        "event_ids": [
+          "c",
+          "f",
+          "a",
+          "r",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "t"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 16,
+        "phase": "chunk",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "e641ff65ca85d022c14ed67791681da83d7958a059f54e9a4dc37446f8326ec0",
+        "event_ids": [
+          "t",
+          "f",
+          "a",
+          "r",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "c"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 17,
+        "phase": "chunk",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "1f9582e91c98707fa6a03c90a27c57500a09cdbb29e30178b875d7e4bd462626",
+        "event_ids": [
+          "t",
+          "c",
+          "a",
+          "r",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "f"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 18,
+        "phase": "chunk",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "f404eb8cc2ec621369bd187cfc89818e8c9e5cc34acaa7610bad34e6e7354d04",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "r",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "a"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 19,
+        "phase": "chunk",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "6ce8a77f305b40086b850e083319583e9c4331f85cfc4ad455168daff8d43d04",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "r"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 20,
+        "phase": "chunk",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "3288abb62ad41b973bb39f41b7542eace87b2da1415f59fd557d6cd5d89bad92",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "r",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "p"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 21,
+        "phase": "chunk",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "f6c0eefce5a877ddaa63df869eb00c02b0f976978a6089c616757da644e6d5a7",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "r",
+          "p"
+        ],
+        "deleted_event_ids": [
+          "x"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 22,
+        "phase": "single-deletion",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "5556f151b9954e32e271714ac1a46f2bf7e8adf265a3293c3969caa825a67e16",
+        "event_ids": [
+          "c",
+          "f",
+          "a",
+          "r",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "t"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 23,
+        "phase": "single-deletion",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "e641ff65ca85d022c14ed67791681da83d7958a059f54e9a4dc37446f8326ec0",
+        "event_ids": [
+          "t",
+          "f",
+          "a",
+          "r",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "c"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 24,
+        "phase": "single-deletion",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "1f9582e91c98707fa6a03c90a27c57500a09cdbb29e30178b875d7e4bd462626",
+        "event_ids": [
+          "t",
+          "c",
+          "a",
+          "r",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "f"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 25,
+        "phase": "single-deletion",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "f404eb8cc2ec621369bd187cfc89818e8c9e5cc34acaa7610bad34e6e7354d04",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "r",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "a"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 26,
+        "phase": "single-deletion",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "6ce8a77f305b40086b850e083319583e9c4331f85cfc4ad455168daff8d43d04",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "r"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 27,
+        "phase": "single-deletion",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "3288abb62ad41b973bb39f41b7542eace87b2da1415f59fd557d6cd5d89bad92",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "r",
+          "x"
+        ],
+        "deleted_event_ids": [
+          "p"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 28,
+        "phase": "single-deletion",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "f6c0eefce5a877ddaa63df869eb00c02b0f976978a6089c616757da644e6d5a7",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "r",
+          "p"
+        ],
+        "deleted_event_ids": [
+          "x"
+        ],
+        "assessment": {
+          "control_passed": true,
+          "kind": "NO_WITNESS"
+        },
+        "preserves_signature": false
+      },
+      {
+        "schema": "trace-shrink-trial/v1",
+        "trial": 29,
+        "phase": "final-replay",
+        "parent_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "candidate_digest": "a3968f429adac807bdd87bc292f2262ec761fd6b2266e5f436b257494d6f60a4",
+        "event_ids": [
+          "t",
+          "c",
+          "f",
+          "a",
+          "r",
+          "p",
+          "x"
+        ],
+        "deleted_event_ids": [],
+        "assessment": {
+          "control_passed": true,
+          "invocations": 3,
+          "kind": "WITNESS",
+          "signature": {
+            "actual": "expired",
+            "event_id": "x",
+            "expected": "reconciliation_required",
+            "initial_digest": "d66e5bea647b3eebdbdbf94310aa7d1aa4c92d337374bdef8336108c5aeb8bcd",
+            "mutant": "expire-uncertain",
+            "path": "projection.attempts.a.intent.state",
+            "profile": "dispatch_race",
+            "schedule_digest": "013903d575812d6eb60d84b8e849333947d6303a59f2790b29291db9b4403a57",
+            "schema": "trace-failure-signature/v1"
+          },
+          "stage": "mutant"
+        },
+        "preserves_signature": true
+      }
+    ]
+  }
+}

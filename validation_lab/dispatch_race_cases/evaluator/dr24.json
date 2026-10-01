@@ -1,0 +1,35 @@
+{
+  "schema": "dispatch-race-case/v1",
+  "case_id": "dr24",
+  "parent_instance_id": "dispatch-race-parent-0",
+  "split": "development",
+  "control": "no-intent-and-no-attempt-race",
+  "events": [
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "s",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a",
+        "fault": "none"
+      }
+    },
+    {
+      "schema": "dispatch-race-event/v1",
+      "event_id": "x",
+      "kind": "tick",
+      "arguments": {
+        "time": 10
+      }
+    }
+  ],
+  "schedule": {
+    "schema": "dispatch-race-schedule/v1",
+    "pair": [
+      "s",
+      "x"
+    ],
+    "checkpoint": "before_send"
+  },
+  "mutant": null
+}

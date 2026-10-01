@@ -8,10 +8,10 @@
     "validation_lab/shrink_cases/expected/M06.json": "a7017065b50142953395e151251406f9800658a0cd2a74759cb7e2ad810de2d7",
     "validation_lab/shrink_cases/expected/M07.json": "1881554d56f81b51492578aaaa33a2e6e39f4813a530a38622f5692b7a2417fa",
     "validation_lab/shrink_cases/expected/M11.json": "01122b579a75125d5b69f2b2110a6eb2e489643289375d000764b074418c21d2",
-    "validation_lab/shrink_cases/seeds/M05.json": "2fa4e2d8f8152b5797c7a09a956fdbb59a52a014babab601538bb91cd742c1c4",
-    "validation_lab/shrink_cases/seeds/M06.json": "585812a16a2a75b30f1638a84fbbd7f302fd00a77eea8e2be23e1a680d8f91ec",
-    "validation_lab/shrink_cases/seeds/M07.json": "cb60853eae891933c7531094d42fd2aeeba1b3f2a71316d1f569e371e533b28f",
-    "validation_lab/shrink_cases/seeds/M11.json": "5625b669c328f654550128f8fcdeb4ac16553a53f8aa21c6cbfa65fb4acced58"
+    "validation_lab/shrink_cases/seeds/M05.json": "bf33700fb9cdb855c45dc5577254ef40782c7f5433c9d7233de21c9c4a7a3a03",
+    "validation_lab/shrink_cases/seeds/M06.json": "938e3678d50d8943b979daeace0e8ef1be558f782cc59b6a9cc3c5dbe641c9c7",
+    "validation_lab/shrink_cases/seeds/M07.json": "2ab01291661b23cee3704d9596c35e201020d82ea75e8b1ac3d48a3dc9b785b1",
+    "validation_lab/shrink_cases/seeds/M11.json": "301c343a5a77c1502b12dc89207141ab6c63c881ee7bbdd85d7d0e3cb975df1e"
   },
   "source_files": {
     "adapters.lock.json": "373850b8382999d4e8c600f43608d1a404ff57ee20966c93c2b8988bba1bb0d3",
@@ -32,6 +32,8 @@
     "reachability/dispatch.py": "4d973a9e390a13b20b5ae4ae158d34bf4555d4b6167a269eef02feb06d377038",
     "reachability/dispatch_demo.py": "8997094a33f32ab8fae864bf2ab601f699a33bfbb503bd6f66bdbbd4a812c204",
     "reachability/dispatch_model.py": "913762efde1a9c32ee7cd574e71d9e21ce4751c4b035bc72db163794a8082d6e",
+    "reachability/dispatch_race_protocol.py": "bffb01d0432195cc0e2c4379ee7d0db89e28160739d446c84809e0cb6dabfa32",
+    "reachability/dispatch_race_session.py": "c102cc36b1d6d816877c879b3779ce5b508f0319456b98d2204221c7439a35ba",
     "reachability/errors.py": "d3a620e010a257eed034664a3df361b16180b9c743f41c8bd2314b4353075393",
     "reachability/execution.py": "50ddc4eed4e4da91b825ca28840b2345977e2b16f4306aa0a4e3e74e1afb7203",
     "reachability/execution_demo.py": "8b619cc78aef9e0df9bb07c08fb9efd49760efea765891f58d3a416d027f3f7f",
@@ -77,14 +79,14 @@
   },
   "upstream_files": {
     "validation_lab/admission_cases/evaluator/a14.json": "856549efa55c2dd8e91ea2e1680aaaa91982c6fb880052709587cd31aac23b10",
-    "validation_lab/admission_cases/manifest.json": "0a72dc314ab20e91825dd208f1c48a7e5066b8dc428e086db0486b737a0c4899",
+    "validation_lab/admission_cases/manifest.json": "acece451f8455919b5d8c6cf07139cc85200137634f8f10ea324eef778fd54a9",
     "validation_lab/admission_cases/public/initial.json": "952134214f8f57966ece1eb89a25126c186344f2503b800f9d2e8c3936da28ee",
-    "validation_lab/b0_cases/manifest.json": "9a9df1baf8c6488d4c51d8fcc902d136bd98565e11b2fa6b058ca4387cde149a",
+    "validation_lab/b0_cases/manifest.json": "ef5afc8b7c407ad8175ceb2f0d717cb205892ffcb66d355f4f1cd33c638258cc",
     "validation_lab/b0_cases/mutations/M07.json": "e860af37cebac916f792af22a24974e99e75f4d26db3c9cc6b4b520049ec10b7",
     "validation_lab/b0_cases/public/b01.json": "692152f61de2e7cc7804da8a271e3bc748e803c6dd3bc1a737104e9bf22f4ea4",
     "validation_lab/deployment_cases/evaluator/d01.json": "701c49b4344b25051b93ab976bc99e4acecd02d002da73fcb4e671996ccac087",
     "validation_lab/deployment_cases/evaluator/d07.json": "a0f17432be8f4c8f6bb3ab8cea56201de9035cf6c3f4d20c28560c5efce3ffb2",
-    "validation_lab/deployment_cases/manifest.json": "7b33bd21ed1c648866e315b1c32c725e181d004da51e42f71c083951e2095369",
+    "validation_lab/deployment_cases/manifest.json": "7447f43bc4b9e93ea06d6c19cf7a7015840e41f51080e33777bf5fbe4e288fcf",
     "validation_lab/deployment_cases/public/initial.json": "a6358977d9a5dde7080e0a32fa6c3a837e7c487bc217405e1005e3cf973cc87c"
   },
   "scope": "bounded order-preserving whole-event deletion; identical first divergence with a passing independent control; no global minimum claim"

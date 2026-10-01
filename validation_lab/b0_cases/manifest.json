@@ -54,6 +54,8 @@
     "reachability/dispatch.py": "4d973a9e390a13b20b5ae4ae158d34bf4555d4b6167a269eef02feb06d377038",
     "reachability/dispatch_demo.py": "8997094a33f32ab8fae864bf2ab601f699a33bfbb503bd6f66bdbbd4a812c204",
     "reachability/dispatch_model.py": "913762efde1a9c32ee7cd574e71d9e21ce4751c4b035bc72db163794a8082d6e",
+    "reachability/dispatch_race_protocol.py": "bffb01d0432195cc0e2c4379ee7d0db89e28160739d446c84809e0cb6dabfa32",
+    "reachability/dispatch_race_session.py": "c102cc36b1d6d816877c879b3779ce5b508f0319456b98d2204221c7439a35ba",
     "reachability/errors.py": "d3a620e010a257eed034664a3df361b16180b9c743f41c8bd2314b4353075393",
     "reachability/execution.py": "50ddc4eed4e4da91b825ca28840b2345977e2b16f4306aa0a4e3e74e1afb7203",
     "reachability/execution_demo.py": "8b619cc78aef9e0df9bb07c08fb9efd49760efea765891f58d3a416d027f3f7f",

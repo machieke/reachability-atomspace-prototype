@@ -232,7 +232,7 @@
   },
   "source": {
     "corpus_manifest": "validation_lab/admission_cases/manifest.json",
-    "corpus_digest": "0a72dc314ab20e91825dd208f1c48a7e5066b8dc428e086db0486b737a0c4899",
+    "corpus_digest": "acece451f8455919b5d8c6cf07139cc85200137634f8f10ea324eef778fd54a9",
     "initial_path": "validation_lab/admission_cases/public/initial.json",
     "initial_selector": null,
     "case_path": "validation_lab/admission_cases/evaluator/a14.json",
