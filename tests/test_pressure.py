@@ -1,9 +1,11 @@
 """Independent numerical, source-accounting and unchanged authority checks."""
 from copy import deepcopy
 from dataclasses import replace
+from fractions import Fraction
 import math
 import random
 import unittest
+from unittest.mock import patch
 
 from reachability.pressure import Edge, Node, PressureLimits, Source, derive
 from reachability.model import Status
@@ -38,13 +40,73 @@ class PressureTests(unittest.TestCase):
                 routing = [[0.]*n for _ in range(n)]
                 for parent, child, weight in result['routing']:
                     routing[int(child)][int(parent)] += weight
-                self.assertTrue(all(math.fsum(routing[i][j] for i in range(n)) <= 1 for j in range(n)))
+                self.assertTrue(all(sum(Fraction(routing[i][j]) for i in range(n)) <= 1 for j in range(n)))
                 expected = linear_reference([10]+[0]*(n-1), routing, .85)
                 field = result['fields'][src.identity]
                 error = math.fsum(abs(field['values'][str(i)]-expected[i]) for i in range(n))
                 self.assertTrue(field['converged'])
                 self.assertLessEqual(error, field['error_bound_l1']+1e-12)
                 self.assertLessEqual(field['pressure_norm'], field['norm_bound']+1e-10)
+
+    def test_stored_column_bound_detects_excess_hidden_by_rounded_sum(self):
+        # Independent rational witness: the previous fsum guard accepted this.
+        self.assertEqual(math.fsum([.2]*5), 1.)
+        self.assertEqual(sum(Fraction(.2) for _ in range(5))-1, Fraction(1, 2**54))
+        nodes = [Node('root', 'AND', 'infer'), Node('monitor', 'LEAF', 'observe')]
+        nodes += [Node(str(i), 'LEAF', 'infer') for i in range(5)]
+        edges = [Edge('root', str(i), 'epistemic') for i in range(5)]
+        field = derive({}, nodes, edges, [source()])
+        shares = [weight for _, _, weight in field['routing']]
+        self.assertTrue(all(weight > 0 for weight in shares))
+        self.assertLessEqual(sum(map(Fraction, shares)), 1)
+        self.assertEqual(sum(a != .2 for a in shares), 1)
+        self.assertTrue(all(field['scores'][str(i)]['value'] > 0 for i in range(5)))
+        self.assertEqual(field, derive({}, nodes[::-1], edges[::-1]*2, [source()]*2))
+
+    def test_column_bound_covers_wide_weight_ranges_and_subnormals(self):
+        rng = random.Random(9017)
+        weight_sets = [[1.]*n for n in range(1, 65)]
+        weight_sets += [[math.ulp(0.)]*5, [1e-300, 1e-200, 1e-100, 1, 1e6]]
+        weight_sets += [[10.**rng.uniform(-300, 6) for _ in range(rng.randint(2, 64))] for _ in range(24)]
+        for weights in weight_sets:
+            with self.subTest(weights=weights):
+                nodes = [Node('root', 'AND', 'infer'), Node('monitor', 'LEAF', 'observe')]
+                nodes += [Node(str(i), 'LEAF', 'infer') for i in range(len(weights))]
+                edges = [Edge('root', str(i), 'epistemic', w) for i, w in enumerate(weights)]
+                field = derive({}, nodes, edges, [source()])
+                shares = [Fraction(w) for _, _, w in field['routing']]
+                self.assertEqual(len(shares), len(weights))
+                self.assertTrue(all(w > 0 for w in shares))
+                self.assertLessEqual(sum(shares), 1)
+
+    def test_unrepresentable_positive_share_is_rejected_without_mutating_inputs(self):
+        nodes, _ = graph()
+        edges = [Edge('root', 'a', 'epistemic', math.ulp(0.)), Edge('root', 'b', 'observation', 1e6)]
+        binding = {'revision': 1}; src = source(); before = deepcopy((binding, nodes, edges, src))
+        exact_share = Fraction(math.ulp(0.))/(Fraction(math.ulp(0.))+1_000_000)
+        self.assertGreater(exact_share, 0); self.assertEqual(float(exact_share), 0.)
+        with self.assertRaisesRegex(ValueError, 'normalized positive share underflows'):
+            derive(binding, nodes, edges, [src])
+        self.assertEqual((binding, nodes, edges, src), before)
+
+    def test_routing_version_binds_epoch_and_cyclic_field_matches_reference(self):
+        names = ['root', 'a', 'b', 'c', 'd']
+        nodes = [Node(name, 'AND', 'infer') for name in names]+[Node('monitor', 'LEAF', 'observe')]
+        edges = [Edge(parent, child, 'epistemic') for parent in names for child in names]
+        src = source(); field = derive({}, nodes, edges, [src], limits=PressureLimits(iterations=1024, tolerance=1e-11))
+        routing = [[0.]*5 for _ in names]
+        for parent, child, weight in field['routing']:
+            routing[names.index(child)][names.index(parent)] = weight
+        self.assertTrue(all(sum(Fraction(routing[i][j]) for i in range(5)) <= 1 for j in range(5)))
+        expected = linear_reference([10, 0, 0, 0, 0], routing, .85)
+        self.assertTrue(field['converged'])
+        for name, value in zip(names, expected):
+            self.assertAlmostEqual(field['scores'][name]['value'], value, delta=field['error_bound_l1']+1e-12)
+        with patch('reachability.pressure.ROUTING_VERSION', 'different-routing-revision'):
+            changed = derive({}, nodes, edges, [src], limits=PressureLimits(iterations=1024, tolerance=1e-11))
+        self.assertNotEqual(field['epoch'], changed['epoch'])
+        self.assertEqual(field['scores'], changed['scores'])
+        self.assertEqual(field['routing_version'], 'binary64-substochastic/v2')
 
     def test_unchanged_recomputation_and_duplicate_paths_do_not_inject_sources(self):
         nodes, edges = graph(); src = source()

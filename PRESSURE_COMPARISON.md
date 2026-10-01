@@ -61,6 +61,19 @@ are supported; `act`, `expand` and `retain` are reported as unsupported rather
 than populated with placeholder scores. There is no activation state or adaptive
 transport. Graph-depth pressure sums are diagnostics, never loss or budgets.
 
+The `binary64-substochastic/v2` routing algorithm checks the exact sum of the
+stored shares using integer ratios. Rounded `fsum` alone is insufficient: five
+stored `0.2` values exceed one even though their rounded sum is one. When there
+is an exact excess, the largest share is rounded downward to the remaining
+capacity; every other share is preserved. Sorting makes that correction
+deterministic. The routing version is recorded and included in the pressure epoch.
+If a positive dependency weight would normalize to zero, the unsupported weight
+range raises `ValueError` instead of silently dropping a missing prerequisite.
+Equal subnormal weights remain supported when their normalized shares are
+representable. This is an input arithmetic limit, not evidence that a goal is
+satisfied or an action is authorized. Iteration residuals remain floating-point
+diagnostics, not authority certificates or interval-arithmetic proofs.
+
 Defaults are gamma 0.85, tolerance `1e-8`, 128 iterations, 128 nodes, 256 edges
 and eight sources. Absolute L1 residual, the residual-based error bound,
 convergence, norm bounds, SCCs and exhausted limits are reported per source.
@@ -340,6 +353,17 @@ M09 is detected in both bundles, and the prior neutral/negative work-limited
 outcomes are unchanged. Full default/native and unrelated deployment/recovery
 suites were not rerun for this evaluator-only extension. Results are in
 `artifacts/pressure-repeatability/repeatability.md` and `repeatability.json`.
+
+The exact stored-routing correction passes 61 focused tests, 70 deployment/
+admission/recovery regressions and 15 reference checks, with no remaining failures
+or skipped tests. Nine refreshed corpus receipts verify without changing fixture
+semantics. The corrected 64-run repeatability experiment passes all sixteen
+work-limited comparisons and retains seven wall-limited variations. Independent
+exact-rational checks confirm the routing bound in all 183 recorded pressure
+fields. Rich work-16 B3 pressure construction/solve time is 17.73–33.60 ms,
+including normalization; work-limited outcomes are unchanged. Full default/native
+suites were not rerun for this isolated calculation fix. New artifacts are under
+`artifacts/pressure-routing-repeatability/`.
 
 This milestone stops here. Adaptive transport, learned conductance, generalized
 recovery, numerical PLN scheduling, broader channels, evaluator OS isolation,

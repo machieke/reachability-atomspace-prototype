@@ -80,12 +80,14 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, twenty-ninth increment): the
+Current checkpoint (1 October 2026, thirtieth increment): the
 bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
 saved comparison auditing and reproducibility within that same subset; its full
 32-run bundle audit passes. Two fresh matrices now pass all sixteen work-limited
-repeatability comparisons across 64 distinct authorities within this same subset. Typed read-only pressure feeds a real
-direct priority queue over the same public inference/observation
+repeatability comparisons across 64 distinct authorities within this same subset.
+The current correction enforces the pressure routing bound on exact stored
+binary64 shares and rejects normalization underflow. The corrected 64-run
+experiment passes. Typed read-only pressure feeds a real direct priority queue over the same public inference/observation
 frontier as conditional-planning B0. The development matrix runs 16 controller pairs;
 M09 is detected and validation is complete. Existing recovery
 actions, gates and blocked unsupported cases are preserved. Transport/M12,
@@ -2063,3 +2065,51 @@ Results are in `artifacts/pressure-repeatability/repeatability.json` and
 commands. This is development repeatability evidence, not a statistical or
 scaling claim. Stop here. Transport/M12, learned conductance, generalized recovery
 and the broader benchmark remain deferred.
+
+### Thirtieth increment: exact stored pressure routing bounds
+
+The rounded `fsum` guard can miss a positive exact column excess: five binary64
+`0.2` shares exceed one by `1/18014398509481984` even though `fsum` returns one.
+Extreme positive dependency weights can also normalize to zero, silently dropping
+a missing prerequisite from propagation. Correct these two bounded numerical
+defects without expanding the implemented channels or changing authority.
+
+1. Compute the exact sum of stored binary64 shares using integer ratios; when
+   necessary, round the largest share downward to the remaining column capacity.
+   Reject an unrepresentable positive share and version the routing algorithm in
+   the pressure epoch.
+2. Add independent exact-rational witnesses, including equal-weight columns,
+   extreme ranges, subnormals, cycles and deterministic input permutations.
+3. Refresh all nine corpus/source receipts, preserve fixture semantics, run
+   applicable regressions and the frozen B0/B3 repeatability experiment. Record
+   measured overhead and neutral/negative outcomes, then commit and push.
+
+Status: complete. The normalizer uses exact integer ratios of the stored shares
+and downward rounding only when the column exceeds one. It rejects positive
+shares that underflow to zero, while retaining representable subnormal cases.
+`binary64-substochastic/v2` is recorded and binds the pressure epoch. No authority
+API, candidate generator, controller policy or frozen episode was changed.
+
+Verification: all 61 pressure/comparison/audit/repeatability/manifest tests pass,
+as do 70 B0/deployment/admission/recovery regressions and all 15 standalone
+reference checks. Four new tests include the former rounded-sum counterexample,
+90 equal/random/extreme-weight configurations, underflow rejection without input
+mutation, cyclic reference solutions and routing-revision binding. No tests were
+skipped and no failures remain. Full default and native integration suites were
+not rerun for this isolated pressure calculation correction.
+
+All nine corpus receipts were refreshed and all nine corpus verifiers pass.
+Fixture semantics, expected outcomes, shrink reductions and design hashes remain
+unchanged. The fresh experiment passes 64 controller runs over 64 distinct
+authorities, with 148 and 156 audited selections. All sixteen work-limited repeat
+comparisons match; seven wall-limited comparisons retain their measured variation.
+Exact rational checks of all 183 recorded pressure fields confirm positive
+stored routing shares and column sums at most one. Both bundles detect M09 and
+all fields converge. The prior work-limited outcomes remain unchanged: rich B3
+integrated loss is 78 versus B0's 72 at sixteen requests; the simple control is
+neutral. B3 pressure construction/solve time in those rich work-16 runs spans
+17.73–33.60 ms, including normalization; no performance improvement is claimed.
+
+Results are in `artifacts/pressure-routing-repeatability/repeatability.json` and
+`repeatability.md`. This closes the bounded numerical correction. Transport/M12,
+learned conductance, generalized recovery and the broader benchmark remain deferred.

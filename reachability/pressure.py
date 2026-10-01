@@ -11,6 +11,7 @@ from .trace_protocol import fingerprint
 
 CHANNELS = ('infer', 'observe')
 DEPENDENCIES = ('epistemic', 'lifecycle', 'teleological', 'observation')
+ROUTING_VERSION = 'binary64-substochastic/v2'
 
 
 def finite(value, maximum=1e9):
@@ -144,6 +145,34 @@ def components(names, routing):
     return sorted(found)
 
 
+def normalized_shares(children):
+    """Positive binary64 shares whose *exact stored* sum is at most one.
+
+    Rounded summation cannot prove the bound (five stored 0.2 values exceed
+    one). Float denominators are powers of two, so integer ratios let us check
+    and correct that excess exactly, independently of the iteration arithmetic.
+    """
+    total = fsum(edge.weight for edge in children)
+    shares = [edge.weight/total for edge in children]
+    if any(share <= 0 for share in shares):
+        raise ValueError('unsupported dependency weight range: normalized positive share underflows')
+    ratios = [share.as_integer_ratio() for share in shares]
+    denominator = max((d for _, d in ratios), default=1)
+    numerator = sum(n*(denominator//d) for n, d in ratios)
+    if numerator > denominator:
+        largest = max(range(len(shares)), key=shares.__getitem__)
+        n, d = ratios[largest]
+        capacity = n*(denominator//d)-(numerator-denominator)
+        corrected = capacity/denominator
+        n, d = corrected.as_integer_ratio()
+        if n*denominator > capacity*d:
+            corrected = nextafter(corrected, 0.)
+        if corrected <= 0:
+            raise ValueError('unsupported dependency weight range: column correction loses a positive share')
+        shares[largest] = corrected
+    return shares
+
+
 def derive(binding, nodes, edges, sources, *, limits=PressureLimits()):
     """Return a new immutable-in-spirit JSON view; no service or state handle.
 
@@ -164,7 +193,8 @@ def derive(binding, nodes, edges, sources, *, limits=PressureLimits()):
         observed_relief_events=list(s.relief_events)) for s in sources}
     exhausted = [name for name, size, bound in (('nodes', len(nodes), limits.nodes),
         ('edges', len(edges), limits.edges), ('sources', len(sources), limits.sources)) if size > bound]
-    result = dict(schema='typed-pressure/v1', epoch=fingerprint((binding, list(map(asdict, nodes)),
+    result = dict(schema='typed-pressure/v1', routing_version=ROUTING_VERSION,
+        epoch=fingerprint((ROUTING_VERSION, binding, list(map(asdict, nodes)),
         list(map(asdict, edges)), list(map(asdict, sources)), asdict(limits))), binding=binding,
         supported_channels=list(CHANNELS), unsupported_channels=['act', 'expand', 'retain'],
         sources=ledger, fields={}, scores={}, routing=[], cycles=[], conversions=[],
@@ -184,14 +214,7 @@ def derive(binding, nodes, edges, sources, *, limits=PressureLimits()):
             outgoing[edge.parent].append(edge)
     routing = []
     for parent, children in outgoing.items():
-        total = fsum(e.weight for e in children)
-        shares = [edge.weight/total for edge in children]
-        excess = fsum(shares)-1.
-        if excess > 0:
-            # Keep the *stored binary64* column substochastic too. Decrease the
-            # largest share by roundoff; every missing child stays positive.
-            largest = max(range(len(shares)), key=shares.__getitem__)
-            shares[largest] = nextafter(shares[largest]-excess, 0.)
+        shares = normalized_shares(children)
         for edge, share in zip(children, shares):
             routing.append((parent, edge.child, share))
             if by_name[parent].channel != by_name[edge.child].channel:

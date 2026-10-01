@@ -1327,6 +1327,65 @@
           "artifacts/pressure-repeatability-reference.log"
         ]
       }
+    },
+    "routing_precision": {
+      "version": "binary64-substochastic/v2",
+      "version_in_pressure_epoch": true,
+      "exact_stored_column_bound": true,
+      "bound_check": "integer ratios of stored binary64 shares with a common power-of-two denominator",
+      "correction": "round only the largest share down to the exact remaining column capacity",
+      "normalization_underflow": "explicit unsupported weight range ValueError",
+      "representable_subnormal_weight_normalization": true,
+      "rounded_sum_regression_witness": "five binary64 0.2 shares have exact excess 1/18014398509481984 while fsum returns one",
+      "new_tests": 4,
+      "validation": {
+        "status": "passed",
+        "focused_regression_tests_passed": 61,
+        "deployment_admission_recovery_tests_passed": 70,
+        "standalone_reference_checks_passed": 15,
+        "remaining_failures": 0,
+        "tests_skipped": 0,
+        "suites_not_rerun": [
+          "full default suite",
+          "native integration suite"
+        ],
+        "existing_corpus_receipts_refreshed": 9,
+        "existing_corpus_verifiers_passed": 9,
+        "prior_fixture_semantics_unchanged": true,
+        "controller_runs_passed": 64,
+        "distinct_authorities": 64,
+        "work_limited_repeat_matches": 16,
+        "work_limited_repeat_failures": 0,
+        "work_limited_repeat_inconclusive": 0,
+        "wall_limited_repeat_variations": 7,
+        "audited_selections_per_bundle": [
+          148,
+          156
+        ],
+        "recorded_fields_independently_checked_for_exact_routing_bound": 183,
+        "comparison_source_files_verified_per_bundle": 71,
+        "rich_work16_b3_pressure_elapsed_ns_range": [
+          17731365,
+          33597075
+        ],
+        "normalization_cost_included_in_pressure_iteration_time": true,
+        "verification_elapsed_ns": 37242429578,
+        "total_experiment_elapsed_ns": 118871183435,
+        "expected_operation_rejections": {
+          "UNKNOWN": 6,
+          "STALE": 24
+        },
+        "m09_detected_in_both_bundles": true,
+        "all_recorded_pressure_fields_converged": true,
+        "report": "artifacts/pressure-routing-repeatability/repeatability.json",
+        "readable_report": "artifacts/pressure-routing-repeatability/repeatability.md",
+        "logs": [
+          "artifacts/pressure-routing-focused.log",
+          "artifacts/pressure-routing-regressions.log",
+          "artifacts/pressure-routing-deployment-regressions.log",
+          "artifacts/pressure-routing-reference.log"
+        ]
+      }
     }
   }
 }
