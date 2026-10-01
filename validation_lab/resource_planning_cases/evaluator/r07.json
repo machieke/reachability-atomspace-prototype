@@ -1,0 +1,40 @@
+{
+  "schema": "resource-planning-case/v1",
+  "case_id": "r07",
+  "parent_instance_id": "resource-planning-parent-0",
+  "split": "development",
+  "controls": [
+    "F08:occupancy-after-selection"
+  ],
+  "hooks": [
+    {
+      "kind": "reserve",
+      "occurrence": 1,
+      "events": [
+        {
+          "schema": "resource-planning-event/v1",
+          "event_id": "lease-x",
+          "kind": "lease",
+          "arguments": {
+            "hold_id": "x",
+            "resource_id": "cpu",
+            "quantity": 1,
+            "duration": 3,
+            "remote": false
+          }
+        }
+      ]
+    }
+  ],
+  "responses": {},
+  "faults": [],
+  "visit_limit": 50000,
+  "expected": {
+    "completed": true,
+    "objective": [
+      2,
+      2
+    ],
+    "stop_reason": "OBSERVED_GOALS"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "profile": {
+    "deadline": 6,
+    "jobs": [
+      "a"
+    ],
+    "modes": [
+      {
+        "cost": 2,
+        "demands": [
+          {
+            "quantity": 1,
+            "resource_id": "cpu",
+            "unit": "slots"
+          }
+        ],
+        "duration": 2,
+        "job_id": "a",
+        "mode_id": "m0",
+        "revision": "1"
+      },
+      {
+        "cost": 4,
+        "demands": [
+          {
+            "quantity": 1,
+            "resource_id": "gpu",
+            "unit": "slots"
+          }
+        ],
+        "duration": 1,
+        "job_id": "a",
+        "mode_id": "m1",
+        "revision": "1"
+      }
+    ],
+    "resources": [
+      {
+        "capacity": 1,
+        "resource_id": "cpu",
+        "unit": "slots"
+      },
+      {
+        "capacity": 1,
+        "resource_id": "gpu",
+        "unit": "slots"
+      }
+    ],
+    "schema": "resource-planning-public/v1",
+    "work_budget": 20
+  },
+  "events": []
+}

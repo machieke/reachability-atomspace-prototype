@@ -1,0 +1,23 @@
+{
+  "schema": "resource-planning-case/v1",
+  "case_id": "r10",
+  "parent_instance_id": "resource-planning-parent-0",
+  "split": "development",
+  "controls": [
+    "F10:failed-first-submit"
+  ],
+  "hooks": [],
+  "responses": {},
+  "faults": [
+    "before_effect"
+  ],
+  "visit_limit": 50000,
+  "expected": {
+    "completed": true,
+    "objective": [
+      2,
+      2
+    ],
+    "stop_reason": "OBSERVED_GOALS"
+  }
+}

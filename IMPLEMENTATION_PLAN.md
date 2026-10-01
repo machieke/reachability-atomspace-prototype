@@ -48,13 +48,13 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, thirteenth increment): a separate bounded B0
-proof planner now searches complete grounded-rule alternatives for conjunctive
-goals, with declared work costs, durations, expiry and whole-state consistency.
-An independent tiny reference checks optimal objectives and complete witnesses;
-22 fixed cases and 12 seeded graphs add 106 compared/recovered service prefixes.
-Public edits invalidate selected plans before execution. Deployment execution
-alternatives, broader planning and comparative experiments remain open.
+Current checkpoint (1 October 2026, fourteenth increment): a bounded serial
+execution planner now chooses whole renewable-resource contracts for up to three
+products. An independent occupancy/time enumerator checks complete schedules;
+actual service gates still control reservation and dispatch, with observed
+outcomes and fenced release between jobs. Twenty fixed and eight seeded cases
+add 163 compared/recovered event prefixes. Concurrent portfolios, combined
+proof/execution search, broader planning and comparative experiments remain open.
 Broader phase 1/2 semantics, authoritative native
 storage, family-complete validation and phase 5–8 pressure/attention work remain open.
 The latest execution record below defines the next concrete increment.
@@ -1003,3 +1003,71 @@ Next increment, in order:
 General shrinking, controlled interleavings, evaluator OS isolation and the
 64-fixture target remain separate phase 4 deliverables. Broader phase 1/3 semantics
 and phases 5–8 remain open.
+
+### Fourteenth increment on 1 October 2026
+
+Implemented renewable-resource execution alternatives in four phases:
+
+1. **Bounded whole-contract portfolios.** Added immutable public jobs, renewable
+   capacities and alternative execution modes. Each mode binds exact identity and
+   revision, all resource quantities/units, declared cost and predicted duration.
+   Detached snapshots expose only observed readiness/lifetimes, completed products,
+   actual leases/remote uncertainty, active execution and remaining credits.
+   Complete serial schedules must fit aggregate capacity, expiry, cost and time.
+2. **Independent occupancy/time reference.** Added an evaluator-only enumerator of
+   complete job orders, mode products and integer start tuples, using discrete
+   occupancy independently of the runtime interval sweep. Complete witness checks
+   prevent mixing pieces of alternatives. Exhaustion has an explicit unknown
+   outcome and cannot promote an incumbent to an optimum. Optimality concerns only
+   the declared frozen serial prediction model.
+3. **Actual reservation, dispatch and observed completion.** Connected first-step
+   selection to the existing operation, execution-permit and durable intent APIs.
+   Current service checks still guard reservation and final send. The controller
+   reconciles lost replies, retries a failed idempotent submission with the same
+   request, requests outcome observations, advances only with exact outcome support,
+   and obtains an authoritative executor fence before starting another job.
+   Public edits can stale the selection or block dispatch after reservation.
+4. **Closed-loop prefix/recovery validation.** Added twenty fixed and eight seeded
+   episodes, an independent cold event model, separate public/evaluator files and
+   source-pinned receipts. Actual failures and partial effects are logged before
+   comparison. Both journals reopen after each emitted event; native tests project
+   actual hard, resource, reservation, intent and dispatch records after replay.
+   All four existing corpus receipts include the new runtime modules.
+
+Verification: all 608 default tests pass, including 25 new resource-planning tests;
+all 72 optional native tests and all 15 original standalone reference checks pass.
+The final corpus CLI passes all twenty fixed controls. Additional regression tests
+cover stale observation selection at the deadline, current product/milestone
+retirement and the prohibition on implicitly reusing a terminal lifecycle edge.
+Original design hashes and committed-version journal compatibility remain intact.
+
+The fixed cases compare/recover 119 prefixes, with eleven completed and nine
+expected unresolved episodes. Eight seed-5107 cases add 44 prefixes and five
+completions. Controls cover complete resource packets, serial portfolio budgets,
+half-open leases, stale selections, revocation, remote occupancy, lost ACKs,
+pre-effect failure, wrong products and delayed/missing outcomes. A delayed outcome
+can invalidate the remaining schedule; acknowledgement and lease expiry never
+manufacture completion or release. F03 coverage remains a finite renewable slice,
+not the full consumable/resource-production family.
+
+The service conservatively blocks resources under remote uncertainty; this
+increment deliberately scopes its portfolios to serial independent jobs. General
+concurrent schedules, combined grounded proof/execution planning and shared
+cross-product prerequisites remain open. Duration and cost are declared contracts,
+not measured computational cost or guarantees about future observations. Work
+credits and selection metadata remain synchronous wrapper state rather than a
+crash-atomic controller checkpoint. There are still zero family-complete fixtures,
+no new designated mutation witnesses and no comparative scheduling claims.
+
+Next increment, in order:
+
+1. Generalize event-trace shrinking beyond the existing hand-minimized M07 case,
+   using the strict public event protocols and bounded independent prefix oracles.
+2. Preserve a concrete first-divergence signature and passing unmodified control
+   while removing events; reject unsupported oracle cases explicitly.
+3. Record original/reduced traces, deletion checks, source receipts and split
+   ancestry for existing M05/M06/M07/M11 witnesses.
+4. Add reproducibility and failure-retention checks before claiming a general
+   minimization facility; keep deterministic interleavings, remaining designated
+   mutants, evaluator OS isolation and the 64-fixture target visible as phase 4
+   work. Broader phase 1/3 semantics and phases 5–8 remain open.

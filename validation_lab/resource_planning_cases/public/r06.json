@@ -1,0 +1,80 @@
+{
+  "profile": {
+    "deadline": 2,
+    "jobs": [
+      "a"
+    ],
+    "modes": [
+      {
+        "cost": 1,
+        "demands": [
+          {
+            "quantity": 1,
+            "resource_id": "cpu",
+            "unit": "slots"
+          },
+          {
+            "quantity": 1,
+            "resource_id": "gpu",
+            "unit": "slots"
+          }
+        ],
+        "duration": 2,
+        "job_id": "a",
+        "mode_id": "m0",
+        "revision": "1"
+      },
+      {
+        "cost": 3,
+        "demands": [
+          {
+            "quantity": 1,
+            "resource_id": "gpu",
+            "unit": "slots"
+          }
+        ],
+        "duration": 1,
+        "job_id": "a",
+        "mode_id": "m1",
+        "revision": "1"
+      }
+    ],
+    "resources": [
+      {
+        "capacity": 1,
+        "resource_id": "cpu",
+        "unit": "slots"
+      },
+      {
+        "capacity": 1,
+        "resource_id": "gpu",
+        "unit": "slots"
+      }
+    ],
+    "schema": "resource-planning-public/v1",
+    "work_budget": 20
+  },
+  "events": [
+    {
+      "schema": "resource-planning-event/v1",
+      "event_id": "ready-a",
+      "kind": "ready",
+      "arguments": {
+        "job_id": "a",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "resource-planning-event/v1",
+      "event_id": "lease-x",
+      "kind": "lease",
+      "arguments": {
+        "hold_id": "x",
+        "resource_id": "cpu",
+        "quantity": 1,
+        "duration": 3,
+        "remote": false
+      }
+    }
+  ]
+}

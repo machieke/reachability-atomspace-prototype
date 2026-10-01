@@ -429,8 +429,8 @@ neither shortened stream detects the mutant. This is deletion minimal in the
 declared profile, not a general-purpose shrinking algorithm.
 M08–M10 and M12 remain open.
 
-Next connect whole-plan choices to renewable-resource execution contracts and
-an independent tiny occupancy/time reference before comparative claims. Complete family coverage,
+Next generalize trace shrinking while preserving independent failure signatures
+and passing controls before comparative claims. Complete family coverage,
 general event shrinking, deterministic concurrent interleavings, hidden-world models,
 OS isolation, benchmark cost budgets and all pressure/attention experiments remain
 open in [the phased plan](IMPLEMENTATION_PLAN.md).
@@ -520,3 +520,106 @@ harness and independent references. Regenerate deliberately with
 `python -m validation_lab.generate_planning_cases`; regenerate the admission,
 deployment and deployment-B0 receipts after shared runtime changes. Validation
 checks receipts without silently refreshing them.
+
+## Serial renewable-resource execution portfolios
+
+Run `uv run --no-project python -m validation_lab.run_resource_planning`.
+This finite B0 profile chooses one complete immutable mode for each outstanding
+product, including resource quantities/units, cost and predicted duration. It
+supports at most three independent products, three renewable resources with
+integer capacities 0–4, and six modes. Each mode lasts 1–4 logical ticks and costs
+1–20 declared credits; the episode deadline is at most tick 8 and its budget is
+at most 100 credits. Every product has its own directly observed readiness fact
+and grounded lifecycle. This is separate from grounded proof search and from the
+original single-deployment numerical/health controller.
+
+The runtime enumerates serial schedules, checking the complete combined interval
+portfolio against existing local leases using the service's interval-capacity
+checker. Every mode retains its complete resource packet; resources, duration and
+cost cannot be taken from different alternatives. It minimizes `(declared cost,
+final predicted completion time)` and uses neutral public identity for ties.
+Prerequisites must remain valid strictly beyond predicted completion. Readiness
+also includes the lifecycle source stage: a terminal episode with revoked
+product support cannot silently execute its original forward edge again. Revoking
+an observation retires its current view while preserving historical lifecycle events.
+Known local leases end at exclusive boundaries. Any resource with unresolved remote occupancy
+is unavailable throughout the frozen planning horizon, even after its lease ends.
+The current service does not admit concurrent reuse of such resources, including
+spare capacity; this planner preserves that rule.
+
+The independent reference imports only `copy` and `itertools`. It enumerates job
+permutations, mode combinations and integer start-time tuples, checks unit-time
+occupancy instead of reusing the runtime interval sweep, and validates the complete
+returned witness. It receives the same frozen public snapshot without future
+responses, hooks or actual search results. Its 200,000-candidate limit returns
+`NOT_COMPUTED`. Runtime search defaults to 50,000 candidate visits (maximum
+500,000); exhaustion discards any incumbent and returns `BUDGET_EXHAUSTED`.
+`NO_CERTIFIABLE_PLAN` describes the current bounded model; it does not prove that
+future observations or reconciliation cannot enable a plan.
+
+Schedules are predictions conditional on the declared observation durations.
+They are not reservations, completion evidence or permission to free resources.
+The controller executes only the first reservation after checking its snapshot
+binding and complete immutable contract. Actual service certificates bind current
+knowledge, operation and resource revisions; the service checks them again when
+publishing the intent. Dispatch independently checks current prerequisites and
+occupancy. Losing acknowledgement triggers reconciliation, and a failed first
+send may retry the same idempotent request. No ACK establishes product completion.
+
+Observation requests deliver evaluator-owned reports only after an actual simulated
+effect and the response's availability time. The authority checks the exact
+attempt/product milestones and outcome support before advancing the lifecycle.
+The controller then requests a permanent executor fence before planning the next
+job. Wrong-product reports remain failed observations with their actual partial
+hard-record effects retained; they never count as completion. Missing reports or
+late outcomes leave explicit unresolved states or force a new schedule. Revoked
+readiness after reservation stops this controller with its local intent retained;
+it does not fabricate replacement support or claim automatic cancellation.
+
+| Controls | Coverage |
+| --- | --- |
+| r01–r03 | Cheap/fast alternatives and rejection of mixed cost/time pieces |
+| r04–r06 | Half-open lease boundary, aggregate capacity and complete multi-resource packets |
+| r07–r08 | Occupancy after selection and readiness revoked before dispatch |
+| r09–r11 | Lost acknowledgement, failed first send and wrong then correct product |
+| r12–r13 | Missing outcome and unresolved remote occupancy after lease expiry |
+| r14–r16 | Joint serial portfolio cost/time and exclusive prerequisite expiry |
+| r17–r18 | Explicit enumeration exhaustion and missing readiness |
+| r19 | New remote occupancy blocks final dispatch despite an existing local intent |
+| r20 | A late observed first completion invalidates the remaining predicted schedule |
+
+The twenty fixed controls produce 119 compared/recovered prefixes, with eleven
+completed and nine expected unresolved episodes. Eight seed-5107 cases add 44
+prefixes and five completions, without outcome filtering. A cold event model
+reconstructs readiness facts, retirement, operation milestones, lifecycle
+completion, local/remote occupancy, charged costs and executor effects after every
+actual public event. Records are logged before comparison, then both authority
+and executor journals are reopened and checked. Native tests also compare actual
+AtomSpace hard-belief, resource, reservation, intent and dispatch projections before
+and after recovery. These are development descendants of
+`resource-planning-parent-0`; none is a family-complete fixture or a new designated
+mutation witness.
+
+Counters separate declared execution cost from search candidate/capacity visits,
+issued requests, public events, journal commands and captured certificates. Setup
+costs, internal checker operations, total I/O and memory are not normalized.
+Public events include hook deliveries and rejected commands; failed issued
+reservations consume their declared credits, while stale selection alone consumes
+none. Search proposals are logged before the independent reference is called.
+An always-idle controller fails the positive control.
+
+The controller and adapter are synchronous and operate in a shared process.
+Observed-stream metadata, the active selection and charged-credit ledger survive
+service reopenings in the same wrapper; they are not a fresh-process checkpoint
+or an atomic controller/executor crash transaction. Resource ownership and request
+fencing remain in the actual durable service/executor journals. Concurrent
+execution, consumables, renewal, cross-product dependencies, combined proof and
+execution planning, optimal behavior under future changes and comparative benefit
+remain open. Native storage remains a disposable projection, not commit authority.
+
+The new corpus receipt pins separate public/evaluator files and every runtime
+module, generator, harness and independent reference. Refresh explicitly with
+`python -m validation_lab.generate_resource_planning_cases`. Shared runtime changes
+also require refreshing all four earlier corpus receipts; validators never rewrite
+receipts automatically. The original design pack and core authority/journal
+schemas are unchanged.

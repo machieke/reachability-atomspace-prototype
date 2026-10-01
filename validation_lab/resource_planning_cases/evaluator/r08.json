@@ -1,0 +1,36 @@
+{
+  "schema": "resource-planning-case/v1",
+  "case_id": "r08",
+  "parent_instance_id": "resource-planning-parent-0",
+  "split": "development",
+  "controls": [
+    "F08:revocation-before-dispatch"
+  ],
+  "hooks": [
+    {
+      "kind": "dispatch",
+      "occurrence": 1,
+      "events": [
+        {
+          "schema": "resource-planning-event/v1",
+          "event_id": "revoke",
+          "kind": "revoke",
+          "arguments": {
+            "evidence_id": "ready-a"
+          }
+        }
+      ]
+    }
+  ],
+  "responses": {},
+  "faults": [],
+  "visit_limit": 50000,
+  "expected": {
+    "completed": false,
+    "objective": [
+      2,
+      2
+    ],
+    "stop_reason": "PREREQUISITE_UNAVAILABLE"
+  }
+}

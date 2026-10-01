@@ -1,0 +1,18 @@
+{
+  "schema": "resource-planning-case/v1",
+  "case_id": "r17",
+  "parent_instance_id": "resource-planning-parent-0",
+  "split": "development",
+  "controls": [
+    "F13:search-budget"
+  ],
+  "hooks": [],
+  "responses": {},
+  "faults": [],
+  "visit_limit": 0,
+  "expected": {
+    "completed": false,
+    "objective": null,
+    "stop_reason": "BUDGET_EXHAUSTED"
+  }
+}

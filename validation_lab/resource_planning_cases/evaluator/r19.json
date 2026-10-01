@@ -1,0 +1,40 @@
+{
+  "schema": "resource-planning-case/v1",
+  "case_id": "r19",
+  "parent_instance_id": "resource-planning-parent-0",
+  "split": "development",
+  "controls": [
+    "F08:remote-occupancy-before-dispatch"
+  ],
+  "hooks": [
+    {
+      "kind": "dispatch",
+      "occurrence": 1,
+      "events": [
+        {
+          "schema": "resource-planning-event/v1",
+          "event_id": "lease-x",
+          "kind": "lease",
+          "arguments": {
+            "hold_id": "x",
+            "resource_id": "cpu",
+            "quantity": 1,
+            "duration": 3,
+            "remote": true
+          }
+        }
+      ]
+    }
+  ],
+  "responses": {},
+  "faults": [],
+  "visit_limit": 50000,
+  "expected": {
+    "completed": false,
+    "objective": [
+      2,
+      2
+    ],
+    "stop_reason": "REJECTED"
+  }
+}

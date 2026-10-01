@@ -1,0 +1,25 @@
+{
+  "schema": "resource-planning-case/v1",
+  "case_id": "r11",
+  "parent_instance_id": "resource-planning-parent-0",
+  "split": "development",
+  "controls": [
+    "F10:wrong-product-then-correct"
+  ],
+  "hooks": [],
+  "responses": {
+    "m0": {
+      "wrong_until": 3
+    }
+  },
+  "faults": [],
+  "visit_limit": 50000,
+  "expected": {
+    "completed": true,
+    "objective": [
+      2,
+      2
+    ],
+    "stop_reason": "OBSERVED_GOALS"
+  }
+}

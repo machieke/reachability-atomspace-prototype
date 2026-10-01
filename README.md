@@ -406,6 +406,7 @@ reopens the goal while preserving the completed artifact's lifecycle history.
 | `reachability/admission_protocol.py`, `reachability/admission_trace.py` | Grounded rule/context/lineage messages and actual admission traces |
 | `reachability/b0.py` | Bounded public deployment candidates, deterministic B0 selection, budgets and scheduling checkpoints |
 | `reachability/grounded_planning.py`, `reachability/planning_session.py` | Complete bounded grounded proof plans, cost/time alternatives and certified first-step execution |
+| `reachability/resource_planning.py`, `reachability/resource_planning_session.py` | Serial renewable-resource portfolios, immutable contract alternatives and actual reservation/dispatch gates |
 | `validation_lab/` | Cold oracles, closed-loop B0 worlds, fixed/seeded cases, receipts and M05/M06/M07/M11 witnesses |
 | `adapters.lock.json`, `scripts/build_adapters.py` | Exact upstream revisions and isolated native build |
 | `reachability/adapter_demo.py`, `integration_tests/` | Explicit optional suite using both real runtimes |
@@ -488,6 +489,18 @@ Optimality is confined to each frozen bounded hard-proof problem. Work credits
 are declared inference costs, not physical resources or measured CPU time; this
 profile does not yet choose deployment execution/resource alternatives.
 
+The renewable-resource profile now plans serial execution portfolios of up to
+three independent products. Each alternative binds one complete execution
+contract, including its resource demands, declared cost and predicted duration.
+Run `uv run --no-project python -m validation_lab.run_resource_planning`.
+An independent enumerator checks whole schedules using discrete occupancy, and a
+cold model checks every actual reservation, dispatch, observation and release
+prefix. Twenty fixed cases and eight seeded cases add 163 compared/recovered
+prefixes. Late or missing observations can invalidate the predicted schedule;
+only actual observations and fenced release allow the controller to proceed.
+This profile preserves the service's conservative remote-occupancy rule and does
+not combine proof search with execution planning or schedule concurrent work.
+
 ## Current limits and next work
 
 This is an in-process API with trusted callers, not a sandbox for hostile Python
@@ -507,9 +520,8 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M08/M09/M10/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next connect bounded whole-plan alternatives to renewable-resource execution
-contracts, with an independent tiny occupancy/time reference and current
-reservation gates. General trace shrinking, controlled interleavings and
+Next generalize event-trace shrinking with preserved failure signatures and
+reproducible mutation witnesses. Controlled interleavings and
 evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding

@@ -77,6 +77,8 @@
     "reachability/probability_model.py": "2799ebac52194ecc351c7d53cfcdfbfbbcd383fcaac333385c9dfd1150ee6068",
     "reachability/recovery_demo.py": "4de1986b6fbf876fe0553149458e809991e5ba75a89f793956b8f8ceeecc2790",
     "reachability/requirements.py": "94366add63f99a21794908ac24c60d7953fa834b4f887544f5769c5cb4139c6e",
+    "reachability/resource_planning.py": "2041bcee005838b953e28fae6e1b8f6c491951bd1214c71a0a773fabafc68ab6",
+    "reachability/resource_planning_session.py": "efe0b4d11aa58e05cfb9f03d67d7022a2698b78a16844232c620e3bf7830da40",
     "reachability/resources.py": "5c180096b129f8e2da5aef72b10e9b31292968bd30a602a000c1013409b5af03",
     "reachability/service.py": "d7b296d8110c06fc38ee56fd952cf39747e6e458c040ca252fe0cf6b05f40b42",
     "reachability/simulated_executor.py": "1661b3c75680849a5959e2edade8ac585cacb85b65702246b79e9f9d81ea0c3b",
