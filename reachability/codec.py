@@ -11,6 +11,7 @@ from . import goal_model as goal
 from .completion import CompletionContract, CompletionPermit
 from .requirements import Requirement, RequirementResult, RequirementWitness
 from . import probability_model as probability
+from .decision_model import DecisionContract, DecisionCriterion, DecisionSupport, CriterionDecision, DecisionEvaluation
 from .pln_adapter import (DeductionRule, PLNProposal, ProbabilisticSupport, ProbabilitySnapshot,
                           TruthValue, IndependenceDeclaration)
 
@@ -36,6 +37,7 @@ RECORDS = {cls.__name__: cls for cls in (
     probability.ProbabilityPolicy, probability.ProbabilityReport, probability.ProbabilityRule,
     probability.ProbabilityIndependence, probability.ProbabilityTransition, probability.ProbabilityCertificate,
     probability.ProbabilityBeliefRevision, probability.ProbabilityCommitResult, probability.ProbabilityView,
+    DecisionContract, DecisionCriterion, DecisionSupport, CriterionDecision, DecisionEvaluation,
 )}
 
 

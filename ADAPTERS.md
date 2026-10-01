@@ -6,7 +6,9 @@ AtomSpace holds actual
 Nodes, ordered ListLinks and named Values; PeTTa executes the selected upstream
 MeTTa formulas. Neither adapter can commit an uncertain proposal to the hard-claim
 ledger. The service verifies and durably commits estimates under their own
-interpretation. Phase 3's full deployment exit criterion remains open.
+interpretation. A [versioned decision contract](DECISIONS.md) now carries exact
+numerical support through the full deployment conformance episode. Native storage
+remains a disposable projection, with SQLite as the commit authority.
 
 ## Dependencies and reproduction
 
@@ -35,6 +37,7 @@ uv run --no-project python scripts/build_adapters.py --debian-sysroot
 uv run --no-project python -m unittest discover -s integration_tests -v
 uv run --no-project python -m reachability.adapter_demo
 uv run --no-project python -m reachability.probability_demo
+uv run --no-project python -m reachability.decision_demo
 ```
 
 The Debian option requires the locked Ubuntu amd64 package versions to remain
@@ -149,6 +152,9 @@ beliefs.
 The [numeric ledger](PROBABILITY.md) now supplies issued pre/post certificates,
 exact snapshot binding, a complete three-event joint check and durable commit/replay.
 The same service contracts run with finite and native inference, with native
-projection before and after recovery. Next define the numerical decision contract
-for the deployment episode. Phase 3 remains open. Attention, FDAS and Freeciv
+projection before and after recovery. The [deployment decision episode](DECISIONS.md)
+also uses both adapters through completion, later goal reopening and identical
+reconstruction. Native projection now includes exact typed numerical tuple elements
+needed by ordered requirement witnesses. Phase 3 remains open for broader storage
+integration. Attention, FDAS and Freeciv
 adapters, general context inheritance and variable binding remain pending.

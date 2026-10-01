@@ -16,7 +16,9 @@ from .service import AdmissionDenied, AdmissionService
 from .simulated_executor import SimulatedExecutor
 
 
-def run() -> dict[str, object]:
+def run(*, probability_adapter=None, project_native=False) -> dict[str, object]:
+    if project_native and probability_adapter is None:
+        raise ValueError("native deployment projection requires the probabilistic episode")
     tested = Literal(Statement("Tested", ("artifact-v2",)))
     credential = Literal(Statement("CredentialValid", ("credential",)))
     product = Literal(Statement("Available", ("artifact-v2",)))
@@ -74,6 +76,9 @@ def run() -> dict[str, object]:
             service.select_operation("attempt", 0, idempotency_key=key())
             service.register_resource(ResourceDefinition("slot", 1, "slots"), idempotency_key=key())
             service.register_execution_contract(execution, idempotency_key=key())
+            if probability_adapter is not None:
+                from .decision_demo import register_contract
+                register_contract(service, key)
             service.register_dispatch_policy(DispatchPolicy("dispatch", "1", "deploy", "1", executor.profile), idempotency_key=key())
             service.register_goal_contract(goal_contract, idempotency_key=key())
             service.open_goal_episode("goal", "run-healthy-artifact-v2", "ctx", "healthy-service", "1", idempotency_key=key())
@@ -82,7 +87,12 @@ def run() -> dict[str, object]:
             accept(service, tested)
             missing = certify(service).status.value
             accept(service, credential, valid_until=1)
-            service.reserve_and_record_intent(certify(service), idempotency_key=key())
+            if probability_adapter is not None:
+                from .decision_demo import admit_forecast
+                missing_forecast = certify(service).status.value
+                forecast = admit_forecast(service, key, probability_adapter)
+            execution_permit = certify(service)
+            service.reserve_and_record_intent(execution_permit, idempotency_key=key())
             service.claim_goal_coverage("promise", "goal", "healthy", "attempt", "worker", 6, 10, idempotency_key=key())
             before = service.inspect_goal("goal").projection
             dispatcher = Dispatcher(service, executor)
@@ -107,9 +117,14 @@ def run() -> dict[str, object]:
             credential_status = service.query_belief("ctx", credential).status.value
             tick(service, 4)
             sample(service, 4, False)
+            if probability_adapter is not None:
+                from .decision_demo import deployment_snapshot, project_snapshot
+                numerical_witness = service.execution_decision(execution_permit.certificate_id)
+                snapshot = deployment_snapshot(service, permit)
+                graph = project_snapshot(snapshot) if project_native else None
         with AdmissionService(database=local) as recovered:
             view = recovered.inspect_goal("goal")
-            return {
+            result = {
                 "scope": "finite deployment conformance with a local executor simulator",
                 "missing_submission_credential": missing,
                 "before_dispatch": {"outstanding": before.outstanding_loss,
@@ -124,6 +139,21 @@ def run() -> dict[str, object]:
                 "relief_history": [event.kind for revision in view.history for event in revision.events],
                 "causal_credit_assigned": any(event.causal_attempt_id for revision in view.history for event in revision.events),
             }
+            if probability_adapter is not None:
+                recovered_snapshot = deployment_snapshot(recovered, permit)
+                result.update({
+                    "scope": "probabilistic deployment conformance with a local executor simulator",
+                    "missing_forecast": missing_forecast,
+                    "forecast_strength": forecast.proposal.support.truth.strength,
+                    "forecast_confidence": forecast.proposal.support.truth.confidence,
+                    "submission_decision": numerical_witness.status.value,
+                    "current_decision_after_expiry": recovered.inspect_probability_decision("attempt", "deploy", "1").status.value,
+                    "forecast_as_hard_fact": recovered.query_belief("ctx", forecast.proposal.support.conclusion).status.value,
+                    "recovered_identical_deployment_snapshot": recovered_snapshot == snapshot,
+                    "native_projection_identical_after_restart":
+                        project_snapshot(recovered_snapshot) == graph if project_native else None,
+                })
+            return result
 
 
 if __name__ == "__main__":

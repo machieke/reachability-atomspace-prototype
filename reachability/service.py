@@ -15,6 +15,7 @@ from uuid import uuid4
 from .codec import dumps, loads
 from .completion import CompletionMixin, CompletionStore
 from .dispatch import DispatchMixin, DispatchStore
+from .decisions import DecisionMixin, DecisionStore
 from .errors import AdmissionDenied, IdempotencyConflict
 from .execution import ExecutionMixin, ExecutionStore
 from .goals import GoalMixin, GoalStore
@@ -43,17 +44,17 @@ class _Context:
     logical_time: int = 0
 
 
-class AdmissionService(ProbabilityMixin, CompletionMixin, GoalMixin, DispatchMixin, ExecutionMixin, LifecycleMixin):
+class AdmissionService(DecisionMixin, ProbabilityMixin, CompletionMixin, GoalMixin, DispatchMixin, ExecutionMixin, LifecycleMixin):
     _COMMANDS = (frozenset((
         "open_context", "record_evidence", "revoke_evidence", "propose_evidence",
         "propose_transition", "precertify", "postcertify", "commit", "replace_rule",
         "replace_policy", "advance_clock",
     )) | LifecycleMixin.LIFECYCLE_COMMANDS | ExecutionMixin.EXECUTION_COMMANDS
        | DispatchMixin.DISPATCH_COMMANDS | GoalMixin.GOAL_COMMANDS | CompletionMixin.COMPLETION_COMMANDS
-       | ProbabilityMixin.PROBABILITY_COMMANDS)
+       | ProbabilityMixin.PROBABILITY_COMMANDS | DecisionMixin.DECISION_COMMANDS)
     _STATE_FIELDS = ("_rules", "_rule_versions", "_policy_versions", "_contexts",
                      "_evidence", "_revoked", "_transitions", "_certificates", "_commands", "_lifecycle", "_execution",
-                     "_dispatch", "_goals", "_completion", "_probability")
+                     "_dispatch", "_goals", "_completion", "_probability", "_decisions")
 
     def __init__(self, rules: tuple[Rule, ...] | None = None, *,
                  max_variables: int | None = None, database: str | Path | None = None):
@@ -111,6 +112,7 @@ class AdmissionService(ProbabilityMixin, CompletionMixin, GoalMixin, DispatchMix
         self._goals = GoalStore()
         self._completion = CompletionStore()
         self._probability = ProbabilityStore()
+        self._decisions = DecisionStore()
         if self._journal is not None:
             try:
                 self._replaying = True

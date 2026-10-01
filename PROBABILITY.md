@@ -145,9 +145,9 @@ four-observation Boolean worlds checks 15,625 joint constraint combinations.
 Generated cases compare native and replay arithmetic bit for bit.
 
 This completes the scoped numerical certificate/commit/recovery increment.
-AtomSpace remains a disposable projection. Numeric-to-action decision contracts,
-calibrated loss models, the complete deployment episode using numerical estimates,
-general joint solving, PLN search and native persistent storage remain pending.
-Next define an explicit probabilistic decision contract for the deployment slice,
-without promoting estimates to hard facts, and validate it through both adapters.
-Phase 3 remains open.
+The subsequent [decision contract increment](DECISIONS.md) carries exact numerical
+support through action certification and simulated dispatch, and validates the full
+deployment episode through both native adapters. Estimates still assert no hard
+facts or observed goal relief. AtomSpace remains a disposable projection; calibrated
+loss models, general joint solving, PLN search and native persistent storage remain
+pending. Phase 3 remains open beyond this bounded integration scope.

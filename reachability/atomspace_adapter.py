@@ -198,6 +198,14 @@ class RecordProjection:
             return self.batch.node(f"enum:{type(value).__name__}:{value.value}")
         if value is None or type(value) is bool:
             return self.batch.node("scalar:" + repr(value))
+        if type(value) in (int, float):
+            # Ordered requirement paths and other tuple elements need their own
+            # typed atoms. Decimal StringValues retain arbitrary-size integers.
+            content_id = identity("atomspace-scalar/v1", dumps(value))
+            atom = self.batch.node(content_id)
+            key = self.batch.node("scalar:" + type(value).__name__, predicate=True)
+            self.batch.set_value(atom, key, str(value) if type(value) is int else (value,))
+            return atom
         if isinstance(value, str):
             return self.batch.node("text:" + value)
         if isinstance(value, tuple):
@@ -221,4 +229,11 @@ def project_probability(service, context_id: str, *, root: Path = ROOT / "artifa
     """Project certified numerical views with their distinct interpretation tags."""
     projection = RecordProjection()
     projection.add(service.export_probability(context_id))
+    return projection.batch.run(root)
+
+
+def project_execution_decision(service, attempt_id: str, *, root: Path = ROOT / "artifacts") -> NativeGraph:
+    """Project an action's numeric witness, intent and submission history together."""
+    projection = RecordProjection()
+    projection.add(service.export_execution_decision(attempt_id))
     return projection.batch.run(root)

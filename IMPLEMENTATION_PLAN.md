@@ -48,6 +48,13 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
+Current checkpoint (1 October 2026, ninth increment): the bounded deployment
+episode now combines certified PLN estimates, explicit decision thresholds, exact
+action witnesses, simulated dispatch, observed durability and native AtomSpace
+projection with checked recovery. Broader phase 1/2 semantics, authoritative native
+storage, and the phase 4–8 validation/pressure/attention work remain open. The latest
+execution record below defines the next concrete increment.
+
 ## Phase 0 Repository contracts
 
 1. Add package metadata, interpreter selection, ignore rules, a root README and
@@ -654,3 +661,75 @@ with declared units, thresholds/uncertainty and exact current numerical support.
 Carry its decisions through lifecycle/action gates without promoting estimates into
 hard facts, then validate the episode through both real adapters. The remaining
 phase 1/2 breadth items and phases 4–8 remain open.
+
+### Ninth increment on 1 October 2026
+
+Executed the deployment decision work in five steps:
+
+1. **Declare policy.** Added `probability-decision/v1`, exact execution/product
+   binding, one to sixteen criterion literals, dimensionless strength intervals
+   and a separate PLN evidence-adequacy floor. Unsupported units, selection
+   policies and confidence interpretations are rejected. Contract registration
+   precedes the first certificate for an execution version; changes require a new
+   version. Existing versions retain their original declared requirements.
+2. **Capture exact witnesses.** Each criterion considers every current certified
+   exact-literal estimate. Opposite orientations require an explicit model and
+   return UNKNOWN in this fragment. Missing/inadequate support, out-of-policy
+   strengths and retired revisions remain distinguishable. Execution certificates
+   bind the full evaluation digest and store an immutable numerical witness in the
+   same journal transaction. No prediction is inserted into the hard ledger.
+3. **Enforce action gates.** Certification, atomic reservation, intent inspection,
+   durable preparation and final simulator send enforce the registered contract.
+   Pending intents retain the exact certified support set, so even an equal-valued
+   replacement needs a new attempt. Current liveness remains mandatory. Unrelated
+   context updates do not change that basis. Reconciliation/release and observed
+   completion preserve valid historical submissions after forecasts expire.
+4. **Integrate the deployment episode.** Added a shared finite/native scenario
+   using real pinned PLN deduction, declared acceptance thresholds and a real
+   AtomSpace projection of decisions, numerical/hard support, execution records,
+   goal accounting and lifecycle completion. Extended native structural projection
+   to ordered numerical tuple elements using exact typed Values. The episode
+   recovers an identical complete snapshot and native graph.
+5. **Validate and document.** Added common volatile/durable/native decision
+   contracts, boundary cases, source/rule/policy retirement, forgery checks,
+   concurrency at final send, lost replies, ambiguous/failed writes, rollback,
+   broken-checker replay rejection and real process crashes around reservation.
+   Documented units, uncertainty semantics, exact support retention and scope in
+   `DECISIONS.md`; updated the capability manifest and adapter documentation.
+
+The deployment forecast is approximately `(0.68, 0.3584)`, accepted by the explicit
+`strength >= 0.65` and `confidence >= 0.35` policy. Its hard query stays UNKNOWN.
+The goal initially has ten outstanding units, six covered and four open. ACK leaves
+all ten outstanding. Despite expiry of the submission credential and prediction,
+exact later product/outcome observations plus three healthy samples permit observed
+completion; losses after samples are `[10,10,0]`. A later failure reopens ten units
+while the historical stage remains BUILT. No causal credit is assigned. These
+thresholds and forecasts are synthetic conformance inputs, not calibration results.
+
+Verification for this increment:
+
+- 507 default tests pass, including the existing committed-version journal
+  compatibility checks. Nineteen decision contracts run both volatile and durable,
+  plus model, full-episode and thirteen dispatch/recovery tests.
+- 67 optional native tests pass, including those nineteen decision contracts,
+  the complete deployment episode and exact scalar/ordered-tuple native readback.
+- All 15 original standalone reference checks pass unchanged.
+- Native I/O is excluded from checked replay. Existing non-decision record layouts
+  and command results are unchanged. The supplied design-input hashes still match.
+
+The scoped numerical-to-action deployment integration is complete. Native AtomSpace
+remains a disposable projection and SQLite remains authoritative; protected native
+storage/index ownership and broader adapter scope are not complete. The current
+decision conjunction does not infer a joint risk bound across forecast criteria,
+and confidence is not a calibrated probability or interval. Pressure and transport
+remain separate reference examples.
+
+Next increment: versioned deployment traces and an independent event oracle for
+the implemented finite fragment. First declare public event/trace records and
+separate evaluator expectations, then implement a cold reference projection that
+does not call service gate/accounting helpers. Compare every event prefix for
+submission, expiry/revocation, uncertainty, exact outcomes, durability and reopening;
+add restart prefixes and a reproducible mutation witness. Publish explicit coverage
+before expanding toward four controls for every F01–F16 family and the B0 scheduler.
+This advances the phase 2/4 validation foundation while broader phase 1/3 items and
+phases 5–8 remain open; it does not claim the 64-fixture target is already satisfied.

@@ -171,7 +171,7 @@ class ExecutionMixin:
             Check("undispatched_attempt", Status.PASS if not operation.observations else Status.FAIL,
                   "an observed attempt requires reconciliation, not a new intent"),
         )
-        return checks, view.requirements, action
+        return checks + self._execution_decision_checks(attempt_id, contract), view.requirements, action
 
     def certify_execution(self, attempt_id: str, contract_id: str, contract_revision: str,
                           owner_id: str, expected_operation_revision: int,
@@ -209,6 +209,7 @@ class ExecutionMixin:
                 self._execution.revision, now, until, claims, prerequisites, action, checks,
             )
             self._execution.permits[permit.certificate_id] = permit
+            self._capture_execution_decision(permit)
             return permit
 
         return self._mutate("certify_execution", idempotency_key, dict(

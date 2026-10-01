@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "certified-probabilistic-ledger-and-checked-recovery",
+  "implementation_stage": "probabilistic-deployment-decisions-and-native-conformance",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -142,7 +142,10 @@
     "native_atomspace_projection": true,
     "pure_pln_proposals": true,
     "certified_probabilistic_commits": true,
-    "complete_three_event_probability_check": true
+    "complete_three_event_probability_check": true,
+    "versioned_probabilistic_action_contracts": true,
+    "exact_numerical_action_witnesses": true,
+    "native_deployment_decision_demo": true
   },
   "mutation_witnesses": [
     "M01",
@@ -175,6 +178,22 @@
     "history_limit_max": 512,
     "implicit_boolean_promotion": false,
     "global_joint_probability_model": false,
-    "numeric_action_contract": false
+    "numeric_action_contract": true
+  },
+  "decision_schema": "probability-decision/v1",
+  "decision_fragment": {
+    "binding": "one-immutable-contract-per-execution-version-before-first-certificate",
+    "unit": "dimensionless-probability",
+    "strength_thresholds": "inclusive-binary64-interval-without-tolerance",
+    "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+    "alternative_policy": "all-current-exact-literal/v1",
+    "opposite_literal_estimates": "unknown-without-explicit-model",
+    "max_criteria": 16,
+    "pending_intent_basis": "exact-certified-numerical-revisions",
+    "enforcement": "certification-reservation-inspection-preparation-final-send",
+    "completion": "historical-submission-and-current-observed-outcomes",
+    "implicit_boolean_promotion": false,
+    "calibrated_risk_guarantee": false,
+    "joint_probability_across_criteria": false
   }
 }
