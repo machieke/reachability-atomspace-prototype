@@ -1,0 +1,184 @@
+{
+  "schema": "rd-validation-design/0.1",
+  "status": "DESIGN_CONTRACT_NOT_RUNTIME_CONFIGURATION",
+  "factorial": "2x2x2: typed pressure x commitment-aware planning x transport",
+  "variants": [
+    {
+      "variant_id": "P0_L0_T0",
+      "pressure_mode": "scalar_backward",
+      "commitment_aware_planning": false,
+      "scheduler": "dependency_priority_queue",
+      "invariants": {
+        "hard_acceptance_gates": true,
+        "joint_requirement_checks": true,
+        "context_and_revision_binding": true,
+        "authoritative_operation_ledger": true,
+        "resource_reservations": true,
+        "external_idempotency_and_reconciliation_contract": true,
+        "observed_relief_not_predicted_coverage": true,
+        "evidence_lineage_accounting": true,
+        "mandatory_dependency_pins": true,
+        "same_public_information": true
+      },
+      "note": "L0 removes coverage from planning priority; it does not delete actual operations or weaken their contracts."
+    },
+    {
+      "variant_id": "P0_L0_T1",
+      "pressure_mode": "scalar_backward",
+      "commitment_aware_planning": false,
+      "scheduler": "adaptive_transport",
+      "invariants": {
+        "hard_acceptance_gates": true,
+        "joint_requirement_checks": true,
+        "context_and_revision_binding": true,
+        "authoritative_operation_ledger": true,
+        "resource_reservations": true,
+        "external_idempotency_and_reconciliation_contract": true,
+        "observed_relief_not_predicted_coverage": true,
+        "evidence_lineage_accounting": true,
+        "mandatory_dependency_pins": true,
+        "same_public_information": true
+      },
+      "note": "L0 removes coverage from planning priority; it does not delete actual operations or weaken their contracts."
+    },
+    {
+      "variant_id": "P0_L1_T0",
+      "pressure_mode": "scalar_backward",
+      "commitment_aware_planning": true,
+      "scheduler": "dependency_priority_queue",
+      "invariants": {
+        "hard_acceptance_gates": true,
+        "joint_requirement_checks": true,
+        "context_and_revision_binding": true,
+        "authoritative_operation_ledger": true,
+        "resource_reservations": true,
+        "external_idempotency_and_reconciliation_contract": true,
+        "observed_relief_not_predicted_coverage": true,
+        "evidence_lineage_accounting": true,
+        "mandatory_dependency_pins": true,
+        "same_public_information": true
+      },
+      "note": "L0 removes coverage from planning priority; it does not delete actual operations or weaken their contracts."
+    },
+    {
+      "variant_id": "P0_L1_T1",
+      "pressure_mode": "scalar_backward",
+      "commitment_aware_planning": true,
+      "scheduler": "adaptive_transport",
+      "invariants": {
+        "hard_acceptance_gates": true,
+        "joint_requirement_checks": true,
+        "context_and_revision_binding": true,
+        "authoritative_operation_ledger": true,
+        "resource_reservations": true,
+        "external_idempotency_and_reconciliation_contract": true,
+        "observed_relief_not_predicted_coverage": true,
+        "evidence_lineage_accounting": true,
+        "mandatory_dependency_pins": true,
+        "same_public_information": true
+      },
+      "note": "L0 removes coverage from planning priority; it does not delete actual operations or weaken their contracts."
+    },
+    {
+      "variant_id": "P1_L0_T0",
+      "pressure_mode": "typed_backward",
+      "commitment_aware_planning": false,
+      "scheduler": "dependency_priority_queue",
+      "invariants": {
+        "hard_acceptance_gates": true,
+        "joint_requirement_checks": true,
+        "context_and_revision_binding": true,
+        "authoritative_operation_ledger": true,
+        "resource_reservations": true,
+        "external_idempotency_and_reconciliation_contract": true,
+        "observed_relief_not_predicted_coverage": true,
+        "evidence_lineage_accounting": true,
+        "mandatory_dependency_pins": true,
+        "same_public_information": true
+      },
+      "note": "L0 removes coverage from planning priority; it does not delete actual operations or weaken their contracts."
+    },
+    {
+      "variant_id": "P1_L0_T1",
+      "pressure_mode": "typed_backward",
+      "commitment_aware_planning": false,
+      "scheduler": "adaptive_transport",
+      "invariants": {
+        "hard_acceptance_gates": true,
+        "joint_requirement_checks": true,
+        "context_and_revision_binding": true,
+        "authoritative_operation_ledger": true,
+        "resource_reservations": true,
+        "external_idempotency_and_reconciliation_contract": true,
+        "observed_relief_not_predicted_coverage": true,
+        "evidence_lineage_accounting": true,
+        "mandatory_dependency_pins": true,
+        "same_public_information": true
+      },
+      "note": "L0 removes coverage from planning priority; it does not delete actual operations or weaken their contracts."
+    },
+    {
+      "variant_id": "P1_L1_T0",
+      "pressure_mode": "typed_backward",
+      "commitment_aware_planning": true,
+      "scheduler": "dependency_priority_queue",
+      "invariants": {
+        "hard_acceptance_gates": true,
+        "joint_requirement_checks": true,
+        "context_and_revision_binding": true,
+        "authoritative_operation_ledger": true,
+        "resource_reservations": true,
+        "external_idempotency_and_reconciliation_contract": true,
+        "observed_relief_not_predicted_coverage": true,
+        "evidence_lineage_accounting": true,
+        "mandatory_dependency_pins": true,
+        "same_public_information": true
+      },
+      "note": "L0 removes coverage from planning priority; it does not delete actual operations or weaken their contracts."
+    },
+    {
+      "variant_id": "P1_L1_T1",
+      "pressure_mode": "typed_backward",
+      "commitment_aware_planning": true,
+      "scheduler": "adaptive_transport",
+      "invariants": {
+        "hard_acceptance_gates": true,
+        "joint_requirement_checks": true,
+        "context_and_revision_binding": true,
+        "authoritative_operation_ledger": true,
+        "resource_reservations": true,
+        "external_idempotency_and_reconciliation_contract": true,
+        "observed_relief_not_predicted_coverage": true,
+        "evidence_lineage_accounting": true,
+        "mandatory_dependency_pins": true,
+        "same_public_information": true
+      },
+      "note": "L0 removes coverage from planning priority; it does not delete actual operations or weaken their contracts."
+    }
+  ],
+  "parameter_selection": {
+    "frozen_replacement_report": true,
+    "equal_budget_retuned_report": true,
+    "tune_on": "development_and_tuning_only",
+    "confirm_on": "locked_parent_instance_cohort",
+    "budgets": [
+      "matched_total_wall_time",
+      "matched_declared_work",
+      "matched_memory"
+    ],
+    "oracle_access": "evaluator_only"
+  },
+  "required_canaries": [
+    "Transport-off variants make zero transport-update calls.",
+    "Scalar variants do not inherit typed ranks from a cache.",
+    "Coverage-blind variants preserve the authoritative ledger but do not use predicted coverage for priority.",
+    "Every variant enforces the same gate policy digest."
+  ],
+  "planned_outputs": [
+    "correctness",
+    "goal_loss",
+    "durable_completion",
+    "total_compute",
+    "interaction_effects_with_intervals"
+  ]
+}

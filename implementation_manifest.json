@@ -1,0 +1,57 @@
+{
+  "schema": "rd-implementation-manifest/0.1",
+  "implementation_stage": "revisioned-admission-and-durable-recovery",
+  "development_python": "3.11.14",
+  "tested_sqlite": "3.50.4",
+  "runtime_dependencies": [],
+  "build_dependencies": {"setuptools": "80.9.0"},
+  "schema_revision": "finite-records/v2",
+  "certificate_schema": "finite-certificate/v2",
+  "journal_schema": "admission-journal/v1",
+  "journal_implementation": "finite-admission/v2",
+  "policy_revision": "finite-hard-policy/v1",
+  "checker_revision": "bounded-cnf-dpll/v1",
+  "formula_revision": "grounded-hard-implication/v1",
+  "checker_variable_limit_default": 16,
+  "adapters": {
+    "storage": {
+      "name": "in-process-records-with-optional-sqlite-journal",
+      "durable": true,
+      "default_mode": "volatile",
+      "locking": "single-authority-posix-flock",
+      "recovery": "checked-full-command-replay"
+    },
+    "atomspace": {"status": "not_integrated", "commit": null},
+    "pln": {"status": "not_integrated", "commit": null},
+    "attention": {"status": "not_integrated", "commit": null},
+    "freeciv": {"status": "not_integrated", "commit": null}
+  },
+  "design_inputs": {
+    "reachability_atomspace_specification.md": "6524a7af9d68ab4de4d50c8be7ce6df375e808d5144b38fe633f9747b5b9428d",
+    "pressure_field_pln_lifecycle_integration.md": "ae0f462d2a2fe88de65af81d018853cc6e1c83764866e590039afedfc01ef891",
+    "reachability_validation_design/benchmark_design.md": "84dda5745bf6cf8fde1709d92efe6e1ec1d068b5188172cbaeba24bcd12cdf11",
+    "pressure_field_lifecycle_reference_checks.py": "b0cbd6622a74b2f1648112678af8e92e8c77e19188466f2d28fedc93f7764ef5"
+  },
+  "capabilities": {
+    "grounded_hard_claims": true,
+    "bounded_complete_cnf_checker": true,
+    "context_scoped_evidence": true,
+    "alternative_support_records": true,
+    "pre_and_post_certificates": true,
+    "serialized_revision_checked_commits": true,
+    "context_inheritance": false,
+    "variable_binding": false,
+    "dynamic_policy_or_rule_replacement": true,
+    "temporal_expiry": true,
+    "probabilistic_belief_revision": false,
+    "durable_recovery": true,
+    "durable_schema_migration": false,
+    "resource_reservations": false,
+    "lifecycle_and_goal_ledgers": false,
+    "pressure_transport_integration": false,
+    "complete_64_fixture_benchmark": false,
+    "evaluator_process_isolation": false
+  },
+  "mutation_witnesses": ["M01", "M02", "M03", "M04"],
+  "remaining_designated_mutants": ["M05", "M06", "M07", "M08", "M09", "M10", "M11", "M12"]
+}

@@ -1,0 +1,238 @@
+{
+  "schema": "rd-validation-design/0.1",
+  "status": "ILLUSTRATIVE_FIXTURE_NOT_EXECUTABLE_ENVIRONMENT",
+  "case_id": "deployment-revocation-restart-wrong-product-001",
+  "mode": "conformance",
+  "public_initial_state": {
+    "context_id": "service-X-production",
+    "logical_tick": 0,
+    "knowledge_revision": 1,
+    "policy_revision": 1,
+    "artifact_digest": "sha256:v2-example",
+    "test_status": "UNKNOWN",
+    "credential": {
+      "id": "credential-A",
+      "revision": 1,
+      "valid": true,
+      "valid_until": 30
+    },
+    "deployment_slots": 1,
+    "deployment_requirement": [
+      "test_exact_artifact_passes",
+      "current_credential_valid_at_dispatch",
+      "slot_reserved",
+      "current_policy_passes"
+    ],
+    "executor_contract": {
+      "idempotent_submission": true,
+      "authoritative_status_lookup": true
+    },
+    "goal": {
+      "goal_id": "goal-1",
+      "target": "service-X healthy on sha256:v2-example",
+      "initial_loss": 1,
+      "completion": {
+        "consecutive_healthy_samples": 3,
+        "required_sample_interval_ticks": 1,
+        "max_arrival_lag_ticks": 0,
+        "exact_artifact_required": true
+      },
+      "scope_note": "Three consecutive specified observations; not a proof of continuous unobserved health."
+    }
+  },
+  "evaluator_only": {
+    "families": [
+      "F01",
+      "F08",
+      "F09",
+      "F10",
+      "F12",
+      "F16"
+    ],
+    "script": [
+      {
+        "tick": 0,
+        "phase": 0,
+        "driver": "query_deployment_admission",
+        "expected": [
+          "Unobserved TestPassed does not satisfy the deployment contract.",
+          "An allowed test observation remains available."
+        ]
+      },
+      {
+        "tick": 1,
+        "phase": 0,
+        "environment": "deliver_test_pass",
+        "public_payload": {
+          "artifact_digest": "sha256:v2-example",
+          "evidence_id": "test-e1",
+          "passed": true
+        }
+      },
+      {
+        "tick": 1,
+        "phase": 1,
+        "driver": "certify_candidate_against_credential_rev1",
+        "expected": [
+          "Candidate certificate binds credential revision 1 and current policy."
+        ]
+      },
+      {
+        "tick": 2,
+        "phase": 0,
+        "environment": "revoke_credential_rev1",
+        "public_payload": {
+          "credential_id": "credential-A",
+          "revision": 2,
+          "valid": false
+        }
+      },
+      {
+        "tick": 2,
+        "phase": 1,
+        "driver": "dispatch_with_old_certificate",
+        "expected": [
+          "Stale dispatch is blocked.",
+          "No deployment effect occurs.",
+          "The artifact test remains supported."
+        ]
+      },
+      {
+        "tick": 3,
+        "phase": 0,
+        "environment": "issue_replacement_credential",
+        "public_payload": {
+          "credential_id": "credential-B",
+          "revision": 1,
+          "valid": true,
+          "valid_until": 30
+        }
+      },
+      {
+        "tick": 3,
+        "phase": 1,
+        "driver": "fresh_certify_reserve_and_submit",
+        "attempt_id": "attempt-current",
+        "idempotency_key": "deploy-service-X-v2-episode-1",
+        "expected": [
+          "One admissible deployment attempt may be accepted by the executor.",
+          "Goal remains outstanding."
+        ]
+      },
+      {
+        "tick": 3,
+        "phase": 2,
+        "environment": "drop_executor_ack",
+        "evaluator_only": true
+      },
+      {
+        "tick": 4,
+        "phase": 0,
+        "driver": "crash_restore_and_reconcile",
+        "expected": [
+          "Reconcile the existing idempotency key.",
+          "No second external deployment effect is created."
+        ]
+      },
+      {
+        "tick": 5,
+        "phase": 0,
+        "environment": "deliver_unrelated_old_callback",
+        "public_payload": {
+          "attempt_id": "attempt-old",
+          "artifact_digest": "sha256:v1-example",
+          "status": "COMPLETED"
+        },
+        "expected": [
+          "Do not attribute this callback to attempt-current.",
+          "No exact-product or durable goal relief for the current goal."
+        ]
+      },
+      {
+        "tick": 6,
+        "phase": 0,
+        "environment": "deliver_current_completion",
+        "public_payload": {
+          "attempt_id": "attempt-current",
+          "artifact_digest": "sha256:v2-example",
+          "status": "COMPLETED"
+        },
+        "expected": [
+          "Exact product completion may be recorded.",
+          "Durable health is not yet established."
+        ]
+      },
+      {
+        "tick": 7,
+        "phase": 0,
+        "environment": "deliver_health_sample",
+        "public_payload": {
+          "service": "service-X",
+          "artifact_digest": "sha256:v2-example",
+          "healthy": true,
+          "sample_tick": 7
+        }
+      },
+      {
+        "tick": 8,
+        "phase": 0,
+        "environment": "withhold_required_health_sample",
+        "expected": [
+          "No continuous or consecutive-observation success may be inferred from the missing sample."
+        ]
+      },
+      {
+        "tick": 9,
+        "phase": 0,
+        "environment": "deliver_health_sample",
+        "public_payload": {
+          "service": "service-X",
+          "artifact_digest": "sha256:v2-example",
+          "healthy": false,
+          "sample_tick": 9
+        }
+      },
+      {
+        "tick": 10,
+        "phase": 0,
+        "environment": "deliver_health_sample",
+        "public_payload": {
+          "service": "service-X",
+          "artifact_digest": "sha256:v2-example",
+          "healthy": true,
+          "sample_tick": 10
+        }
+      },
+      {
+        "tick": 11,
+        "phase": 0,
+        "environment": "deliver_health_sample",
+        "public_payload": {
+          "service": "service-X",
+          "artifact_digest": "sha256:v2-example",
+          "healthy": true,
+          "sample_tick": 11
+        }
+      },
+      {
+        "tick": 12,
+        "phase": 0,
+        "environment": "deliver_health_sample",
+        "public_payload": {
+          "service": "service-X",
+          "artifact_digest": "sha256:v2-example",
+          "healthy": true,
+          "sample_tick": 12
+        },
+        "expected": [
+          "Three consecutive required ticks now establish the declared observation-based durability predicate.",
+          "Goal can be discharged with these exact supports."
+        ]
+      }
+    ],
+    "assertion_format": "human-readable contract statements, not executable code",
+    "earliest_supported_goal_discharge_tick": 12,
+    "future_script_visible_to_agent": false,
+    "unexpected_actions": "log and judge against the same public admission contract"
+  }
+}

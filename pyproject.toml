@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reachability-atomspace-prototype"
+version = "0.1.0"
+description = "Finite admission foundation for the reachability AtomSpace proposals"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["reachability*"]
+exclude = ["reachability_validation_design*"]

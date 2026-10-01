@@ -1,0 +1,26 @@
+{
+  "package": "reachability_validation_design",
+  "version": "0.1",
+  "date": "2026-09-30",
+  "status": "PROPOSAL_AND_ILLUSTRATIVE_CONTRACTS",
+  "input_artifacts": {
+    "reachability_atomspace_specification.md": {
+      "sha256": "6524a7af9d68ab4de4d50c8be7ce6df375e808d5144b38fe633f9747b5b9428d",
+      "bytes": 62988
+    },
+    "pressure_field_pln_lifecycle_integration.md": {
+      "sha256": "ae0f462d2a2fe88de65af81d018853cc6e1c83764866e590039afedfc01ef891",
+      "bytes": 54897
+    },
+    "pressure_field_lifecycle_reference_checks.py": {
+      "sha256": "b0cbd6622a74b2f1648112678af8e92e8c77e19188466f2d28fedc93f7764ef5",
+      "bytes": 10620
+    }
+  },
+  "contains_experimental_results": false,
+  "contains_actual_implementation_adapter": false,
+  "example_files": [
+    "ablation_manifest.example.json",
+    "deployment_episode.example.json"
+  ]
+}
