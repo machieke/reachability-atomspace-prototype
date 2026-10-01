@@ -337,3 +337,57 @@ intents; then simulated executor dispatch/reconciliation, goal slices, overlappi
 coverage and observation-defined durability. Context inheritance, variable binding
 and schema breadth remain explicit phase 1 backlog items. Phases 2–8 have not passed
 their exit criteria.
+
+### Fourth increment on 1 October 2026
+
+Implemented exact integer renewable resource definitions, complete interval capacity
+checks, pinned execution contracts, execution certificates, atomic reservations and
+local operation intents. Resource identities are shared across belief contexts under
+one authority. Execution contracts declare all required quantities and units; claims
+are generated from that contract rather than supplied by the reservation caller.
+Selection, current lifecycle prerequisites, additional action requirements, owner,
+schema binding, joint capacity and fresh revisions must all pass.
+
+Every lease and its intent commit in one journal transaction. A failed allocation
+leaves no partial ownership. Concurrent workers checked against the same last unit
+produce one successful reservation and one stale certificate. Repeated keys and
+attempts cannot create duplicate claims. Restart reconstructs the same intent and
+reservation identities before accepting further work.
+
+Leases use a single explicit resource clock. The context evidence clock must match
+it for action readiness, preventing an older credential snapshot from authorizing
+work at a later resource tick. Expiry and owner cancellation release undispatched
+local claims while preserving history. Any recorded executor observation makes
+remote occupancy unresolved and blocks affected resources, even after lease expiry,
+cancellation or evidence revocation. This conservative state cannot yet be cleared:
+the next increment must add an authoritative release/reconciliation contract.
+
+Verification for this increment:
+
+- 231 tests pass, including the same 24 coordinator contracts in volatile and
+  durable modes, with cold reconstruction of resource and intent projections.
+- An independent discrete-time oracle checks 500 generated capacity portfolios
+  against the interval sweep. A three-way contention witness passes every pairwise
+  check but fails the required complete-portfolio check.
+- Atomicity tests cover failed multi-resource appends, lost commit responses,
+  failed cancellation and the shared observation/resource-invalidation transaction.
+- Real subprocesses terminate immediately before and after the reservation/intent
+  journal commit; recovery sees either no claims or both claims and their intent.
+- The resource demo recovers the same intent, rejects a competing stale certificate,
+  blocks readiness after credential revocation and releases only the local lease
+  at its exact expiry boundary. It records no executor milestone or goal relief.
+- All 15 supplied numerical/accounting checks remain unchanged and pass.
+
+This completes the scoped local resource/intent increment within phase 2. No
+external dispatcher exists yet, and an intent's `execution_authorized` stays false.
+There is no future-step booking, lease renewal, dynamic capacity revision, consumable
+inventory or remote release authority. These are explicit limits, not implied by
+the renewable-capacity checker. The existing lifecycle transition evaluator still
+uses one current snapshot; submission/completion temporal contracts remain pending.
+
+Next implement the simulated executor and dispatch boundary: durably mark submission
+before I/O; recheck current gates; protect capacity during uncertain outcomes;
+reconcile the original attempt with both idempotent and non-idempotent executors;
+and accept remote release only under its explicit evidence contract. Then add goal
+slices, conservative overlapping coverage and observation-defined durability.
+Phase 2 and the later phases have not passed their exit criteria.

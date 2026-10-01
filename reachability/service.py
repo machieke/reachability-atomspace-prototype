@@ -14,6 +14,7 @@ from uuid import uuid4
 
 from .codec import dumps, loads
 from .errors import AdmissionDenied, IdempotencyConflict
+from .execution import ExecutionMixin, ExecutionStore
 from .journal import RecoveryError, SQLiteJournal, digest
 from .lifecycle import LifecycleMixin, LifecycleStore
 from .logic import LogicResult, check_consistency
@@ -38,14 +39,14 @@ class _Context:
     logical_time: int = 0
 
 
-class AdmissionService(LifecycleMixin):
+class AdmissionService(ExecutionMixin, LifecycleMixin):
     _COMMANDS = frozenset((
         "open_context", "record_evidence", "revoke_evidence", "propose_evidence",
         "propose_transition", "precertify", "postcertify", "commit", "replace_rule",
         "replace_policy", "advance_clock",
-    )) | LifecycleMixin.LIFECYCLE_COMMANDS
+    )) | LifecycleMixin.LIFECYCLE_COMMANDS | ExecutionMixin.EXECUTION_COMMANDS
     _STATE_FIELDS = ("_rules", "_rule_versions", "_policy_versions", "_contexts",
-                     "_evidence", "_revoked", "_transitions", "_certificates", "_commands", "_lifecycle")
+                     "_evidence", "_revoked", "_transitions", "_certificates", "_commands", "_lifecycle", "_execution")
 
     def __init__(self, rules: tuple[Rule, ...] | None = None, *,
                  max_variables: int | None = None, database: str | Path | None = None):
@@ -98,6 +99,7 @@ class AdmissionService(LifecycleMixin):
         self._certificates: dict[str, Certificate] = {}
         self._commands: dict[str, tuple[str, object]] = {}
         self._lifecycle = LifecycleStore()
+        self._execution = ExecutionStore()
         if self._journal is not None:
             try:
                 self._replaying = True

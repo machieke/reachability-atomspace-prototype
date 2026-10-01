@@ -3,6 +3,7 @@ import unittest
 from reachability.demo import run
 from reachability.recovery_demo import run as recover
 from reachability.lifecycle_demo import run as lifecycle
+from reachability.execution_demo import run as execution
 
 
 class DemoTests(unittest.TestCase):
@@ -33,3 +34,13 @@ class DemoTests(unittest.TestCase):
         self.assertEqual(result["stage_after_product_revocation"], "BUILT")
         self.assertEqual(result["validity_after_product_revocation"], "STALE")
         self.assertEqual(result["historical_transitions"], 1)
+
+    def test_atomic_resource_intent_and_recovery(self):
+        result = execution()
+        self.assertEqual(result["competing_reservation"], "STALE")
+        self.assertTrue(result["same_intent_after_restart"])
+        self.assertEqual(result["held_units_after_restart"], 1)
+        self.assertEqual(result["readiness_after_credential_revocation"], "UNKNOWN")
+        self.assertEqual(result["state_at_expiry"], "expired")
+        self.assertEqual(result["held_units_at_expiry"], 0)
+        self.assertEqual(result["observed_milestones"], [])

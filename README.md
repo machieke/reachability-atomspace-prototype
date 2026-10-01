@@ -2,7 +2,8 @@
 
 This repository implements the reachability proposals in stages. The current
 increment combines a single-authority admission service, grounded lifecycle
-schemas and passive operation ledgers, with optional SQLite recovery. It separates
+schemas, passive operation ledgers and atomic resource/intent coordination, with
+optional SQLite recovery. It separates
 stored reports, proposals, accepted hard claims, lifecycle history and current
 validity, and checks the complete relevant constraint set before acceptance.
 
@@ -21,6 +22,7 @@ or the pinned interpreter through `uv`:
 uv run --no-project python -m reachability.demo
 uv run --no-project python -m reachability.recovery_demo
 uv run --no-project python -m reachability.lifecycle_demo
+uv run --no-project python -m reachability.execution_demo
 uv run --no-project python -m unittest discover -s tests -v
 uv run --no-project python pressure_field_lifecycle_reference_checks.py
 ```
@@ -168,11 +170,60 @@ current authority without deleting history. These records make no claim of causa
 credit or goal relief.
 
 In this fragment, lifecycle prerequisites and outcomes are checked at the same
-current snapshot. Submission-time versus completion-time requirements will need
-the reservation/intent coordinator and additional temporal contracts. Generic
-entity binding, schema migration, resources, dispatch, goal coverage and durability
-windows remain pending. Existing admission journals from commit `3e2516e` are
+current snapshot. Submission-time versus completion-time requirements still need
+the dispatcher and additional temporal contracts. Generic entity binding, schema
+migration, dispatch, goal coverage and durability windows remain pending.
+Existing admission journals from commit `3e2516e` are
 tested for recovery and extension with the new lifecycle commands.
+
+## Resource reservations and execution intents
+
+`register_resource` declares immutable renewable capacity with an exact integer
+quantity and unit. Resources belong to the single service authority and are shared
+across belief contexts. `register_execution_contract` pins the lifecycle schema and
+edge, executor identity, allowed owners, every required resource demand, additional
+action requirements and local lease duration. Contract promotion is a trusted API;
+it does not authenticate the caller or discover an operation's real-world needs.
+
+`certify_execution` checks selection, current lifecycle readiness, the separate
+action contract, ownership, resource capacity and snapshot revisions. Claims are
+generated from the pinned contract so a reservation caller cannot omit a required
+resource. The capacity checker sums the **whole portfolio** at every interval
+boundary; pairwise feasibility alone is insufficient. Intervals are half-open
+`[starts_at, ends_at)`, with no rounding or implicit unit conversion.
+
+`reserve_and_record_intent` accepts only a fresh registered PASS certificate,
+rechecks the contract, then records every reservation and the stable intent/attempt
+identity in one mutation. With `database=...`, that mutation is one durable journal
+transaction. Failure leaves all resources unclaimed. Competing certificates for a
+last unit cannot both commit. Replaying the same key returns the original response;
+use `inspect_execution_intent` for the present lease and readiness.
+
+The monotone resource clock is explicit and authority-wide. Before certification
+or current readiness can pass, the operation's context clock must equal it. Advance
+both clocks to the declared current tick; a restarted authority has no wall-clock
+freshness guarantee. Local leases start immediately and expire at the contract's
+exclusive deadline. This increment does not book future steps, renew leases,
+change capacities, allocate consumable inventory or dispatch external actions.
+
+An undispatched intent can be cancelled by its recorded owner. Cancellation or
+expiry releases local claims while retaining intent and reservation history. A
+new attempt needs a new identity. Losing a prerequisite blocks current readiness
+without silently deleting the lease or rewriting the earlier certificate.
+
+If an executor observation is recorded for an intent, its resource view becomes
+`reconciliation_required`, even after cancellation, expiry or later evidence
+revocation. The same durable observation transaction invalidates resource permits
+across contexts. All affected resources remain blocked pending an explicit release
+contract and reconciliation, which are next work. An ACK, completion or cancellation
+observation alone does not establish that remote occupancy ended. `used_now` counts
+scheduled quantities inside their original intervals; it does **not** measure remote
+occupancy or imply availability when `reconciliation_attempts` is nonempty.
+
+Intent readiness does not authorize external I/O: `execution_authorized` remains
+false. The next dispatcher must persist a submission boundary, recheck current
+gates, protect claims during uncertain outcomes and reconcile the same attempt.
+Local persistence makes no exactly-once promise about remote effects.
 
 ## Source layout
 
@@ -186,9 +237,13 @@ tested for recovery and extension with the new lifecycle commands.
 | `reachability/requirements.py` | Grounded AND/OR evaluation and exact support witnesses |
 | `reachability/lifecycle_model.py` | Immutable schemas, lifecycle and operation records |
 | `reachability/lifecycle.py` | Lifecycle certification and passive operation ledger |
+| `reachability/execution_model.py` | Resource contracts, leases, certificates and intent records |
+| `reachability/resources.py` | Complete integer interval-capacity checker |
+| `reachability/execution.py` | Atomic reservations, local cancellation and intent recovery |
 | `reachability/demo.py` | Executable public-API walkthrough |
 | `reachability/recovery_demo.py` | Restart and credential expiry walkthrough |
 | `reachability/lifecycle_demo.py` | Operation milestones and lifecycle validity walkthrough |
+| `reachability/execution_demo.py` | Competing reservations, intent recovery and local lease expiry |
 | `tests/oracle.py` | Independent exhaustive Boolean evaluator |
 | `tests/test_admission.py` | Authority, scope, lineage and concurrency checks |
 | `tests/test_mutations.py` | Isolated witnesses for mutants M01–M04 |
@@ -198,12 +253,16 @@ tested for recovery and extension with the new lifecycle commands.
 | `tests/test_lifecycle.py`, `tests/test_operations.py` | Lifecycle and observation contracts |
 | `tests/test_durable_lifecycle.py` | The same lifecycle and operation contracts with recovery |
 | `tests/test_lifecycle_recovery.py` | Fault boundaries and committed-version compatibility |
+| `tests/test_resources.py`, `tests/test_execution.py` | Independent capacity checks and coordinator contracts |
+| `tests/test_durable_execution.py`, `tests/test_execution_recovery.py` | Recovered ownership and atomic crash boundaries |
 | `reachability_validation_design/` | Original proposed benchmark, not runtime inputs |
 
 The oracle uses signed-integer formulas and exhaustive truth tables. It imports no
 runtime implementation. Tests compare the runtime checker and returned witnesses
 against it on 400 seeded generated formulas, in addition to hand-authored cases.
 A separate three-valued oracle covers 240 generated requirement/world combinations.
+An independent discrete-time occupancy oracle checks 500 generated claim portfolios
+against the runtime interval sweep.
 The evaluator is separated by imports and file location; OS-level isolation is
 still pending.
 
@@ -211,8 +270,9 @@ still pending.
 
 This is an in-process API with trusted callers, not a sandbox for hostile Python
 code. The current storage lock implementation targets POSIX hosts. Schema migration,
-context inheritance, variable matching, general temporal requirement expressions
-and resource reservations are not implemented. Context assumptions constrain
+context inheritance, variable matching and general temporal requirement expressions
+are not implemented. Resource contracts cover integer renewable capacity and
+undispatched local leases only. Context assumptions constrain
 admission but are not automatically materialized as premise revisions in this slice.
 
 There is no actual AtomSpace, FDAS, PLN, ECAN or Freeciv adapter yet. Pressure and
@@ -220,7 +280,7 @@ transport remain the supplied standalone numerical examples. The 64-fixture
 target, full deployment episode, M05–M12 mutants and performance experiments are
 still pending. Existing tests establish the stated finite contracts only.
 
-The next increment adds transactional resource reservations and operation intents,
-then simulated executor dispatch/reconciliation, goal slices, coverage accounting
-and durability monitoring. General context inheritance and variable binding remain
+The next increment adds simulated executor dispatch/reconciliation and authoritative
+resource release, then goal slices, coverage accounting and durability monitoring.
+General context inheritance and variable binding remain
 explicit phase 1 backlog items.

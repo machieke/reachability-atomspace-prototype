@@ -295,6 +295,7 @@ class LifecycleMixin:
             self._lifecycle.observations[observation_id] = observation
             self._lifecycle.attempts[attempt_id] = updated
             self._lifecycle_changed(operation.context_id)
+            self._execution_observed(attempt_id)
             return observation
 
         return self._mutate("record_operation_observation", idempotency_key, dict(
