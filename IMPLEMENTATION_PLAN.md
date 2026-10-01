@@ -48,16 +48,18 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, twenty-third increment): explicit adoption
-recovers a new admission context whose two commands persisted but final worker
-checkpoint did not. Both exact journal entries and saved counters must match;
-adoption preserves source journal bytes and all earlier historical replies.
-Partial context completion still appends only the missing policy command, while
-unstarted local cancellation produces UNKNOWN with unchanged journals. All three
-decisions retain the durable worker gate. Twenty-six process probes cover their
-publication boundaries. Other progressed events, dispatch and executor I/O remain
-refused. Completed-command recovery still covers 32 cases and 361 fresh-process
-retries; family-complete validation, OS isolation, M09/M12 and phases 5–8 remain open.
+Current checkpoint (1 October 2026, twenty-fourth increment): explicit adoption
+recovers a successful hard admission evidence event whose five commands persisted
+but final worker checkpoint did not. Exact journal entries, results and saved
+counters must match; the restored alias and certificates preserve the committed
+belief and historical decision without authorizing later expired evidence.
+Context adoption, partial context completion and unstarted local cancellation
+remain separately scoped. All four decisions retain the durable worker gate.
+Thirty-eight process probes cover publication boundaries; 18 inspection probes
+include both evidence crash cuts. Other progressed events, dispatch and executor
+I/O remain refused. Completed-command recovery still covers 32 cases and 361
+fresh-process retries; family-complete validation, OS isolation, M09/M12 and
+phases 5–8 remain open.
 
 ## Phase 0 Repository contracts
 
@@ -1636,6 +1638,77 @@ Next increment, in order:
 2. Specify partial numerical/lifecycle/goal transitions separately, including
    their alias, permit and revision reconstruction rules; do not generalize from
    context adoption to arbitrary advanced journals.
+3. Before dispatch/executor reconciliation, account for queued requests, lost
+   observations, immutable older acknowledgements and authoritative fencing;
+   preserve unresolved occupancy until supported evidence permits release.
+4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
+   target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.
+
+
+### Twenty-fourth increment on 1 October 2026
+
+1. Specify the successful hard-evidence boundary: exactly record, proposal,
+   pre-certificate, post-certificate and commit entries after the saved wrapper
+   tip. Bind the new report identity, arguments, five keys, counter and complete
+   result chain. Refuse partial chains, failed outcomes and unrelated progress.
+2. Validate the previous wrapper and reconstruct only those primitives on private
+   journals. Restore the committed hard-belief alias and both certificates,
+   preserve alias order and earlier replies, and validate the completed candidate
+   through ordinary resume and exact retry. Preserve current validity checks
+   independently of historical PASS diagnostics.
+3. Retain the five exact entries in prepared v4 records and publish through the
+   existing durable worker gate. Preserve every source journal byte, issue no
+   source SQLite/native/executor I/O, and support explicit retries after storage
+   failures, unavailable inspection paths and later worker progress.
+4. Inject real worker crashes before alias assignment and before final checkpoint
+   publication, then exercise six reconciliation publication cuts for each.
+   Check independent projections and alias-based continuation, add native graph
+   and PLN continuation, refresh all nine corpus receipts, and run every suite
+   before committing and pushing.
+
+The new explicit `adopt_persisted_evidence` action implements the bounded
+transition above. A pure grounded proposal is reconstructed locally between
+pre- and post-certification; no public composite event or native inference engine
+executes during adoption. Both certificates and the commit must pass, and the
+commit must name the recovered belief. The saved counter advances by five and
+the original event consumes one stream slot. Its new historical PASS reply
+identifies the decision and records elapsed_ns zero for unavailable original
+timing. Prior completed replies, alias order and numerical state are preserved.
+
+Prepared v4 records retain all five entries and before/after checkpoint bytes;
+request/result, worker and journal schemas remain unchanged. Existing actions
+retain prepared v1/v2/v3. Preparation and offline audit reconstruct the same
+candidate; exact journal bytes remain required for unfinished adoption. Later
+expiry leaves the historical reply unchanged but causes a new derivation to
+return STALE.
+
+Twelve new unit tests cover every primitive key, payload/counter identity,
+refused partial/extra/failed chains, exact alias/certificate/history restoration,
+budgets, storage failures, tampered archives, changed authority and no source I/O.
+Two new inspection cases bring that report to 18 cases. Twelve new reconciliation
+probes bring its v4 report to 38 cases and verify derivation through the restored
+alias against the independent public model. One new native test checks unchanged
+AtomSpace projection and continued real PLN revision.
+
+Verification: 798 default tests, 83 optional native integration tests and all
+15 standalone reference checks pass. The fresh 18-probe inspection report and
+38-probe reconciliation report verify against final sources; explicit evidence
+adoption CLI request binding also passes. The full default suite repeats both
+probe sets and the 32-case, 361-prefix public-worker corpus. All nine source
+receipts are refreshed. Original design hashes, earlier cases, schedules and
+expected outcomes remain unchanged. Existing reductions stay M05 12→5,
+M06 23→6, M07 2→2, M11 13→1, M08 5→1, M10 6→4,
+cached-send-gate 9→8 and expire-uncertain 8→7. There are still zero family-complete
+fixtures and no new designated mutants. All four stages above are complete.
+
+Next increment, in order:
+
+1. Define adoption of a fully persisted numerical estimate with its exact six
+   report/proposal/certificate/commit entries, restored numerical alias and saved
+   counters. Specify deterministic adapter/revision reconstruction and failed
+   outcomes before enabling that action.
+2. Specify other hard-admission, partial numerical, lifecycle and goal outcomes
+   separately, including their alias, permit and revision reconstruction rules.
 3. Before dispatch/executor reconciliation, account for queued requests, lost
    observations, immutable older acknowledgements and authoritative fencing;
    preserve unresolved occupancy until supported evidence permits release.

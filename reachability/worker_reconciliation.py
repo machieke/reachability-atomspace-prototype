@@ -14,6 +14,7 @@ from tempfile import TemporaryDirectory, NamedTemporaryFile
 from .admission_protocol import AdmissionInitial, ARGUMENTS as ADMISSION_KINDS
 from .codec import decode, encode
 from . import context_reconciliation as context_completion
+from . import evidence_reconciliation as evidence_adoption
 from .dispatch_worker_state import atomic_write, MAX_CHECKPOINT
 from .journal import RecoveryError
 from .reconciliation_state import ARCHIVE, MARKER
@@ -25,8 +26,11 @@ REQUEST_SCHEMA = 'worker-reconciliation-request/v1'
 RECORD_SCHEMA = 'worker-reconciliation-prepared/v1'
 CONTEXT_RECORD_SCHEMA = 'worker-reconciliation-prepared/v2'
 ADOPTION_RECORD_SCHEMA = 'worker-reconciliation-prepared/v3'
+EVIDENCE_RECORD_SCHEMA = 'worker-reconciliation-prepared/v4'
 RESULT_SCHEMA = 'worker-reconciliation-result/v1'
 ACTION = 'cancel_unstarted_local'
+ADOPTION_ACTIONS = (context_completion.ADOPT_ACTION, evidence_adoption.ACTION)
+ACTIONS = (ACTION, *context_completion.ACTIONS, evidence_adoption.ACTION)
 LOCAL_DEPLOYMENT = frozenset(('fact','forecast','revoke','tick','attempt','reserve','cover','prepare',
     'observation','sample','censor','resume','account','complete','restart'))
 
@@ -40,10 +44,10 @@ def parse_request(value):
     if type(value) is not dict or set(value) != fields or value['schema'] != REQUEST_SCHEMA:
         raise ValueError('invalid reconciliation request fields/schema')
     identifier(value['decision_id'])
-    if value['action'] not in (ACTION, *context_completion.ACTIONS) or value['profile'] not in PROFILES:
+    if value['action'] not in ACTIONS or value['profile'] not in PROFILES:
         raise ValueError('unsupported reconciliation action/profile')
-    if value['action'] in context_completion.ACTIONS and value['profile'] != 'admission':
-        raise ValueError('context reconciliation supports only admission')
+    if value['action'] != ACTION and value['profile'] != 'admission':
+        raise ValueError('context/evidence reconciliation supports only admission')
     for name in ('inspection_digest','checkpoint_sha256','pending_digest'):
         if type(value[name]) is not str or len(value[name]) != 64 or any(c not in '0123456789abcdef' for c in value[name]):
             raise ValueError('invalid reconciliation digest')
@@ -124,7 +128,7 @@ def control(value):
 
 
 def journal_evidence(evidence):
-    # Cancellation and persisted-context adoption preserve these bytes; partial
+    # Cancellation and persisted-command adoption preserve these bytes; partial
     # context completion checks its exact logical suffix during publication.
     return {k:v for k,v in evidence.items() if k == 'worker.lock' or k.startswith(('admission.db','executor.db'))}
 
@@ -191,6 +195,8 @@ def archive_path(directory, request):
 
 
 def candidate_plan(report, inspection, request):
+    if request['action'] == evidence_adoption.ACTION:
+        return evidence_adoption.candidate(report, inspection, request)
     if request['action'] in context_completion.ACTIONS:
         return context_completion.candidate(report, inspection, request)
     after, row = candidate_checkpoint(report, inspection, request)
@@ -209,7 +215,7 @@ def expected_result(record):
         request_digest=fingerprint(record['request']), action=record['request']['action'], profile=record['request']['profile'],
         event_id=record['event_id'], status='APPLIED',
         outcome={ACTION:'cancelled', context_completion.ACTION:'completed',
-            context_completion.ADOPT_ACTION:'adopted'}[record['request']['action']],
+            context_completion.ADOPT_ACTION:'adopted', evidence_adoption.ACTION:'adopted'}[record['request']['action']],
         before_checkpoint_sha256=record['before_sha256'], after_checkpoint_sha256=record['after_sha256'],
         journals=target_journals(record), reply_digest=record['reply_digest'])
 
@@ -217,8 +223,9 @@ def expected_result(record):
 def validate_archive(archive, request):
     record = read_control(archive/'prepared.json')
     completing = request['action'] == context_completion.ACTION
-    adopting = request['action'] == context_completion.ADOPT_ACTION
-    schema = ADOPTION_RECORD_SCHEMA if adopting else CONTEXT_RECORD_SCHEMA if completing else RECORD_SCHEMA
+    adopting = request['action'] in ADOPTION_ACTIONS
+    schema = {ACTION:RECORD_SCHEMA, context_completion.ACTION:CONTEXT_RECORD_SCHEMA,
+        context_completion.ADOPT_ACTION:ADOPTION_RECORD_SCHEMA, evidence_adoption.ACTION:EVIDENCE_RECORD_SCHEMA}[request['action']]
     fields = {'schema','request','event_id','before_sha256','after_sha256','journal_files','reply_digest'}
     if completing:
         fields.add('authority_append')
@@ -241,6 +248,8 @@ def validate_archive(archive, request):
         if fingerprint(before['body']) != before['digest']:
             raise RecoveryError('original checkpoint integrity differs')
         validate = context_completion.validate_adoption if adopting else context_completion.validate_append
+        if request['action'] == evidence_adoption.ACTION:
+            validate = evidence_adoption.validate_adoption
         validate(record, decode(before['body']))
     after = json.loads((archive/'after.json').read_text())
     if fingerprint(after['body']) != after['digest']:
@@ -324,8 +333,9 @@ def reconcile(request, directory, inspection):
         record=dict(schema=RECORD_SCHEMA, request=request, event_id=report['pending']['event_id'],
             before_sha256=digest_bytes(before), after_sha256=digest_bytes(after),
             journal_files=journal_evidence(report['evidence']), reply_digest=fingerprint(row))
-        if request['action'] == context_completion.ADOPT_ACTION:
-            record.update(schema=ADOPTION_RECORD_SCHEMA,authority_entries=appended)
+        if request['action'] in ADOPTION_ACTIONS:
+            record.update(schema=EVIDENCE_RECORD_SCHEMA if request['action'] == evidence_adoption.ACTION else ADOPTION_RECORD_SCHEMA,
+                authority_entries=appended)
         elif appended is not None:
             record.update(schema=CONTEXT_RECORD_SCHEMA,authority_append=appended)
         mkdir_durable(directory/ARCHIVE)
@@ -359,7 +369,7 @@ def verify_reconciliation(archive, inspection):
             or (inspection/'snapshot'/'worker-checkpoint.json').read_bytes() != (archive/'before.json').read_bytes()
             or journal_evidence(report['evidence']) != record['journal_files']
             or fingerprint(row) != record['reply_digest']
-            or appended != record.get('authority_entries' if request['action'] == context_completion.ADOPT_ACTION else 'authority_append')):
+            or appended != record.get('authority_entries' if request['action'] in ADOPTION_ACTIONS else 'authority_append')):
         raise RecoveryError('decision cannot be reproduced from original evidence')
     if (archive/'result.json').exists():
         result=read_control(archive/'result.json')
@@ -375,7 +385,7 @@ def main():
     prepare=sub.add_parser('request',help='print a request bound to an inspection; no worker mutation')
     prepare.add_argument('--inspection',required=True,type=Path)
     prepare.add_argument('--decision-id',required=True)
-    prepare.add_argument('--action',choices=(ACTION,*context_completion.ACTIONS),default=ACTION)
+    prepare.add_argument('--action',choices=ACTIONS,default=ACTION)
     apply=sub.add_parser('apply',help='apply or exactly retry an explicit reconciliation request')
     apply.add_argument('--request',required=True,type=Path)
     apply.add_argument('--inspection',required=True,type=Path)

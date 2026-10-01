@@ -1136,12 +1136,14 @@ output left by an interrupted inspector has no valid complete receipt and is not
 usable inspection bundle.
 
 Run `uv run --no-project python -m validation_lab.run_worker_inspection --output artifacts/inspection-probes-1`
-in a new directory for 16 actual child-process crash probes. The evaluator controls
+in a new directory for 18 actual child-process crash probes. The evaluator controls
 fault injection and keeps original runtime hashes, exact injected-source receipts,
 launch records, stdin/stdout/stderr, exit codes, worker stores and inspection bundles.
 Independent primitive expectations check partial context/policy creation, numerical
 report admission, operation selection, hard fact adoption and goal-sample
-registration. All three profiles cover pending-before-execution, after-composite
+registration. Two hard-evidence cuts also capture the successful commit before
+alias assignment and the completed composite before its checkpoint. All three
+profiles cover pending-before-execution, after-composite
 execution and completed-checkpoint/lost-stdout boundaries. Deployment and dispatch
 also crash after a committed remote effect, retaining the executor WAL and local
 uncertainty. Completed stdout-loss replies and earlier prefixes are compared with
@@ -1200,6 +1202,7 @@ requires a fresh inspection. The original inspection bundle is retained unchange
 | Local deployment event; no journal progress; complete saved wrapper validates | Explicit cancellation |
 | New admission context; exactly its matching `open_context` entry persisted | Explicit `complete_partial_context` |
 | New admission context; both matching context commands persisted; final worker checkpoint missing | Explicit `adopt_persisted_context` |
+| New hard admission evidence; exact five-command successful chain persisted; final worker checkpoint missing | Explicit `adopt_persisted_evidence` |
 | Deployment `dispatch`, `reconcile` or `release` event | Refuse, including unchanged journal tips |
 | Any dispatch-profile event | Refuse in this increment |
 | Other partial admission, numerical, lifecycle, goal or executor progress | Refuse and preserve evidence |
@@ -1265,10 +1268,10 @@ clears it. A malformed marker blocks workers, while the separate reconciliation
 path checks its integrity and exact prepared-record binding.
 
 Run `uv run --no-project python -m validation_lab.run_worker_reconciliation --output artifacts/reconciliation-probes-1`
-in a new directory. Twenty-six actual process probes include twelve cancellation
+in a new directory. Thirty-eight actual process probes include twelve cancellation
 probes spanning six crash boundaries for both supported profiles, eight partial-
-context completion probes and six persisted-context adoption probes described
-below. Raw
+context completion probes, six persisted-context adoption probes and twelve
+persisted-evidence adoption probes described below. Raw
 launch arguments/environment, stdout/stderr, exit codes, source/fault receipts,
 original inspections, decision archives and continued worker exchanges are
 retained. Independent public models check unchanged state for the cancellation
@@ -1405,7 +1408,8 @@ Six actual process probes interrupt archive staging, prepared assets, marker,
 checkpoint, result and stdout publication. They start with an actual worker crash
 after both context commands, verify zero source journal changes, and then compare
 the restored context and a new numerical admission against the independent public
-model. The v3 probe receipt covers all 26 current reconciliation probes. Twelve
+model. The v3 probe receipt originally covered 26 reconciliation probes; the
+current v4 receipt adds the evidence cases below. Twelve
 new unit tests check entry/counter/policy binding, previous reply preservation,
 budgets, existing-context refusal, source-I/O exclusion, stale evidence, altered
 archives, large typed entries, storage failures, historical retries and
@@ -1416,3 +1420,70 @@ This is not general adoption of an advanced journal. Zero or one context entry,
 more than two entries, existing-context events, other admission events and all
 deployment/dispatch events remain outside this action. A worker with an already
 completed checkpoint uses ordinary exact event retry, without a new adoption.
+
+### Adopting fully persisted hard evidence
+
+`adopt_persisted_evidence` supports one pending admission `evidence` event whose
+successful hard admission persisted before its final wrapper checkpoint. The
+original checkpoint must still retain the pending event, a saved context and a
+fresh event ID identifying a new evidence report. Generate the bound request:
+
+```sh
+uv run --no-project python -m reachability.worker_reconciliation request \
+  --inspection artifacts/inspection-1 --decision-id adopt-evidence-1 \
+  --action adopt_persisted_evidence > artifacts/adopt-evidence-1.json
+```
+
+Apply or exactly retry it using the existing `apply` command and this request
+path. Exactly five entries must bridge the saved checkpoint tip and the inspected
+tip, in this order: `record_evidence`, `propose_evidence`, `precertify`,
+`postcertify`, `commit`. Each full entry must match the specified primitive
+operation on a private journal, including its key, payload, result digest,
+sequence and hash chain. The keys bind the original event ID and five consecutive
+values of the saved global counter. Both certificates and the final commit must
+be PASS; the commit must return the exact belief revision.
+
+Preparation rewinds only a disposable captured journal and validates the prior
+wrapper with ordinary resume. It constructs the five primitives there, including
+the pure grounded proposal between pre- and post-certification. It does not run
+the public composite event or invoke a native inference engine. The completed
+candidate restores the exact hard-belief alias and both historical certificates,
+advances the counter by five and consumes one stream slot. Earlier aliases retain
+their order; earlier completed replies and diagnostics remain unchanged. The new
+PASS reply identifies the decision and uses `elapsed_ns: 0` for unavailable
+original timing. An ordinary private resume checks the candidate and exact event
+retry before publication.
+
+Prepared v4 records retain all five `authority_entries` and both checkpoints.
+Request/result, worker and authority schemas are unchanged; earlier actions keep
+their prepared v1/v2/v3 formats. Offline verification reconstructs the candidate,
+certificates, alias and exact entries from the retained inspection. Publication
+opens no source SQLite connection, appends no source journal command, and requires
+unchanged captured database/sidecar bytes throughout. The existing durable marker
+gates workers until both checkpoint and result are published. Exact decision
+retry can finish from a complete preparation without the external inspection;
+after later progress it returns the immutable historical result.
+
+Historical PASS certificates do not confer current authority after evidence
+expiry or revocation. Normal subsequent operations still check current revisions
+and evidence validity. A regression test advances to the adopted evidence's
+expiry, observes STALE, and confirms the old exact reply remains PASS while a new
+derivation is refused as STALE.
+
+Two actual worker crash cuts cover a successful commit before wrapper alias
+assignment and the completed composite before checkpoint publication. Inspection
+now exercises 18 process cases and verifies the committed belief, both
+certificates, missing saved alias and exact five-command suffix at either cut.
+Twelve reconciliation probes cross those two cuts with archive staging, prepared
+assets, marker, checkpoint, result and stdout failures. The v4 report covers all
+38 reconciliation cases; it checks unchanged source journals, exact retries and
+subsequent derivation through the restored alias against the independent public
+model. Twelve new unit tests cover every command key, arguments/counters, partial
+or extra progress, failed certificates/commits, archive tampering, publication
+failure, event bounds, stale inspections and absent source/native/executor I/O.
+One native test verifies the restored AtomSpace graph and later real PLN revision.
+
+This action refuses partial chains, failed outcomes, an existing report identity,
+`adopt`/`derive` events, numerical `estimate` events and all deployment/dispatch
+events. Those need separately specified transitions. An already completed wrapper
+uses ordinary exact retry; no adoption decision is needed.

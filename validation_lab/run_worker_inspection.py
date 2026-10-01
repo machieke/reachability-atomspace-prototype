@@ -44,6 +44,11 @@ def cases():
     result.append(dict(case_id='admission-partial-context',profile='admission',public=admission_initial().wire(),
         prefix=[],event=context['events'][0],cut='context',parent_instance_id=context['parent_instance_id'],
         expected=dict(status='pending_journal_progress',completed=0,evidence=0,contexts=1,numerical=0,reports=0,effects=0,dispatch=None)))
+    for cut in ('evidence-commit','after'):
+        result.append(dict(case_id='admission-evidence-'+('commit' if cut=='evidence-commit' else 'after'),
+            profile='admission',public=admission_initial().wire(),prefix=context['events'][:1],event=context['events'][1],
+            cut=cut,parent_instance_id=context['parent_instance_id'],
+            expected=dict(status='pending_journal_progress',completed=1,evidence=1,contexts=1,numerical=0,reports=0,effects=0,dispatch=None)))
     for profile,source,index in (('deployment',deployment_cases()[2],6),('dispatch',dispatch_cases()[8],5)):
         result.append(dict(case_id=profile+'-remote-effect',profile=profile,public=asdict(DeploymentInitial()),
             prefix=source['events'][:index],event=source['events'][index],cut='effect',
@@ -83,6 +88,9 @@ def fault_spec(case):
     elif cut=='context':
         name,needle='admission_trace.py','self.contexts.add(ctx)'
         replacement=needle+f'\n            __import__("os")._exit({EXIT_CODE})'
+    elif cut=='evidence-commit':
+        name,needle='admission_trace.py','(self.numeric if numeric else self.hard)[event_id] = result.belief.belief_revision_id'
+        replacement=f'__import__("os")._exit({EXIT_CODE})\n        '+needle
     elif cut=='attempt':
         name,needle='deployment_trace.py','s.select_operation(attempt, operation.revision, idempotency_key=self.key())'
         replacement=f'__import__("os")._exit({EXIT_CODE})\n            '+needle
@@ -125,6 +133,11 @@ def evaluate(case,report):
         raise ValueError('partial context incorrectly acquired a probability policy')
     if case['cut']=='fact' and any(ledgers['hard_beliefs'].values()):
         raise ValueError('partial fact incorrectly acquired an admitted belief')
+    if case['case_id'].startswith('admission-evidence-'):
+        if (len(ledgers['hard_beliefs']['c0'])!=1 or len(ledgers['certificates'])!=2 or body['metadata']['hard']
+                or [entry['command'] for entry in report['journals']['authority']['appended']]!=[
+                    'record_evidence','propose_evidence','precertify','postcertify','commit']):
+            raise ValueError('persisted evidence differs from expected committed belief with missing wrapper alias')
     if case['cut']=='attempt':
         operation=decode(state['views']['operations']['a0']).operation
         if operation.selected or body['metadata']['attempts']:

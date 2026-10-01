@@ -120,6 +120,35 @@ class NativeWorkerInspectionTests(unittest.TestCase):
 
 
 class NativeWorkerReconciliationTests(unittest.TestCase):
+    def test_persisted_evidence_restores_native_hard_graph_and_supports_pln_continuation(self):
+        from reachability.admission_protocol import event
+        from reachability.admission_trace import AdmissionSession
+        from reachability.trace_worker_state import DurableAdmissionSession
+        from reachability.worker_inspection import inspect_worker
+        from reachability.worker_reconciliation import make_request,reconcile
+        from validation_lab.generate_admission_cases import initial,scenarios
+        messages=scenarios()[12]['events']
+        pending=event('hard-recover','evidence',context_id='c0',literal=1,roots=['hard-source'],valid_until=None)
+        with TemporaryDirectory() as directory:
+            root=Path(directory);state=root/'state'
+            with DurableAdmissionSession(initial(),state,native=True) as s:
+                s.apply(messages[0]);s.pending=pending;s._save()
+                original=AdmissionSession.apply(s,pending)
+                self.assertEqual(original['outcome']['status'],'PASS')
+                before=project_admission(s.service,'c0')
+            inspect_worker('admission',state,root/'inspection')
+            request=make_request(root/'inspection','native-evidence','adopt_persisted_evidence')
+            reconcile(request,state,root/'inspection')
+            with DurableAdmissionSession(initial(),state,resume=True,native=True) as s:
+                self.assertEqual(project_admission(s.service,'c0'),before)
+                recovered=s.apply(pending)
+                self.assertTrue(s.replayed)
+                self.assertEqual(recovered['diagnostics']['certificates'],original['diagnostics']['certificates'])
+                self.assertEqual(s.apply(event('derive-recovered','derive',context_id='c0',rule_id='r2',premises=['hard-recover']))['outcome']['status'],'PASS')
+                for message in messages[1:]: row=s.apply(message)
+                self.assertEqual(row['outcome']['status'],'PASS')
+                self.assertEqual(row['projection']['numeric']['e005']['confidence'],2/3)
+
     def test_partial_context_completion_supports_native_probability_and_revision(self):
         self._recover_context('complete_partial_context')
 

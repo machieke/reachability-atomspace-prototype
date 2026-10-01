@@ -114,25 +114,25 @@ def validate_append(record, before):
         raise RecoveryError('prepared context suffix differs from original command/boundary')
 
 
-def validate_adoption(record, before):
+def validate_adoption(record, before, *, kind='context', commands=('open_context', 'configure_probability_policy')):
     """Retained entries must bridge the saved checkpoint and inspected tip exactly."""
     request, entries = record['request'], record['authority_entries']
     event, tip = before['pending'], before['journals']['authority']
-    if (request['profile'] != 'admission' or event['kind'] != 'context'
-            or fingerprint(event) != request['pending_digest'] or type(entries) is not list or len(entries) != 2):
-        raise RecoveryError('prepared context adoption inventory differs')
-    for offset, command in enumerate(('open_context', 'configure_probability_policy')):
+    if (request['profile'] != 'admission' or event['kind'] != kind
+            or fingerprint(event) != request['pending_digest'] or type(entries) is not list or len(entries) != len(commands)):
+        raise RecoveryError(f'prepared {kind} adoption inventory differs')
+    for offset, command in enumerate(commands):
         try:
             entry = JournalEntry(**entries[offset])
         except TypeError as error:
-            raise RecoveryError('prepared context adoption entry differs') from error
+            raise RecoveryError(f'prepared {kind} adoption entry differs') from error
         if (entry.command != command or entry.sequence != tip['sequence']+1
                 or entry.key != f"admission-trace:{event['event_id']}:{before['metadata']['next_key']+offset}"
                 or entry.previous_digest != tip['tail'] or entry.computed_digest() != entry.entry_digest):
-            raise RecoveryError('prepared context adoption chain differs')
+            raise RecoveryError(f'prepared {kind} adoption chain differs')
         tip = target_tip(tip, entries[offset])
     if dict(authority=tip) != request['journals']:
-        raise RecoveryError('prepared context adoption boundary differs')
+        raise RecoveryError(f'prepared {kind} adoption boundary differs')
 
 
 def append_under_ownership(directory, record, *, allow_append):

@@ -571,8 +571,15 @@ If both context commands persisted but the final worker checkpoint was lost, use
 `--action adopt_persisted_context`. It verifies both exact entries and reconstructs
 a `PASS` reply while preserving every source journal byte. Prior completed replies
 remain unchanged; the recovered reply records its decision and uses zero for the
-unavailable original elapsed time. Dispatch, executor commands and other pending
-commands with journal progress remain refused. See
+unavailable original elapsed time.
+
+For a successful hard `evidence` event whose five commands persisted before the
+final worker checkpoint, use `--action adopt_persisted_evidence`. It verifies the
+exact evidence, proposal, pre-certificate, post-certificate and commit chain,
+restores the belief alias and historical certificates, and preserves source
+journal bytes. Later evidence expiry still invalidates current use of that belief.
+Partial evidence chains, failed commits, numerical estimates, dispatch and
+executor commands remain outside this action. See
 [bounded reconciliation](VALIDATION.md#bounded-explicit-worker-reconciliation)
 for evidence binding, durable decision receipts and crash recovery.
 
@@ -597,10 +604,10 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next extend explicit reconciliation beyond context creation to separately
-specified admission, numerical and lifecycle outcomes,
-then to dispatch and executor evidence where observed packets and fencing are
-fully accounted for. Remaining designated
+Next define adoption of fully persisted numerical estimates, including exact
+report, certificate, commit and alias reconstruction. Specify other admission
+and lifecycle outcomes separately, then address dispatch and executor evidence
+with observed packets and fencing fully accounted for. Remaining designated
 mutants and evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding

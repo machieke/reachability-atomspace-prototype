@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-persisted-context-worker-adoption",
+  "implementation_stage": "bounded-persisted-evidence-worker-adoption",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -758,7 +758,7 @@
     "observed_receipts_separate_from_executor_state": true,
     "offline_reproducible_receipt": true,
     "native_projection_parity_tested": true,
-    "development_crash_probes": 16,
+    "development_crash_probes": 18,
     "independent_primitive_expectations": true,
     "completed_reply_public_model_comparison": true,
     "raw_launch_pipe_exit_and_injected_source_evidence": true,
@@ -781,7 +781,7 @@
     "request_schema": "worker-reconciliation-request/v1",
     "prepared_schema": "worker-reconciliation-prepared/v1",
     "result_schema": "worker-reconciliation-result/v1",
-    "probe_schema": "worker-reconciliation-probes/v3",
+    "probe_schema": "worker-reconciliation-probes/v4",
     "supported_profiles": [
       "admission",
       "deployment"
@@ -814,7 +814,7 @@
     "journal_writes": true,
     "prior_remote_uncertainty_preserved": true,
     "native_inference_continuation_tested": true,
-    "actual_crash_probes": 26,
+    "actual_crash_probes": 38,
     "automatic_reconciliation": false,
     "authenticated_storage": false,
     "family_complete_fixtures": 0,
@@ -823,7 +823,8 @@
     "actions": [
       "cancel_unstarted_local",
       "complete_partial_context",
-      "adopt_persisted_context"
+      "adopt_persisted_context",
+      "adopt_persisted_evidence"
     ],
     "unchanged_journal_tips_required_for_cancellation": true,
     "unchanged_captured_source_bytes_required_before_preparation": true,
@@ -881,6 +882,46 @@
     },
     "control_record_max_bytes": 33554432,
     "public_message_max_bytes": 65536,
-    "request_max_bytes": 65536
+    "request_max_bytes": 65536,
+    "evidence_prepared_schema": "worker-reconciliation-prepared/v4",
+    "evidence_adoption": {
+      "action": "adopt_persisted_evidence",
+      "profile": "admission",
+      "new_evidence_report_in_saved_context_only": true,
+      "persisted_commands": [
+        "record_evidence",
+        "propose_evidence",
+        "precertify",
+        "postcertify",
+        "commit"
+      ],
+      "exact_saved_counter_and_entry_binding": true,
+      "successful_certificates_and_commit_only": true,
+      "committed_hard_alias_restored": true,
+      "historical_certificates_restored": true,
+      "prior_alias_order_and_completed_replies_preserved": true,
+      "checkpoint_status": "PASS",
+      "result_outcome": "adopted",
+      "recovered_reply_identifies_decision": true,
+      "original_elapsed_time_recovered": false,
+      "counter_advance": 5,
+      "journal_entries_appended": 0,
+      "source_sqlite_connections": false,
+      "source_journal_bytes_preserved": true,
+      "exact_captured_bytes_required_during_publication": true,
+      "public_composite_event_replay": false,
+      "native_inference_io": false,
+      "executor_io": false,
+      "retained_authority_entries": 5,
+      "offline_candidate_and_entries_reproduced": true,
+      "source_crash_cuts": [
+        "commit-before-alias",
+        "composite-before-checkpoint"
+      ],
+      "crash_probes": 12,
+      "native_projection_and_inference_continuation_tested": true,
+      "expired_evidence_blocks_new_derivation_tested": true,
+      "other_progressed_events_refused": true
+    }
   }
 }
