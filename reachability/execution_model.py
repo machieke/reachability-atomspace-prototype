@@ -1,4 +1,4 @@
-"""Grounded local resource contracts and undispatched execution intent records."""
+"""Grounded local resource contracts and immutable execution intent records."""
 from dataclasses import dataclass
 
 from .model import Check, Status, conjunction, logical_integer, nonempty

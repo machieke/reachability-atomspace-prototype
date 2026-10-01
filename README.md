@@ -2,8 +2,9 @@
 
 This repository implements the reachability proposals in stages. The current
 increment combines a single-authority admission service, grounded lifecycle
-schemas, passive operation ledgers and atomic resource/intent coordination, with
-optional SQLite recovery. It separates
+schemas, passive operation ledgers, atomic resource/intent coordination and a
+durable simulated dispatcher. Admission can run in memory; dispatch requires
+SQLite recovery. It separates
 stored reports, proposals, accepted hard claims, lifecycle history and current
 validity, and checks the complete relevant constraint set before acceptance.
 
@@ -23,6 +24,7 @@ uv run --no-project python -m reachability.demo
 uv run --no-project python -m reachability.recovery_demo
 uv run --no-project python -m reachability.lifecycle_demo
 uv run --no-project python -m reachability.execution_demo
+uv run --no-project python -m reachability.dispatch_demo
 uv run --no-project python -m unittest discover -s tests -v
 uv run --no-project python pressure_field_lifecycle_reference_checks.py
 ```
@@ -117,7 +119,8 @@ An exclusive POSIX file lock enforces one live authority for the database path.
 SQLite uses WAL mode and full synchronous commits. The service holds its own lock
 through durable commit before publishing a changed view. A storage failure closes
 authorization until the caller closes and reopens the service, then reconciles
-the original idempotency key. No external executor is involved yet.
+the original idempotency key. Executor simulation uses a separate durable journal;
+neither journal's recovery sends requests to the other authority.
 
 The hash chain detects corruption within the trusted database boundary; it is not
 signed attestation or protection against a database administrator rewriting history.
@@ -170,11 +173,11 @@ current authority without deleting history. These records make no claim of causa
 credit or goal relief.
 
 In this fragment, lifecycle prerequisites and outcomes are checked at the same
-current snapshot. Submission-time versus completion-time requirements still need
-the dispatcher and additional temporal contracts. Generic entity binding, schema
-migration, dispatch, goal coverage and durability windows remain pending.
-Existing admission journals from commit `3e2516e` are
-tested for recovery and extension with the new lifecycle commands.
+current snapshot. Dispatch captures submission-time witnesses, but lifecycle
+transitions do not yet consume temporal contracts spanning submission and completion.
+Generic entity binding, schema migration, goal coverage and durability windows
+remain pending. Stored journals from commits `3e2516e` and `9da7639` are tested for
+recovery and extension with lifecycle and dispatch commands, respectively.
 
 ## Resource reservations and execution intents
 
@@ -204,7 +207,7 @@ or current readiness can pass, the operation's context clock must equal it. Adva
 both clocks to the declared current tick; a restarted authority has no wall-clock
 freshness guarantee. Local leases start immediately and expire at the contract's
 exclusive deadline. This increment does not book future steps, renew leases,
-change capacities, allocate consumable inventory or dispatch external actions.
+change capacities, allocate consumable inventory or call a real external service.
 
 An undispatched intent can be cancelled by its recorded owner. Cancellation or
 expiry releases local claims while retaining intent and reservation history. A
@@ -214,16 +217,65 @@ without silently deleting the lease or rewriting the earlier certificate.
 If an executor observation is recorded for an intent, its resource view becomes
 `reconciliation_required`, even after cancellation, expiry or later evidence
 revocation. The same durable observation transaction invalidates resource permits
-across contexts. All affected resources remain blocked pending an explicit release
-contract and reconciliation, which are next work. An ACK, completion or cancellation
+across contexts. All affected resources remain blocked until a supported executor
+release contract is reconciled. An ACK, completion or cancellation
 observation alone does not establish that remote occupancy ended. `used_now` counts
 scheduled quantities inside their original intervals; it does **not** measure remote
 occupancy or imply availability when `reconciliation_attempts` is nonempty.
 
-Intent readiness does not authorize external I/O: `execution_authorized` remains
-false. The next dispatcher must persist a submission boundary, recheck current
-gates, protect claims during uncertain outcomes and reconcile the same attempt.
-Local persistence makes no exactly-once promise about remote effects.
+Intent views do not carry reusable I/O authority: `execution_authorized` remains
+false. The dispatcher performs its own current checks at the submission boundary.
+
+## Simulated dispatch and resource reconciliation
+
+`SimulatedExecutor` is an independent local authority with a second SQLite journal.
+Its immutable profile declares executor identity, durable instance identity,
+idempotency, authoritative query and permanent release capabilities.
+`register_dispatch_policy` pins that profile to an execution contract. Replacing
+an executor database produces a different instance identity and cannot silently
+inherit a prepared attempt. The provided `NonIdempotentSimulatedExecutor` exposes
+duplicate effects if called twice and, by default, cannot query or release them.
+
+`Dispatcher.dispatch` requires a durable service, the recorded owner and the exact
+pinned executor profile. It checks current prerequisites, policy, resource ownership,
+clock alignment and the live lease. It then durably records `prepare_dispatch`
+before calling the executor. The request contains the exact immutable intent,
+product and reservations; retries retain its identity and payload. Readiness is
+checked again before submission. The reference service lock spans these checks and
+synchronous simulator I/O, so another worker cannot insert a revision in between.
+
+The submission marker immediately protects capacity beyond local lease expiry.
+A lost reply leaves the attempt uncertain; it does not establish that no effect
+occurred. Reconciliation queries the same request. An idempotent executor may
+receive that same request again only while current submission gates pass. A
+non-idempotent executor is never automatically resubmitted after the marker exists,
+even when a query says absent: an earlier request could still arrive later.
+
+| Dispatch state | Meaning |
+| --- | --- |
+| `uncertain` | Submission may or may not have taken effect; affected resources stay blocked |
+| `accepted` | An authoritative executor receipt records acceptance; resources stay held |
+| `released` | The executor has released the request and permanently fenced future effects under its identity |
+
+`Dispatcher.release` is the separate cleanup operation allowed by a pinned release
+contract and the recorded owner. It remains available after action credentials
+expire. The simulator durably installs a release tombstone even if the request has
+not arrived; late submissions return that tombstone without creating an effect.
+Local capacity becomes available only after the authority commits the matching
+release receipt. A lost release reply is reconciled without assuming success.
+Historical callbacks remain recordable after release and do not undo that permanent
+fence. A passive observation with no bound dispatch request remains unresolved;
+there is no automatic adoption of legacy external work into the simulator.
+
+`inspect_dispatch` reports the authoritative submission receipts separately from
+the operation's completion/product observations. Submission creates no accepted
+belief, lifecycle transition, product evidence or goal relief. Release ends modeled
+resource occupancy; it does not undo a historical effect or prove task success.
+
+Executor profiles and receipts are trusted in-process contracts, not authenticated
+network messages. The included adapter performs local simulation only. A real
+transport needs authentication, bounded I/O and an executor-specific release/fencing
+contract. Local persistence alone makes no exactly-once promise about remote effects.
 
 ## Source layout
 
@@ -240,10 +292,13 @@ Local persistence makes no exactly-once promise about remote effects.
 | `reachability/execution_model.py` | Resource contracts, leases, certificates and intent records |
 | `reachability/resources.py` | Complete integer interval-capacity checker |
 | `reachability/execution.py` | Atomic reservations, local cancellation and intent recovery |
+| `reachability/dispatch_model.py`, `reachability/dispatch.py` | Pinned executor contracts, durable submission and reconciliation |
+| `reachability/simulated_executor.py` | Independent executor journal, idempotent/non-idempotent effects and release tombstones |
 | `reachability/demo.py` | Executable public-API walkthrough |
 | `reachability/recovery_demo.py` | Restart and credential expiry walkthrough |
 | `reachability/lifecycle_demo.py` | Operation milestones and lifecycle validity walkthrough |
 | `reachability/execution_demo.py` | Competing reservations, intent recovery and local lease expiry |
+| `reachability/dispatch_demo.py` | Lost submission reply, recovery and fenced resource release |
 | `tests/oracle.py` | Independent exhaustive Boolean evaluator |
 | `tests/test_admission.py` | Authority, scope, lineage and concurrency checks |
 | `tests/test_mutations.py` | Isolated witnesses for mutants M01–M04 |
@@ -255,6 +310,8 @@ Local persistence makes no exactly-once promise about remote effects.
 | `tests/test_lifecycle_recovery.py` | Fault boundaries and committed-version compatibility |
 | `tests/test_resources.py`, `tests/test_execution.py` | Independent capacity checks and coordinator contracts |
 | `tests/test_durable_execution.py`, `tests/test_execution_recovery.py` | Recovered ownership and atomic crash boundaries |
+| `tests/test_dispatch.py`, `tests/test_dispatch_recovery.py` | Submission gates, uncertainty, fencing and process crash boundaries |
+| `tests/test_simulated_executor.py` | Executor identity, duplicate effects, tombstones and storage failures |
 | `reachability_validation_design/` | Original proposed benchmark, not runtime inputs |
 
 The oracle uses signed-integer formulas and exhaustive truth tables. It imports no
@@ -271,8 +328,10 @@ still pending.
 This is an in-process API with trusted callers, not a sandbox for hostile Python
 code. The current storage lock implementation targets POSIX hosts. Schema migration,
 context inheritance, variable matching and general temporal requirement expressions
-are not implemented. Resource contracts cover integer renewable capacity and
-undispatched local leases only. Context assumptions constrain
+are not implemented. Resource contracts cover integer renewable capacity, local
+leases and simulated executor fencing. Under unresolved occupancy, the coordinator
+conservatively blocks all use of an affected resource, even if its capacity exceeds
+one. Context assumptions constrain
 admission but are not automatically materialized as premise revisions in this slice.
 
 There is no actual AtomSpace, FDAS, PLN, ECAN or Freeciv adapter yet. Pressure and
@@ -280,7 +339,7 @@ transport remain the supplied standalone numerical examples. The 64-fixture
 target, full deployment episode, M05–M12 mutants and performance experiments are
 still pending. Existing tests establish the stated finite contracts only.
 
-The next increment adds simulated executor dispatch/reconciliation and authoritative
-resource release, then goal slices, coverage accounting and durability monitoring.
-General context inheritance and variable binding remain
-explicit phase 1 backlog items.
+The next increment adds goal slices, coverage accounting and observation-defined
+durability, along with submission/completion temporal contracts for the deployment
+episode. General context inheritance and variable binding remain explicit phase 1
+backlog items.

@@ -5,6 +5,7 @@ import json
 from . import model
 from . import lifecycle_model as lifecycle
 from . import execution_model as execution
+from . import dispatch_model as dispatch
 from .requirements import Requirement, RequirementResult, RequirementWitness
 
 RECORDS = {cls.__name__: cls for cls in (
@@ -19,6 +20,8 @@ RECORDS = {cls.__name__: cls for cls in (
     execution.ResourceDefinition, execution.ResourceDemand, execution.ResourceClaim,
     execution.ExecutionContract, execution.ExecutionPermit, execution.Reservation,
     execution.ExecutionIntent, execution.ExecutionIntentView, execution.ResourceView, execution.ResourceSnapshot,
+    dispatch.ExecutorProfile, dispatch.DispatchPolicy, dispatch.DispatchRequest,
+    dispatch.ExecutorReceipt, dispatch.DispatchAttempt, dispatch.DispatchView,
 )}
 
 

@@ -1,4 +1,4 @@
-"""Atomic local leases and intents, before any external dispatcher is attached.
+"""Atomic local leases and intents shared with the durable dispatch boundary.
 
 One authority clock orders shared resource leases across all belief contexts.
 Action gates require the context evidence clock to match that clock exactly.
@@ -105,6 +105,9 @@ class ExecutionMixin:
                 tuple(self._execution.resources[key] for key in sorted(self._execution.resources)))
 
     def _intent_state(self, intent: ExecutionIntent) -> str:
+        dispatched = self._dispatch_resource_state(intent.attempt_id)
+        if dispatched is not None:
+            return dispatched
         if self._lifecycle.attempts[intent.attempt_id].observations:
             return "reconciliation_required"
         if intent.state == "cancelled":
@@ -135,11 +138,14 @@ class ExecutionMixin:
             return ResourceView(resource, tuple(reservations), used, tuple(sorted(uncertain)),
                                 self._execution.revision, now)
 
-    def _resource_checks(self, claims: tuple[ResourceClaim, ...], *, exclude_attempt: str | None = None):
+    def _resource_checks(self, claims: tuple[ResourceClaim, ...], *, exclude_attempt: str | None = None,
+                         ignore_own_uncertainty: bool = False):
         checks = []
         for claim in claims:
             view = self.inspect_resource(claim.resource_id)
-            if view.reconciliation_attempts:
+            uncertain = tuple(attempt for attempt in view.reconciliation_attempts
+                              if not ignore_own_uncertainty or attempt != exclude_attempt)
+            if uncertain:
                 checks.append(Check("remote_occupancy", Status.UNKNOWN,
                                     f"{claim.resource_id} requires executor reconciliation"))
             others = tuple(reservation.claim for reservation in view.reservations
@@ -277,6 +283,8 @@ class ExecutionMixin:
                 raise AdmissionDenied(Status.FAIL, "only the recorded owner can cancel the local lease")
             if expected_revision != intent.revision:
                 raise AdmissionDenied(Status.STALE, "intent revision changed")
+            if attempt_id in self._dispatch.attempts:
+                raise AdmissionDenied(Status.UNKNOWN, "submitted attempts require executor release/reconciliation")
             if self._intent_state(intent) == "reconciliation_required":
                 raise AdmissionDenied(Status.UNKNOWN, "remote occupancy requires explicit reconciliation")
             if intent.state == "cancelled":

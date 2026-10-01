@@ -4,6 +4,7 @@ from reachability.demo import run
 from reachability.recovery_demo import run as recover
 from reachability.lifecycle_demo import run as lifecycle
 from reachability.execution_demo import run as execution
+from reachability.dispatch_demo import run as dispatch
 
 
 class DemoTests(unittest.TestCase):
@@ -44,3 +45,15 @@ class DemoTests(unittest.TestCase):
         self.assertEqual(result["state_at_expiry"], "expired")
         self.assertEqual(result["held_units_at_expiry"], 0)
         self.assertEqual(result["observed_milestones"], [])
+
+    def test_dispatch_reconciles_same_attempt_and_fences_remote_release(self):
+        result = dispatch()
+        self.assertEqual(result["after_lost_reply"], "uncertain")
+        self.assertEqual(result["after_restart_reconciliation"], "accepted")
+        self.assertTrue(result["same_request"])
+        self.assertTrue(result["capacity_held_after_lease_expiry"])
+        self.assertTrue(result["resources_released"])
+        self.assertEqual(result["late_submission"], "released")
+        self.assertEqual(result["historical_effects"], 1)
+        self.assertEqual(result["lifecycle_stage"], "READY")
+        self.assertEqual(result["operation_outcome"], "UNKNOWN")

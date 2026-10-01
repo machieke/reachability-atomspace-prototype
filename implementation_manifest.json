@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "atomic-resource-reservations-and-local-intents",
+  "implementation_stage": "durable-simulated-dispatch-and-fenced-release",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -13,6 +13,16 @@
   "requirement_schema": "grounded-requirements/v1",
   "execution_schema": "grounded-execution/v1",
   "execution_certificate_schema": "execution-certificate/v1",
+  "dispatch_schema": "grounded-dispatch/v1",
+  "executor_journal_implementation": "simulated-executor/v1",
+  "dispatch_fragment": {
+    "adapter": "local-durable-simulator",
+    "submission": "durable-marker-before-io-with-current-gates",
+    "concurrency": "single-service-lock-spans-synchronous-simulator-io",
+    "retry": "same-request-only-with-pinned-idempotency-and-current-gates",
+    "release": "authoritative-permanent-request-fence",
+    "real_external_actions": false
+  },
   "resource_fragment": {
     "mode": "renewable",
     "quantities": "exact-integers-with-explicit-units",
@@ -65,6 +75,11 @@
     "persistent_operation_episodes": true,
     "exact_product_observations": true,
     "external_operation_dispatch": false,
+    "simulated_operation_dispatch": true,
+    "durable_submission_markers": true,
+    "simulated_resource_reconciliation": true,
+    "permanent_request_fencing": true,
+    "automatic_non_idempotent_retry": false,
     "general_temporal_requirements": false,
     "resource_reservations": true,
     "atomic_reservations_and_intents": true,

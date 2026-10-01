@@ -13,6 +13,7 @@ from typing import Callable, TypeVar
 from uuid import uuid4
 
 from .codec import dumps, loads
+from .dispatch import DispatchMixin, DispatchStore
 from .errors import AdmissionDenied, IdempotencyConflict
 from .execution import ExecutionMixin, ExecutionStore
 from .journal import RecoveryError, SQLiteJournal, digest
@@ -39,14 +40,15 @@ class _Context:
     logical_time: int = 0
 
 
-class AdmissionService(ExecutionMixin, LifecycleMixin):
+class AdmissionService(DispatchMixin, ExecutionMixin, LifecycleMixin):
     _COMMANDS = frozenset((
         "open_context", "record_evidence", "revoke_evidence", "propose_evidence",
         "propose_transition", "precertify", "postcertify", "commit", "replace_rule",
         "replace_policy", "advance_clock",
-    )) | LifecycleMixin.LIFECYCLE_COMMANDS | ExecutionMixin.EXECUTION_COMMANDS
+    )) | LifecycleMixin.LIFECYCLE_COMMANDS | ExecutionMixin.EXECUTION_COMMANDS | DispatchMixin.DISPATCH_COMMANDS
     _STATE_FIELDS = ("_rules", "_rule_versions", "_policy_versions", "_contexts",
-                     "_evidence", "_revoked", "_transitions", "_certificates", "_commands", "_lifecycle", "_execution")
+                     "_evidence", "_revoked", "_transitions", "_certificates", "_commands", "_lifecycle", "_execution",
+                     "_dispatch")
 
     def __init__(self, rules: tuple[Rule, ...] | None = None, *,
                  max_variables: int | None = None, database: str | Path | None = None):
@@ -100,6 +102,7 @@ class AdmissionService(ExecutionMixin, LifecycleMixin):
         self._commands: dict[str, tuple[str, object]] = {}
         self._lifecycle = LifecycleStore()
         self._execution = ExecutionStore()
+        self._dispatch = DispatchStore()
         if self._journal is not None:
             try:
                 self._replaying = True
