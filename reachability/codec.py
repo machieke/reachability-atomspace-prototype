@@ -6,6 +6,8 @@ from . import model
 from . import lifecycle_model as lifecycle
 from . import execution_model as execution
 from . import dispatch_model as dispatch
+from . import goal_model as goal
+from .completion import CompletionContract, CompletionPermit
 from .requirements import Requirement, RequirementResult, RequirementWitness
 
 RECORDS = {cls.__name__: cls for cls in (
@@ -22,6 +24,10 @@ RECORDS = {cls.__name__: cls for cls in (
     execution.ExecutionIntent, execution.ExecutionIntentView, execution.ResourceView, execution.ResourceSnapshot,
     dispatch.ExecutorProfile, dispatch.DispatchPolicy, dispatch.DispatchRequest,
     dispatch.ExecutorReceipt, dispatch.DispatchAttempt, dispatch.DispatchView,
+    goal.DurabilityContract, goal.GoalSlice, goal.GoalContract, goal.GoalMonitor, goal.GoalEpisode,
+    goal.GoalSample, goal.CoverageCommitment, goal.DurabilityResult, goal.GoalSliceView,
+    goal.GoalProjection, goal.GoalReliefEvent, goal.GoalAccountingRevision, goal.GoalView,
+    CompletionContract, CompletionPermit,
 )}
 
 

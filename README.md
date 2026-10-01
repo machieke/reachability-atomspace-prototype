@@ -2,11 +2,11 @@
 
 This repository implements the reachability proposals in stages. The current
 increment combines a single-authority admission service, grounded lifecycle
-schemas, passive operation ledgers, atomic resource/intent coordination and a
-durable simulated dispatcher. Admission can run in memory; dispatch requires
-SQLite recovery. It separates
-stored reports, proposals, accepted hard claims, lifecycle history and current
-validity, and checks the complete relevant constraint set before acceptance.
+schemas, operation ledgers, atomic resource/intent coordination, a durable simulated
+dispatcher and persistent goal monitoring. Admission and goal accounting can run in
+memory; dispatch requires SQLite recovery. Stored reports, accepted claims, lifecycle
+history, current validity, estimated coverage and observed goal relief remain
+separate. Acceptance checks the complete relevant constraint set.
 
 Read [the phased implementation plan](IMPLEMENTATION_PLAN.md) for deliverables,
 dependencies and exit criteria. The original specifications and validation design
@@ -25,6 +25,7 @@ uv run --no-project python -m reachability.recovery_demo
 uv run --no-project python -m reachability.lifecycle_demo
 uv run --no-project python -m reachability.execution_demo
 uv run --no-project python -m reachability.dispatch_demo
+uv run --no-project python -m reachability.goal_demo
 uv run --no-project python -m unittest discover -s tests -v
 uv run --no-project python pressure_field_lifecycle_reference_checks.py
 ```
@@ -172,12 +173,12 @@ completion after cancellation is retained. Revocation removes the observation's
 current authority without deleting history. These records make no claim of causal
 credit or goal relief.
 
-In this fragment, lifecycle prerequisites and outcomes are checked at the same
-current snapshot. Dispatch captures submission-time witnesses, but lifecycle
-transitions do not yet consume temporal contracts spanning submission and completion.
-Generic entity binding, schema migration, goal coverage and durability windows
-remain pending. Stored journals from commits `3e2516e` and `9da7639` are tested for
-recovery and extension with lifecycle and dispatch commands, respectively.
+The original lifecycle transition API checks prerequisites and outcomes at one
+current snapshot. The optional completion contract below instead uses registered
+submission witnesses and current monitored outcomes. Generic entity binding, schema
+migration and general temporal requirement expressions remain pending. Stored
+journals from commits `3e2516e` and `9da7639` are tested for recovery and extension
+with lifecycle and dispatch commands, respectively.
 
 ## Resource reservations and execution intents
 
@@ -277,6 +278,93 @@ network messages. The included adapter performs local simulation only. A real
 transport needs authentication, bounded I/O and an executor-specific release/fencing
 contract. Local persistence alone makes no exactly-once promise about remote effects.
 
+## Goal accounting and sampled durability
+
+`register_goal_contract` defines a versioned unit and explicitly disjoint goal
+slices. Each slice declares a positive integer loss, exact product, current
+condition and observation contract. `open_goal_episode` pins that contract to a
+context and source identity. A second alias for the same scoped source is rejected
+so duplicate planning paths cannot mint another obligation.
+
+This initial loss model is binary per slice: supported observed success removes
+its declared loss; every other label retains the unresolved obligation budget.
+UNKNOWN does not imply zero deficit. These units are declared accounting quantities,
+not calibrated estimates of physical harm or probabilities. Different goal units
+are never automatically aggregated or converted into a common priority score.
+
+`claim_goal_coverage` binds a prediction to an existing intent, exact product,
+context, owner, monitoring window and exclusive lease deadline. For each outstanding
+slice, the monitor uses the largest live promise, capped by that slice's loss.
+Only explicitly disjoint slices add. Two promises for the same six-unit benefit
+therefore cover six units. One operation can serve two genuinely distinct goal
+sources without allocating its resources twice.
+
+Coverage leaves outstanding loss unchanged: a ten-unit obligation with six covered
+units has four open units and still needs monitoring. Expiry, withdrawal, local
+cancellation, lost readiness before dispatch, uncertain submission, executor release,
+failure and censoring can remove coverage. An accepted submission may retain its
+live prediction after its old submission credential expires. Repeated copies of an
+already known failed measurement do not invalidate a new repair promise; a new
+failed measurement does. No coverage record enters the evidence or belief ledger.
+
+`record_goal_sample` requires currently accepted **direct** evidence from a declared
+monitor source, matching the exact goal, slice, product, timestamp and polarity.
+Inference cannot manufacture a sample. Monitoring uses a declared uniform grid,
+sample count and freshness interval. All required dated observations must retain
+current support and have distinct measurement lineage. The checker searches whole
+witness combinations, including independent alternatives. Distinct lineage here
+prevents copied readings from being counted twice; it is not a statistical
+independence claim.
+
+| Monitor label | Meaning |
+| --- | --- |
+| `PENDING` | The declared observation window has not matured |
+| `OBSERVED_SUCCESS` | The condition and complete fresh sample window pass |
+| `OBSERVED_FAILURE` | Supported evidence violates the monitored contract |
+| `UNKNOWN` | Missing, stale, revoked or insufficiently distinct evidence prevents a result |
+| `CENSORED` | Monitoring was explicitly stopped without assigning a causal outcome |
+
+Freshness ends at `latest_observation + fresh_for`, exclusively. Missing readings
+cannot be replaced by elapsed time. `censor_goal_monitor` keeps an unresolved loss;
+`resume_goal_monitor` starts a new window and does not revive old coverage. Current
+success still leaves a maintenance obligation. These finite samples establish the
+declared observed contract, not uninterrupted health between measurements.
+
+`inspect_goal` always recomputes the current projection. `reconcile_goal` verifies
+its support fingerprint and durably appends an accounting revision and any changes
+in observed relief. Repeat checks cannot mint duplicate relief. Loss reopening
+retains earlier revisions and observations. Callers must reconcile each relevant
+event if they need a record of every transient deficit; queries do not write history.
+Neither relief events nor temporal succession assign causal credit to an operation.
+
+The fragment supports at most 32 slices, 16 samples per window, 256 witness
+alternatives across a window and 4,096 witness-search visits. Unsupported scope
+returns UNKNOWN. The admission checker's separate finite-variable limit still
+applies; dated observation history may require explicit evidence expiry or additional
+scoped contexts as it grows.
+
+## Completion after submission
+
+`register_completion_contract` explicitly links a lifecycle edge to a pinned goal
+contract for the same product, plus any completion-specific current requirements.
+`certify_goal_completion` checks the trusted historical submission, authoritative
+executor acceptance, exact current completion/product observations, every goal
+slice's observed durability and current target validity. Observations used for this
+completion path must be at a strictly later logical tick than submission, so
+preexisting or same-tick observations cannot stand in for post-submission evidence.
+
+`advance_goal_completion` rechecks the complete binding and atomically appends the
+lifecycle event. A credential valid at submission may expire before completion;
+that does not erase submission history. A new action still needs its own current
+credential, and completion-specific requirements remain current gates. The original
+lifecycle API retains its own schema contract; registering this optional completion
+policy does not rewrite existing schemas or their transition rules.
+
+The goal demo combines these boundaries with the local executor: missing credentials
+block submission, ACK leaves loss outstanding, a wrong artifact is rejected, and
+three consecutive healthy observations reduce loss to zero. Later health failure
+reopens the goal while preserving the completed artifact's lifecycle history.
+
 ## Source layout
 
 | Location | Responsibility |
@@ -294,11 +382,15 @@ contract. Local persistence alone makes no exactly-once promise about remote eff
 | `reachability/execution.py` | Atomic reservations, local cancellation and intent recovery |
 | `reachability/dispatch_model.py`, `reachability/dispatch.py` | Pinned executor contracts, durable submission and reconciliation |
 | `reachability/simulated_executor.py` | Independent executor journal, idempotent/non-idempotent effects and release tombstones |
+| `reachability/goal_model.py`, `reachability/goals.py` | Goal contracts, coverage commitments and durable accounting revisions |
+| `reachability/goal_logic.py` | Complete sampled windows, freshness, failure and censoring |
+| `reachability/completion.py` | Historical submission witnesses and current goal-based completion gates |
 | `reachability/demo.py` | Executable public-API walkthrough |
 | `reachability/recovery_demo.py` | Restart and credential expiry walkthrough |
 | `reachability/lifecycle_demo.py` | Operation milestones and lifecycle validity walkthrough |
 | `reachability/execution_demo.py` | Competing reservations, intent recovery and local lease expiry |
 | `reachability/dispatch_demo.py` | Lost submission reply, recovery and fenced resource release |
+| `reachability/goal_demo.py` | Deployment goal, three healthy samples, temporal completion and reopened demand |
 | `tests/oracle.py` | Independent exhaustive Boolean evaluator |
 | `tests/test_admission.py` | Authority, scope, lineage and concurrency checks |
 | `tests/test_mutations.py` | Isolated witnesses for mutants M01–M04 |
@@ -312,6 +404,10 @@ contract. Local persistence alone makes no exactly-once promise about remote eff
 | `tests/test_durable_execution.py`, `tests/test_execution_recovery.py` | Recovered ownership and atomic crash boundaries |
 | `tests/test_dispatch.py`, `tests/test_dispatch_recovery.py` | Submission gates, uncertainty, fencing and process crash boundaries |
 | `tests/test_simulated_executor.py` | Executor identity, duplicate effects, tombstones and storage failures |
+| `tests/test_goals.py`, `tests/test_goal_coverage.py` | Goal identity, observation contracts and conservative coverage |
+| `tests/test_durable_goals.py`, `tests/test_goal_recovery.py` | Replayed goal projections, accounting faults and process crashes |
+| `tests/test_goal_completion.py`, `tests/test_dispatched_goals.py` | Goal monitoring across submission and completion |
+| `tests/test_goal_oracles.py` | Independent sample-timeline and atomic-obligation enumeration |
 | `reachability_validation_design/` | Original proposed benchmark, not runtime inputs |
 
 The oracle uses signed-integer formulas and exhaustive truth tables. It imports no
@@ -320,6 +416,8 @@ against it on 400 seeded generated formulas, in addition to hand-authored cases.
 A separate three-valued oracle covers 240 generated requirement/world combinations.
 An independent discrete-time occupancy oracle checks 500 generated claim portfolios
 against the runtime interval sweep.
+Goal checks add 405 independently enumerated sample timelines and 40 generated
+coverage portfolios compared with explicit atomic obligation sets.
 The evaluator is separated by imports and file location; OS-level isolation is
 still pending.
 
@@ -336,10 +434,12 @@ admission but are not automatically materialized as premise revisions in this sl
 
 There is no actual AtomSpace, FDAS, PLN, ECAN or Freeciv adapter yet. Pressure and
 transport remain the supplied standalone numerical examples. The 64-fixture
-target, full deployment episode, M05–M12 mutants and performance experiments are
-still pending. Existing tests establish the stated finite contracts only.
+target, deployment through real adapters, M05–M12 mutants and performance experiments
+are still pending. The executable deployment demo establishes the stated finite
+simulator contracts only.
 
-The next increment adds goal slices, coverage accounting and observation-defined
-durability, along with submission/completion temporal contracts for the deployment
-episode. General context inheritance and variable binding remain explicit phase 1
-backlog items.
+Next inspect the actual AtomSpace/PLN repositories, pin compatible revisions and
+bring a small storage/inference slice through these service contracts. Goal loss
+models, scheduling priority, wider temporal logic and a full independent event
+reference model still need work. General context inheritance and variable binding
+remain explicit phase 1 backlog items.

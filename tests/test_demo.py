@@ -5,6 +5,7 @@ from reachability.recovery_demo import run as recover
 from reachability.lifecycle_demo import run as lifecycle
 from reachability.execution_demo import run as execution
 from reachability.dispatch_demo import run as dispatch
+from reachability.goal_demo import run as goal
 
 
 class DemoTests(unittest.TestCase):
@@ -57,3 +58,17 @@ class DemoTests(unittest.TestCase):
         self.assertEqual(result["historical_effects"], 1)
         self.assertEqual(result["lifecycle_stage"], "READY")
         self.assertEqual(result["operation_outcome"], "UNKNOWN")
+
+    def test_deployment_goal_requires_three_samples_and_reopens_after_failure(self):
+        result = goal()
+        self.assertEqual(result["missing_submission_credential"], "UNKNOWN")
+        self.assertEqual(result["before_dispatch"], {"outstanding": 10, "covered": 6, "open": 4})
+        self.assertEqual(result["outstanding_after_ack"], 10)
+        self.assertEqual(result["wrong_product"], "FAIL")
+        self.assertEqual(result["loss_after_health_samples"], [10, 10, 0])
+        self.assertEqual(result["credential_at_completion"], "STALE")
+        self.assertEqual(result["completion_certificate"], "PASS")
+        self.assertEqual(result["stage_after_later_failure_and_restart"], "BUILT")
+        self.assertEqual(result["outstanding_after_later_failure"], 10)
+        self.assertEqual(result["relief_history"], ["observed_relief", "reopened"])
+        self.assertFalse(result["causal_credit_assigned"])

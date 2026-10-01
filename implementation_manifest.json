@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "durable-simulated-dispatch-and-fenced-release",
+  "implementation_stage": "persistent-goal-accounting-and-sampled-durability",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -14,6 +14,19 @@
   "execution_schema": "grounded-execution/v1",
   "execution_certificate_schema": "execution-certificate/v1",
   "dispatch_schema": "grounded-dispatch/v1",
+  "goal_schema": "grounded-goals/v1",
+  "completion_certificate_schema": "goal-completion-certificate/v1",
+  "goal_fragment": {
+    "loss": "integer-unresolved-obligation-slices",
+    "coverage": "maximum-live-promise-per-declared-disjoint-slice",
+    "durability": "uniform-fresh-direct-samples-with-distinct-measurement-lineage",
+    "max_slices": 32,
+    "max_samples_per_window": 16,
+    "max_witness_alternatives": 256,
+    "max_witness_search_visits": 4096,
+    "causal_credit": false,
+    "continuous_time_health_guarantee": false
+  },
   "executor_journal_implementation": "simulated-executor/v1",
   "dispatch_fragment": {
     "adapter": "local-durable-simulator",
@@ -87,8 +100,11 @@
     "consumable_resources": false,
     "lease_renewal": false,
     "remote_resource_reconciliation": false,
-    "lifecycle_and_goal_ledgers": false,
-    "goal_loss_and_coverage": false,
+    "lifecycle_and_goal_ledgers": true,
+    "goal_loss_and_coverage": true,
+    "sampled_goal_durability": true,
+    "submission_completion_contracts": true,
+    "finite_deployment_demo": true,
     "pressure_transport_integration": false,
     "complete_64_fixture_benchmark": false,
     "evaluator_process_isolation": false
