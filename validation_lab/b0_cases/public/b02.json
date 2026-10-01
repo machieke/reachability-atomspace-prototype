@@ -1,0 +1,47 @@
+{
+  "schema": "deployment-b0-public/v1",
+  "deployment": {
+    "context_id": "c0",
+    "product_id": "p0",
+    "goal_id": "g0",
+    "loss": 10,
+    "capacity": 1,
+    "lease_duration": 10,
+    "min_strength": 0.65,
+    "min_confidence": 0.35,
+    "schema": "deployment-initial/v1"
+  },
+  "probes": [
+    {
+      "probe_id": "q0",
+      "target": "tested",
+      "cost": 1
+    },
+    {
+      "probe_id": "q1",
+      "target": "credential",
+      "cost": 1
+    },
+    {
+      "probe_id": "q2",
+      "target": "forecast",
+      "cost": 1
+    },
+    {
+      "probe_id": "q3",
+      "target": "outcome",
+      "cost": 1
+    },
+    {
+      "probe_id": "q4",
+      "target": "monitor",
+      "cost": 1
+    },
+    {
+      "probe_id": "q5",
+      "target": "tested",
+      "cost": 3
+    }
+  ],
+  "max_attempts": 4
+}

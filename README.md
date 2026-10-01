@@ -404,7 +404,8 @@ reopens the goal while preserving the completed artifact's lifecycle history.
 | `reachability/decision_demo.py` | Full deployment episode with numerical gates, native adapters and checked recovery |
 | `reachability/trace_protocol.py`, `reachability/deployment_trace.py` | Strict public event protocol and actual deployment trace capture |
 | `reachability/admission_protocol.py`, `reachability/admission_trace.py` | Grounded rule/context/lineage messages and actual admission traces |
-| `validation_lab/` | Independent cold deployment/admission oracles, fixed/seeded cases, receipts and M05/M06/M11 witnesses |
+| `reachability/b0.py` | Bounded public deployment candidates, deterministic B0 selection, budgets and scheduling checkpoints |
+| `validation_lab/` | Cold oracles, closed-loop B0 worlds, fixed/seeded cases, receipts and M05/M06/M07/M11 witnesses |
 | `adapters.lock.json`, `scripts/build_adapters.py` | Exact upstream revisions and isolated native build |
 | `reachability/adapter_demo.py`, `integration_tests/` | Explicit optional suite using both real runtimes |
 | `reachability/demo.py` | Executable public-API walkthrough |
@@ -462,6 +463,17 @@ Run `uv run --no-project python -m validation_lab.run_admission`; add `--native`
 to use the pinned PeTTa/PLN adapter. Neither profile changes the core admission
 contracts or claims the full 64-fixture benchmark is complete.
 
+The bounded B0 controller now chooses observations and actions for the deployment
+dependency graph. Run `uv run --no-project python -m validation_lab.run_b0`.
+Twelve evaluator-owned worlds exercise delayed/alternative observations, failed
+delivery, uncertain acknowledgements, wrong products, stale selections and exhausted
+budgets. Nine reach observed goal success; three correctly remain unresolved under
+their limits. Every emitted event is checked against the cold oracle and recovered
+state. Candidate visits, loaded records, observation charges and service commands
+are reported separately. These are conformance results for one controller, with
+no normalized cost comparison or general planning claim. M07 has a two-event,
+deletion-minimal wrong-product witness.
+
 ## Current limits and next work
 
 This is an in-process API with trusted callers, not a sandbox for hostile Python
@@ -478,12 +490,13 @@ episode now use real optional adapters. The native demo runs with
 `uv run --no-project python -m reachability.decision_demo`; see [DECISIONS.md](DECISIONS.md).
 Persistent native storage, FDAS, ECAN and Freeciv integration remain pending.
 Pressure and transport remain the supplied standalone numerical examples. The
-64-fixture target, M07/M08/M09/M10/M12 mutants and performance experiments are still pending.
+64-fixture target, M08/M09/M10/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next add bounded public candidate enumeration and a deterministic B0 scheduler
-over the verified interfaces, with explicit work counters and remaining family
-controls. General trace shrinking and controlled interleavings remain open. Goal loss
+Next extend B0 beyond the single deployment dependency graph, beginning with
+grounded rule candidates, whole alternative plans and a same-information exact
+reference for tiny cases. General trace shrinking, controlled interleavings and
+evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding
 remain explicit phase 1 backlog items.

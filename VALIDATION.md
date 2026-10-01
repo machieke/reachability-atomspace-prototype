@@ -272,8 +272,8 @@ subnormal/near-one binary64 boundaries and unmodified raw mutation output.
 These remain **zero family-complete fixture claims**: F01 search/distractor behavior,
 F04 changing goals and pressure, and F05 broader noisy hidden-source models are not
 implemented by these admission controls. They establish bounded admission semantics,
-not inference search or calibrated prediction. B0 and normalized work accounting
-remain pending.
+not inference search or calibrated prediction. A scoped deployment B0 controller
+is described below; normalized work comparisons remain pending.
 
 To deliberately regenerate this corpus and refresh its source receipts:
 
@@ -289,6 +289,121 @@ The admission worker is `python -m reachability.admission_trace --database-dir P
 and position; a fresh worker cannot resume an arbitrary old stream directory.
 The normal harness still shares a process with its adapter, without OS isolation.
 
+## Bounded B0 closed-loop deployment
+
+`reachability/b0.py` implements `B0-finite-deployment/v1`: full recomputation and
+deterministic best-first selection over the existing deployment dependency graph.
+It uses the existing service's exact admission, numerical, resource, dispatch and
+completion gates and operation ledger. This is the first scoped B0 implementation;
+general grounded-rule search, beam planning and multi-goal portfolios remain open.
+
+```bash
+uv run --no-project python -m validation_lab.run_b0
+uv run --no-project python -m unittest tests.test_b0 -v
+```
+
+The public `deployment-b0-public/v1` record contains the unchanged deployment
+initial state, up to sixteen observation capabilities, their declared integer
+costs, and a limit of one to four attempts. Capabilities expose neutral IDs and one
+of `tested`, `credential`, `forecast`, `outcome` or `monitor`. They do not expose
+availability times, future values, outcome delays, transport faults or reference
+answers. The controller receives only a `read()`/`execute(candidate)` port. Its
+projection parser rejects extra top-level fields such as physical executor effects.
+
+The provider recomputes ready work from current scoped support and the operation
+ledger. Missing prerequisite observations precede attempt creation and reservation;
+an eligible intent permits dispatch; uncertain dispatch requires reconciliation;
+accepted submission enables outcome queries; product observations enable sampled
+monitoring. Observed goal success permits accounting, an applicable completion
+transition and fenced resource release. Submission readiness is not reimposed on
+later independently observed completion. Old unsubmitted leases can expire before
+a new attempt; the provider does not invent cancellation or release receipts.
+
+`deployment-candidate/v1` identifies an action by a content digest and carries
+its arguments, remaining-stage distance and observation cost. Selection orders by
+distance, then cost, then neutral public kind/argument order. Distance is a heuristic
+over this fixed protocol, not an optimal cost or predicted relief. Failed cheap
+probes do not indefinitely suppress costlier alternatives. A probe is issued at
+most once per candidate and logical tick, so adding historical wrong reports cannot
+cause unlimited polling at the same time. Only an explicit `wait` advances logical
+time; certification and accounting do not consume simulated health freshness.
+
+Candidate filtering is advisory. A selected candidate can become stale before
+execution. It must still pass the service's normal checks. Case b06 revokes a
+credential after selection and before dispatch: the old request is blocked, the
+local lease expires, and the controller later obtains fresh evidence and uses a
+new attempt. A lost reply instead triggers reconciliation; an observed absent
+effect permits an idempotent retry of the same request under current gates.
+
+Each `Budget` independently caps issued actions (0–64), full recomputations
+(0–128), candidate visits (0–4096), and declared observation cost (0–64000).
+The common dependency expansion, each attempt and each capability consume a visit,
+including blocked entries. If enumeration runs out of visits, its partial frontier
+is discarded and no candidate is selected. Empty/failed observations still consume
+their declared cost. A controller is limited to 128 issued requests; the underlying
+trace additionally retains its 128-event and twenty-statement bounds. Exceeding a
+runtime profile is an error rather than an invented valid result.
+
+`deployment-b0-step/v1` logs the public-view digest, full candidate frontier,
+selected request, actual public receipt and cumulative work. The work ledger records
+state reads; hard, forecast and attempt rows loaded per read; candidate visits and
+returned candidates; actions; observation requests/cost; emitted public events;
+admission journal commands; and captured certificates. Row loads do not count every
+internal predicate evaluation. Captured certificates and admission journal commands
+are the existing adapter's diagnostics, not all checker steps or executor writes.
+Elapsed time includes the evaluator's prefix checking and recovery when those are
+enabled. Solver internals, native projection, memory peaks, total persistence I/O
+and normalized work/wall-time comparisons remain unmeasured. These counters must
+not be interpreted as a complete computational cost model.
+
+`deployment-b0-checkpoint/v1` binds the public profile, issued-request fingerprints
+and step count. Tests restore it between individual requests while reopening the
+actual journals and obtain the same selected action/event stream. This checkpoint
+is scheduling history, never an admission permit. It does not provide an atomic
+transaction spanning controller history and remote execution, or a fresh worker's
+reconstruction of all stream-adapter metadata after a mid-request crash.
+
+The evaluator's `DeploymentWorld` owns capability responses, physical effect time,
+scheduled hooks and transport faults. Observation requests determine which reports
+arrive; dispatch causes physical effects that enable later outcome observations.
+The controller does not receive the hidden world or instrumented physical effects.
+Every emitted runtime record is written before the cold oracle compares it and
+before the authority is reopened. A selected request is also logged before it
+executes, preserving evidence if the adapter or comparator raises an exception.
+The main harness remains in one Python process without filesystem isolation.
+
+| Case | Closed-loop control |
+| --- | --- |
+| b01 | Valid prerequisites, delayed outcome, observed health, completion and release |
+| b02 | Empty cheap probe followed by a more expensive available alternative |
+| b03 | Credential observable only after a delay |
+| b04 | Lost acknowledgement, reconciliation and one physical effect |
+| b05 | Failure before effect, reconciliation and idempotent retry |
+| b06 | Credential revocation between selection and dispatch, then fresh attempt |
+| b07 | Similar-looking wrong product followed by an exact callback |
+| b08 | Negative samples followed by a healthy window |
+| b09 | Unavailable prerequisite and exhausted action budget |
+| b10 | Exhausted observation-cost budget |
+| b11 | Exhausted candidate-enumeration budget |
+| b12 | Missing samples and delayed observed durability |
+
+The twelve fixed cases emit 197 compared/recovered event prefixes. Nine establish
+observed goal success; b09–b11 intentionally remain unresolved. A passing case
+means its declared contract/expectation passed, not that its goal was achieved.
+Reports separately retain observed goal completion, outstanding/accounted loss,
+stage, physical effects and stopping reason. Refusing every action fails the
+positive control. Six seeded worlds (seed 2601) add 135 compared/recovered prefixes
+with action-dependent variation and no outcome-based filtering. All cases remain development descendants of
+`deployment-b0-parent-0`, with zero family-complete fixture claims.
+
+Public capability files and evaluator worlds are separate files. The manifest
+also pins a separate conformance mutation fixture, all runtime sources, the
+generator, environment, oracle, harness and mutants. Refresh deliberately with
+`python -m validation_lab.generate_b0_cases`; after shared runtime changes refresh
+the admission and deployment corpus receipts too. The report contains one
+controller's closed-loop results and a separately labeled M07 conformance witness;
+faulty variants are not compared as task-performance competitors.
+
 ## Mutation witnesses and remaining work
 
 The unmodified corpus must pass before the same events are run under evaluator-only
@@ -299,16 +414,23 @@ the first divergent prefix and writes the offending actual trace:
 | --- | --- | --- |
 | M05 shared lineage treated as independent evidence | a14, prefix 5, event e004 | UNKNOWN → PASS; duplicated reports gain confidence 2/3 |
 | M06 ACK treated as durable success | d01, prefix 7, event e006 | PENDING → OBSERVED_SUCCESS immediately after acceptance |
+| M07 similar product treated as exact | b0-m07, prefix 2, event m1 | FAIL → PASS for exact-product observation of `p00` instead of `p0` |
 | M11 censored outcome labeled failure | d07, prefix 3, event e002 | CENSORED → OBSERVED_FAILURE |
 
 The witnesses are first divergent prefixes, not generally minimized event sets.
 M05 replaces shared measurement roots with separate report IDs during numerical
 revision; its canary confirms this defect ran. It is an evaluator-only patch and
 is removed before subsequent controls. M01–M04 retain their unit witnesses.
-M07–M10 and M12 remain open.
+M07 changes only the product-name matching branch while leaving the remaining
+observation checks enabled. Its two-event witness creates an attempt and presents
+a wrong-product report. The unmodified control fails registration; the mutant
+registers the wrong product. Tests delete each event in turn and confirm that
+neither shortened stream detects the mutant. This is deletion minimal in the
+declared profile, not a general-purpose shrinking algorithm.
+M08–M10 and M12 remain open.
 
-Next expose bounded public candidates and implement deterministic B0 scheduling
-over the verified interfaces, with explicit work accounting and additional family
+Next generalize B0 candidate access to grounded rules and whole alternative plans,
+add a same-information exact reference for tiny instances, and extend family
 controls before comparative claims. Complete family coverage,
 general event shrinking, deterministic concurrent interleavings, hidden-world models,
 OS isolation, benchmark cost budgets and all pressure/attention experiments remain

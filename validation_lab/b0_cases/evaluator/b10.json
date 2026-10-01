@@ -1,0 +1,38 @@
+{
+  "schema": "deployment-b0-case/v1",
+  "case_id": "b10",
+  "parent_instance_id": "deployment-b0-parent-0",
+  "split": "development",
+  "controls": [
+    "F13:observation-cost-exhaustion"
+  ],
+  "budget": {
+    "actions": 32,
+    "enumerations": 40,
+    "candidate_visits": 2048,
+    "observation_cost": 2
+  },
+  "world": {
+    "schema": "deployment-b0-world/v1",
+    "probes": {
+      "q0": {},
+      "q1": {},
+      "q2": {
+        "strength": 0.8,
+        "confidence": 0.8
+      },
+      "q3": {
+        "delay": 1
+      },
+      "q4": {}
+    },
+    "dispatch_faults": [],
+    "initial_events": [],
+    "hooks": []
+  },
+  "expected": {
+    "completed": false,
+    "effects": 0,
+    "required_actions": []
+  }
+}

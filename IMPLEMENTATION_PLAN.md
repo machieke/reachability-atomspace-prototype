@@ -48,11 +48,12 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, eleventh increment): deployment and grounded
-admission now have separate public event/trace profiles and independent cold
-oracles. Sixteen admission controls add rules, contexts, exact alternatives, shared
-lineage and M05 to the existing eight deployment cases and M06/M11 witnesses.
-Every fixed/seeded prefix is checked before and after journal replay.
+Current checkpoint (1 October 2026, twelfth increment): a bounded B0 controller
+now chooses deployment observations and actions through a public candidate/port
+interface, with explicit work budgets and full recomputation. Twelve closed-loop
+worlds add 197 compared/recovered prefixes and a deletion-minimal M07 witness to
+the existing deployment/admission conformance profiles. B0 covers one fixed
+dependency graph; general search and comparative experiments remain open.
 Broader phase 1/2 semantics, authoritative native
 storage, family-complete validation and phase 5–8 pressure/attention work remain open.
 The latest execution record below defines the next concrete increment.
@@ -867,3 +868,75 @@ reference episodes. Add applicable family controls and mutation witnesses before
 making comparative performance claims. General shrinking, evaluator OS isolation
 and controlled interleavings remain separate phase 4 deliverables; broader phase
 1/3 items and phases 5–8 remain open.
+
+### Twelfth increment on 1 October 2026
+
+Implemented the first bounded B0 controller in four steps:
+
+1. **Public candidates and budgets.** Added `deployment-b0-public/v1`,
+   `deployment-candidate/v1`, `deployment-b0-step/v1`, a budget-result schema and
+   `deployment-b0-checkpoint/v1`. Public inputs expose the existing deployment
+   contract and neutral observation capabilities/costs, never future responses or
+   hidden state. The provider fully recomputes a bounded dependency frontier from
+   current evidence and the real operation ledger. Incomplete enumeration produces
+   an explicit budget stop without selecting from a partial frontier.
+2. **Deterministic, gate-driven selection.** B0 orders ready work by remaining
+   protocol stages, observation cost and public identity. It obtains prerequisites,
+   creates/reserves attempts, dispatches, reconciles uncertainty, queries outcomes,
+   monitors health, accounts observed loss, advances applicable completion and
+   releases resources through existing public service commands. Empty/failed
+   probes are charged and suppressed within a logical tick so alternatives receive
+   service. A stale selected request still passes through the authority's current
+   checks. Submission is never treated as an observed goal outcome.
+3. **Action-dependent validation worlds.** Added twelve fixed and six seed-2601
+   evaluator-owned worlds. Only selected probes deliver observations, and actual
+   physical effects enable delayed outcome reports. Hidden availability, fault
+   schedules, effect instrumentation and reference outputs are outside the
+   controller's read/execute port. Every actual emitted event is recorded before
+   comparison with the existing independent cold oracle and checked journal replay.
+   Failed cases and unresolved goals remain explicit in the report.
+4. **Work accounting, checkpoints and M07.** Reported full state reads, loaded
+   record rows, candidate visits/frontier sizes, issued actions, observation costs,
+   public events, admission journal commands and captured certificates. Checkpoint
+   restoration between requests preserves the selected action/event stream. Added
+   a separate M07 conformance fixture: an attempt followed by a similarly named
+   wrong-product report. A canary proves the matching defect ran; the unmodified
+   authority returns FAIL and the mutant returns PASS at prefix 2. Deleting either
+   event removes the divergence, establishing deletion minimality for this fixture.
+
+Verification for this increment:
+
+- 561 default tests pass, including 18 new B0 candidate, budget, recovery,
+  information-boundary, closed-loop and mutation tests.
+- 70 optional native tests pass. The new native test projects actual hard,
+  numerical and execution-decision state after lost-ACK and wrong-product episodes,
+  then verifies identical AtomSpace readback after journal replay.
+- All 15 original standalone reference checks pass unchanged. Supplied design
+  hashes and existing committed-version journal compatibility checks still pass.
+- The fixed worlds compare/recover 197 emitted prefixes; six generated worlds add
+  135. Nine fixed worlds reach observed goal success. The unavailable-prerequisite,
+  observation-cost and candidate-budget controls remain unresolved as expected.
+- Tests verify that an empty cheap probe does not starve an available alternative,
+  lost replies reconcile before another submission, pre-effect failure retries the
+  same request, and a credential revoked after selection blocks the old dispatch.
+  Refusing all work fails the positive control. Work totals include rejected,
+  empty and composite requests; raw offending mutation output remains unmodified.
+
+This completes the scoped candidate/B0/closed-loop increment over one deployment
+dependency graph. It does not complete general B0 or phase 4. Grounded-rule search,
+beam/whole-plan alternatives, multi-goal portfolios, normalized cost measurements,
+same-information optimal references and comparative benefit claims remain open.
+The counters exclude internal solver steps, repeated predicate evaluations, total
+executor/storage I/O and memory; elapsed times include evaluator checks/recovery.
+Scheduler checkpoints are not an atomic controller/executor crash transaction.
+The harness remains in one process without OS isolation, and no case is claimed
+as a complete benchmark family. M01–M07 and M11 have witnesses; M08–M10 and M12
+remain open. Core service schemas, journals and authority semantics are unchanged.
+
+Next increment: generalize public candidate access to bounded grounded-rule search
+and whole alternative plans, starting with an independently enumerated tiny
+same-information planning reference. Add fixed-candidate and closed-loop controls
+for alternative resource/time choices before comparative scheduling claims.
+General event shrinking, controlled interleavings, evaluator OS isolation and the
+64-fixture target remain separate phase 4 work. Broader phase 1/3 scope and phases
+5–8 remain open.

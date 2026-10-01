@@ -1,4 +1,4 @@
-"""Isolated, evaluator-only M05/M06/M11 defects, with invocation canaries."""
+"""Isolated, evaluator-only M05/M06/M07/M11 defects, with invocation canaries."""
 from contextlib import contextmanager
 from dataclasses import replace
 from unittest.mock import patch
@@ -6,6 +6,8 @@ from unittest.mock import patch
 from reachability.goals import GoalMixin
 import reachability.goals as goals
 from reachability.pln_adapter import IndependenceDeclaration, PLNAdapter
+from reachability.lifecycle import LifecycleMixin
+import reachability.lifecycle as lifecycle
 
 
 @contextmanager
@@ -34,6 +36,25 @@ def mutate(name):
                                          selected_commitment=None) for s in result.slices))
             return result
         target = patch.object(GoalMixin, "_project_goal", acknowledgement_is_success)
+    elif name == "M07":
+        original = LifecycleMixin.record_operation_observation
+        def similar_product_is_exact(service, observation_id, attempt_id, milestone, belief_revision_id, *, idempotency_key):
+            operation = service.inspect_operation(attempt_id).operation
+            belief = service._contexts[operation.context_id].beliefs.get(belief_revision_id)
+            expected = lifecycle.milestone_literal(attempt_id, operation.product_id, milestone)
+            if (belief is not None and belief.conclusion.positive == expected.positive
+                    and belief.conclusion.statement.predicate == expected.statement.predicate
+                    and len(belief.conclusion.statement.arguments) == 2
+                    and belief.conclusion.statement.arguments[0] == attempt_id
+                    and belief.conclusion.statement.arguments[1] != operation.product_id
+                    and belief.conclusion.statement.arguments[1].startswith(operation.product_id)):
+                canary["calls"] += 1
+                # Change only exact-product matching; source, context, freshness,
+                # direct-evidence and operation bindings still run normally.
+                with patch.object(lifecycle, "milestone_literal", return_value=belief.conclusion):
+                    return original(service, observation_id, attempt_id, milestone, belief_revision_id, idempotency_key=idempotency_key)
+            return original(service, observation_id, attempt_id, milestone, belief_revision_id, idempotency_key=idempotency_key)
+        target = patch.object(LifecycleMixin, "record_operation_observation", similar_product_is_exact)
     elif name == "M11":
         original = goals.evaluate_durability
         def censorship_is_failure(*args, **kwargs):

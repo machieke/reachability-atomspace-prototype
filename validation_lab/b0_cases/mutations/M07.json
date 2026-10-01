@@ -1,0 +1,36 @@
+{
+  "schema": "deployment-case/v1",
+  "case_id": "b0-m07",
+  "parent_instance_id": "deployment-b0-parent-0",
+  "split": "development",
+  "controls": [
+    "M07:deletion-minimal"
+  ],
+  "events": [
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "m0",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "m1",
+      "kind": "observation",
+      "arguments": {
+        "attempt_id": "a0",
+        "milestone": "exact_product_observed",
+        "product_id": "p00"
+      }
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 2,
+      "path": "outcome.status",
+      "expected": "FAIL"
+    }
+  ]
+}
