@@ -1386,6 +1386,76 @@
           "artifacts/pressure-routing-reference.log"
         ]
       }
+    },
+    "shared_candidate_support_ordering": {
+      "status": "bounded-comparison-correctness-fix",
+      "shared_by_controllers": [
+        "B0",
+        "B3"
+      ],
+      "ordering": [
+        "no scheduled expiry",
+        "latest exact integer expiry",
+        "public support alias"
+      ],
+      "finite_sentinel_for_no_expiry": false,
+      "integer_times_converted_to_float": false,
+      "whole_and_premise_bundles_preserved": true,
+      "authority_revocation_and_stale_checks_preserved": true,
+      "ranking_policies_or_frozen_episodes_changed": false,
+      "new_regression_tests": 6,
+      "validation": {
+        "status": "passed",
+        "focused_regression_tests_passed": 67,
+        "deployment_admission_recovery_tests_passed": 70,
+        "standalone_reference_checks_passed": 15,
+        "remaining_failures": 0,
+        "tests_skipped": 0,
+        "suites_not_rerun": [
+          "full default suite",
+          "native integration suite"
+        ],
+        "existing_corpus_receipts_refreshed": 9,
+        "existing_corpus_verifiers_passed": 9,
+        "prior_fixture_semantics_unchanged": true,
+        "controller_runs_passed": 64,
+        "distinct_authorities": 64,
+        "work_limited_repeat_matches": 16,
+        "work_limited_repeat_failures": 0,
+        "work_limited_repeat_inconclusive": 0,
+        "wall_limited_repeat_variations": 5,
+        "audited_selections_per_bundle": [
+          159,
+          156
+        ],
+        "comparison_source_files_verified_per_bundle": 71,
+        "rich_work16_b3_pressure_elapsed_ns_range": [
+          14777085,
+          21489659
+        ],
+        "verification_elapsed_ns": 39079548281,
+        "total_experiment_elapsed_ns": 114157281656,
+        "expected_operation_rejections": {
+          "UNKNOWN": 7,
+          "STALE": 24
+        },
+        "m09_detected_in_both_bundles": true,
+        "recorded_pressure_fields": 189,
+        "all_recorded_pressure_fields_converged": true,
+        "work_limited_outcomes_unchanged": true,
+        "report": "artifacts/pressure-support-repeatability/repeatability.json",
+        "readable_report": "artifacts/pressure-support-repeatability/repeatability.md",
+        "logs": [
+          "artifacts/pressure-support-before.log",
+          "artifacts/pressure-support-focused.log",
+          "artifacts/pressure-support-regressions.log",
+          "artifacts/pressure-support-deployment-regressions.log",
+          "artifacts/pressure-support-reference.log",
+          "artifacts/pressure-support-generation.log",
+          "artifacts/pressure-support-receipts.log",
+          "artifacts/pressure-support-repeatability.log"
+        ]
+      }
     }
   }
 }

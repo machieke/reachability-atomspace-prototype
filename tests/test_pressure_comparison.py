@@ -186,6 +186,118 @@ class ComparisonTests(unittest.TestCase):
         self.assertNotIn('world', self.session.read())
 
 
+class CandidateSupportTests(unittest.TestCase):
+    def setUp(self):
+        self.directory = TemporaryDirectory(); self.addCleanup(self.directory.cleanup)
+        self.session = ReasoningSession(episodes()[1]['public'], self.directory.name)
+        self.addCleanup(self.session.close)
+
+    def candidate(self, snapshot=None):
+        s = self.session
+        return next(c for c in enumerate_work(s.public, snapshot or s.read()).candidates if c.kind == 'derive')
+
+    def parents(self, snapshot=None):
+        return json.loads(dict(self.candidate(snapshot).arguments)['premises'])
+
+    def test_no_expiry_precedes_large_finite_expiry_for_both_controllers(self):
+        s = self.session
+        for i, expiry in enumerate((1000000, 2000000, 10**100)):
+            s.observe(1, 'a-finite-'+str(i), valid_until=expiry)
+        s.observe(1, 'z-no-expiry')
+        snapshot = s.read()
+        self.assertEqual(self.parents(snapshot), ['z-no-expiry'])
+        candidates = enumerate_work(s.public, snapshot).candidates
+        before = s.service._journal.entries()
+        for variant in ('B0', 'B3'):
+            class Port:
+                def read(self): return deepcopy(snapshot)
+                def execute(self, candidate, binding): return {'status': 'PASS'}
+            result = ComparisonController(s.public, variant).run(Port(), ComparisonBudget(actions=1))
+            self.assertEqual(result['records'][0]['candidates'], [c.wire() for c in candidates])
+            self.assertEqual(result['records'][0]['selected'], self.candidate(snapshot).wire())
+        self.assertEqual(s.service._journal.entries(), before)
+
+    def test_finite_expiry_ordering_preserves_exact_large_integer_times(self):
+        s = self.session
+        for i, expiry in enumerate((2**53, 10**100)):
+            with self.subTest(expiry=expiry):
+                s.observe(1, 'a-earlier-'+str(i), valid_until=expiry)
+                s.observe(1, 'z-later-'+str(i), valid_until=expiry+1)
+                self.assertEqual(self.parents(), ['z-later-'+str(i)])
+
+    def test_equal_expiries_use_alias_order_independent_of_support_order(self):
+        s = self.session
+        for expiry, suffix in ((2000000, 'finite'), (None, 'open')):
+            with self.subTest(expiry=expiry):
+                for prefix in ('z-', 'a-'):
+                    s.observe(1, prefix+suffix, valid_until=expiry)
+                snapshot = s.read()
+                reversed_snapshot = deepcopy(snapshot)
+                reversed_snapshot['supports'].reverse()
+                self.assertEqual(self.parents(snapshot), ['a-'+suffix])
+                self.assertEqual(self.candidate(snapshot), self.candidate(reversed_snapshot))
+
+    def test_certified_result_survives_expiry_of_competing_finite_support(self):
+        s = self.session
+        s.observe(1, 'z-no-expiry')
+        s.observe(1, 'a-finite', valid_until=2000000)
+        receipt = s.execute(self.candidate(), fingerprint(s.read()))
+        self.assertEqual(receipt['status'], 'PASS')
+        belief = next(b for b in s.service.snapshot(s.context_id).usable
+                      if b.belief_revision_id == receipt['belief'])
+        self.assertEqual(belief.proposal.evidence_ids, ('z-no-expiry',))
+        s.tick(2000000)
+        self.assertIs(s.service.query_belief(s.context_id, s.literal(2)).status, Status.PASS)
+        self.assertNotIn('a-finite', [p['reference'] for p in s.read()['supports']])
+        self.assertEqual(s.read()['goals'][0]['outstanding'], 1)
+
+    def test_revocation_stales_bound_request_and_certificate_before_finite_fallback(self):
+        s = self.session
+        s.public['priorities']['answer']['weight'] = 1e6
+        s.observe(1, 'z-no-expiry')
+        s.observe(1, 'a-finite', valid_until=2000000)
+        snapshot, candidate = s.read(), self.candidate()
+        self.assertEqual(self.parents(snapshot), ['z-no-expiry'])
+        transition = s.call('propose_transition', s.context_id, 'answer',
+                            tuple(s.aliases[p] for p in self.parents(snapshot)))
+        pre = s.call('precertify', transition, s.service.snapshot(s.context_id).knowledge_revision)
+        self.assertIs(pre.status, Status.PASS)
+        s.call('revoke_evidence', 'z-no-expiry')
+        rank_b3(s.public, s.read(), enumerate_work(s.public, s.read()).candidates, PressureLimits())
+        self.assertEqual(s.execute(candidate, fingerprint(snapshot))['status'], 'STALE')
+        with self.assertRaises(AdmissionDenied) as caught:
+            s.service.infer(transition, pre)
+        self.assertIs(caught.exception.status, Status.STALE)
+        self.assertIsNot(s.service.query_belief(s.context_id, s.literal(2)).status, Status.PASS)
+        self.assertEqual(self.parents(), ['a-finite'])
+        self.assertNotEqual(candidate, self.candidate())
+        self.assertEqual(s.execute(self.candidate(), fingerprint(s.read()))['status'], 'PASS')
+        s.tick(2000000)
+        self.assertIsNot(s.service.query_belief(s.context_id, s.literal(2)).status, Status.PASS)
+
+    def test_and_bundle_selects_current_support_for_every_prerequisite(self):
+        with TemporaryDirectory() as directory, ReasoningSession(episodes()[0]['public'], directory) as s:
+            s.observe(1, 'seed')
+            def frontier():
+                return {dict(c.arguments)['rule_id']: c for c in enumerate_work(s.public, s.read()).candidates
+                        if c.kind == 'derive'}
+            self.assertNotIn('direct-answer', frontier())
+            self.assertEqual(s.execute(frontier()['shared'], fingerprint(s.read()))['status'], 'PASS')
+            self.assertNotIn('direct-answer', frontier())
+            s.observe(3, 'a-finite-measurement', valid_until=2000000)
+            s.observe(3, 'z-open-measurement')
+            candidate = frontier()['direct-answer']
+            parents = json.loads(dict(candidate.arguments)['premises'])
+            supports = {p['reference']: p['literal'] for p in s.read()['supports']}
+            self.assertEqual([supports[p] for p in parents], [2, 3])
+            self.assertEqual(parents[1], 'z-open-measurement')
+            receipt = s.execute(candidate, fingerprint(s.read()))
+            self.assertEqual(receipt['status'], 'PASS')
+            belief = next(b for b in s.service.snapshot(s.context_id).usable
+                          if b.belief_revision_id == receipt['belief'])
+            self.assertEqual(set(belief.proposal.evidence_ids), {'seed', 'z-open-measurement'})
+
+
 class ComparisonEpisodeTests(unittest.TestCase):
     def test_closed_loop_real_inference_relevant_change_and_simple_control(self):
         summaries = {}

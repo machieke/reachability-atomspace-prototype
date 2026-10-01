@@ -109,7 +109,10 @@ def enumerate_work(public, snapshot, *, visit_limit=4096):
         parents = []
         for premise in rule['premises']:
             choices = [s for s in snapshot['supports'] if s['literal'] == premise]
-            chosen = min(choices, key=lambda s: (-(s['valid_until'] if s['valid_until'] is not None else 1000000), s['reference']))
+            # No scheduled expiry precedes every finite logical time. Keep
+            # integer ordering exact; all chosen supports remain revocable.
+            chosen = min(choices, key=lambda s: (s['valid_until'] is not None,
+                -s['valid_until'] if s['valid_until'] is not None else 0, s['reference']))
             parents.append(chosen['reference'])
         add('derive', dict(rule_id=rule['rule_id'], rule_revision=rule['revision'], premises=canonical(parents)))
     for probe in public['probes']:

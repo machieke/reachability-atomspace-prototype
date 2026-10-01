@@ -80,15 +80,18 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, thirtieth increment): the
+Current checkpoint (1 October 2026, thirty-first increment): the
 bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
 saved comparison auditing and reproducibility within that same subset; its full
 32-run bundle audit passes. Two fresh matrices now pass all sixteen work-limited
 repeatability comparisons across 64 distinct authorities within this same subset.
-The current correction enforces the pressure routing bound on exact stored
-binary64 shares and rejects normalization underflow. The corrected 64-run
-experiment passes. Typed read-only pressure feeds a real direct priority queue over the same public inference/observation
-frontier as conditional-planning B0. The development matrix runs 16 controller pairs;
+The prior correction enforces the pressure routing bound on exact stored
+binary64 shares and rejects normalization underflow. Its corrected 64-run
+experiment passes. The shared candidate generator now orders support lifetimes
+exactly, including absence of scheduled expiry; its 64-run repeatability check
+passes. Typed read-only pressure feeds a real direct priority queue over the same
+public inference/observation frontier as conditional-planning B0. The development
+matrix runs 16 controller pairs;
 M09 is detected and validation is complete. Existing recovery
 actions, gates and blocked unsupported cases are preserved. Transport/M12,
 learned conductance, family-complete validation, evaluator OS isolation and the
@@ -2113,3 +2116,54 @@ neutral. B3 pressure construction/solve time in those rich work-16 runs spans
 Results are in `artifacts/pressure-routing-repeatability/repeatability.json` and
 `repeatability.md`. This closes the bounded numerical correction. Transport/M12,
 learned conductance, generalized recovery and the broader benchmark remain deferred.
+
+### Thirty-first increment: exact support lifetime ordering in shared candidates
+
+The common frontier treats a support with no scheduled expiry as time 1,000,000.
+A later finite expiry can therefore displace it and unnecessarily invalidate a
+derived result. Correct this ordering equally for B0 and B3 without changing the
+frozen episodes, ranking policies, authority or recovery contracts.
+
+1. Order support by absence of expiry, then exact descending integer expiry and
+   deterministic public alias. Preserve each whole AND premise bundle.
+2. Check large integer times, equal-expiry permutations and identical controller
+   frontiers. Use actual certified inference to check competing support expiry,
+   revocation, stale binding/certificate rejection and finite-support fallback.
+3. Refresh all nine source receipts without changing fixtures, run applicable
+   regressions and the frozen repeatability experiment, then record and commit
+   the results. Stop within the completed comparison subset.
+
+Status: complete. The common candidate generator now gives support without a
+scheduled expiry precedence over every finite logical time. Finite timestamps
+retain exact integer ordering; equal lifetimes use the same public alias
+tie-breaker for both controllers. Whole AND bundles and all existing authority
+checks remain intact. No ranking policy or frozen episode was changed.
+
+Verification: all 67 pressure/comparison/audit/repeatability/manifest tests pass,
+including six new support-selection tests. The 70 B0/deployment/admission/recovery
+regressions and all 15 standalone reference checks also pass. Five of the new
+tests reproduced the original defect before the correction. Actual certified
+inference verifies that an unused competing support's expiry does not invalidate
+the selected proof, while revocation still rejects stale requests/certificates.
+A fresh request can use the remaining finite support and remains subject to its
+expiry. No failures remain and no tests were skipped in these runs. Full default
+and native integration suites were not rerun for this isolated frontier correction.
+
+All nine corpus receipts were refreshed and their verifiers pass. Fixture
+semantics, expected outcomes, shrink reductions and pinned design hashes are
+unchanged. The fresh experiment passes 64 controller runs over 64 distinct
+authorities, with 159 and 156 audited selections. All sixteen work-limited repeat
+comparisons match, with no failures or inconclusive cases; five wall-limited
+comparisons retain measured variation. Both bundles detect M09 and all 189
+recorded pressure fields converge. Seven UNKNOWN and 24 STALE operation replies
+remain visible as expected rejections, with no harness failures.
+
+Work-limited outcomes are unchanged: rich work-16 integrated loss remains 78 for
+B3 versus 72 for B0; the simple control is neutral. B3 pressure construction/solve
+time in those rich runs spans 14.78–21.49 ms. Complete discovery, ranking,
+inference, certification, persistence and elapsed costs remain in the reports;
+no performance improvement is claimed. Results are in
+`artifacts/pressure-support-repeatability/repeatability.json` and
+`repeatability.md`. This closes the bounded support-selection correction.
+Transport/M12, learned conductance, generalized recovery and the broader benchmark
+remain deferred.

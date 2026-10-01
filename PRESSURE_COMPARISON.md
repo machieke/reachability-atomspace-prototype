@@ -93,6 +93,14 @@ not promised answers. Both controllers see the same candidates, public facts,
 constraints, goals, observation capabilities and operation costs at an identical
 snapshot. Discovery is recomputed and charged to each controller.
 
+When several current supports establish a premise, the shared frontier chooses
+one with no scheduled expiry first, then the latest exact integer expiry, then
+the public alias as a deterministic tie-breaker. No finite timestamp stands in
+for absence of expiry, and timestamps are not converted to floating point. Each
+AND premise retains its own exact selected alias. Absence of scheduled expiry is
+not a durability guarantee: revocation and relevant revisions still invalidate
+bound requests and certificates through the existing authority checks.
+
 Reasoning B0 uses dependency-aware best-first conditional planning over the
 finite fact state space. It keeps all AND premises, coherent OR routes, shared
 prerequisites, public joint constraints and declared costs. It ranks weighted
@@ -364,6 +372,24 @@ fields. Rich work-16 B3 pressure construction/solve time is 17.73–33.60 ms,
 including normalization; work-limited outcomes are unchanged. Full default/native
 suites were not rerun for this isolated calculation fix. New artifacts are under
 `artifacts/pressure-routing-repeatability/`.
+
+The shared support-lifetime correction passes 67 focused tests, 70 deployment/
+admission/recovery regressions and 15 reference checks. Six new tests cover exact
+large integer expiries, absent expiry, deterministic ties, whole AND bundles and
+identical B0/B3 frontiers. Actual certified inference preserves a selected proof
+when an unused competing support expires, while revocation rejects old bindings
+and certificates even at high goal priority. Fresh finite-support fallback still
+expires through the existing authority. All nine refreshed corpus receipts verify
+with unchanged fixture semantics. No failures remain or tests were skipped in
+these runs; full default/native suites were not rerun for this isolated correction.
+
+Its 64-run experiment passes all sixteen work-limited repeat comparisons and
+retains five wall-limited variations. Both bundles detect M09 and all 189 pressure
+fields converge. The neutral/negative work-limited outcomes are unchanged; rich
+work-16 B3 pressure construction/solve time is 14.78–21.49 ms. Complete costs and
+traces are under `artifacts/pressure-support-repeatability/`, including
+`repeatability.md` and `repeatability.json`. These are development measurements,
+not evidence of a performance improvement.
 
 This milestone stops here. Adaptive transport, learned conductance, generalized
 recovery, numerical PLN scheduling, broader channels, evaluator OS isolation,
