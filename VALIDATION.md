@@ -1199,6 +1199,7 @@ requires a fresh inspection. The original inspection bundle is retained unchange
 | Admission event; no journal progress; complete saved wrapper validates | Explicit cancellation |
 | Local deployment event; no journal progress; complete saved wrapper validates | Explicit cancellation |
 | New admission context; exactly its matching `open_context` entry persisted | Explicit `complete_partial_context` |
+| New admission context; both matching context commands persisted; final worker checkpoint missing | Explicit `adopt_persisted_context` |
 | Deployment `dispatch`, `reconcile` or `release` event | Refuse, including unchanged journal tips |
 | Any dispatch-profile event | Refuse in this increment |
 | Other partial admission, numerical, lifecycle, goal or executor progress | Refuse and preserve evidence |
@@ -1264,9 +1265,10 @@ clears it. A malformed marker blocks workers, while the separate reconciliation
 path checks its integrity and exact prepared-record binding.
 
 Run `uv run --no-project python -m validation_lab.run_worker_reconciliation --output artifacts/reconciliation-probes-1`
-in a new directory. Twenty actual process probes include twelve cancellation
-probes spanning six crash boundaries for both supported profiles, and eight
-partial-context completion probes described below. Raw
+in a new directory. Twenty-six actual process probes include twelve cancellation
+probes spanning six crash boundaries for both supported profiles, eight partial-
+context completion probes and six persisted-context adoption probes described
+below. Raw
 launch arguments/environment, stdout/stderr, exit codes, source/fault receipts,
 original inspections, decision archives and continued worker exchanges are
 retained. Independent public models check unchanged state for the cancellation
@@ -1344,5 +1346,73 @@ native test continues through real PLN revision after completing the context.
 
 This action refuses unchanged journals, a fully persisted two-command context
 without a completed wrapper reply, existing-context events and all other partial
-admission/numerical/lifecycle/goal/dispatch commands. Those outcomes require
-separate transitions; none is inferred from this policy-suffix repair.
+admission/numerical/lifecycle/goal/dispatch commands. A fully persisted new context
+uses the separate adoption action below; it is never inferred from this repair.
+
+### Adopting a fully persisted context
+
+`adopt_persisted_context` requires the retained original pending checkpoint. It
+handles a new admission context only when both
+`open_context` and `configure_probability_policy` persisted, but the final worker
+checkpoint did not. Generate its request with:
+
+```sh
+uv run --no-project python -m reachability.worker_reconciliation request \
+  --inspection artifacts/inspection-1 --decision-id adopt-context-1 \
+  --action adopt_persisted_context > artifacts/adopt-context-1.json
+```
+
+Apply or exactly retry it using the existing `apply` command and this request path.
+The two appended entries must bridge the original saved journal boundary and the
+inspected tip exactly. The reconciler validates the previous wrapper on a rewound
+private copy, constructs the two specified primitive commands there, and compares
+each complete entry: command, key, payload, result digest, sequence and hash chain.
+Both idempotency keys derive from the pending event ID and saved global counter.
+Wrong policies, keys, operations, counters, arguments or extra commands refuse
+adoption before a decision is prepared. The new-context and stream bounds apply.
+
+The candidate restores the context alias and advances the counter by two and the
+stream step by one. It retains every prior completed reply and its diagnostics
+unchanged. The recovered command receives a new durable PASS reply identifying
+the adoption decision; its `elapsed_ns: 0` does not claim to recover the original
+lost timing measurement. Ordinary private worker restoration validates the full
+candidate and exact event retry before publication.
+
+Prepared v3 records retain the exact two entries as `authority_entries`, alongside
+the original and candidate checkpoint bytes. Archive validation checks the ordered
+chain from the saved checkpoint tip to the inspected tip, including both expected
+command names and counters. Offline verification reconstructs the candidate and
+both entries from the unchanged original inspection. Request/result, worker and
+authority schemas remain unchanged; cancellation and partial completion keep
+their existing prepared v1/v2 records.
+
+Retained controls use the checkpoint's 32 MiB size bound, with strict duplicate-
+field and nonfinite-number rejection. Typed entries for valid contexts with long
+atom names can exceed 64 KiB. Public messages and explicit requests keep their
+existing 64 KiB bound; no public input limit is widened.
+
+Adoption opens no source SQLite connection and appends no source journal command.
+It holds the existing worker and journal ownership locks, requires exact captured
+source bytes before preparation, and retains exact database/sidecar bytes through
+publication. Even a changed physical layout with the same logical tip is refused
+during an unfinished adoption decision. The durable marker blocks workers until
+the checkpoint and result are published; the result has `outcome: adopted` and
+the original inspected journal tips. After preparation, exact retry can finish
+without the external inspection path. After later worker events, it returns the
+same historical result without altering current state.
+
+Six actual process probes interrupt archive staging, prepared assets, marker,
+checkpoint, result and stdout publication. They start with an actual worker crash
+after both context commands, verify zero source journal changes, and then compare
+the restored context and a new numerical admission against the independent public
+model. The v3 probe receipt covers all 26 current reconciliation probes. Twelve
+new unit tests check entry/counter/policy binding, previous reply preservation,
+budgets, existing-context refusal, source-I/O exclusion, stale evidence, altered
+archives, large typed entries, storage failures, historical retries and
+profile/identity boundaries.
+One native test verifies unchanged AtomSpace projections and later PLN revision.
+
+This is not general adoption of an advanced journal. Zero or one context entry,
+more than two entries, existing-context events, other admission events and all
+deployment/dispatch events remain outside this action. A worker with an already
+completed checkpoint uses ordinary exact event retry, without a new adoption.

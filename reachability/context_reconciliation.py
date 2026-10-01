@@ -1,7 +1,7 @@
-"""Finish exactly the policy suffix of a partially persisted context event.
+"""Recover the two specified journal boundaries of a new context event.
 
-Candidate construction uses disposable journals. Publication inserts the single
-validated entry under the reconciler's existing worker and journal ownership.
+Candidate construction uses disposable journals. Partial completion appends the
+validated policy entry; adoption of both persisted entries preserves source bytes.
 """
 from copy import deepcopy
 from dataclasses import asdict
@@ -21,16 +21,21 @@ from .trace_protocol import fingerprint
 from .trace_worker_state import DurableAdmissionSession
 
 ACTION = 'complete_partial_context'
+ADOPT_ACTION = 'adopt_persisted_context'
+ACTIONS = (ACTION, ADOPT_ACTION)
 
 
 def candidate(report, inspection, request):
     body = decode(report['checkpoint'])
     event = report['pending']
     boundary = report['journals'].get('authority', {})
+    adopting = request['action'] == ADOPT_ACTION
+    persisted = 2 if adopting else 1
     if (request['profile'] != 'admission' or event['kind'] != 'context'
             or report['status'] != 'pending_journal_progress' or report['errors']
-            or boundary.get('relation') != 'advanced' or len(boundary.get('appended', [])) != 1):
-        raise RecoveryError('context completion requires exactly one persisted open_context command')
+            or boundary.get('relation') != 'advanced' or len(boundary.get('appended', [])) != persisted):
+        raise RecoveryError('context adoption requires exactly two persisted context commands' if adopting else
+            'context completion requires exactly one persisted open_context command')
     if len(body['completed']) >= 128:
         raise RecoveryError('reconciliation would exceed the stream event bound')
     with TemporaryDirectory(prefix='context-reconciliation-') as temporary:
@@ -63,26 +68,29 @@ def candidate(report, inspection, request):
             session.service.open_context(ctx, assumptions=tuple(map(session.literal, args['assumptions'])),
                 constraints=session.clauses(args['clauses']), idempotency_key=session.key())
             opened = asdict(session.service._journal.entries()[-1])
-            if opened != boundary['appended'][0] or session._tips() != request['journals']:
+            if opened != boundary['appended'][0] or not adopting and session._tips() != request['journals']:
                 raise RecoveryError('persisted open_context differs from the saved command/counter')
             session.contexts.add(ctx)
             session.service.configure_probability_policy(ctx, ProbabilityPolicy('p1', ('sensor',)),
                 idempotency_key=session.key())
             appended = asdict(session.service._journal.entries()[-1])
+            if adopting and (appended != boundary['appended'][1] or session._tips() != request['journals']):
+                raise RecoveryError('persisted context policy differs from the saved command/counter')
             projection = session.projection()
             row = dict(schema='admission-trace/v1', step=session.step, event_id=event['event_id'],
                 event_digest=fingerprint(event), initial_digest=fingerprint(body['initial']),
-                outcome=dict(status='PASS', detail='completed by explicit partial-context reconciliation'),
+                outcome=dict(status='PASS', detail='adopted by explicit persisted-context reconciliation' if adopting else
+                    'completed by explicit partial-context reconciliation'),
                 projection=projection, projection_digest=fingerprint(projection),
                 diagnostics=dict(certificates=encode(()), elapsed_ns=0,
                     knowledge_revisions={c:session.service.snapshot(c).knowledge_revision for c in sorted(session.contexts)},
-                    reconciliation=dict(decision_id=request['decision_id'], request_digest=fingerprint(request), action=ACTION)))
+                    reconciliation=dict(decision_id=request['decision_id'], request_digest=fingerprint(request), action=request['action'])))
             session.completed[event['event_id']] = dict(command=event, record=row)
             session._save()
         with DurableAdmissionSession(initial, private, resume=True, native=body['native']) as session:
             if session.apply(event) != row or not session.replayed:
                 raise RecoveryError('candidate context reply failed exact recovery')
-        return path.read_bytes(), row, appended
+        return path.read_bytes(), row, [opened, appended] if adopting else appended
 
 
 def target_tip(before, entry):
@@ -104,6 +112,27 @@ def validate_append(record, before):
             or entry.sequence != tip['sequence']+1 or entry.previous_digest != tip['tail']
             or entry.computed_digest() != entry.entry_digest):
         raise RecoveryError('prepared context suffix differs from original command/boundary')
+
+
+def validate_adoption(record, before):
+    """Retained entries must bridge the saved checkpoint and inspected tip exactly."""
+    request, entries = record['request'], record['authority_entries']
+    event, tip = before['pending'], before['journals']['authority']
+    if (request['profile'] != 'admission' or event['kind'] != 'context'
+            or fingerprint(event) != request['pending_digest'] or type(entries) is not list or len(entries) != 2):
+        raise RecoveryError('prepared context adoption inventory differs')
+    for offset, command in enumerate(('open_context', 'configure_probability_policy')):
+        try:
+            entry = JournalEntry(**entries[offset])
+        except TypeError as error:
+            raise RecoveryError('prepared context adoption entry differs') from error
+        if (entry.command != command or entry.sequence != tip['sequence']+1
+                or entry.key != f"admission-trace:{event['event_id']}:{before['metadata']['next_key']+offset}"
+                or entry.previous_digest != tip['tail'] or entry.computed_digest() != entry.entry_digest):
+            raise RecoveryError('prepared context adoption chain differs')
+        tip = target_tip(tip, entries[offset])
+    if dict(authority=tip) != request['journals']:
+        raise RecoveryError('prepared context adoption boundary differs')
 
 
 def append_under_ownership(directory, record, *, allow_append):

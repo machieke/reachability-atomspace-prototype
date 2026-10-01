@@ -121,6 +121,13 @@ class NativeWorkerInspectionTests(unittest.TestCase):
 
 class NativeWorkerReconciliationTests(unittest.TestCase):
     def test_partial_context_completion_supports_native_probability_and_revision(self):
+        self._recover_context('complete_partial_context')
+
+    def test_persisted_context_adoption_preserves_native_records_and_continues_revision(self):
+        self._recover_context('adopt_persisted_context')
+
+    def _recover_context(self, action):
+        from reachability.probability_model import ProbabilityPolicy
         from reachability.trace_worker_state import DurableAdmissionSession
         from reachability.worker_inspection import inspect_worker
         from reachability.worker_reconciliation import make_request,reconcile
@@ -131,10 +138,15 @@ class NativeWorkerReconciliationTests(unittest.TestCase):
             with DurableAdmissionSession(initial(),state,native=True) as s:
                 s.pending=pending;s._save();s._prefix=pending['event_id']
                 s.service.open_context('c0',idempotency_key=s.key())
+                if action=='adopt_persisted_context':
+                    s.service.configure_probability_policy('c0',ProbabilityPolicy('p1',('sensor',)),idempotency_key=s.key())
+                    before=project_admission(s.service,'c0'),project_probability(s.service,'c0')
             inspect_worker('admission',state,root/'inspection')
-            request=make_request(root/'inspection','native-context','complete_partial_context')
+            request=make_request(root/'inspection','native-context',action)
             reconcile(request,state,root/'inspection')
             with DurableAdmissionSession(initial(),state,resume=True,native=True) as s:
+                if action=='adopt_persisted_context':
+                    self.assertEqual((project_admission(s.service,'c0'),project_probability(s.service,'c0')),before)
                 self.assertEqual(s.apply(pending)['outcome']['status'],'PASS')
                 self.assertTrue(s.replayed)
                 for message in messages[1:]:

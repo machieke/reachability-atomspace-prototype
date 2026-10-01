@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-partial-context-worker-reconciliation",
+  "implementation_stage": "bounded-persisted-context-worker-adoption",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -781,7 +781,7 @@
     "request_schema": "worker-reconciliation-request/v1",
     "prepared_schema": "worker-reconciliation-prepared/v1",
     "result_schema": "worker-reconciliation-result/v1",
-    "probe_schema": "worker-reconciliation-probes/v2",
+    "probe_schema": "worker-reconciliation-probes/v3",
     "supported_profiles": [
       "admission",
       "deployment"
@@ -814,7 +814,7 @@
     "journal_writes": true,
     "prior_remote_uncertainty_preserved": true,
     "native_inference_continuation_tested": true,
-    "actual_crash_probes": 20,
+    "actual_crash_probes": 26,
     "automatic_reconciliation": false,
     "authenticated_storage": false,
     "family_complete_fixtures": 0,
@@ -822,7 +822,8 @@
     "context_prepared_schema": "worker-reconciliation-prepared/v2",
     "actions": [
       "cancel_unstarted_local",
-      "complete_partial_context"
+      "complete_partial_context",
+      "adopt_persisted_context"
     ],
     "unchanged_journal_tips_required_for_cancellation": true,
     "unchanged_captured_source_bytes_required_before_preparation": true,
@@ -851,6 +852,35 @@
       "other_partial_commands_refused": true
     },
     "source_sqlite_connection_scope": "context-completion-only-under-existing-ownership",
-    "journal_write_scope": "exact-single-validated-context-policy-entry-only"
+    "journal_write_scope": "exact-single-validated-context-policy-entry-only",
+    "adoption_prepared_schema": "worker-reconciliation-prepared/v3",
+    "context_adoption": {
+      "action": "adopt_persisted_context",
+      "profile": "admission",
+      "new_context_only": true,
+      "persisted_commands": [
+        "open_context",
+        "configure_probability_policy"
+      ],
+      "exact_saved_counter_and_entry_binding": true,
+      "prior_completed_replies_and_diagnostics_preserved": true,
+      "checkpoint_status": "PASS",
+      "result_outcome": "adopted",
+      "recovered_reply_identifies_decision": true,
+      "original_elapsed_time_recovered": false,
+      "counter_advance": 2,
+      "journal_entries_appended": 0,
+      "source_sqlite_connections": false,
+      "source_journal_bytes_preserved": true,
+      "exact_captured_bytes_required_during_publication": true,
+      "retained_authority_entries": 2,
+      "offline_candidate_and_entries_reproduced": true,
+      "crash_probes": 6,
+      "native_projection_and_inference_continuation_tested": true,
+      "other_progressed_events_refused": true
+    },
+    "control_record_max_bytes": 33554432,
+    "public_message_max_bytes": 65536,
+    "request_max_bytes": 65536
   }
 }

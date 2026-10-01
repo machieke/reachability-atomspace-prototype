@@ -48,16 +48,16 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, twenty-second increment): explicit context
-completion handles an admission command interrupted after its exact open_context
-entry. It validates the saved wrapper/counter, appends only the missing probability
-policy, and publishes a durable PASS reply under the worker gate. Cancellation
-still handles unstarted local events with UNKNOWN and unchanged journals. Twenty
-real-process probes cover both decisions, including crashes inside the policy
-transaction and immediately after commit. Other partial progress, dispatch and
-executor I/O remain refused. Completed-command recovery still covers 32 cases and
-361 fresh-process retries; family-complete validation, OS isolation, M09/M12 and
-phases 5–8 remain open.
+Current checkpoint (1 October 2026, twenty-third increment): explicit adoption
+recovers a new admission context whose two commands persisted but final worker
+checkpoint did not. Both exact journal entries and saved counters must match;
+adoption preserves source journal bytes and all earlier historical replies.
+Partial context completion still appends only the missing policy command, while
+unstarted local cancellation produces UNKNOWN with unchanged journals. All three
+decisions retain the durable worker gate. Twenty-six process probes cover their
+publication boundaries. Other progressed events, dispatch and executor I/O remain
+refused. Completed-command recovery still covers 32 cases and 361 fresh-process
+retries; family-complete validation, OS isolation, M09/M12 and phases 5–8 remain open.
 
 ## Phase 0 Repository contracts
 
@@ -1579,6 +1579,63 @@ Next increment, in order:
    blanket journal-advanced decision. Preserve immutable historical diagnostics.
 2. Specify additional partial admission/numerical/lifecycle/goal transitions
    separately, with explicit alias, permit and revision reconstruction rules.
+3. Before dispatch/executor reconciliation, account for queued requests, lost
+   observations, immutable older acknowledgements and authoritative fencing;
+   preserve unresolved occupancy until supported evidence permits release.
+4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
+   target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.
+
+
+### Twenty-third increment on 1 October 2026
+
+1. Specify adoption only for a pending new admission context with exactly its two
+   matching journal commands after the saved checkpoint boundary. Bind arguments,
+   global counters, keys, results and the full chain to the inspected journal tip.
+2. Validate the prior wrapper and reconstruct the completed candidate on private
+   copies. Preserve historical replies and aliases; give the recovered event an
+   explicit adoption diagnostic without fabricating its lost elapsed time.
+3. Retain both entries in prepared v3 records and publish through the existing
+   durable worker gate. Preserve all source journal bytes, append nothing and
+   support exact decision retries before/after publication and later progress.
+4. Add real publication crashes, refused-progress and archive/storage tests,
+   independent continuation checks and native projection/PLN continuation. Refresh
+   the nine receipts and run all suites before committing and pushing.
+
+Implemented all four stages above. The new explicit adopt_persisted_context action validates both entries by reconstructing the known
+primitive context commands on private journals. Publication opens no source
+SQLite connection; unchanged database and sidecar bytes are required throughout.
+Prepared v3 records retain the two entries and both checkpoints; request/result,
+worker and journal schemas remain unchanged. Existing cancellation and partial
+completion retain prepared v1/v2. The adopted reply consumes the original event ID
+and stream slot, preserves every earlier completed reply, and records its decision
+with elapsed_ns zero because the lost original timing cannot be recovered.
+
+Twelve new unit tests cover full entry/counter/policy binding, previous reply and
+alias preservation, event/context bounds, absent source I/O, extra progress,
+archive corruption, large typed entries, publication failure and historical
+retries. Six new actual process probes extend the reconciliation report to 26 cases. They begin with a
+worker crash after both context commands and verify unchanged journal bytes,
+exact decision/event retries and independent numerical continuation. An added
+native test checks unchanged projections and real PLN revision after adoption.
+
+Verification: 786 default tests, 82 optional native integration tests and all
+15 standalone reference checks pass. The fresh 26-probe reconciliation report
+and explicit adoption CLI request binding verify successfully. The full default
+suite also repeats the 16 inspection probes and 32-case, 361-prefix public-worker
+corpus. All nine source receipts are refreshed. Original design hashes, earlier
+cases, schedules and expected outcomes remain unchanged. Existing reductions stay
+M05 12→5, M06 23→6, M07 2→2, M11 13→1, M08 5→1, M10 6→4,
+cached-send-gate 9→8 and expire-uncertain 8→7. There are still zero family-complete
+fixtures and no new designated mutants.
+
+Next increment, in order:
+
+1. Define adoption for a fully persisted admission evidence event, reconstructing
+   its exact evidence/transition/certificate/commit chain, final belief alias and
+   global counter. Require independent crash evidence before enabling that case.
+2. Specify partial numerical/lifecycle/goal transitions separately, including
+   their alias, permit and revision reconstruction rules; do not generalize from
+   context adoption to arbitrary advanced journals.
 3. Before dispatch/executor reconciliation, account for queued requests, lost
    observations, immutable older acknowledgements and authoritative fencing;
    preserve unresolved occupancy until supported evidence permits release.

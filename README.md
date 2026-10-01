@@ -567,7 +567,12 @@ For an admission `context` event interrupted after exactly its `open_context`
 entry, generate the request with `--action complete_partial_context`. This verifies
 the stored command against the saved arguments and counter, appends only its
 missing probability-policy command, and publishes a historical `PASS` reply.
-Dispatch, executor commands and all other partial progress remain refused. See
+If both context commands persisted but the final worker checkpoint was lost, use
+`--action adopt_persisted_context`. It verifies both exact entries and reconstructs
+a `PASS` reply while preserving every source journal byte. Prior completed replies
+remain unchanged; the recovered reply records its decision and uses zero for the
+unavailable original elapsed time. Dispatch, executor commands and other pending
+commands with journal progress remain refused. See
 [bounded reconciliation](VALIDATION.md#bounded-explicit-worker-reconciliation)
 for evidence binding, durable decision receipts and crash recovery.
 
@@ -592,7 +597,7 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next extend explicit reconciliation beyond partial context creation to separately
+Next extend explicit reconciliation beyond context creation to separately
 specified admission, numerical and lifecycle outcomes,
 then to dispatch and executor evidence where observed packets and fencing are
 fully accounted for. Remaining designated

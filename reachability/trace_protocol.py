@@ -20,9 +20,9 @@ def fingerprint(value):
     return sha256(canonical(value).encode()).hexdigest()
 
 
-def read_json(text):
-    if len(text.encode()) > 65536:
-        raise ValueError("public message exceeds 64 KiB")
+def read_json(text, *, max_bytes=65536):
+    if len(text.encode()) > max_bytes:
+        raise ValueError("public message exceeds 64 KiB" if max_bytes == 65536 else "JSON record exceeds its size bound")
     def pairs(items):
         result = {}
         for key, value in items:
