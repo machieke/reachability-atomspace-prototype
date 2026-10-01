@@ -2,7 +2,6 @@
 import argparse
 from collections import Counter
 from dataclasses import asdict
-from hashlib import sha256
 import json
 from pathlib import Path
 import platform
@@ -16,6 +15,7 @@ from reachability.pressure_work import b0_ranking, enumerate_work
 from reachability.trace_protocol import canonical, fingerprint
 from .pressure_episodes import ReasoningWorld, episodes
 from .pressure_reference import mutation_witness
+from .audit_pressure_comparison import audit_bundle, seal_bundle, source_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -174,10 +174,7 @@ def main():
     if not 1 <= len(args.seeds) <= 8 or len(set(args.seeds)) != len(args.seeds) or any(not 0 <= s < 2**32 for s in args.seeds):
         parser.error('one to eight distinct uint32 seeds required')
     args.output.mkdir(parents=True, exist_ok=False)
-    files = [*sorted((ROOT/'reachability').glob('*.py')),
-        *[ROOT/'validation_lab'/name for name in ('run_pressure_comparison.py', 'pressure_episodes.py', 'pressure_reference.py')],
-        *[ROOT/name for name in ('reachability_atomspace_specification.md', 'pressure_field_pln_lifecycle_integration.md',
-                                'reachability_validation_design/benchmark_design.md')]]
+    sources = source_inputs()
     source_revision = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     cases = [case for seed in args.seeds for case in episodes(seed)]
     configs = configurations()
@@ -196,7 +193,7 @@ def main():
                                   status='FAIL', error_type=type(error).__name__, error=str(error))
                 results.append(result)
     report = dict(schema='b0-b3-comparison/v1', source_revision=source_revision,
-        source_files={str(path.relative_to(ROOT)): sha256(path.read_bytes()).hexdigest() for path in files},
+        source_files=sources,
         working_tree=subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT, text=True).splitlines(),
         python=platform.python_version(), platform=platform.platform(), seeds=args.seeds,
         configuration_digest=fingerprint(dict(configurations=configs, episodes=cases)),
@@ -228,8 +225,21 @@ def main():
     (args.output/'ranking-isolation.json').write_text(json.dumps(isolation, indent=2)+'\n')
     (args.output/'report.json').write_text(json.dumps(report, indent=2)+'\n')
     write_comparison(report, args.output/'comparison.md')
+    if source_inputs() != sources:
+        raise RuntimeError('source inputs changed during the comparison; refusing to seal results')
+    audit_status = 'SKIPPED'
+    if all(r['status'] == 'PASS' for r in results) and report['m09']['detected']:
+        seal_bundle(args.output)
+        try:
+            audit = audit_bundle(args.output)
+        except Exception as error:
+            (args.output/'audit.json').write_text(json.dumps(dict(schema='pressure-comparison-audit/v1',
+                status='FAIL', error_type=type(error).__name__, error=str(error)), indent=2)+'\n')
+            raise
+        (args.output/'audit.json').write_text(json.dumps(audit, indent=2)+'\n')
+        audit_status = audit['status']
     print(json.dumps(dict(runs=len(results), passed=sum(r['status'] == 'PASS' for r in results),
-        candidate_frontiers_audited=audits, m09=report['m09']['detected'], output=str(args.output))))
+        candidate_frontiers_audited=audits, m09=report['m09']['detected'], audit=audit_status, output=str(args.output))))
     if any(r['status'] != 'PASS' for r in results) or not report['m09']['detected']:
         raise SystemExit(1)
 

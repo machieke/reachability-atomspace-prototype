@@ -157,6 +157,10 @@ The command writes:
   pressure/source diagnostics, receipts and stop reasons.
 - `<run>/admission.db`: the real certified command/certificate/support/goal journal.
 - `comparison.md`: readable paired results and limitations.
+- `bundle.json`: exact SHA-256 inventory of required report/configuration/ranking,
+  trace and closed authority-journal files.
+- `audit.json`: post-run reproduction and consistency checks, with audit elapsed
+  time recorded separately from controller costs.
 
 Timings use a monotonic nanosecond clock. Candidate discovery, snapshot loading,
 ranking, pressure graph construction, pressure solve/diagnostics, actual inference,
@@ -178,10 +182,64 @@ and timing are intentionally not promised byte-for-byte across fresh authorities
 Existing directories are refused: this adapter does not introduce recovery or
 weaken the existing explicit handling of interrupted operations.
 
+## Auditing saved results
+
+The comparison command now automatically seals and audits a completed bundle.
+Source inputs are hashed before execution and checked again before sealing; a
+source change during execution fails the command. Failed or interrupted runs do
+not acquire a passing audit. The audit is a bounded evaluator addition; it does
+not change B0/B3, their budgets, the episodes, admission or recovery behavior.
+
+To check a saved bundle again without modifying it:
+
+```bash
+uv run --no-project python -m validation_lab.audit_pressure_comparison artifacts/pressure-comparison
+```
+
+The auditor requires matching local source inputs and verifies the complete
+episode/seed/budget/controller matrix. It checks the artifact inventory, frozen
+configuration, public frontiers, both ranking paths, pressure fields, selected
+operations, work and stop accounting. It replays the recorded requests through
+fresh temporary certified authorities, checking snapshots, rejection statuses,
+external outcome histories, the evaluation tail and integrated loss. It also
+replays copies of the saved journals to check belief history, current support,
+receipt belief references and recorded goal-event IDs. Original files and
+SQLite sidecars remain untouched. Paired differences, M09, same-snapshot ranking
+diagnostics and the readable report must agree with the checked results.
+
+Fresh authorities issue different opaque goal-event IDs. Fresh-run comparison
+normalizes those IDs to counts while retaining all other snapshot fields;
+the original journal replay verifies the recorded IDs exactly. Replay uses the
+existing certified authority and ranking implementations, so it is a consistency
+and reproducibility check, not a second independent inference implementation.
+The existing rational numerical reference and independent outcome interpreter
+remain separate checks.
+
+Elapsed measurements are checked for consistent categories and nonnegative
+accounting; audit time is never charged to B0/B3. Historical wall times cannot
+be reproduced or authenticated, and a wall-capped selection is replayed as saved
+without pretending that today's machine load will make the same stop decision.
+The hash inventory detects changes relative to its contents; it is not publisher
+authentication. The evaluator remains inside the existing trusted boundary.
+
+After committing the measured source, optionally bind every recorded source hash
+to that Git commit as well:
+
+```bash
+uv run --no-project python -m validation_lab.audit_pressure_comparison artifacts/pressure-comparison --source-commit HEAD --output artifacts/pressure-source-audit.json
+```
+
+`--output` must name a new file. The original run-base revision and dirty-tree
+inventory remain in `report.json`; `verified_source_commit` in this separate audit
+is set only after all source blobs match. An older bundle without `bundle.json`
+must be rerun with the documented comparison command; the auditor does not repair,
+resume or reseal it. Audit failures print JSON and exit nonzero.
+
 ## Checks and result interpretation
 
 ```bash
 uv run --no-project python -m unittest tests.test_pressure tests.test_pressure_comparison -v
+uv run --no-project python -m unittest tests.test_pressure_audit -v
 ```
 
 Independent small-instance checks solve the linear system with rational Gaussian
@@ -212,6 +270,16 @@ converge. Maximum atomic-operation wall-cap overrun is 71.49 ms, so wall-cap
 comparisons must use the actual elapsed times rather than assume exact cutoffs.
 The 851-test default, 85-test native and 15-check reference suites pass; all 25
 affected tests pass again after the final bounded-route diagnostic correction.
+
+The subsequent saved-bundle audit increment passes 16 new audit tests, 43 focused
+tests in total, 70 applicable B0/deployment/admission/recovery regressions and 15
+reference checks. Its fresh 32-run matrix reproduces 159 saved selections and
+verifies 71 source inputs; audit time is 19.88 seconds, separately accounted.
+There are no remaining failures or skipped tests in these runs. Full default and
+native suites were not rerun for this evaluator-only addition. The prior complete
+suite results above remain historical evidence, not a claim of a new full run.
+The frozen work-limited outcomes are unchanged. New artifacts are under
+`artifacts/pressure-comparison-audited/`.
 
 This milestone stops here. Adaptive transport, learned conductance, generalized
 recovery, numerical PLN scheduling, broader channels, evaluator OS isolation,

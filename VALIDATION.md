@@ -4,6 +4,10 @@ The new [bounded B0/B3 pressure comparison](PRESSURE_COMPARISON.md) is a separat
 development milestone with shared candidates, real certified inference, explicit
 budgets, numerical reference checks and M09. The earlier deployment, admission,
 planning and recovery regressions below remain unchanged in scope.
+Completed comparison bundles also have an offline audit for source/artifact
+bindings, recorded ranking and budget decisions, certified request reproduction,
+saved journals and outcome summaries. Audit cost is separate from controller cost;
+see the comparison document for commands and the trusted evaluator boundary.
 
 The first validation-lab increment adds a versioned public event stream, actual
 semantic traces, an independent cold reference model, and a development corpus.

@@ -80,9 +80,10 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, twenty-seventh increment): the next milestone
-is the executable bounded B0/B3 comparison above. Typed read-only pressure now
-feeds a real direct priority queue over the same public inference/observation
+Current checkpoint (1 October 2026, twenty-eighth increment): the
+bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
+saved comparison auditing and reproducibility within that same subset; its full
+32-run bundle audit passes. Typed read-only pressure feeds a real direct priority queue over the same public inference/observation
 frontier as conditional-planning B0. The development matrix runs 16 controller pairs;
 M09 is detected and validation is complete. Existing recovery
 actions, gates and blocked unsupported cases are preserved. Transport/M12,
@@ -1969,3 +1970,48 @@ learned conductance, generalized recovery, broader channels, numerical PLN
 scheduling, evaluator OS isolation, the 64-fixture target and large-scale claims
 remain deferred. This subset does not complete the full pressure/attention/
 transport/benchmark design or the broader phases 5–8.
+
+
+### Twenty-eighth increment: saved comparison audit
+
+The follow-up is bounded to verification of the completed comparison. The frozen
+episodes, both controllers, authority and recovery contracts remain unchanged.
+
+1. Bind the required configuration, report, ranking, trace and journal artifacts
+   with a complete digest inventory; check source inputs before and after a run.
+2. Add an offline command that verifies the full paired matrix, recorded rankings
+   and budgets, replays saved requests in fresh temporary authorities, and checks
+   copied journals. Account for audit time separately from controller timings.
+3. Add corruption witnesses for missing artifacts, changed rankings, receipts,
+   outcomes, budgets and provenance, including mutations after resealing.
+4. Run the comparison and applicable regressions, record results and limitations,
+   then commit and push. Stop here; deferred transport/recovery work stays deferred.
+
+Status: complete. The comparison now seals all required artifacts and automatically
+runs the audit. An offline command checks the exact source and configuration,
+full paired matrix, frontiers, ranks, pressure, work and stop accounting. Recorded
+requests reproduce through fresh certified authorities; copied original journals
+verify belief history, current support, receipt references and exact goal-event
+prefixes. Uncheckpointed journals fail closed. Audit elapsed time is reported
+separately and never charged to either controller. Hashes are consistency evidence,
+not publisher authentication; historical wall-clock measurements are not replayed.
+
+Verification: 16 new audit tests pass, including resealed corruption witnesses.
+The focused pressure/comparison/audit/manifest suite passes 43 tests; the existing
+B0, deployment-trace, admission-trace and recovery suites pass 70 tests; all 15
+standalone reference checks pass. There are no remaining failures or skipped
+tests in these runs. The full default and native integration suites were not
+rerun for this evaluator-only increment; their prior results remain recorded
+above. All nine existing corpus receipts still match, with no regeneration or
+fixture changes needed.
+
+The new comparison passes 32/32 runs and independently replays 159 recorded
+selections, verifies 71 source files and detects M09. Audit elapsed time is
+19.88 seconds. Work-limited results remain unchanged, including B3's worse
+integrated loss of 78 versus B0's 72 at the sixteen-request budget and the
+identical simple control. Wall-limited results retain their measured host-load
+dependence. Results are in `artifacts/pressure-comparison-audited/`, with commands
+and limitations in `PRESSURE_COMPARISON.md`.
+
+This follow-up ends at saved-result verification. It does not change controllers,
+episodes, admission, recovery or the deferred capability list.

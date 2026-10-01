@@ -1191,6 +1191,61 @@
       "prior_fixture_semantics_unchanged": true,
       "report": "artifacts/pressure-comparison/report.json",
       "readable_report": "artifacts/pressure-comparison/comparison.md"
+    },
+    "saved_bundle_audit": {
+      "status": "bounded-evaluator-subset",
+      "command": "uv run --no-project python -m validation_lab.audit_pressure_comparison artifacts/pressure-comparison",
+      "automatic_after_comparison": true,
+      "schema": "pressure-comparison-audit/v1",
+      "bundle_schema": "pressure-comparison-bundle/v1",
+      "source_inputs_checked_before_and_after_run": true,
+      "optional_source_commit_blob_verification": true,
+      "complete_required_artifact_inventory": true,
+      "complete_frozen_paired_matrix_required": true,
+      "rankings_pressure_work_and_stop_recomputed": true,
+      "recorded_requests_reproduced_through_certified_authorities": true,
+      "external_outcome_history_and_integrated_loss_reproduced": true,
+      "saved_journal_replay_on_temporary_copies": true,
+      "original_artifacts_modified": false,
+      "uncheckpointed_journals_rejected": true,
+      "opaque_event_ids_checked_against_saved_journal_prefixes": true,
+      "audit_elapsed_separate_from_controller_cost": true,
+      "historical_wall_times_reproduced": false,
+      "publisher_authentication": false,
+      "independent_inference_implementation": false,
+      "controller_episode_and_authority_changes": false,
+      "validation": {
+        "status": "passed",
+        "new_audit_tests_passed": 16,
+        "focused_tests_passed": 43,
+        "existing_b0_deployment_admission_recovery_tests_passed": 70,
+        "standalone_reference_checks_passed": 15,
+        "remaining_failures": 0,
+        "tests_skipped": 0,
+        "suites_not_rerun": [
+          "full default suite",
+          "native integration suite"
+        ],
+        "reason_for_targeted_validation": "Evaluator-only changes; controllers, runtime authority, frozen episodes and all nine corpus receipts unchanged.",
+        "comparison_runs_passed": 32,
+        "recorded_selections_reproduced": 159,
+        "source_files_verified": 71,
+        "audit_elapsed_ns": 19882490259,
+        "expected_operation_rejections": {
+          "UNKNOWN": 4,
+          "STALE": 12
+        },
+        "maximum_atomic_wall_overrun_ns": 75928618,
+        "m09_detected": true,
+        "report": "artifacts/pressure-comparison-audited/report.json",
+        "readable_report": "artifacts/pressure-comparison-audited/comparison.md",
+        "audit": "artifacts/pressure-comparison-audited/audit.json",
+        "logs": [
+          "artifacts/pressure-audit-focused.log",
+          "artifacts/pressure-audit-regressions.log",
+          "artifacts/pressure-audit-reference.log"
+        ]
+      }
     }
   }
 }

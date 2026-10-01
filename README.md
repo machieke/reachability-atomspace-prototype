@@ -615,6 +615,11 @@ certified inference and observation APIs. This subset supports `infer` and
 `observe`; it does not implement adaptive activation transport or the full
 pressure/attention/benchmark design. See [scope, budgets and results](PRESSURE_COMPARISON.md).
 
+The command also writes an artifact digest inventory and a separately timed audit
+that reproduces saved requests through fresh certified authorities. Recheck a saved
+bundle with `uv run --no-project python -m validation_lab.audit_pressure_comparison artifacts/pressure-comparison`.
+See the comparison document for source-commit verification and audit limitations.
+
 ## Current limits and deferred work
 
 The authority API has trusted callers. Optional evaluator workers use separate
