@@ -35,6 +35,7 @@ uv run --no-project python -m reachability.lifecycle_demo
 uv run --no-project python -m reachability.execution_demo
 uv run --no-project python -m reachability.dispatch_demo
 uv run --no-project python -m reachability.goal_demo
+uv run --no-project python -m validation_lab.run_deployment
 uv run --no-project python -m unittest discover -s tests -v
 uv run --no-project python pressure_field_lifecycle_reference_checks.py
 ```
@@ -401,6 +402,8 @@ reopens the goal while preserving the completed artifact's lifecycle history.
 | `reachability/probability_demo.py` | Native inference, numeric certification, projection, recovery and revocation |
 | `reachability/decisions.py`, `reachability/decision_model.py` | Versioned numerical acceptance contracts and exact action witnesses |
 | `reachability/decision_demo.py` | Full deployment episode with numerical gates, native adapters and checked recovery |
+| `reachability/trace_protocol.py`, `reachability/deployment_trace.py` | Strict public event protocol and actual deployment trace capture |
+| `validation_lab/` | Independent cold deployment oracle, fixed/seeded cases, corpus receipts and M06/M11 witnesses |
 | `adapters.lock.json`, `scripts/build_adapters.py` | Exact upstream revisions and isolated native build |
 | `reachability/adapter_demo.py`, `integration_tests/` | Explicit optional suite using both real runtimes |
 | `reachability/demo.py` | Executable public-API walkthrough |
@@ -439,6 +442,15 @@ coverage portfolios compared with explicit atomic obligation sets.
 The evaluator is separated by imports and file location; OS-level isolation is
 still pending.
 
+The [deployment validation lab](VALIDATION.md) now compares eight fixed cases at
+all 137 event prefixes and after reopening both journals at every prefix. A cold
+oracle imports no runtime code and independently models current support, resource
+occupancy, dispatch uncertainty, sampled health and goal accounting. Twelve seeded
+cases add 251 compared/recovered prefixes. M06 (ACK as success) and M11 (censoring
+as failure) are detected with first-divergence traces and invocation canaries.
+The public worker accepts one event at a time; the default harness shares a Python
+process with the runtime adapter. No full process/filesystem isolation is claimed.
+
 ## Current limits and next work
 
 This is an in-process API with trusted callers, not a sandbox for hostile Python
@@ -455,11 +467,11 @@ episode now use real optional adapters. The native demo runs with
 `uv run --no-project python -m reachability.decision_demo`; see [DECISIONS.md](DECISIONS.md).
 Persistent native storage, FDAS, ECAN and Freeciv integration remain pending.
 Pressure and transport remain the supplied standalone numerical examples. The
-64-fixture target, M05–M12 mutants and performance experiments are still pending.
+64-fixture target, M05/M07/M08/M09/M10/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next build versioned deployment traces and an independent event oracle, then expand
-the fixture families and baseline scheduler. Goal loss
+Next extend the trace/oracle to grounded rule admission, multiple contexts and
+lineage reuse, then expand the fixture families and baseline scheduler. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding
 remain explicit phase 1 backlog items.

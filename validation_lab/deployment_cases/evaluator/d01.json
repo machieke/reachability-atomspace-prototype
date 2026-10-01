@@ -1,0 +1,225 @@
+{
+  "schema": "deployment-case/v1",
+  "case_id": "d01",
+  "parent_instance_id": "deployment-parent-0",
+  "split": "development",
+  "controls": [
+    "F10:valid",
+    "F12:failure-after-success",
+    "F14:expiry"
+  ],
+  "events": [
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e000",
+      "kind": "fact",
+      "arguments": {
+        "name": "tested",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e001",
+      "kind": "fact",
+      "arguments": {
+        "name": "credential",
+        "valid_until": 1
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e002",
+      "kind": "forecast",
+      "arguments": {
+        "confidence": 0.8,
+        "strength": 0.8,
+        "valid_until": 1
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e003",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e004",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e005",
+      "kind": "cover",
+      "arguments": {
+        "attempt_id": "a0",
+        "units": 6,
+        "valid_until": 10
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e006",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a0",
+        "fault": "none"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e007",
+      "kind": "tick",
+      "arguments": {
+        "time": 1
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e008",
+      "kind": "fact",
+      "arguments": {
+        "name": "product",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e009",
+      "kind": "observation",
+      "arguments": {
+        "attempt_id": "a0",
+        "milestone": "completion_observed",
+        "product_id": "p0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e010",
+      "kind": "observation",
+      "arguments": {
+        "attempt_id": "a0",
+        "milestone": "exact_product_observed",
+        "product_id": "p0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e011",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e012",
+      "kind": "tick",
+      "arguments": {
+        "time": 2
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e013",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e014",
+      "kind": "tick",
+      "arguments": {
+        "time": 3
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e015",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e016",
+      "kind": "account",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e017",
+      "kind": "complete",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e018",
+      "kind": "release",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e019",
+      "kind": "restart",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e020",
+      "kind": "tick",
+      "arguments": {
+        "time": 4
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e021",
+      "kind": "sample",
+      "arguments": {
+        "healthy": false
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e022",
+      "kind": "account",
+      "arguments": {}
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 7,
+      "path": "projection.goal.outstanding",
+      "expected": 10
+    },
+    {
+      "step": 16,
+      "path": "projection.goal.outstanding",
+      "expected": 0
+    },
+    {
+      "step": 18,
+      "path": "projection.stage",
+      "expected": "BUILT"
+    },
+    {
+      "step": 23,
+      "path": "projection.goal.outstanding",
+      "expected": 10
+    }
+  ]
+}

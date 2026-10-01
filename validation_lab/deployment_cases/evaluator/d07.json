@@ -1,0 +1,126 @@
+{
+  "schema": "deployment-case/v1",
+  "case_id": "d07",
+  "parent_instance_id": "deployment-parent-0",
+  "split": "development",
+  "controls": [
+    "F12:censoring",
+    "F12:new-monitor-window"
+  ],
+  "events": [
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e000",
+      "kind": "fact",
+      "arguments": {
+        "name": "product",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e001",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e002",
+      "kind": "censor",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e003",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e004",
+      "kind": "account",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e005",
+      "kind": "tick",
+      "arguments": {
+        "time": 1
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e006",
+      "kind": "resume",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e007",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e008",
+      "kind": "tick",
+      "arguments": {
+        "time": 2
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e009",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e010",
+      "kind": "tick",
+      "arguments": {
+        "time": 3
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e011",
+      "kind": "sample",
+      "arguments": {
+        "healthy": true
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e012",
+      "kind": "account",
+      "arguments": {}
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 3,
+      "path": "projection.goal.label",
+      "expected": "CENSORED"
+    },
+    {
+      "step": 4,
+      "path": "outcome.status",
+      "expected": "STALE"
+    },
+    {
+      "step": 12,
+      "path": "projection.goal.outstanding",
+      "expected": 0
+    }
+  ]
+}

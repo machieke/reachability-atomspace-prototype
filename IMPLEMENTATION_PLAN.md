@@ -48,12 +48,12 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, ninth increment): the bounded deployment
-episode now combines certified PLN estimates, explicit decision thresholds, exact
-action witnesses, simulated dispatch, observed durability and native AtomSpace
-projection with checked recovery. Broader phase 1/2 semantics, authoritative native
-storage, and the phase 4–8 validation/pressure/attention work remain open. The latest
-execution record below defines the next concrete increment.
+Current checkpoint (1 October 2026, tenth increment): the bounded deployment
+episode now has versioned public events and actual traces, an independent cold
+oracle, eight fixed development cases checked at every prefix and recovery boundary,
+and M06/M11 mutation witnesses. Broader phase 1/2 semantics, authoritative native
+storage, family-complete validation and phase 5–8 pressure/attention work remain open.
+The latest execution record below defines the next concrete increment.
 
 ## Phase 0 Repository contracts
 
@@ -733,3 +733,69 @@ add restart prefixes and a reproducible mutation witness. Publish explicit cover
 before expanding toward four controls for every F01–F16 family and the B0 scheduler.
 This advances the phase 2/4 validation foundation while broader phase 1/3 items and
 phases 5–8 remain open; it does not claim the 64-fixture target is already satisfied.
+
+### Tenth increment on 1 October 2026
+
+Implemented the deployment trace/oracle increment in four steps:
+
+1. **Public contract and trace capture.** Added `deployment-initial/v1`,
+   `deployment-event/v1` and `deployment-trace/v1`, with strict field/numeric/time
+   validation and one-event-at-a-time input. The conformance adapter drives the
+   existing public admission, decision, resource, dispatch, goal and completion
+   APIs. Its records expose actual accepted/current assertions, numerical support,
+   operation/intent state, resource usage, observed goal labels and accounting,
+   with real issued certificates and execution diagnostics. Rejected composite
+   events retain earlier successful command effects instead of hiding them.
+2. **Independent cold projection.** Added an evaluator-only model importing only
+   `copy` and `json`. It rebuilds each prefix from public inputs and does not receive
+   actual service output or call service logic/accounting helpers. Direct evidence
+   tables, enumerated occupancy ticks, sampled time sets and an independent remote
+   effect/receipt model cover the declared finite profile. The harness compares
+   every prefix, then reopens both actual journals and compares the recovered
+   state to the same reference. Out-of-scope references raise explicit gaps.
+3. **Fixed and generated controls.** Added eight development cases covering valid
+   deployment, missing/revoked/alternative support, lost ACKs, wrong products,
+   capacity conflict, uncertain occupancy, exact thresholds, censoring/resumption,
+   overlapping promises, sample revocation and freshness reopening. Source and
+   fixture receipts bind generator/oracle/harness/mutants/protocol/runtime files;
+   extra unlisted fixtures, receipt drift and count/ancestry changes fail validation.
+   Twelve seeded cases add stateful fault/observation variation without rejection
+   based on outcomes. Identity renaming preserves ancestry and semantics; commuting
+   initial observations preserve subsequent results.
+4. **Mutation witnesses and scope reporting.** M06 makes an ACK discharge observed
+   loss and is detected at d01 prefix 7; M11 labels censoring as observed failure
+   and is detected at d07 prefix 3. Invocation canaries prove each faulty branch ran.
+   Unmodified controls must pass, and raw offending output is written before
+   oracle comparison. The report retains failed cases and errors and exits nonzero
+   on mismatches, reference gaps or surviving mutants. `VALIDATION.md` documents
+   schemas, execution, evidence boundaries, coverage and remaining work.
+
+Verification for this increment:
+
+- 526 default tests pass; the new suite contains 19 validation/protocol tests.
+- All eight fixed cases agree at 137 prefixes and 137 reopened journal states.
+  Twelve seed-8417 development cases add 251 compared/recovered prefixes.
+- Fixed checkpoints independently anchor critical outcomes. Tests also exercise
+  capacity two, exact lease boundaries, partial command effects, release fencing,
+  receipt drift, malformed input and preserved raw mutant outputs.
+- A real subprocess exchanges public initial state and one current event at a time
+  with the streaming worker. The normal differential harness still shares a Python
+  process with its runtime adapter; no filesystem/process sandbox is claimed.
+- All 67 existing native integration tests and all 15 original standalone reference
+  checks pass. Supplied design-input hashes remain unchanged. Core admission,
+  dispatch and goal semantics were not modified by this increment.
+
+This completes the independent deployment prefix-validation foundation, within
+the declared direct-evidence/single-context profile. It does not establish the full
+phase 2 event model or complete phase 4. The eight cases are explicitly zero
+family-complete fixture claims against the 64 target, and all descendants remain
+in one development parent/split. No benchmark scheduler, normalized cost comparison,
+calibration result or closed-loop benefit is claimed. M01–M04 and M06/M11 now have
+witnesses; M05, M07–M10 and M12 remain open.
+
+Next extend the public trace and cold reference to grounded rule admission,
+multiple contexts, alternate derivations and lineage reuse. Add explicit family/
+control coverage for these mechanisms and the next applicable mutation witnesses,
+then develop B0 over the verified public interfaces. General shrinking, controlled
+concurrent interleavings and evaluator process/filesystem isolation remain phase 4
+work. Broader phase 1/3 scope and phases 5–8 remain open.

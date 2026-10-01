@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "probabilistic-deployment-decisions-and-native-conformance",
+  "implementation_stage": "deployment-event-traces-and-independent-prefix-validation",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -145,22 +145,25 @@
     "complete_three_event_probability_check": true,
     "versioned_probabilistic_action_contracts": true,
     "exact_numerical_action_witnesses": true,
-    "native_deployment_decision_demo": true
+    "native_deployment_decision_demo": true,
+    "versioned_deployment_event_traces": true,
+    "independent_deployment_prefix_oracle": true,
+    "streamed_public_event_worker": true
   },
   "mutation_witnesses": [
     "M01",
     "M02",
     "M03",
-    "M04"
+    "M04",
+    "M06",
+    "M11"
   ],
   "remaining_designated_mutants": [
     "M05",
-    "M06",
     "M07",
     "M08",
     "M09",
     "M10",
-    "M11",
     "M12"
   ],
   "optional_dependency_lock": "adapters.lock.json",
@@ -179,6 +182,31 @@
     "implicit_boolean_promotion": false,
     "global_joint_probability_model": false,
     "numeric_action_contract": true
+  },
+  "deployment_validation": {
+    "initial_schema": "deployment-initial/v1",
+    "event_schema": "deployment-event/v1",
+    "trace_schema": "deployment-trace/v1",
+    "corpus_manifest": "validation_lab/deployment_cases/manifest.json",
+    "mode": "conformance",
+    "split": "development",
+    "fixed_cases": 8,
+    "fixed_compared_and_recovered_prefixes": 137,
+    "generated_seed": 8417,
+    "generated_cases": 12,
+    "generated_compared_and_recovered_prefixes": 251,
+    "family_complete_fixtures": 0,
+    "family_complete_target": 64,
+    "max_events_per_trace": 128,
+    "max_hard_statements": 20,
+    "sources": "direct-distinct-event-lineage",
+    "oracle": "cold-standard-library-model-without-runtime-imports",
+    "boundaries": "strict-public-message-schema-and-import-boundary",
+    "default_harness_process": "shared-with-runtime-adapter",
+    "separate_process_worker_tested": true,
+    "filesystem_isolation": false,
+    "normalized_performance_budget": false,
+    "closed_loop_scheduler": false
   },
   "decision_schema": "probability-decision/v1",
   "decision_fragment": {

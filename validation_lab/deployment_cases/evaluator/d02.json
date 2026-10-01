@@ -1,0 +1,122 @@
+{
+  "schema": "deployment-case/v1",
+  "case_id": "d02",
+  "parent_instance_id": "deployment-parent-0",
+  "split": "development",
+  "controls": [
+    "F01:missing",
+    "F08:revocation-and-alternative"
+  ],
+  "events": [
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e000",
+      "kind": "fact",
+      "arguments": {
+        "name": "tested",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e001",
+      "kind": "forecast",
+      "arguments": {
+        "confidence": 0.8,
+        "strength": 0.8,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e002",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e003",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e004",
+      "kind": "fact",
+      "arguments": {
+        "name": "credential",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e005",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e006",
+      "kind": "revoke",
+      "arguments": {
+        "evidence_id": "e004"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e007",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a0",
+        "fault": "none"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e008",
+      "kind": "fact",
+      "arguments": {
+        "name": "credential",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e009",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a0",
+        "fault": "none"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e010",
+      "kind": "restart",
+      "arguments": {}
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 4,
+      "path": "outcome.status",
+      "expected": "UNKNOWN"
+    },
+    {
+      "step": 8,
+      "path": "outcome.status",
+      "expected": "UNKNOWN"
+    },
+    {
+      "step": 10,
+      "path": "instrumentation.executor_effects",
+      "expected": 1
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "schema": "deployment-case/v1",
+  "case_id": "d03",
+  "parent_instance_id": "deployment-parent-0",
+  "split": "development",
+  "controls": [
+    "F10:lost-acknowledgement",
+    "F16:recovery"
+  ],
+  "events": [
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e000",
+      "kind": "fact",
+      "arguments": {
+        "name": "tested",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e001",
+      "kind": "fact",
+      "arguments": {
+        "name": "credential",
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e002",
+      "kind": "forecast",
+      "arguments": {
+        "confidence": 0.8,
+        "strength": 0.8,
+        "valid_until": null
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e003",
+      "kind": "attempt",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e004",
+      "kind": "reserve",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e005",
+      "kind": "cover",
+      "arguments": {
+        "attempt_id": "a0",
+        "units": 6,
+        "valid_until": 10
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e006",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a0",
+        "fault": "lost_reply"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e007",
+      "kind": "restart",
+      "arguments": {}
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e008",
+      "kind": "revoke",
+      "arguments": {
+        "evidence_id": "e002"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e009",
+      "kind": "reconcile",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e010",
+      "kind": "dispatch",
+      "arguments": {
+        "attempt_id": "a0",
+        "fault": "none"
+      }
+    },
+    {
+      "schema": "deployment-event/v1",
+      "event_id": "e011",
+      "kind": "release",
+      "arguments": {
+        "attempt_id": "a0"
+      }
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 7,
+      "path": "projection.attempts.a0.dispatch.state",
+      "expected": "uncertain"
+    },
+    {
+      "step": 7,
+      "path": "projection.goal.outstanding",
+      "expected": 10
+    },
+    {
+      "step": 10,
+      "path": "projection.attempts.a0.dispatch.state",
+      "expected": "accepted"
+    },
+    {
+      "step": 11,
+      "path": "instrumentation.executor_effects",
+      "expected": 1
+    }
+  ]
+}

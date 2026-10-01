@@ -22,5 +22,5 @@ class ManifestTests(unittest.TestCase):
                 modules = ([node.module or ""] if isinstance(node, ast.ImportFrom)
                            else [alias.name for alias in node.names]
                            if isinstance(node, ast.Import) else [])
-                self.assertTrue(all(not name.startswith(("tests", "reachability_validation_design"))
+                self.assertTrue(all(not name.startswith(("tests", "reachability_validation_design", "validation_lab"))
                                     for name in modules), path.name)

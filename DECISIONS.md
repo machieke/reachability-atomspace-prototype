@@ -145,6 +145,8 @@ reconciliation, atomic rollback, ambiguous writes, broken-checker replay, and re
 process crashes before and after reservation persistence.
 
 This is a bounded conformance slice with a local executor simulator. Persistent
-native authority, calibrated outcome/loss models, an independent full event oracle,
-the complete 64-fixture lab, search, pressure, attention and external deployment
-remain separate work in [the phased plan](IMPLEMENTATION_PLAN.md).
+native authority and calibrated outcome/loss models remain pending. The subsequent
+[validation increment](VALIDATION.md) supplies an independent event oracle for this
+bounded deployment profile; general event semantics, the complete 64-fixture lab,
+search, pressure, attention and external deployment remain separate work in
+[the phased plan](IMPLEMENTATION_PLAN.md).
