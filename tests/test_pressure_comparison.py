@@ -298,6 +298,83 @@ class CandidateSupportTests(unittest.TestCase):
             self.assertEqual(set(belief.proposal.evidence_ids), {'seed', 'z-open-measurement'})
 
 
+class ComparisonCostTests(unittest.TestCase):
+    def set_cost(self, public, kind, cost):
+        if kind == 'derive':
+            public['costs']['answer'] = cost
+        else:
+            public['probes'][0]['cost'] = cost
+
+    def case(self, rule_cost, probe_cost):
+        case = deepcopy(episodes()[1])
+        case['world']['initial'] = []
+        self.set_cost(case['public'], 'derive', rule_cost)
+        self.set_cost(case['public'], 'observe', probe_cost)
+        return case
+
+    def test_costs_require_exact_bounded_integers_for_rules_and_probes(self):
+        for kind in ('derive', 'observe'):
+            for cost in (-1, 0, 101, 10**400, True, False, 1.0, 1.5, 100.0,
+                         float('nan'), float('inf'), None, '1'):
+                with self.subTest(kind=kind, cost=cost):
+                    public = deepcopy(episodes()[1]['public'])
+                    self.set_cost(public, kind, cost)
+                    with self.assertRaisesRegex(ValueError, 'integer.*1.*100'):
+                        validate_public(public)
+
+    def test_unsupported_costs_are_rejected_before_authority_creation(self):
+        for kind in ('derive', 'observe'):
+            for cost in (1.5, 1.0, 10**400):
+                with self.subTest(kind=kind, cost=cost), TemporaryDirectory() as directory:
+                    public = deepcopy(episodes()[1]['public'])
+                    self.set_cost(public, kind, cost)
+                    before = deepcopy(public)
+                    for variant in ('B0', 'B3'):
+                        with self.assertRaises(ValueError): ComparisonController(public, variant)
+                    with patch('reachability.pressure_session.AdmissionService',
+                               side_effect=AssertionError('invalid cost opened authority')) as authority:
+                        with self.assertRaises(ValueError): ReasoningSession(public, directory)
+                        authority.assert_not_called()
+                    self.assertEqual(list(Path(directory).iterdir()), [])
+                    self.assertEqual(public, before)
+
+    def test_boundary_costs_produce_auditable_certified_work_for_both_controllers(self):
+        from validation_lab.audit_pressure_comparison import audit_run
+        for rule_cost, probe_cost in ((1, 1), (1, 100), (100, 1), (100, 100)):
+            case = self.case(rule_cost, probe_cost)
+            config = deepcopy(configurations()[1])
+            config['budget'].update(operation_work=rule_cost+probe_cost+1, observation_work=probe_cost+1)
+            for variant in ('B0', 'B3'):
+                with self.subTest(rule=rule_cost, probe=probe_cost, variant=variant), TemporaryDirectory() as d:
+                    path = Path(d)/'run'
+                    result = run_one(case, variant, config, path)
+                    self.assertEqual([row['kind'] for row in result['selected']], ['observe', 'derive', 'monitor'])
+                    self.assertEqual(result['work']['operation_work'], rule_cost+probe_cost+1)
+                    self.assertEqual(result['work']['observation_work'], probe_cost+1)
+                    self.assertTrue(all(type(value) is int for value in result['work'].values()))
+                    self.assertEqual(result['stop_reason'], 'OBSERVED_GOALS')
+                    self.assertEqual(result['final']['certified_weighted_loss'], 0)
+                    self.assertEqual(result['failures'], {})
+                    audit_run(path, case, config, result)
+
+    def test_work_limits_stop_before_unaffordable_probe_inference_or_monitor(self):
+        case = self.case(100, 100)
+        for operation_work, observation_work, selected, spent, observed in (
+            (99, 101, 0, 0, 0), (201, 99, 0, 0, 0),
+            (199, 101, 1, 100, 100), (200, 101, 2, 200, 100), (201, 100, 2, 200, 100)):
+            for variant in ('B0', 'B3'):
+                with self.subTest(work=operation_work, observations=observation_work, variant=variant), TemporaryDirectory() as d:
+                    with ReasoningSession(case['public'], d) as session:
+                        world = ReasoningWorld(session, case)
+                        result = ComparisonController(case['public'], variant).run(world.port(),
+                            ComparisonBudget(operation_work=operation_work, observation_work=observation_work))
+                        self.assertEqual(result['stop_reason'], 'WORK_BUDGET')
+                        self.assertEqual(result['work']['actions'], selected)
+                        self.assertEqual(result['work']['operation_work'], spent)
+                        self.assertEqual(result['work']['observation_work'], observed)
+                        self.assertEqual(session.read()['goals'][0]['outstanding'], 1)
+
+
 class ComparisonEpisodeTests(unittest.TestCase):
     def test_closed_loop_real_inference_relevant_change_and_simple_control(self):
         summaries = {}

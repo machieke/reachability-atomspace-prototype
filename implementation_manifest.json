@@ -1456,6 +1456,77 @@
           "artifacts/pressure-support-repeatability.log"
         ]
       }
+    },
+    "operation_work_contract": {
+      "status": "bounded-comparison-correctness-fix",
+      "cost_type": "exact integer (booleans excluded)",
+      "minimum_rule_or_probe_cost": 1,
+      "maximum_rule_or_probe_cost": 100,
+      "monitor_operation_and_observation_cost": 1,
+      "fractional_or_float_costs_supported": false,
+      "rounding_or_clamping": false,
+      "invalid_costs_rejected_before_authority_creation": true,
+      "shared_by_controllers": [
+        "B0",
+        "B3"
+      ],
+      "integer_budget_and_audit_accounting": true,
+      "frozen_episodes_budgets_and_ranking_policies_changed": false,
+      "new_regression_tests": 4,
+      "validation": {
+        "status": "passed",
+        "focused_regression_tests_passed": 71,
+        "deployment_admission_recovery_tests_passed": 70,
+        "standalone_reference_checks_passed": 15,
+        "boundary_cost_runs_certified_and_audited": 8,
+        "budget_stop_cases_per_controller": 5,
+        "remaining_failures": 0,
+        "tests_skipped": 0,
+        "suites_not_rerun": [
+          "full default suite",
+          "native integration suite"
+        ],
+        "existing_corpus_receipts_refreshed": 9,
+        "existing_corpus_verifiers_passed": 9,
+        "prior_fixture_semantics_unchanged": true,
+        "controller_runs_passed": 64,
+        "distinct_authorities": 64,
+        "work_limited_repeat_matches": 16,
+        "work_limited_repeat_failures": 0,
+        "work_limited_repeat_inconclusive": 0,
+        "wall_limited_repeat_variations": 8,
+        "audited_selections_per_bundle": [
+          148,
+          153
+        ],
+        "comparison_source_files_verified_per_bundle": 71,
+        "rich_work16_b3_pressure_elapsed_ns_range": [
+          15241802,
+          30950345
+        ],
+        "verification_elapsed_ns": 38598482802,
+        "total_experiment_elapsed_ns": 122106496158,
+        "expected_operation_rejections": {
+          "UNKNOWN": 6,
+          "STALE": 24
+        },
+        "m09_detected_in_both_bundles": true,
+        "recorded_pressure_fields": 181,
+        "all_recorded_pressure_fields_converged": true,
+        "work_limited_outcomes_unchanged": true,
+        "report": "artifacts/pressure-cost-repeatability/repeatability.json",
+        "readable_report": "artifacts/pressure-cost-repeatability/repeatability.md",
+        "logs": [
+          "artifacts/pressure-cost-before.log",
+          "artifacts/pressure-cost-focused.log",
+          "artifacts/pressure-cost-regressions.log",
+          "artifacts/pressure-cost-deployment-regressions.log",
+          "artifacts/pressure-cost-reference.log",
+          "artifacts/pressure-cost-generation.log",
+          "artifacts/pressure-cost-receipts.log",
+          "artifacts/pressure-cost-repeatability.log"
+        ]
+      }
     }
   }
 }

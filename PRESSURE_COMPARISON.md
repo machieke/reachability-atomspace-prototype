@@ -159,6 +159,15 @@ operation budgets and measured wall caps provide the comparison axes. In-flight
 certified operations are never interrupted to enforce time; overrun is reported.
 No training or controller-specific tuning runs are used.
 
+The `pressure-work-public/v1` subset requires rule and probe costs to be exact
+integers from 1 through 100 work units. Floats (including `1.0`), booleans,
+nonfinite values and out-of-range integers are unsupported and rejected before
+opening an authority session. No rounding or clamping occurs. Every inference,
+probe and monitor consumes its declared operation work; probes also consume their
+declared observation work, and monitoring consumes one unit of each. Budget
+counters and saved-run audits therefore use exact integer counts. Pressure values
+and measured elapsed times remain distinct from these declared work units.
+
 All outcomes use the same sixteen-tick evaluation horizon and fixed goal weights.
 When a controller stops, time and exogenous support changes continue, but it gets
 no free inference or observation. This evaluation tail is timed and accounted
@@ -390,6 +399,22 @@ work-16 B3 pressure construction/solve time is 14.78–21.49 ms. Complete costs 
 traces are under `artifacts/pressure-support-repeatability/`, including
 `repeatability.md` and `repeatability.json`. These are development measurements,
 not evidence of a performance improvement.
+
+The integer-work contract correction passes 71 focused tests, 70 deployment/
+admission/recovery regressions and 15 reference checks. Four new tests exercise
+unsupported cost rejection before authority creation, eight certified/audited
+runs at the supported cost boundaries and five budget-stop cases per controller.
+All nine refreshed corpus receipts verify with unchanged fixture semantics. No
+failures remain or tests were skipped in these runs. Full default/native suites
+were not rerun for this isolated input-contract correction.
+
+Its 64-run experiment passes all sixteen work-limited repeat comparisons and
+retains eight wall-limited variations. Both bundles detect M09 and all 181 fields
+converge. Work-limited outcomes are unchanged, including B3's worse rich-episode
+integrated loss. Rich work-16 B3 pressure construction/solve time is 15.24–30.95 ms.
+Reports, complete measured costs and traces are under
+`artifacts/pressure-cost-repeatability/`. The plan and manifest record the scope;
+these measurements do not establish a performance improvement.
 
 This milestone stops here. Adaptive transport, learned conductance, generalized
 recovery, numerical PLN scheduling, broader channels, evaluator OS isolation,

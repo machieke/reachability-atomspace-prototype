@@ -3,7 +3,7 @@ from heapq import heappop, heappush
 
 from .admission_protocol import AdmissionInitial, literal
 from .b0 import Candidate, Frontier
-from .pressure import Edge, Node, Source, finite
+from .pressure import Edge, Node, Source
 from .trace_protocol import canonical, fingerprint
 
 
@@ -29,6 +29,12 @@ def holds(condition, facts):
     return (all if operator == 'AND' else any)(holds(child, facts) for child in children)
 
 
+def check_work_cost(cost):
+    # Declared work is an exact count, shared with session budgets and audits.
+    if type(cost) is not int or not 1 <= cost <= 100:
+        raise ValueError('operation costs require integers from 1 to 100 work units')
+
+
 def validate_public(public):
     if set(public) != {'schema', 'admission', 'context_id', 'clauses', 'costs', 'probes', 'goals', 'priorities'} or public['schema'] != 'pressure-work-public/v1':
         raise ValueError('unsupported reasoning work profile')
@@ -42,13 +48,13 @@ def validate_public(public):
     if set(public['costs']) != {r['rule_id'] for r in rules}:
         raise ValueError('exact declared rule costs required')
     for cost in public['costs'].values():
-        if finite(cost, 100) < 1:
-            raise ValueError('operation cost must be positive')
+        check_work_cost(cost)
     if len({p['probe_id'] for p in public['probes']}) != len(public['probes']):
         raise ValueError('duplicate observation capability')
     for probe in public['probes']:
-        if set(probe) != {'probe_id', 'literal', 'cost'} or not probe['probe_id'] or finite(probe['cost'], 100) < 1:
+        if set(probe) != {'probe_id', 'literal', 'cost'} or not probe['probe_id']:
             raise ValueError('invalid observation capability')
+        check_work_cost(probe['cost'])
         literal(probe['literal'], atoms)
     if len({g['goal_id'] for g in public['goals']}) != len(public['goals']):
         raise ValueError('duplicate goal')

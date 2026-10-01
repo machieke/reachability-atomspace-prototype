@@ -80,7 +80,7 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, thirty-first increment): the
+Current checkpoint (1 October 2026, thirty-second increment): the
 bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
 saved comparison auditing and reproducibility within that same subset; its full
 32-run bundle audit passes. Two fresh matrices now pass all sixteen work-limited
@@ -88,11 +88,12 @@ repeatability comparisons across 64 distinct authorities within this same subset
 The prior correction enforces the pressure routing bound on exact stored
 binary64 shares and rejects normalization underflow. Its corrected 64-run
 experiment passes. The shared candidate generator now orders support lifetimes
-exactly, including absence of scheduled expiry; its 64-run repeatability check
-passes. Typed read-only pressure feeds a real direct priority queue over the same
-public inference/observation frontier as conditional-planning B0. The development
-matrix runs 16 controller pairs;
-M09 is detected and validation is complete. Existing recovery
+exactly, including absence of scheduled expiry. Public operation costs now require
+exact integer work units consistent with budgets and saved-run audits; the fresh
+64-run repeatability check passes. Typed read-only pressure feeds a real direct
+priority queue over the same public inference/observation frontier as
+conditional-planning B0. The development matrix runs 16 controller pairs; M09 is
+detected and validation is complete. Existing recovery
 actions, gates and blocked unsupported cases are preserved. Transport/M12,
 learned conductance, family-complete validation, evaluator OS isolation and the
 broader phases remain deferred; this subset does not complete phases 5–8.
@@ -2167,3 +2168,53 @@ no performance improvement is claimed. Results are in
 `repeatability.md`. This closes the bounded support-selection correction.
 Transport/M12, learned conductance, generalized recovery and the broader benchmark
 remain deferred.
+
+### Thirty-second increment: consistent integer operation-work contracts
+
+The public profile accepts fractional rule/probe costs, but saved-result auditing
+requires integer work counts. Both controllers can therefore finish an accepted
+profile that its auditor rejects. Align the input boundary with the bounded
+integer work contract without changing the frozen episodes or comparison budgets.
+
+1. Require exact integers from 1 through 100 for rule and probe costs. Reject
+   floats, booleans, nonfinite values and out-of-range integers before authority
+   creation; do not round, clamp or reinterpret unsupported costs.
+2. Test both controller entry points, valid endpoint costs, exact operation and
+   observation budget boundaries, actual certified execution and saved-run audit.
+   Include observation and monitoring charges as well as inference work.
+3. Refresh source receipts without changing corpus fixtures, run applicable
+   regressions and the frozen repeatability experiment, record the results, then
+   commit and push. Keep broader pressure/transport/recovery work deferred.
+
+Status: complete. Rule and probe costs now require exact integers from 1 through
+100 work units, shared by B0 and B3. Unsupported values fail before opening an
+authority session, without rounding or clamping. Float-valued costs such as
+`1.0` are also rejected, matching the existing integer audit contract. Monitor
+charges remain one operation and one observation unit. Frozen episodes, budgets,
+rankings and authority/recovery behavior are unchanged.
+
+Verification: all 71 pressure/comparison/audit/repeatability/manifest tests, 70
+B0/deployment/admission/recovery regressions and 15 standalone reference checks
+pass. Four new tests cover invalid costs, absence of authority creation, eight
+certified and audited runs at the valid cost boundaries, and five budget-stop
+cases per controller. Stops preserve unresolved demand when a probe, inference
+or monitor cannot fit its budget. No failures remain and no tests were skipped
+in these runs. Full default and native integration suites were not rerun for
+this isolated input-contract correction.
+
+All nine refreshed corpus receipts verify. Fixture semantics, expected outcomes,
+shrink reductions and pinned design hashes remain unchanged. The fresh experiment
+passes 64 controller runs over 64 distinct authorities, with 148 and 153 audited
+selections. All sixteen work-limited repeats match, with no failures or
+inconclusive cases; eight wall-limited comparisons retain measured variation.
+Both bundles detect M09 and all 181 recorded pressure fields converge. Six UNKNOWN
+and 24 STALE operation replies remain visible, with no harness failures.
+
+Rich work-16 integrated loss remains 78 for B3 versus 72 for B0, and the simple
+control remains neutral. B3 pressure construction/solve time in those rich runs
+spans 15.24–30.95 ms. Total experiment time is 122.11 seconds, including a separately
+recorded 38.60-second final verification phase. Complete cost categories remain
+in the reports; no performance improvement is claimed. Results are in
+`artifacts/pressure-cost-repeatability/repeatability.json` and `repeatability.md`.
+This closes the bounded cost-contract correction. Transport/M12, learned
+conductance, generalized recovery and the broader benchmark remain deferred.
