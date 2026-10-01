@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "evidence-preserving-interrupted-worker-inspection",
+  "implementation_stage": "bounded-explicit-local-worker-reconciliation",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -773,6 +773,55 @@
     "authenticated_storage": false,
     "atomic_cross_store_transaction": false,
     "evaluator_os_isolation": false,
+    "family_complete_fixtures": 0,
+    "new_designated_mutants": [],
+    "reconciliation_marker_capture": true
+  },
+  "worker_reconciliation": {
+    "request_schema": "worker-reconciliation-request/v1",
+    "prepared_schema": "worker-reconciliation-prepared/v1",
+    "result_schema": "worker-reconciliation-result/v1",
+    "probe_schema": "worker-reconciliation-probes/v1",
+    "action": "cancel_unstarted_local",
+    "supported_profiles": [
+      "admission",
+      "deployment"
+    ],
+    "unsupported_profile": "dispatch",
+    "deployment_executor_commands_refused": [
+      "dispatch",
+      "reconcile",
+      "release"
+    ],
+    "unchanged_journal_tips_required": true,
+    "unchanged_captured_source_bytes_required": true,
+    "binding": [
+      "inspection-digest",
+      "checkpoint-bytes",
+      "pending-command-digest",
+      "all-journal-genesis-sequence-tail"
+    ],
+    "full_wrapper_validation_on_private_copies": true,
+    "cancelled_event_status": "UNKNOWN",
+    "cancelled_event_id_and_budget_consumed": true,
+    "exact_cancelled_event_retry": true,
+    "original_inspection_and_before_after_checkpoints_retained": true,
+    "prepared_marker_gates_all_current_worker_profiles": true,
+    "result_durable_before_marker_removal": true,
+    "exact_decision_retry_after_later_progress": true,
+    "offline_candidate_reproduction": true,
+    "source_sqlite_connections": false,
+    "public_event_replay": false,
+    "executor_io": false,
+    "native_inference_io": false,
+    "journal_writes": false,
+    "prior_remote_uncertainty_preserved": true,
+    "partial_journal_progress_refused": true,
+    "native_inference_continuation_tested": true,
+    "actual_crash_probes": 12,
+    "crash_boundaries_per_profile": 6,
+    "automatic_reconciliation": false,
+    "authenticated_storage": false,
     "family_complete_fixtures": 0,
     "new_designated_mutants": []
   }

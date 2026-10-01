@@ -16,6 +16,7 @@ from .codec import encode
 from .deployment_trace import DeploymentSession
 from .dispatch_worker_state import atomic_write, journal_tip, read_checkpoint
 from .journal import RecoveryError, StoreInUse
+from .reconciliation_state import require_settled
 from .pln_adapter import PLNAdapter
 from .probability_formula import PinnedFormulaRuntime
 from .service import AdmissionService
@@ -60,6 +61,7 @@ class _DurableTrace:
             raise StoreInUse('another process owns this worker directory') from error
         self.completed,self.pending,self.replayed,self._broken={},None,False,False
         try:
+            require_settled(self.directory)
             if resume:
                 self._restore(initial)
             else:

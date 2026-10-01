@@ -117,3 +117,29 @@ class NativeWorkerInspectionTests(unittest.TestCase):
             p=RecordProjection(); p.add(recovered)
             self.assertEqual(p.batch.run(),before)
             self.assertEqual(file_inventory(state,capture_names(state)),evidence)
+
+
+class NativeWorkerReconciliationTests(unittest.TestCase):
+    def test_cancellation_preserves_native_state_and_allows_later_native_inference(self):
+        from reachability.admission_protocol import event
+        from reachability.trace_worker_state import DurableAdmissionSession
+        from reachability.worker_inspection import inspect_worker
+        from reachability.worker_reconciliation import make_request,reconcile
+        from validation_lab.generate_admission_cases import initial,scenarios
+        messages=scenarios()[12]['events']
+        with TemporaryDirectory() as directory:
+            root=Path(directory);state=root/'state';pending=event('cancel-restart','restart')
+            with DurableAdmissionSession(initial(),state,native=True) as s:
+                for message in messages[:-1]:
+                    s.apply(message)
+                before=project_probability(s.service,'c0')
+                s.pending=pending;s._save()
+            inspect_worker('admission',state,root/'inspection')
+            request=make_request(root/'inspection','native-cancel')
+            reconcile(request,state,root/'inspection')
+            with DurableAdmissionSession(initial(),state,resume=True,native=True) as s:
+                self.assertEqual(project_probability(s.service,'c0'),before)
+                self.assertEqual(s.apply(pending)['outcome']['status'],'UNKNOWN')
+                row=s.apply(messages[-1])
+                self.assertEqual(row['outcome']['status'],'PASS')
+                self.assertEqual(row['projection']['numeric']['e005']['confidence'],2/3)

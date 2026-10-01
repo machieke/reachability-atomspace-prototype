@@ -17,6 +17,7 @@ from .codec import encode, decode
 from .dispatch_race_protocol import parse
 from .dispatch_race_session import DispatchRaceSession
 from .journal import RecoveryError, StoreInUse
+from .reconciliation_state import require_settled
 from .service import AdmissionService
 from .simulated_executor import SimulatedExecutor
 from .trace_protocol import DeploymentInitial, canonical, fingerprint
@@ -87,6 +88,7 @@ class DurableDispatchSession(DispatchRaceSession):
             raise StoreInUse('another process owns this worker directory') from error
         self.completed, self.pending, self.replayed, self._broken = {}, None, False, False
         try:
+            require_settled(self.directory)
             if resume:
                 self._restore(initial)
             else:

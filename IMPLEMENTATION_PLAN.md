@@ -48,16 +48,16 @@ adapter, executable benchmark, or measured performance results.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, twentieth increment): stopped workers now
-have evidence-preserving inspection across admission, deployment and dispatch.
-Captured checkpoint/database/WAL bytes are replayed only on private copies. Reports
-separate pending commands, journal extensions, authority state, observed transport
-buffers and actual simulator effects. Sixteen real-process crash probes cover
-partial admission, numerical, lifecycle and goal work as well as remote effects and
-lost stdout. Inspection never authorizes continuation or clears pending work.
-Completed-command recovery still covers 32 cases and 361 fresh-process retries.
-Family-complete validation, evaluator OS isolation, M09/M12 and phases 5–8 remain
-open; the detailed execution records below define the next bounded increment.
+Current checkpoint (1 October 2026, twenty-first increment): explicit cancellation
+now handles unstarted admission and local deployment events with unchanged
+inspected evidence and fully validated wrapper state. It consumes the original
+event ID with a durable UNKNOWN reply, preserves journals and remote uncertainty,
+and permits later new events. Prepared decisions gate all current worker profiles
+until checkpoint/result publication finishes. Twelve real-process probes exercise
+six reconciliation crash boundaries and exact retries. Partial progress, dispatch
+and executor I/O remain refused. Completed-command recovery still covers 32 cases
+and 361 fresh-process retries; family-complete validation, OS isolation, M09/M12
+and phases 5–8 remain open.
 
 ## Phase 0 Repository contracts
 
@@ -1459,5 +1459,70 @@ Next increment, in order:
    alone do not authorize clearing a pending marker or releasing occupancy.
 3. Exercise each allowed and refused transition with actual crashes, independent
    state expectations and durable decision receipts before enabling continuation.
+4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
+   target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.
+
+
+### Twenty-first increment on 1 October 2026
+
+1. Define explicit cancellation requests bound to the inspected pending command,
+   checkpoint bytes, report digest and exact journal tips. Require unchanged
+   captured evidence and validate the complete saved wrapper on private copies.
+2. Support cancellation only for admission and local deployment events with no
+   journal progress. Consume the event ID and stream budget with an explicit
+   historical UNKNOWN reply. Preserve authority/executor state and existing
+   uncertainty; refuse dispatch, executor I/O and partial composite progress.
+3. Persist a prepared decision before publishing the replacement checkpoint.
+   Gate worker startup while a reconciliation marker exists, durably record the
+   result before clearing it, and make exact decision retries finish either side
+   of publication. Preserve the original inspection and before/after checkpoints.
+4. Exercise actual crashes at each publication boundary, stale/corrupt evidence,
+   ownership conflicts, unchanged resource uncertainty, historical retries and
+   fresh worker continuation. Refresh receipts, run all required suites, commit
+   and push; wider per-profile reconciliation remains explicitly pending.
+
+
+Implemented the four stages above with request/prepared/result schemas, an explicit
+local-event whitelist and private-copy wrapper validation. Cancellation preserves
+all authority/executor bytes and consumes one stream event with a historical
+UNKNOWN reply. No public event or executor operation is replayed. Decision IDs
+bind immutable prepared archives; same-request retries complete interrupted
+publication or return their original result after later worker progress.
+
+The existing inspector now captures reconciliation markers and shares its stopped-
+worker ownership locks with the reconciler. All current durable profiles gate
+startup while a marker exists, including after checkpoint publication and before
+a result is durable. The original inspection and exact before/after checkpoints
+remain available for offline reproduction. Direct journal changes during a
+prepared decision leave the gate in place and refuse completion.
+
+Eighteen new default tests and one native test cover evidence/identity binding,
+full-wrapper validation, event budgets, no-I/O behavior, storage failure, preserved
+remote uncertainty after expiry and subsequent native PLN inference. Twelve actual
+process probes interrupt archive staging, prepared assets, marker publication,
+checkpoint publication, result publication and stdout, then verify exact decision
+retry and fresh-worker continuation against independent expectations. The nine
+existing source receipts are refreshed; original design inputs and all earlier
+cases, schedules, expected outcomes and mutation reductions remain unchanged.
+
+Verification: 761 default tests, 80 optional native integration tests and all
+15 standalone reference checks pass. The fresh 12-probe reconciliation CLI report
+verifies exact decision retries and continued worker behavior; the full suite also
+repeats the 16 inspection probes and the 32-case, 361-prefix public-worker corpus.
+Existing reductions remain M05 12→5, M06 23→6, M07 2→2, M11 13→1,
+M08 5→1, M10 6→4, cached-send-gate 9→8 and expire-uncertain 8→7.
+There are still zero family-complete fixtures and no new designated mutants.
+
+Next increment, in order:
+
+1. Specify a bounded reconciliation transition for a concrete partial local
+   composite command, using exact appended journal commands and saved counters to
+   distinguish already persisted work from the remaining operation. Keep explicit
+   decision/evidence binding and the durable publication gate.
+2. Define additional admission/numerical/lifecycle/goal outcomes separately; do not
+   generalize unchanged-journal cancellation into blind replay or discard.
+3. Before adding dispatch/executor reconciliation, account for queued requests,
+   lost observations, immutable older acknowledgements and authoritative fencing.
+   Preserve unresolved occupancy until supported evidence permits its release.
 4. Continue phase 4 family coverage, evaluator OS isolation and the 64-fixture
    target. M09/M12, broader phase 1/3 semantics and phases 5–8 remain open.

@@ -5,7 +5,7 @@ can change WAL/SHM files. Existing ownership locks protect capture. Inspection
 never clears a pending command or grants permission to resume it.
 """
 import argparse
-from contextlib import ExitStack
+from contextlib import ExitStack, contextmanager
 from dataclasses import asdict, fields
 import fcntl
 from hashlib import sha256
@@ -20,6 +20,7 @@ from .codec import encode
 from .dispatch_race_protocol import parse as dispatch_event
 from .dispatch_worker_state import SCHEMA as DISPATCH_SCHEMA, journal_tip, read_checkpoint
 from .journal import RecoveryError, StoreInUse
+from .reconciliation_state import MARKER
 from .service import AdmissionService
 from .simulated_executor import SimulatedExecutor
 from .trace_protocol import DeploymentInitial, DeploymentEvent, canonical
@@ -37,6 +38,8 @@ def capture_names(directory):
     for name in DATABASES.values():
         names.update(name + suffix for suffix in ('', '.lock', '-wal', '-shm', '-journal'))
     names.update(p.name for p in directory.glob('.checkpoint-*'))
+    if (directory/MARKER).exists() or (directory/MARKER).is_symlink():
+        names.add(MARKER)
     if len(names) > MAX_FILES:
         raise RecoveryError('inspection file count exceeds its bound')
     return sorted(names)
@@ -186,18 +189,19 @@ def analyze_snapshot(profile, snapshot, evidence):
         report['status'] = 'pending_journal_progress' if 'advanced' in relations else 'pending_no_journal_change'
     else:
         report['status'] = 'checkpoint_journal_mismatch' if 'advanced' in relations else 'no_pending_marker'
+    if (snapshot/MARKER).exists():
+        # This is captured control evidence, not permission to finish a decision.
+        try:
+            report['reconciliation'] = json.loads((snapshot/MARKER).read_text())
+            report['status'] = 'reconciliation_in_progress' if report['status'] != 'unverified' else 'unverified'
+        except (ValueError, OSError) as error:
+            report['errors'].append(dict(component='reconciliation', detail=str(error)))
+            report['status'] = 'unverified'
     return report
 
 
-def inspect_worker(profile, directory, output):
-    """Create a new evidence bundle; never create files in the worker directory."""
-    if profile not in PROFILES:
-        raise ValueError('unsupported inspection profile')
-    directory, output = Path(directory).resolve(strict=True), Path(output).resolve()
-    if not directory.is_dir() or output == directory or directory in output.parents:
-        raise ValueError('inspection output must be outside the worker directory')
-    if output.exists():
-        raise FileExistsError('inspection output must be a new directory')
+@contextmanager
+def owned_worker(directory):
     with ExitStack() as stack:
         # Lock both databases even for an incorrectly selected profile. This
         # avoids a mixed snapshot if a caller mistakes a deployment for admission.
@@ -211,6 +215,19 @@ def inspect_worker(profile, directory, output):
                 fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
             except BlockingIOError as error:
                 raise StoreInUse('stop the worker and journal owners before inspection') from error
+        yield
+
+
+def inspect_worker(profile, directory, output):
+    """Create a new evidence bundle; never create files in the worker directory."""
+    if profile not in PROFILES:
+        raise ValueError('unsupported inspection profile')
+    directory, output = Path(directory).resolve(strict=True), Path(output).resolve()
+    if not directory.is_dir() or output == directory or directory in output.parents:
+        raise ValueError('inspection output must be outside the worker directory')
+    if output.exists():
+        raise FileExistsError('inspection output must be a new directory')
+    with owned_worker(directory):
         names = capture_names(directory)
         before = file_inventory(directory, names)
         snapshot = output/'snapshot'

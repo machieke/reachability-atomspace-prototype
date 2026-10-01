@@ -1111,10 +1111,11 @@ The top-level diagnostic classifications and supported decisions are:
 | Report status | Evidence | Current supported decision |
 | --- | --- | --- |
 | `no_pending_marker` | Valid checkpoint wire data, no pending marker, equal journal tips | Retain evidence; ordinary explicit resume still performs its own full wrapper validation |
-| `pending_no_journal_change` | Pending marker, both required boundaries unchanged | Retain pending state; no automatic retry or discard |
+| `pending_no_journal_change` | Pending marker, both required boundaries unchanged | Retain pending state; separately request bounded explicit cancellation if supported below |
 | `pending_journal_progress` | Pending marker, at least one verified journal extension | Inspect partial effects; retain resource uncertainty and pending state |
 | `checkpoint_journal_mismatch` | No pending marker but a journal extended beyond the checkpoint | Retain evidence; automatic resume remains refused |
 | `unverified` | Corruption, missing stores, divergence, profile mismatch or unbound evidence | Preserve available bytes; do not infer a reconciliation outcome |
+| `reconciliation_in_progress` | A captured reconciliation control marker exists | Retry its original decision; worker startup remains blocked |
 
 Every report has `continuation_authorized: false`. No status is a repair permit.
 In particular, unchanged journal tips do not establish that all wrapper-only work
@@ -1153,5 +1154,128 @@ native test compares the captured typed authority records with the original nati
 projection. The existing nine corpus receipts are refreshed without changing their
 cases, outcomes, schedules or mutation reductions. No authority/executor/checkpoint
 schema changes, additional family-complete fixtures, designated mutants or OS
-sandbox guarantees are introduced. Explicit pending-command reconciliation,
-M09/M12, the 64-fixture target and broader phases remain open.
+sandbox guarantees are introduced. Broader pending-command reconciliation,
+M09/M12, the 64-fixture target and broader phases remain open. The bounded explicit
+cancellation transition below is now available separately from inspection.
+
+
+## Bounded explicit worker reconciliation
+
+The `cancel_unstarted_local` action is the first supported reconciliation
+transition. It cancels one interrupted admission or local deployment event when
+all inspected journal boundaries and captured source bytes are unchanged. It
+never replays that event. A cancelled event consumes one stream step and its
+original ID; exact event retries return its saved `UNKNOWN` reply with
+`diagnostics.reconciliation` identifying the decision and request digest. This
+status describes an explicitly cancelled, unevaluated command, not a successful
+execution or a proven domain failure. Retrying its intended operation requires a
+new event ID after reconciliation completes.
+
+Create a request without changing the worker:
+
+```sh
+uv run --no-project python -m reachability.worker_reconciliation request \
+  --inspection artifacts/inspection-1 --decision-id cancel-1 > artifacts/cancel-1.json
+```
+
+Apply that explicit request, or retry the same request after interruption:
+
+```sh
+uv run --no-project python -m reachability.worker_reconciliation apply \
+  --request artifacts/cancel-1.json --inspection artifacts/inspection-1 \
+  --database-dir /path/to/worker
+```
+
+`worker-reconciliation-request/v1` binds the decision ID, action, profile, entire
+inspection report digest, exact original checkpoint bytes, pending-command digest
+and every inspected journal genesis/sequence/tail. Reconciliation requires the
+existing worker and journal ownership locks. Before preparing a new decision it
+verifies the original inspection and compares the complete captured source file
+inventory. Even a physical database/WAL layout change with identical logical tips
+requires a fresh inspection. The original inspection bundle is retained unchanged.
+
+| Pending state | Supported action |
+| --- | --- |
+| Admission event; no journal progress; complete saved wrapper validates | Explicit cancellation |
+| Local deployment event; no journal progress; complete saved wrapper validates | Explicit cancellation |
+| Deployment `dispatch`, `reconcile` or `release` event | Refuse, including unchanged journal tips |
+| Any dispatch-profile event | Refuse in this increment |
+| Partial admission, numerical, lifecycle, goal or executor progress | Refuse and preserve evidence |
+| Stale/unverified evidence, changed command, invalid wrapper metadata or exhausted event budget | Refuse before publishing a decision |
+
+Local deployment events are `fact`, `forecast`, `revoke`, `tick`, `attempt`,
+`reserve`, `cover`, `prepare`, `observation`, `sample`, `censor`, `resume`, `account`,
+`complete` and `restart`. Admission includes its existing bounded event kinds.
+The whitelist excludes operations that might have performed executor I/O or lost
+transport-only observations without a new journal entry. Unchanged tips alone
+remain insufficient outside this explicitly supported set.
+
+The original wrapper is fully validated on private copies with the pending field
+removed there only. Its inventory, aliases, current rules, counters, historical
+replies and last projection must satisfy ordinary resume validation. The candidate
+checkpoint adds a cancellation reply, updates the event inventory/step/prefix,
+and preserves journal tips, aliases and counters. It is reopened on another
+private session and its exact cancellation reply checked before publication.
+Neither original SQLite database is opened through SQLite. No authority append,
+public event execution, native inference I/O or simulator submit/query/release is
+issued. Existing uncertain remote occupancy and actual effects remain unchanged,
+including after lease expiry. Native numerical inference can continue later in a
+normally resumed worker with its original backend and aliases.
+
+Publication uses fsynced files, atomic replacement and directory fsync:
+
+1. Retain an immutable prepared record and exact before/after checkpoint files in
+   `worker-reconciliations/<hash-of-decision-id>/`. Public IDs are hashed before
+   being used as path components. Partial preparation can be retried under the
+   same original evidence; incompatible contents never get overwritten.
+2. Publish `reconciliation-pending.json` before replacing the worker checkpoint.
+   All three current durable worker profiles refuse startup while this marker
+   exists, including when the candidate checkpoint has already been published.
+3. Atomically publish the checked cancellation checkpoint. On decision retry,
+   the checkpoint must match either its exact before bytes or its exact after
+   bytes, and all original database/sidecar bytes must still match the preparation.
+4. Durably publish `worker-reconciliation-result/v1` before removing the marker.
+   Marker removal is followed by directory fsync. Only then can ordinary worker
+   resume accept new events.
+
+| Interrupted reconciliation boundary | Exact decision retry |
+| --- | --- |
+| During checkpoint-archive staging or before marker publication | Revalidate original inspection and finish preparation; original pending event still blocks workers |
+| Marker published, checkpoint still original | Validate preparation and unchanged journals, then publish the cancellation |
+| Candidate checkpoint published, result not durable | Workers remain blocked; record the result before clearing the marker |
+| Result durable, marker still present | Verify the same result and boundary before clearing the marker |
+| Marker cleared, stdout lost or later worker events completed | Return the archived historical result without changing current state |
+
+After marker publication, the complete prepared archive suffices to finish the
+exact request even if the external inspection path is temporarily unavailable.
+The original inspection is still required for independent offline audit through
+`reachability.worker_reconciliation.verify_reconciliation(archive, inspection)`.
+That function recomputes the candidate and checks the retained before/after files,
+request, journal bindings, reply digest and any completed result. An `APPLIED`
+result is historical; `replayed: true` never asserts the worker is still at that
+checkpoint. These remain trusted local records, not authenticated execution
+attestations. Corruption, direct external journal changes or conflicting decision
+identities refuse completion and preserve the gate for explicit investigation.
+
+Inspection remains read-only. It now captures an existing reconciliation marker
+and reports `reconciliation_in_progress`; it neither completes that decision nor
+clears it. A malformed marker blocks workers, while the separate reconciliation
+path checks its integrity and exact prepared-record binding.
+
+Run `uv run --no-project python -m validation_lab.run_worker_reconciliation --output artifacts/reconciliation-probes-1`
+in a new directory. Twelve actual process probes span six crash boundaries for
+both supported profiles, including staging before an archive-file rename. Raw
+launch arguments/environment, stdout/stderr, exit codes, source/fault receipts,
+original inspections, decision archives and continued worker exchanges are
+retained. Independent public models check unchanged state for the cancellation
+and the next real event, while explicit reconciliation expectations check UNKNOWN,
+step consumption, exact replies and the worker gate. The verifier reproduces each
+decision and validates captured process evidence and journal preservation.
+
+Eighteen new default tests and one new native test cover the supported transition,
+refusals, archive integrity, budgets, native continuation and crash publication.
+Existing worker/checkpoint, authority and executor schemas are unchanged. All nine
+existing corpus receipts are refreshed without changing cases, expected outcomes,
+schedules or reduced witnesses. No automatic interrupted-event replay, remote
+release, partial-command repair, new designated mutant, family-complete fixture
+or evaluator OS sandbox is introduced. Broader reconciliation remains open.

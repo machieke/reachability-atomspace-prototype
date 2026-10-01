@@ -555,6 +555,17 @@ actual authority records and simulator effects. SQLite recovery runs on private
 copies. See [worker inspection](VALIDATION.md#interrupted-worker-inspection) for
 verification and the decision matrix; inspection does not authorize continuation.
 
+Explicit reconciliation can cancel an admission or local deployment command when
+its inspected journals have not advanced. Generate a bound request with
+`uv run --no-project python -m reachability.worker_reconciliation request --inspection artifacts/inspection-1 --decision-id cancel-1 > artifacts/cancel-1.json`,
+then apply it with
+`uv run --no-project python -m reachability.worker_reconciliation apply --request artifacts/cancel-1.json --inspection artifacts/inspection-1 --database-dir /path/to/worker`.
+The event is consumed with an exact historical `UNKNOWN` cancellation reply;
+new events can proceed after publication completes. Dispatch, executor commands
+and partial journal progress remain refused. See
+[bounded reconciliation](VALIDATION.md#bounded-explicit-worker-reconciliation)
+for evidence binding, durable decision receipts and crash recovery.
+
 ## Current limits and next work
 
 The authority API has trusted callers. Optional evaluator workers use separate
@@ -576,9 +587,9 @@ Pressure and transport remain the supplied standalone numerical examples. The
 64-fixture target, M09/M12 mutants and performance experiments are still pending.
 The executable deployment demo establishes the stated finite simulator contracts only.
 
-Next define explicit reconciliation commands bound to an inspection's exact
-journal boundaries and pending-command identity, then implement their bounded
-per-profile outcomes. Remaining designated
+Next extend explicit reconciliation to carefully specified partial local commands,
+then to dispatch and executor evidence where observed packets and fencing are
+fully accounted for. Remaining designated
 mutants and evaluator OS isolation remain open. Goal loss
 models, scheduling priority, wider temporal logic and a full independent event
 reference model still need work. General context inheritance and variable binding
