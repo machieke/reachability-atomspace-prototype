@@ -1,0 +1,9 @@
+{
+  "schema": "planning-review-archive/v1",
+  "archive": "review.tar.xz",
+  "sha256": "033f8b8ba2fd33a41360302a46c0280984a47332211eddf36252587d10c1f388",
+  "bytes": 83658440,
+  "parts": [
+    "review.tar.xz"
+  ]
+}

@@ -2906,7 +2906,7 @@
     }
   },
   "experimental_pressure_guided_planning": {
-    "status": "preregistered-implementation-before-measurement",
+    "status": "bounded-comparison-audited-and-published",
     "schema": "pressure-guided-planning/v1",
     "previous_publication": "2dfe1846c1c870d7daa9268b9e700289fbd34b8d",
     "frozen_runtime": "3e8fd7be56362ed21944636bbe505b6a4a7aac6f",
@@ -2942,9 +2942,9 @@
     "new_confirmation_parents": 12,
     "primary_closed_runs_declared": 2184,
     "supplementary_closed_runs_declared": 144,
-    "tests_before_measurement": 10,
-    "comparison_executed": false,
-    "published": false,
+    "tests_before_measurement": 11,
+    "comparison_executed": true,
+    "published": true,
     "transport": false,
     "learning": false,
     "generalized_recovery": false,
@@ -2952,6 +2952,102 @@
     "normalization_expanded": false,
     "full_design_complete": false,
     "policy_promoted": false,
-    "stop_condition": "Publish the bounded source-bound planner comparison; no automatic continuation."
+    "stop_condition": "Publish the bounded source-bound planner comparison; no automatic continuation.",
+    "experiment_revision": "4be809163b93a9cb5a0408a34bc9fff68dfb2816",
+    "preregistration_revision": "a7e5d00b38648147a9bbcc0afa6a2adc7b6c2e56",
+    "documentation": "reviews/pressure-guided-planning-v1/README.md",
+    "audit_command": "uv run --no-project python -m validation_lab.planning_comparison --audit-only BUNDLE",
+    "audit_status": "PASS",
+    "primary_closed_runs": 2184,
+    "supplementary_closed_runs": 144,
+    "identical_state_samples": 444,
+    "identical_state_queries": 6714,
+    "closed_planner_queries": 6884,
+    "visited_closures_audited": 117179,
+    "actual_operation_results": {
+      "PASS": 7392
+    },
+    "harness_failures": 0,
+    "reference_failures": 0,
+    "closed_search_statuses": {
+      "COMPLETE_SEARCH": 3784,
+      "SEARCH_EXHAUSTED": 3100
+    },
+    "closed_search_bounds": {
+      "attempts": 2804,
+      "wall_ns": 296
+    },
+    "complete_goal_success_not_implied_by_harness_pass": true,
+    "production_model_imports_evaluator": false,
+    "shared_search": "explicit-stack anytime DFS; no pruning or transpositions; best complete STOP continuation",
+    "objective": "integrated external loss over ticks 0..15",
+    "secondary": "terminal certified loss, operation work, requests, lexicographic complete sequence",
+    "hypothetical_tokens": "prediction only; execution resolves the first operation against exact current public frontier",
+    "suffix": "in-memory only, observed binding plus full remaining-plan validation; no durable commitment",
+    "supported_channels": [
+      "derive",
+      "monitor"
+    ],
+    "unsupported_channels": [
+      "observe/probe",
+      "act",
+      "expand",
+      "retain",
+      "transport"
+    ],
+    "measurement_elapsed_ns": 2044637422055,
+    "audit_elapsed_ns": 1807854413444,
+    "new_confirmation_at_64_attempts": {
+      "parent_budget_cells": 24,
+      "mean_episode_gap": {
+        "B0": 9.208333333333334,
+        "B3_normalized_both": 12.5,
+        "PLAN_neutral": 0.5,
+        "PLAN_B0_order": 0.8333333333333334,
+        "PLAN_pressure_order": 0.875
+      },
+      "pressure_vs_neutral": {
+        "favorable": 0,
+        "neutral": 21,
+        "unfavorable": 3
+      },
+      "pressure_vs_B0_order": {
+        "favorable": 1,
+        "neutral": 22,
+        "unfavorable": 1
+      }
+    },
+    "conclusion": "Explicit planning improves the tested direct queues with enough search; pressure guidance does not justify its overhead against neutral ordering on this cohort. No policy promoted.",
+    "regressions": {
+      "applicable_tests": 252,
+      "applicable_revision": "a7e5d00b38648147a9bbcc0afa6a2adc7b6c2e56",
+      "numerical_checks": 15,
+      "audit_followup_tests": 3,
+      "audit_followup_revision": "4be809163b93a9cb5a0408a34bc9fff68dfb2816",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "unique_test_count_not_sum_of_repeated_suites": true,
+      "full_default_rerun": false,
+      "native_rerun": false,
+      "exact_omissions": "regressions/omissions.json inside review archive"
+    },
+    "mutants_detected": [
+      "free-unfinished-completion",
+      "omitted-monitor-cost",
+      "omitted-budget-state",
+      "pressure-incumbent"
+    ],
+    "archived_prior_review_files": 21,
+    "source_files_verified": 123,
+    "statistical_generalization": false,
+    "scale_claim": false,
+    "archive": "reviews/pressure-guided-planning-v1/review.tar.xz",
+    "archive_descriptor": "reviews/pressure-guided-planning-v1/ARCHIVE.json",
+    "archive_sha256": "033f8b8ba2fd33a41360302a46c0280984a47332211eddf36252587d10c1f388",
+    "archive_bytes": 83658440,
+    "archive_files_verified": 18558,
+    "package_integrity_verified": true,
+    "changed_archive_rejected": true
   }
 }

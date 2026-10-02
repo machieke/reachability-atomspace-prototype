@@ -33,23 +33,39 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: shared planning with pressure ordering
+### Completed bounded milestone: shared planning with pressure ordering
 
 The decision-value publication at `2dfe184` is closed and preserved. This new
 increment separates explicit sequence planning from pressure's contribution to
 search order. Detailed preregistration: `reviews/pressure-guided-planning-v1/PROTOCOL.md`.
 
-1. Implement a detached production static model and one explicit-stack anytime
-   DFS, with neutral, frozen B0 and frozen normalized-both ordering only.
-2. Verify independent model/transition/loss parity, complete optimal witnesses,
-   finite-cap feasible continuations, hard gates, suffix binding and four mutants.
-3. Commit twelve new parent structures, full old diagnostic cohort, semantic
-   budgets, attempt ladder, sampling, ties, auxiliary caps and policy-free wall
-   calibration before policy measurement.
-4. Run common-state and actual certified closed-loop comparisons, preserving
-   direct controls and charging all model, ranker and authority computation.
-5. Audit, analyze favorable/neutral/unfavorable results, publish one source-bound
-   review and reproducible command, then stop. No deferred capability is complete.
+1. Implemented the detached production static model and one explicit-stack anytime
+   DFS, with neutral, frozen B0 and frozen normalized-both child ordering only.
+2. Verified independent model/transition/loss parity, complete-search witnesses,
+   feasible finite-cap plans, hard gates, suffix binding and four detected mutants.
+3. Committed twelve new parents, the full old diagnostic cohort, budgets, sampling,
+   ties, auxiliary caps and policy-free wall calibration before measurements.
+4. Executed and audited 2,184 primary and 144 supplementary closed runs plus
+   444 common states / 6,714 queries at source `4be8091`. Replay checks 117,179
+   visited STOP closures and 7,392 actual operations; every operation returns PASS.
+   Open goals and search exhaustion remain explicit, not certified success.
+5. Published the source-bound review under `reviews/pressure-guided-planning-v1/`,
+   with full source, inputs, search records, journals, cost categories, test logs,
+   verifier and an audited fresh-directory reproduction command.
+
+The 252 applicable regressions and 15 numerical checks pass at `a7e5d00`.
+Three follow-up audit/wiring tests pass at `4be8091`; this pre-measurement change
+alters audit binding/reporting only, with identical model/search/controller and
+cohort bytes. Full default/native suites were not rerun; exact omissions are
+archived. No historical full-suite count is reused as new evidence.
+
+At 64 attempts on the new parents, mean episode gap is 0.500 for neutral ordering,
+0.833 for B0 ordering and 0.875 for pressure ordering, versus 9.208 for direct B0.
+Pressure has favorable, neutral and unfavorable cases, but higher overhead and
+no advantage over neutral under the supplementary nominal wall caps. The planner
+benefit is not credited to pressure. No policy is promoted. This increment is
+complete and stops here; transport/M12, learning, normalization expansion, native
+PLN scheduling, generalized recovery and full-design/scale claims remain deferred.
 
 ### Completed bounded milestone: independent decision-value validation
 

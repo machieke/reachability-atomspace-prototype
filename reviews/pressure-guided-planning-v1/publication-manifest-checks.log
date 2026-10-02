@@ -1,0 +1,7 @@
+test_pinned_design_inputs_match (tests.test_manifest.ManifestTests.test_pinned_design_inputs_match) ... ok
+test_runtime_does_not_import_evaluator (tests.test_manifest.ManifestTests.test_runtime_does_not_import_evaluator) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.171s
+
+OK
