@@ -33,7 +33,30 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Immediate priority: representation-invariant pressure projection
+### Immediate priority: independent bounded decision-value validation
+
+Preserve runtime `3e8fd7b`, projection `8542ad5` and both published reviews. The
+projection milestone is closed. This evaluator-only increment tests unchanged
+B0 and four normalized B3 placements against an independent exact reference;
+no policy tuning or additional normalization is authorized.
+
+1. Commit the deterministic public task contract, 48-parent inventory, 18 paired
+   diagnostics, two budgets, development/confirmation partitions, reference
+   bounds, common-state sampling and tie/witness rules before policy measurement.
+2. Independently encode DP and complete enumeration; cross-check Q/V and full
+   optimal sets, then replay reference witnesses through certified authority.
+3. Run common-state ranking and actual closed-loop comparisons. Keep decision
+   regret separate from episode gap, external loss separate from monitored relief,
+   and offline reference/audit costs separate from controller costs.
+4. Run applicable regressions and publish one source-bound comparison with full
+   traces, journals, labels, costs, failures, omitted tests and neutral/unfavorable
+   outcomes. Stop. No policy promotion, search heuristic, transport, PLN scheduling,
+   recovery expansion, caching, scale or duration changes.
+
+Protocol: `reviews/decision-value-v1/PROTOCOL.md`; inventory and reference-only
+feasibility are adjacent. Status: implementation and pre-measurement validation.
+
+### Completed bounded milestone: representation-invariant pressure projection
 
 The frozen-comparison milestone is closed at `3e8fd7b`; its published review,
 original benchmark and recorded outcomes remain unchanged. The next bounded

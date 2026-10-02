@@ -1,0 +1,7065 @@
+{
+  "bounds": {
+    "atoms": 6,
+    "enumeration_nodes": 100000,
+    "goals": 3,
+    "horizon": 16,
+    "memory_bytes": 16777216,
+    "requests": 8,
+    "states": 4096,
+    "transitions": 32768
+  },
+  "budgets": [
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "mode": "matched-task-work",
+      "name": "requests-4-work-4"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "mode": "matched-task-work",
+      "name": "requests-8-work-12"
+    }
+  ],
+  "common_query_budget": "Full shared auxiliary compute and wall budgets per query; remaining semantic budgets after the public prefix. Discovery charged equally to each query.",
+  "objective": "Integrated external unresolved loss, ticks 0..15; one tick per request, costs are not durations.",
+  "partition": "Parent indices 0..4 development, 5..7 locked confirmation; no tuning on either.",
+  "policies": [
+    "B0",
+    "B3-normalized-both",
+    "B3-normalized-route",
+    "B3-normalized-queue",
+    "B3-normalized-neither"
+  ],
+  "rotation": "Policy order rotated left by cell index modulo five.",
+  "sampling": "Root plus lexicographically first DP-reachable state at each tick 1,2,3 with at least two non-STOP actions; siblings map parent prefixes.",
+  "schema": "decision-validation/v1",
+  "scope": "Deterministic permanent supports, no future changes/probes/commitments, public physical assignment; full model supplied equally on public task_contract.",
+  "secondary": "Witness selection only: terminal certified loss, operation work, requests, lexicographic action sequence.",
+  "seeds": [
+    0
+  ],
+  "statistical_claim": "Engineering cohort, no power/CI claim; siblings excluded from parent headline; timings supplementary single runs.",
+  "stop": "Voluntary termination; no subsequent execution during tail. No wait-and-resume capability.",
+  "tasks": [
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-0",
+        "costs": {
+          "r0": 2
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "or-0"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-1",
+        "costs": {
+          "r0": 1,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "or-1"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-2",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-2",
+        "costs": {
+          "r0": 1,
+          "r1": 3
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "or-2"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-3",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-3",
+        "costs": {
+          "r0": 3,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "or-3"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-4",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-4",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "OR": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "or-4"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-5",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-5",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 4
+        },
+        "goals": [
+          {
+            "condition": {
+              "OR": [
+                {
+                  "AND": [
+                    2,
+                    3
+                  ]
+                },
+                4
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "or-5"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-6",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1,
+          "r3": 2
+        },
+        "goals": [
+          {
+            "condition": {
+              "OR": [
+                3,
+                4
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 5,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "or-6"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-7",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-7",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 3,
+          "r3": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "OR": [
+                {
+                  "AND": [
+                    2,
+                    3
+                  ]
+                },
+                4
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 2,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 5,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 2
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "or-7"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:and-0",
+        "costs": {
+          "r0": 1,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "and-0"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1,
+          2
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:and-1",
+        "costs": {
+          "r0": 1,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "and-1"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-2",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:and-2",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3,
+                4
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "and-2"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-3",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:and-3",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "and-3"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-4",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:and-4",
+        "costs": {
+          "r0": 1,
+          "r1": 2,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                {
+                  "OR": [
+                    3,
+                    4
+                  ]
+                }
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "and-4"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-5",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:and-5",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1,
+          "r3": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                4,
+                5
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "and-5"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          -3,
+          4
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [
+          [
+            -3
+          ]
+        ],
+        "context_id": "decision:and-6",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "and-6"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-7",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5",
+            "p6"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            },
+            {
+              "conclusion": 6,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r4"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:and-7",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1,
+          "r3": 1,
+          "r4": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                3,
+                4,
+                5
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 6,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 2
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "and-7"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-0",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": 3,
+            "goal_id": "g0",
+            "loss": 2,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "shared-0"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-1",
+        "costs": {
+          "r0": 1,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 2,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g1",
+            "loss": 3,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "shared-1"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-2",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-2",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1,
+          "r3": 2
+        },
+        "goals": [
+          {
+            "condition": {
+              "OR": [
+                3,
+                5
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "shared-2"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-3",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-3",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 4,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "shared-3"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-4",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-4",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": {
+              "OR": [
+                3,
+                4
+              ]
+            },
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "shared-4"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-5",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2,
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-5",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1,
+          "r3": 1
+        },
+        "goals": [
+          {
+            "condition": 4,
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 5,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "shared-5"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-6",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1,
+          "r3": 1
+        },
+        "goals": [
+          {
+            "condition": 3,
+            "goal_id": "g0",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 3,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 5,
+            "goal_id": "g2",
+            "loss": 2,
+            "source_id": "obligation:g2",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "shared-6"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-7",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2,
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-7",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1,
+          "r3": 4
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 2,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 4,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "shared-7"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-0",
+        "costs": {
+          "r0": 4,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "depth-0"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-1",
+        "costs": {
+          "r0": 4,
+          "r1": 1,
+          "r2": 1,
+          "r3": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "depth-1"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-2",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                4
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r4"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-2",
+        "costs": {
+          "r0": 5,
+          "r1": 1,
+          "r2": 1,
+          "r3": 1,
+          "r4": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 5,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "depth-2"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-3",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                4
+              ],
+              "revision": "1",
+              "rule_id": "r4"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-3",
+        "costs": {
+          "r0": 3,
+          "r1": 3,
+          "r2": 1,
+          "r3": 1,
+          "r4": 1
+        },
+        "goals": [
+          {
+            "condition": 5,
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "depth-3"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-4",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-4",
+        "costs": {
+          "r0": 6,
+          "r1": 1,
+          "r2": 1,
+          "r3": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "depth-4"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-5",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-5",
+        "costs": {
+          "r0": 3,
+          "r1": 2,
+          "r2": 2
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "depth-5"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-6",
+        "costs": {
+          "r0": 4,
+          "r1": 1,
+          "r2": 1,
+          "r3": 2
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 2,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 3
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "depth-6"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-7",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-7",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1,
+          "r3": 5
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 3,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 2
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "depth-7"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-0",
+        "costs": {
+          "r0": 4,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 6,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "budget-0"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-1",
+        "costs": {
+          "r0": 4,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "g1",
+            "loss": 6,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "budget-1"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-2",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-2",
+        "costs": {
+          "r0": 4,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": 3,
+            "goal_id": "g0",
+            "loss": 6,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "budget-2"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-3",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-3",
+        "costs": {
+          "r0": 2,
+          "r1": 2,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 6,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "budget-3"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-4",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-4",
+        "costs": {
+          "r0": 2,
+          "r1": 2,
+          "r2": 2
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 2,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "g1",
+            "loss": 3,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g2",
+            "loss": 5,
+            "source_id": "obligation:g2",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "budget-4"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-5",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                4
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r4"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-5",
+        "costs": {
+          "r0": 6,
+          "r1": 1,
+          "r2": 1,
+          "r3": 1,
+          "r4": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 6,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 5,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "budget-5"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-6",
+        "costs": {
+          "r0": 3,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": 3,
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 3,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "budget-6"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-7",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-7",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1,
+          "r3": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3,
+                4
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 5,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "budget-7"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-0",
+        "costs": {
+          "r0": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "completion-0"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-1",
+        "costs": {
+          "r0": 1,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "completion-1"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-2",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-2",
+        "costs": {
+          "r0": 1,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 3
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "completion-2"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1,
+          2
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-3",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-3",
+        "costs": {
+          "r0": 1,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "completion-3"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-4",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-4",
+        "costs": {
+          "r0": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 2,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 2,
+            "goal_id": "g1",
+            "loss": 3,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "completion-4"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-5",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-5",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g2",
+            "loss": 1,
+            "source_id": "obligation:g2",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "completion-5"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1,
+          2,
+          3
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-6",
+        "costs": {
+          "r0": 1,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "completion-6"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-7",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r3"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-7",
+        "costs": {
+          "r0": 1,
+          "r1": 1,
+          "r2": 1,
+          "r3": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": {
+              "OR": [
+                2,
+                4
+              ]
+            },
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 5,
+            "goal_id": "g2",
+            "loss": 2,
+            "source_id": "obligation:g2",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": false,
+      "sibling_kind": null,
+      "task_id": "completion-7"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-1",
+        "costs": {
+          "z1": 1,
+          "z2": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "z1",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z2",
+        "derive/r1": "derive/z1",
+        "monitor/g0": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "or-1-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z4"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "z3"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-6",
+        "costs": {
+          "z1": 2,
+          "z2": 1,
+          "z3": 1,
+          "z4": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "OR": [
+                3,
+                4
+              ]
+            },
+            "goal_id": "z2",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 5,
+            "goal_id": "z1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z4",
+        "derive/r1": "derive/z3",
+        "derive/r2": "derive/z2",
+        "derive/r3": "derive/z1",
+        "monitor/g0": "monitor/z2",
+        "monitor/g1": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "or-6-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1,
+          2
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:and-1",
+        "costs": {
+          "z1": 1,
+          "z2": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "z1",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z2",
+        "derive/r1": "derive/z1",
+        "monitor/g0": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "and-1-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          -3,
+          4
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z3"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [
+          [
+            -3
+          ]
+        ],
+        "context_id": "decision:and-6",
+        "costs": {
+          "z1": 1,
+          "z2": 1,
+          "z3": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "z2",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "z1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z3",
+        "derive/r1": "derive/z2",
+        "derive/r2": "derive/z1",
+        "monitor/g0": "monitor/z2",
+        "monitor/g1": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "and-6-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-1",
+        "costs": {
+          "z1": 1,
+          "z2": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "z2",
+            "loss": 2,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "z1",
+            "loss": 3,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z2",
+        "derive/r1": "derive/z1",
+        "monitor/g0": "monitor/z2",
+        "monitor/g1": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "shared-1-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z4"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "z3"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 5,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-6",
+        "costs": {
+          "z1": 1,
+          "z2": 1,
+          "z3": 1,
+          "z4": 1
+        },
+        "goals": [
+          {
+            "condition": 3,
+            "goal_id": "z3",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "z2",
+            "loss": 3,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 5,
+            "goal_id": "z1",
+            "loss": 2,
+            "source_id": "obligation:g2",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z3": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z4",
+        "derive/r1": "derive/z3",
+        "derive/r2": "derive/z2",
+        "derive/r3": "derive/z1",
+        "monitor/g0": "monitor/z3",
+        "monitor/g1": "monitor/z2",
+        "monitor/g2": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "shared-6-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z4"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z3"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-1",
+        "costs": {
+          "z1": 1,
+          "z2": 1,
+          "z3": 1,
+          "z4": 4
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "z2",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "z1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z4",
+        "derive/r1": "derive/z3",
+        "derive/r2": "derive/z2",
+        "derive/r3": "derive/z1",
+        "monitor/g0": "monitor/z2",
+        "monitor/g1": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "depth-1-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z4"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z3"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-6",
+        "costs": {
+          "z1": 2,
+          "z2": 1,
+          "z3": 1,
+          "z4": 4
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "z2",
+            "loss": 2,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "z1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 3
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z4",
+        "derive/r1": "derive/z3",
+        "derive/r2": "derive/z2",
+        "derive/r3": "derive/z1",
+        "monitor/g0": "monitor/z2",
+        "monitor/g1": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "depth-6-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-1",
+        "costs": {
+          "z1": 1,
+          "z2": 4
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "z2",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "z1",
+            "loss": 6,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z2",
+        "derive/r1": "derive/z1",
+        "monitor/g0": "monitor/z2",
+        "monitor/g1": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "budget-1-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z3"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-6",
+        "costs": {
+          "z1": 1,
+          "z2": 1,
+          "z3": 3
+        },
+        "goals": [
+          {
+            "condition": 3,
+            "goal_id": "z2",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "z1",
+            "loss": 3,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z3",
+        "derive/r1": "derive/z2",
+        "derive/r2": "derive/z1",
+        "monitor/g0": "monitor/z2",
+        "monitor/g1": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "budget-6-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-1",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-1",
+        "costs": {
+          "z1": 1,
+          "z2": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "z2",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "z1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z2",
+        "derive/r1": "derive/z1",
+        "monitor/g0": "monitor/z2",
+        "monitor/g1": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "completion-1-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1,
+          2,
+          3
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-6",
+      "partition": "confirmation",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z2"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "z1"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-6",
+        "costs": {
+          "z1": 1,
+          "z2": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "z2",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "z1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "z1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "z2": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {
+        "derive/r0": "derive/z2",
+        "derive/r1": "derive/z1",
+        "monitor/g0": "monitor/z2",
+        "monitor/g1": "monitor/z1"
+      },
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "identifiers",
+      "task_id": "completion-6-permuted"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2
+        ]
+      },
+      "family": "or",
+      "parent_id": "or-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "dominated-r0"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:or-0",
+        "costs": {
+          "dominated-r0": 3,
+          "r0": 2
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "dominated-option",
+      "task_id": "or-0-dominated"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "and",
+      "parent_id": "and-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "dominated-r0"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:and-0",
+        "costs": {
+          "dominated-r0": 2,
+          "r0": 1,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": {
+              "AND": [
+                2,
+                3
+              ]
+            },
+            "goal_id": "g0",
+            "loss": 3,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "dominated-option",
+      "task_id": "and-0-dominated"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "family": "shared",
+      "parent_id": "shared-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 4,
+              "premises": [
+                2
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "dominated-r0"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:shared-0",
+        "costs": {
+          "dominated-r0": 2,
+          "r0": 1,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": 3,
+            "goal_id": "g0",
+            "loss": 2,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 4,
+            "goal_id": "g1",
+            "loss": 2,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "dominated-option",
+      "task_id": "shared-0-dominated"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "depth",
+      "parent_id": "depth-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                3
+              ],
+              "revision": "1",
+              "rule_id": "r2"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "dominated-r0"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:depth-0",
+        "costs": {
+          "dominated-r0": 5,
+          "r0": 4,
+          "r1": 1,
+          "r2": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 4,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "dominated-option",
+      "task_id": "depth-0-dominated"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2,
+          3
+        ]
+      },
+      "family": "budget",
+      "parent_id": "budget-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 3,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r1"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "dominated-r0"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:budget-0",
+        "costs": {
+          "dominated-r0": 5,
+          "r0": 4,
+          "r1": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 6,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          },
+          {
+            "condition": 3,
+            "goal_id": "g1",
+            "loss": 1,
+            "source_id": "obligation:g1",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          },
+          "g1": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "dominated-option",
+      "task_id": "budget-0-dominated"
+    },
+    {
+      "contract": {
+        "commitments": "none",
+        "future_changes": "none",
+        "horizon": 16,
+        "initial": [
+          1
+        ],
+        "monitor_response": "declared physical truth",
+        "probe_responses": "no probes",
+        "proof_permissions": "proposition and joint consistency only",
+        "support_validity": "permanent",
+        "truth": [
+          1,
+          2
+        ]
+      },
+      "family": "completion",
+      "parent_id": "completion-0",
+      "partition": "development",
+      "public": {
+        "admission": {
+          "atoms": [
+            "p1",
+            "p2"
+          ],
+          "rules": [
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "r0"
+            },
+            {
+              "conclusion": 2,
+              "premises": [
+                1
+              ],
+              "revision": "1",
+              "rule_id": "dominated-r0"
+            }
+          ],
+          "schema": "admission-initial/v1"
+        },
+        "clauses": [],
+        "context_id": "decision:completion-0",
+        "costs": {
+          "dominated-r0": 2,
+          "r0": 1
+        },
+        "goals": [
+          {
+            "condition": 2,
+            "goal_id": "g0",
+            "loss": 1,
+            "source_id": "obligation:g0",
+            "unit": "verified-result"
+          }
+        ],
+        "priorities": {
+          "g0": {
+            "commitment": 1.0,
+            "revision": "priority-v1",
+            "unit": "priority/verified-result",
+            "urgency": 1.0,
+            "weight": 1
+          }
+        },
+        "probes": [],
+        "schema": "pressure-work-public/v1"
+      },
+      "rename": {},
+      "schema": "decision-task/v1",
+      "sibling": true,
+      "sibling_kind": "dominated-option",
+      "task_id": "completion-0-dominated"
+    }
+  ],
+  "tie_rule": "Frozen rank tuple then candidate ID; primary near-tie tolerance 2*pressure.error_bound_l1+1e-12 (B0: 1e-12), diagnostic only; reference uses complete exact primary-optimal set.",
+  "witness_selection": "Canonical initial optimal witness in every exact cell; all initial Q witnesses for six parent index-0 controls at both budgets, deduplicated by full action sequence."
+}
