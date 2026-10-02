@@ -2904,5 +2904,54 @@
       "package_integrity_verified": true,
       "changed_archive_rejected": true
     }
+  },
+  "experimental_pressure_guided_planning": {
+    "status": "preregistered-implementation-before-measurement",
+    "schema": "pressure-guided-planning/v1",
+    "previous_publication": "2dfe1846c1c870d7daa9268b9e700289fbd34b8d",
+    "frozen_runtime": "3e8fd7be56362ed21944636bbe505b6a4a7aac6f",
+    "frozen_projection": "8542ad538649fd0b967c7047057dd5cebf831be8",
+    "corrected_decision_harness": "7bf11d5282542c870dfd270613db2b46fc031321",
+    "protocol": "reviews/pressure-guided-planning-v1/PROTOCOL.md",
+    "command": "uv run --no-project python -m validation_lab.planning_comparison --output artifacts/planning-review-fresh",
+    "runtime_modules": [
+      "experimental_planning/model.py",
+      "experimental_planning/search.py",
+      "experimental_planning/controller.py"
+    ],
+    "arms": [
+      "PLAN-neutral",
+      "PLAN-B0-order",
+      "PLAN-pressure-order"
+    ],
+    "direct_controls": [
+      "B0",
+      "B3-normalized-both"
+    ],
+    "attempt_caps": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "supplementary_wall_caps_ns": [
+      5000000,
+      21000000
+    ],
+    "old_inspected_tasks": 66,
+    "new_confirmation_parents": 12,
+    "primary_closed_runs_declared": 2184,
+    "supplementary_closed_runs_declared": 144,
+    "tests_before_measurement": 10,
+    "comparison_executed": false,
+    "published": false,
+    "transport": false,
+    "learning": false,
+    "generalized_recovery": false,
+    "native_pln_scheduling": false,
+    "normalization_expanded": false,
+    "full_design_complete": false,
+    "policy_promoted": false,
+    "stop_condition": "Publish the bounded source-bound planner comparison; no automatic continuation."
   }
 }

@@ -1,0 +1,3870 @@
+{
+  "cells": [
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 277997,
+        "leaves": 15,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 15,
+        "optimal_actions": [
+          "derive/r0"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 6,
+            "value": 16,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "STOP"
+            ]
+          },
+          "derive/r1": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 6,
+            "value": 17,
+            "witness": [
+              "derive/r1",
+              "derive/r0",
+              "derive/r2",
+              "STOP"
+            ]
+          },
+          "derive/r3": {
+            "operation_work": 4,
+            "requests": 2,
+            "terminal_certified": 6,
+            "value": 26,
+            "witness": [
+              "derive/r3",
+              "derive/r4",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 16
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 759531,
+        "memory_accounting_bytes": 74764,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 4,
+          "optimal_actions": [
+            "derive/r0"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 6,
+              "value": 16,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "STOP"
+              ]
+            },
+            "derive/r1": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 6,
+              "value": 17,
+              "witness": [
+                "derive/r1",
+                "derive/r0",
+                "derive/r2",
+                "STOP"
+              ]
+            },
+            "derive/r3": {
+              "operation_work": 4,
+              "requests": 2,
+              "terminal_certified": 6,
+              "value": 26,
+              "witness": [
+                "derive/r3",
+                "derive/r4",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 3,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 6,
+          "value": 16,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r2",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 10,
+        "status": "EXACT",
+        "transitions": 12,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-or-0"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 5597866,
+        "leaves": 543,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 543,
+        "optimal_actions": [
+          "derive/r3"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 6,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 16,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r1": {
+            "operation_work": 6,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 17,
+            "witness": [
+              "derive/r1",
+              "derive/r0",
+              "derive/r2",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r3": {
+            "operation_work": 7,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 13,
+            "witness": [
+              "derive/r3",
+              "derive/r4",
+              "derive/r0",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 13
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 3083774,
+        "memory_accounting_bytes": 305764,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 7,
+          "optimal_actions": [
+            "derive/r3"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 6,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 16,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r1": {
+              "operation_work": 6,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 17,
+              "witness": [
+                "derive/r1",
+                "derive/r0",
+                "derive/r2",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r3": {
+              "operation_work": 7,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 13,
+              "witness": [
+                "derive/r3",
+                "derive/r4",
+                "derive/r0",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 5,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 13,
+          "witness": [
+            "derive/r3",
+            "derive/r4",
+            "derive/r0",
+            "monitor/g0",
+            "monitor/g1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 36,
+        "status": "EXACT",
+        "transitions": 70,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-or-0"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 203405,
+        "leaves": 12,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 12,
+        "optimal_actions": [
+          "derive/r0",
+          "derive/r2"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 4,
+            "value": 68,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "monitor/g0",
+              "STOP"
+            ]
+          },
+          "derive/r2": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 4,
+            "value": 68,
+            "witness": [
+              "derive/r2",
+              "derive/r3",
+              "monitor/g0",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 68
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 463205,
+        "memory_accounting_bytes": 66904,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 4,
+          "optimal_actions": [
+            "derive/r0",
+            "derive/r2"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 4,
+              "value": 68,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "monitor/g0",
+                "STOP"
+              ]
+            },
+            "derive/r2": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 4,
+              "value": 68,
+              "witness": [
+                "derive/r2",
+                "derive/r3",
+                "monitor/g0",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 3,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 4,
+          "value": 68,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "monitor/g0",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 9,
+        "status": "EXACT",
+        "transitions": 10,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-or-1"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 1144788,
+        "leaves": 101,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 101,
+        "optimal_actions": [
+          "derive/r0",
+          "derive/r2"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 9,
+            "requests": 7,
+            "terminal_certified": 0,
+            "value": 24,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "derive/r3",
+              "derive/r4",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r2": {
+            "operation_work": 9,
+            "requests": 7,
+            "terminal_certified": 0,
+            "value": 24,
+            "witness": [
+              "derive/r2",
+              "derive/r3",
+              "derive/r0",
+              "derive/r1",
+              "derive/r4",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 24
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 1025778,
+        "memory_accounting_bytes": 147272,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 9,
+          "optimal_actions": [
+            "derive/r0",
+            "derive/r2"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 9,
+              "requests": 7,
+              "terminal_certified": 0,
+              "value": 24,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "derive/r3",
+                "derive/r4",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r2": {
+              "operation_work": 9,
+              "requests": 7,
+              "terminal_certified": 0,
+              "value": 24,
+              "witness": [
+                "derive/r2",
+                "derive/r3",
+                "derive/r0",
+                "derive/r1",
+                "derive/r4",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 7,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 24,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r2",
+            "derive/r3",
+            "derive/r4",
+            "monitor/g0",
+            "monitor/g1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 18,
+        "status": "EXACT",
+        "transitions": 27,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-or-1"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 385542,
+        "leaves": 23,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 23,
+        "optimal_actions": [
+          "derive/r0",
+          "derive/r2"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 2,
+            "requests": 2,
+            "terminal_certified": 5,
+            "value": 81,
+            "witness": [
+              "derive/r0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r2": {
+            "operation_work": 3,
+            "requests": 2,
+            "terminal_certified": 5,
+            "value": 81,
+            "witness": [
+              "derive/r2",
+              "monitor/g1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 81
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 693285,
+        "memory_accounting_bytes": 101136,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 2,
+          "optimal_actions": [
+            "derive/r0",
+            "derive/r2"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 2,
+              "requests": 2,
+              "terminal_certified": 5,
+              "value": 81,
+              "witness": [
+                "derive/r0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r2": {
+              "operation_work": 3,
+              "requests": 2,
+              "terminal_certified": 5,
+              "value": 81,
+              "witness": [
+                "derive/r2",
+                "monitor/g1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 2,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 5,
+          "value": 81,
+          "witness": [
+            "derive/r0",
+            "monitor/g1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 13,
+        "status": "EXACT",
+        "transitions": 19,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-and-0"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 1165869,
+        "leaves": 107,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 107,
+        "optimal_actions": [
+          "derive/r0",
+          "derive/r2"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 7,
+            "requests": 6,
+            "terminal_certified": 0,
+            "value": 21,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "derive/r3",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r2": {
+            "operation_work": 7,
+            "requests": 6,
+            "terminal_certified": 0,
+            "value": 21,
+            "witness": [
+              "derive/r2",
+              "derive/r0",
+              "derive/r1",
+              "derive/r3",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 21
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 1051402,
+        "memory_accounting_bytes": 159520,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 7,
+          "optimal_actions": [
+            "derive/r0",
+            "derive/r2"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 7,
+              "requests": 6,
+              "terminal_certified": 0,
+              "value": 21,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "derive/r3",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r2": {
+              "operation_work": 7,
+              "requests": 6,
+              "terminal_certified": 0,
+              "value": 21,
+              "witness": [
+                "derive/r2",
+                "derive/r0",
+                "derive/r1",
+                "derive/r3",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 6,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 21,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r2",
+            "derive/r3",
+            "monitor/g0",
+            "monitor/g1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 19,
+        "status": "EXACT",
+        "transitions": 33,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-and-0"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 297165,
+        "leaves": 25,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 25,
+        "optimal_actions": [
+          "derive/r0",
+          "derive/r1",
+          "derive/r3"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 6,
+            "value": 14,
+            "witness": [
+              "derive/r0",
+              "derive/r3",
+              "derive/r1",
+              "STOP"
+            ]
+          },
+          "derive/r1": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 6,
+            "value": 14,
+            "witness": [
+              "derive/r1",
+              "derive/r0",
+              "derive/r3",
+              "STOP"
+            ]
+          },
+          "derive/r3": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 6,
+            "value": 14,
+            "witness": [
+              "derive/r3",
+              "derive/r0",
+              "derive/r1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 14
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 600237,
+        "memory_accounting_bytes": 93808,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 4,
+          "optimal_actions": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r3"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 6,
+              "value": 14,
+              "witness": [
+                "derive/r0",
+                "derive/r3",
+                "derive/r1",
+                "STOP"
+              ]
+            },
+            "derive/r1": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 6,
+              "value": 14,
+              "witness": [
+                "derive/r1",
+                "derive/r0",
+                "derive/r3",
+                "STOP"
+              ]
+            },
+            "derive/r3": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 6,
+              "value": 14,
+              "witness": [
+                "derive/r3",
+                "derive/r0",
+                "derive/r1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 3,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 6,
+          "value": 14,
+          "witness": [
+            "derive/r0",
+            "derive/r3",
+            "derive/r1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 12,
+        "status": "EXACT",
+        "transitions": 18,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-and-1"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 756906,
+        "leaves": 65,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 65,
+        "optimal_actions": [
+          "derive/r0",
+          "derive/r1",
+          "derive/r3"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 6,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 14,
+            "witness": [
+              "derive/r0",
+              "derive/r3",
+              "derive/r1",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r1": {
+            "operation_work": 6,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 14,
+            "witness": [
+              "derive/r1",
+              "derive/r0",
+              "derive/r3",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r3": {
+            "operation_work": 6,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 14,
+            "witness": [
+              "derive/r3",
+              "derive/r0",
+              "derive/r1",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 14
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 788229,
+        "memory_accounting_bytes": 123508,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 6,
+          "optimal_actions": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r3"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 6,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 14,
+              "witness": [
+                "derive/r0",
+                "derive/r3",
+                "derive/r1",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r1": {
+              "operation_work": 6,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 14,
+              "witness": [
+                "derive/r1",
+                "derive/r0",
+                "derive/r3",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r3": {
+              "operation_work": 6,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 14,
+              "witness": [
+                "derive/r3",
+                "derive/r0",
+                "derive/r1",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 5,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 14,
+          "witness": [
+            "derive/r0",
+            "derive/r3",
+            "derive/r1",
+            "monitor/g0",
+            "monitor/g1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 15,
+        "status": "EXACT",
+        "transitions": 25,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-and-1"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 180244,
+        "leaves": 9,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 9,
+        "optimal_actions": [
+          "derive/r0",
+          "derive/r1"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 8,
+            "value": 128,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 3,
+            "requests": 3,
+            "terminal_certified": 7,
+            "value": 114,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "monitor/g2",
+              "STOP"
+            ]
+          },
+          "derive/r1": {
+            "operation_work": 3,
+            "requests": 3,
+            "terminal_certified": 7,
+            "value": 114,
+            "witness": [
+              "derive/r1",
+              "derive/r0",
+              "monitor/g2",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 114
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 291248,
+        "memory_accounting_bytes": 44088,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 3,
+          "optimal_actions": [
+            "derive/r0",
+            "derive/r1"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 8,
+              "value": 128,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 3,
+              "requests": 3,
+              "terminal_certified": 7,
+              "value": 114,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "monitor/g2",
+                "STOP"
+              ]
+            },
+            "derive/r1": {
+              "operation_work": 3,
+              "requests": 3,
+              "terminal_certified": 7,
+              "value": 114,
+              "witness": [
+                "derive/r1",
+                "derive/r0",
+                "monitor/g2",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 3,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 7,
+          "value": 114,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "monitor/g2",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 6,
+        "status": "EXACT",
+        "transitions": 6,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-shared-0"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 2078841,
+        "leaves": 225,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 225,
+        "optimal_actions": [
+          "derive/r0",
+          "derive/r1"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 8,
+            "value": 128,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 9,
+            "requests": 8,
+            "terminal_certified": 0,
+            "value": 33,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "derive/r3",
+              "derive/r4",
+              "monitor/g0",
+              "monitor/g1",
+              "monitor/g2",
+              "STOP"
+            ]
+          },
+          "derive/r1": {
+            "operation_work": 9,
+            "requests": 8,
+            "terminal_certified": 0,
+            "value": 33,
+            "witness": [
+              "derive/r1",
+              "derive/r0",
+              "derive/r2",
+              "derive/r3",
+              "derive/r4",
+              "monitor/g0",
+              "monitor/g1",
+              "monitor/g2",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 33
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 1535562,
+        "memory_accounting_bytes": 194132,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 9,
+          "optimal_actions": [
+            "derive/r0",
+            "derive/r1"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 8,
+              "value": 128,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 9,
+              "requests": 8,
+              "terminal_certified": 0,
+              "value": 33,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "derive/r3",
+                "derive/r4",
+                "monitor/g0",
+                "monitor/g1",
+                "monitor/g2",
+                "STOP"
+              ]
+            },
+            "derive/r1": {
+              "operation_work": 9,
+              "requests": 8,
+              "terminal_certified": 0,
+              "value": 33,
+              "witness": [
+                "derive/r1",
+                "derive/r0",
+                "derive/r2",
+                "derive/r3",
+                "derive/r4",
+                "monitor/g0",
+                "monitor/g1",
+                "monitor/g2",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 8,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 33,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r2",
+            "derive/r3",
+            "derive/r4",
+            "monitor/g0",
+            "monitor/g1",
+            "monitor/g2",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 23,
+        "status": "EXACT",
+        "transitions": 40,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-shared-0"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 294521,
+        "leaves": 20,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 20,
+        "optimal_actions": [
+          "derive/r4"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 7,
+            "value": 112,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 5,
+            "value": 84,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r4": {
+            "operation_work": 2,
+            "requests": 2,
+            "terminal_certified": 5,
+            "value": 82,
+            "witness": [
+              "derive/r4",
+              "monitor/g1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 82
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 722808,
+        "memory_accounting_bytes": 91696,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 2,
+          "optimal_actions": [
+            "derive/r4"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 7,
+              "value": 112,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 5,
+              "value": 84,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r4": {
+              "operation_work": 2,
+              "requests": 2,
+              "terminal_certified": 5,
+              "value": 82,
+              "witness": [
+                "derive/r4",
+                "monitor/g1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 2,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 5,
+          "value": 82,
+          "witness": [
+            "derive/r4",
+            "monitor/g1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 12,
+        "status": "EXACT",
+        "transitions": 16,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-shared-1"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 2176275,
+        "leaves": 196,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 196,
+        "optimal_actions": [
+          "derive/r0"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 7,
+            "value": 112,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 7,
+            "requests": 6,
+            "terminal_certified": 0,
+            "value": 24,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "derive/r3",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r4": {
+            "operation_work": 8,
+            "requests": 7,
+            "terminal_certified": 0,
+            "value": 27,
+            "witness": [
+              "derive/r4",
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "derive/r3",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 24
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 1761470,
+        "memory_accounting_bytes": 211496,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 7,
+          "optimal_actions": [
+            "derive/r0"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 7,
+              "value": 112,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 7,
+              "requests": 6,
+              "terminal_certified": 0,
+              "value": 24,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "derive/r3",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r4": {
+              "operation_work": 8,
+              "requests": 7,
+              "terminal_certified": 0,
+              "value": 27,
+              "witness": [
+                "derive/r4",
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "derive/r3",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 6,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 24,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r2",
+            "derive/r3",
+            "monitor/g0",
+            "monitor/g1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 25,
+        "status": "EXACT",
+        "transitions": 45,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-shared-1"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 173778,
+        "leaves": 11,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 11,
+        "optimal_actions": [
+          "derive/r0"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 4,
+            "requests": 4,
+            "terminal_certified": 6,
+            "value": 22,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "derive/r3",
+              "STOP"
+            ]
+          },
+          "derive/r4": {
+            "operation_work": 3,
+            "requests": 1,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "derive/r4",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 22
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 458759,
+        "memory_accounting_bytes": 66672,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 4,
+          "optimal_actions": [
+            "derive/r0"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 4,
+              "requests": 4,
+              "terminal_certified": 6,
+              "value": 22,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "derive/r3",
+                "STOP"
+              ]
+            },
+            "derive/r4": {
+              "operation_work": 3,
+              "requests": 1,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "derive/r4",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 4,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 6,
+          "value": 22,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r2",
+            "derive/r3",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 9,
+        "status": "EXACT",
+        "transitions": 10,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-depth-0"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 1967969,
+        "leaves": 258,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 258,
+        "optimal_actions": [
+          "derive/r4"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 9,
+            "requests": 6,
+            "terminal_certified": 0,
+            "value": 19,
+            "witness": [
+              "derive/r0",
+              "derive/r4",
+              "derive/r5",
+              "derive/r1",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r4": {
+            "operation_work": 9,
+            "requests": 6,
+            "terminal_certified": 0,
+            "value": 14,
+            "witness": [
+              "derive/r4",
+              "derive/r5",
+              "derive/r0",
+              "derive/r1",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 14
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 2206289,
+        "memory_accounting_bytes": 265772,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 9,
+          "optimal_actions": [
+            "derive/r4"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 9,
+              "requests": 6,
+              "terminal_certified": 0,
+              "value": 19,
+              "witness": [
+                "derive/r0",
+                "derive/r4",
+                "derive/r5",
+                "derive/r1",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r4": {
+              "operation_work": 9,
+              "requests": 6,
+              "terminal_certified": 0,
+              "value": 14,
+              "witness": [
+                "derive/r4",
+                "derive/r5",
+                "derive/r0",
+                "derive/r1",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 6,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 14,
+          "witness": [
+            "derive/r4",
+            "derive/r5",
+            "derive/r0",
+            "derive/r1",
+            "monitor/g0",
+            "monitor/g1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 32,
+        "status": "EXACT",
+        "transitions": 56,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-depth-0"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 237883,
+        "leaves": 15,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 15,
+        "optimal_actions": [
+          "derive/r2"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 4,
+            "requests": 2,
+            "terminal_certified": 6,
+            "value": 40,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "STOP"
+            ]
+          },
+          "derive/r2": {
+            "operation_work": 4,
+            "requests": 4,
+            "terminal_certified": 6,
+            "value": 20,
+            "witness": [
+              "derive/r2",
+              "derive/r3",
+              "derive/r4",
+              "derive/r5",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 20
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 607275,
+        "memory_accounting_bytes": 82288,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 4,
+          "optimal_actions": [
+            "derive/r2"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 4,
+              "requests": 2,
+              "terminal_certified": 6,
+              "value": 40,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "STOP"
+              ]
+            },
+            "derive/r2": {
+              "operation_work": 4,
+              "requests": 4,
+              "terminal_certified": 6,
+              "value": 20,
+              "witness": [
+                "derive/r2",
+                "derive/r3",
+                "derive/r4",
+                "derive/r5",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 4,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 6,
+          "value": 20,
+          "witness": [
+            "derive/r2",
+            "derive/r3",
+            "derive/r4",
+            "derive/r5",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 11,
+        "status": "EXACT",
+        "transitions": 13,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-depth-1"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 2693991,
+        "leaves": 258,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 258,
+        "optimal_actions": [
+          "derive/r0"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 6,
+            "value": 96,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 8,
+            "requests": 6,
+            "terminal_certified": 0,
+            "value": 16,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "derive/r3",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r2": {
+            "operation_work": 6,
+            "requests": 6,
+            "terminal_certified": 0,
+            "value": 20,
+            "witness": [
+              "derive/r2",
+              "derive/r3",
+              "derive/r4",
+              "derive/r5",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 16
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 2200049,
+        "memory_accounting_bytes": 265784,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 8,
+          "optimal_actions": [
+            "derive/r0"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 6,
+              "value": 96,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 8,
+              "requests": 6,
+              "terminal_certified": 0,
+              "value": 16,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "derive/r3",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r2": {
+              "operation_work": 6,
+              "requests": 6,
+              "terminal_certified": 0,
+              "value": 20,
+              "witness": [
+                "derive/r2",
+                "derive/r3",
+                "derive/r4",
+                "derive/r5",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 6,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 16,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r2",
+            "derive/r3",
+            "monitor/g0",
+            "monitor/g1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 32,
+        "status": "EXACT",
+        "transitions": 56,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-depth-1"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 83597,
+        "leaves": 8,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 8,
+        "optimal_actions": [
+          "derive/r1"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 9,
+            "value": 144,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 4,
+            "requests": 2,
+            "terminal_certified": 8,
+            "value": 129,
+            "witness": [
+              "derive/r0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r1": {
+            "operation_work": 3,
+            "requests": 3,
+            "terminal_certified": 7,
+            "value": 116,
+            "witness": [
+              "derive/r1",
+              "derive/r3",
+              "monitor/g2",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 116
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 290169,
+        "memory_accounting_bytes": 51116,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 3,
+          "optimal_actions": [
+            "derive/r1"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 9,
+              "value": 144,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 4,
+              "requests": 2,
+              "terminal_certified": 8,
+              "value": 129,
+              "witness": [
+                "derive/r0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r1": {
+              "operation_work": 3,
+              "requests": 3,
+              "terminal_certified": 7,
+              "value": 116,
+              "witness": [
+                "derive/r1",
+                "derive/r3",
+                "monitor/g2",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 3,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 7,
+          "value": 116,
+          "witness": [
+            "derive/r1",
+            "derive/r3",
+            "monitor/g2",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 7,
+        "status": "EXACT",
+        "transitions": 7,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-budget-0"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 1289523,
+        "leaves": 249,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 249,
+        "optimal_actions": [
+          "derive/r0"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 9,
+            "value": 144,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 10,
+            "requests": 7,
+            "terminal_certified": 0,
+            "value": 27,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "derive/r3",
+              "monitor/g0",
+              "monitor/g1",
+              "monitor/g2",
+              "STOP"
+            ]
+          },
+          "derive/r1": {
+            "operation_work": 10,
+            "requests": 7,
+            "terminal_certified": 0,
+            "value": 28,
+            "witness": [
+              "derive/r1",
+              "derive/r0",
+              "derive/r2",
+              "derive/r3",
+              "monitor/g0",
+              "monitor/g1",
+              "monitor/g2",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 27
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 1210990,
+        "memory_accounting_bytes": 203520,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 10,
+          "optimal_actions": [
+            "derive/r0"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 9,
+              "value": 144,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 10,
+              "requests": 7,
+              "terminal_certified": 0,
+              "value": 27,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "derive/r3",
+                "monitor/g0",
+                "monitor/g1",
+                "monitor/g2",
+                "STOP"
+              ]
+            },
+            "derive/r1": {
+              "operation_work": 10,
+              "requests": 7,
+              "terminal_certified": 0,
+              "value": 28,
+              "witness": [
+                "derive/r1",
+                "derive/r0",
+                "derive/r2",
+                "derive/r3",
+                "monitor/g0",
+                "monitor/g1",
+                "monitor/g2",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 7,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 27,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r2",
+            "derive/r3",
+            "monitor/g0",
+            "monitor/g1",
+            "monitor/g2",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 24,
+        "status": "EXACT",
+        "transitions": 43,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-budget-0"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 264698,
+        "leaves": 7,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 7,
+        "optimal_actions": [
+          "derive/r2"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 8,
+            "value": 128,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 2,
+            "requests": 1,
+            "terminal_certified": 8,
+            "value": 128,
+            "witness": [
+              "derive/r0",
+              "STOP"
+            ]
+          },
+          "derive/r2": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 5,
+            "value": 86,
+            "witness": [
+              "derive/r2",
+              "derive/r3",
+              "monitor/g0",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 86
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 278180,
+        "memory_accounting_bytes": 43728,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 4,
+          "optimal_actions": [
+            "derive/r2"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 8,
+              "value": 128,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 2,
+              "requests": 1,
+              "terminal_certified": 8,
+              "value": 128,
+              "witness": [
+                "derive/r0",
+                "STOP"
+              ]
+            },
+            "derive/r2": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 5,
+              "value": 86,
+              "witness": [
+                "derive/r2",
+                "derive/r3",
+                "monitor/g0",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 3,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 5,
+          "value": 86,
+          "witness": [
+            "derive/r2",
+            "derive/r3",
+            "monitor/g0",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 6,
+        "status": "EXACT",
+        "transitions": 6,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-budget-1"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 1177216,
+        "leaves": 101,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 101,
+        "optimal_actions": [
+          "derive/r0",
+          "derive/r2"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 8,
+            "value": 128,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 11,
+            "requests": 7,
+            "terminal_certified": 0,
+            "value": 31,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "derive/r2",
+              "derive/r3",
+              "derive/r4",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          },
+          "derive/r2": {
+            "operation_work": 11,
+            "requests": 7,
+            "terminal_certified": 0,
+            "value": 31,
+            "witness": [
+              "derive/r2",
+              "derive/r3",
+              "derive/r0",
+              "derive/r1",
+              "derive/r4",
+              "monitor/g0",
+              "monitor/g1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 31
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 1010201,
+        "memory_accounting_bytes": 147348,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 11,
+          "optimal_actions": [
+            "derive/r0",
+            "derive/r2"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 8,
+              "value": 128,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 11,
+              "requests": 7,
+              "terminal_certified": 0,
+              "value": 31,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "derive/r2",
+                "derive/r3",
+                "derive/r4",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            },
+            "derive/r2": {
+              "operation_work": 11,
+              "requests": 7,
+              "terminal_certified": 0,
+              "value": 31,
+              "witness": [
+                "derive/r2",
+                "derive/r3",
+                "derive/r0",
+                "derive/r1",
+                "derive/r4",
+                "monitor/g0",
+                "monitor/g1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 7,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 31,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "derive/r2",
+            "derive/r3",
+            "derive/r4",
+            "monitor/g0",
+            "monitor/g1",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 18,
+        "status": "EXACT",
+        "transitions": 27,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-budget-1"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 610169,
+        "leaves": 55,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 55,
+        "optimal_actions": [
+          "derive/r2"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 9,
+            "value": 112,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 4,
+            "requests": 4,
+            "terminal_certified": 2,
+            "value": 11,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "monitor/g1",
+              "monitor/g2",
+              "STOP"
+            ]
+          },
+          "derive/r2": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 5,
+            "value": 10,
+            "witness": [
+              "derive/r2",
+              "derive/r0",
+              "monitor/g2",
+              "STOP"
+            ]
+          },
+          "monitor/g0": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 7,
+            "value": 17,
+            "witness": [
+              "monitor/g0",
+              "derive/r2",
+              "derive/r0",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 10
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 1209643,
+        "memory_accounting_bytes": 177280,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 4,
+          "optimal_actions": [
+            "derive/r2"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 9,
+              "value": 112,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 4,
+              "requests": 4,
+              "terminal_certified": 2,
+              "value": 11,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "monitor/g1",
+                "monitor/g2",
+                "STOP"
+              ]
+            },
+            "derive/r2": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 5,
+              "value": 10,
+              "witness": [
+                "derive/r2",
+                "derive/r0",
+                "monitor/g2",
+                "STOP"
+              ]
+            },
+            "monitor/g0": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 7,
+              "value": 17,
+              "witness": [
+                "monitor/g0",
+                "derive/r2",
+                "derive/r0",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 3,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1,
+              2
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 5,
+          "value": 10,
+          "witness": [
+            "derive/r2",
+            "derive/r0",
+            "monitor/g2",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 22,
+        "status": "EXACT",
+        "transitions": 37,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-completion-0"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 3631257,
+        "leaves": 355,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 355,
+        "optimal_actions": [
+          "derive/r2"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 9,
+            "value": 112,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 5,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 11,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "monitor/g0",
+              "monitor/g1",
+              "monitor/g2",
+              "STOP"
+            ]
+          },
+          "derive/r2": {
+            "operation_work": 6,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 10,
+            "witness": [
+              "derive/r2",
+              "derive/r0",
+              "monitor/g0",
+              "monitor/g1",
+              "monitor/g2",
+              "STOP"
+            ]
+          },
+          "monitor/g0": {
+            "operation_work": 6,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 17,
+            "witness": [
+              "monitor/g0",
+              "derive/r2",
+              "derive/r0",
+              "monitor/g1",
+              "monitor/g2",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 10
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 2246036,
+        "memory_accounting_bytes": 300136,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 6,
+          "optimal_actions": [
+            "derive/r2"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 9,
+              "value": 112,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 5,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 11,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "monitor/g0",
+                "monitor/g1",
+                "monitor/g2",
+                "STOP"
+              ]
+            },
+            "derive/r2": {
+              "operation_work": 6,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 10,
+              "witness": [
+                "derive/r2",
+                "derive/r0",
+                "monitor/g0",
+                "monitor/g1",
+                "monitor/g2",
+                "STOP"
+              ]
+            },
+            "monitor/g0": {
+              "operation_work": 6,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 17,
+              "witness": [
+                "monitor/g0",
+                "derive/r2",
+                "derive/r0",
+                "monitor/g1",
+                "monitor/g2",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 5,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1,
+              2
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 10,
+          "witness": [
+            "derive/r2",
+            "derive/r0",
+            "monitor/g0",
+            "monitor/g1",
+            "monitor/g2",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 34,
+        "status": "EXACT",
+        "transitions": 75,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-completion-0"
+    },
+    {
+      "budget": {
+        "actions": 4,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 4,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-4-work-4",
+      "enumeration": {
+        "elapsed_ns": 315130,
+        "leaves": 24,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 24,
+        "optimal_actions": [
+          "derive/r0"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 9,
+            "value": 64,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 5,
+            "value": 8,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "monitor/g2",
+              "STOP"
+            ]
+          },
+          "monitor/g0": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 6,
+            "value": 12,
+            "witness": [
+              "monitor/g0",
+              "derive/r0",
+              "derive/r1",
+              "STOP"
+            ]
+          },
+          "monitor/g1": {
+            "operation_work": 4,
+            "requests": 3,
+            "terminal_certified": 7,
+            "value": 12,
+            "witness": [
+              "monitor/g1",
+              "derive/r0",
+              "derive/r1",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 8
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 618680,
+        "memory_accounting_bytes": 94064,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 4,
+          "optimal_actions": [
+            "derive/r0"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 9,
+              "value": 64,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 5,
+              "value": 8,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "monitor/g2",
+                "STOP"
+              ]
+            },
+            "monitor/g0": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 6,
+              "value": 12,
+              "witness": [
+                "monitor/g0",
+                "derive/r0",
+                "derive/r1",
+                "STOP"
+              ]
+            },
+            "monitor/g1": {
+              "operation_work": 4,
+              "requests": 3,
+              "terminal_certified": 7,
+              "value": 12,
+              "witness": [
+                "monitor/g1",
+                "derive/r0",
+                "derive/r1",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 3,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 4,
+            "requests": 4,
+            "supports": [
+              1,
+              2,
+              3
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 5,
+          "value": 8,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "monitor/g2",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 12,
+        "status": "EXACT",
+        "transitions": 18,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-completion-1"
+    },
+    {
+      "budget": {
+        "actions": 8,
+        "candidate_visits": 4096,
+        "observation_work": 3,
+        "operation_work": 12,
+        "pressure_iterations": 8192,
+        "ranking_states": 65536,
+        "wall_ns": 30000000000
+      },
+      "configuration": "requests-8-work-12",
+      "enumeration": {
+        "elapsed_ns": 669458,
+        "leaves": 64,
+        "memory_contract": "Depth bounded by request budget (8); only per-first-action minima and the current path retained; actual peak RSS unmeasured.",
+        "node_limit": 100000,
+        "nodes": 64,
+        "optimal_actions": [
+          "derive/r0"
+        ],
+        "q": {
+          "STOP": {
+            "operation_work": 0,
+            "requests": 0,
+            "terminal_certified": 9,
+            "value": 64,
+            "witness": [
+              "STOP"
+            ]
+          },
+          "derive/r0": {
+            "operation_work": 6,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 8,
+            "witness": [
+              "derive/r0",
+              "derive/r1",
+              "monitor/g0",
+              "monitor/g1",
+              "monitor/g2",
+              "STOP"
+            ]
+          },
+          "monitor/g0": {
+            "operation_work": 6,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 12,
+            "witness": [
+              "monitor/g0",
+              "derive/r0",
+              "derive/r1",
+              "monitor/g1",
+              "monitor/g2",
+              "STOP"
+            ]
+          },
+          "monitor/g1": {
+            "operation_work": 6,
+            "requests": 5,
+            "terminal_certified": 0,
+            "value": 12,
+            "witness": [
+              "monitor/g1",
+              "derive/r0",
+              "derive/r1",
+              "monitor/g0",
+              "monitor/g2",
+              "STOP"
+            ]
+          }
+        },
+        "status": "EXACT",
+        "value": 8
+      },
+      "reference": {
+        "bounds": {
+          "atoms": 6,
+          "enumeration_nodes": 100000,
+          "goals": 3,
+          "horizon": 16,
+          "memory_bytes": 16777216,
+          "requests": 8,
+          "states": 4096,
+          "transitions": 32768
+        },
+        "elapsed_ns": 825812,
+        "memory_accounting_bytes": 133628,
+        "objective": "sum of external unresolved loss over ticks 0..15",
+        "reason": null,
+        "root": {
+          "operation_work": 6,
+          "optimal_actions": [
+            "derive/r0"
+          ],
+          "q": {
+            "STOP": {
+              "operation_work": 0,
+              "requests": 0,
+              "terminal_certified": 9,
+              "value": 64,
+              "witness": [
+                "STOP"
+              ]
+            },
+            "derive/r0": {
+              "operation_work": 6,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 8,
+              "witness": [
+                "derive/r0",
+                "derive/r1",
+                "monitor/g0",
+                "monitor/g1",
+                "monitor/g2",
+                "STOP"
+              ]
+            },
+            "monitor/g0": {
+              "operation_work": 6,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 12,
+              "witness": [
+                "monitor/g0",
+                "derive/r0",
+                "derive/r1",
+                "monitor/g1",
+                "monitor/g2",
+                "STOP"
+              ]
+            },
+            "monitor/g1": {
+              "operation_work": 6,
+              "requests": 5,
+              "terminal_certified": 0,
+              "value": 12,
+              "witness": [
+                "monitor/g1",
+                "derive/r0",
+                "derive/r1",
+                "monitor/g0",
+                "monitor/g2",
+                "STOP"
+              ]
+            }
+          },
+          "requests": 5,
+          "state": {
+            "monitored": [],
+            "observation_work": 3,
+            "operation_work": 12,
+            "requests": 8,
+            "supports": [
+              1,
+              2,
+              3
+            ],
+            "tick": 0,
+            "validity": "permanent-static/v1"
+          },
+          "terminal_certified": 0,
+          "value": 8,
+          "witness": [
+            "derive/r0",
+            "derive/r1",
+            "monitor/g0",
+            "monitor/g1",
+            "monitor/g2",
+            "STOP"
+          ]
+        },
+        "secondary": "Witness only: terminal certified loss, operation work, requests, lexicographic action sequence; optimal-action set uses primary loss only.",
+        "states": 16,
+        "status": "EXACT",
+        "transitions": 28,
+        "unmeasured": [
+          "actual peak RSS"
+        ]
+      },
+      "task_id": "new-completion-1"
+    }
+  ],
+  "policy_measurements": 0
+}

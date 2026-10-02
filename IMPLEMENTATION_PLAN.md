@@ -33,6 +33,24 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: shared planning with pressure ordering
+
+The decision-value publication at `2dfe184` is closed and preserved. This new
+increment separates explicit sequence planning from pressure's contribution to
+search order. Detailed preregistration: `reviews/pressure-guided-planning-v1/PROTOCOL.md`.
+
+1. Implement a detached production static model and one explicit-stack anytime
+   DFS, with neutral, frozen B0 and frozen normalized-both ordering only.
+2. Verify independent model/transition/loss parity, complete optimal witnesses,
+   finite-cap feasible continuations, hard gates, suffix binding and four mutants.
+3. Commit twelve new parent structures, full old diagnostic cohort, semantic
+   budgets, attempt ladder, sampling, ties, auxiliary caps and policy-free wall
+   calibration before policy measurement.
+4. Run common-state and actual certified closed-loop comparisons, preserving
+   direct controls and charging all model, ranker and authority computation.
+5. Audit, analyze favorable/neutral/unfavorable results, publish one source-bound
+   review and reproducible command, then stop. No deferred capability is complete.
+
 ### Completed bounded milestone: independent decision-value validation
 
 Preserve runtime `3e8fd7b`, projection `8542ad5` and both published reviews. The
