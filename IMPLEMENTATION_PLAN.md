@@ -33,7 +33,34 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Immediate priority: executable B0-versus-B3 comparison
+### Immediate priority: representation-invariant pressure projection
+
+The frozen-comparison milestone is closed at `3e8fd7b`; its published review,
+original benchmark and recorded outcomes remain unchanged. The next bounded
+increment adds an experimental, read-only requirement projection before pressure
+graph construction. It supports unary Boolean elimination, same-operator
+flattening, canonical ordering and scoped idempotent deduplication only.
+
+1. Implement bounded deterministic normalization with original occurrence and
+   revision mappings. Preserve the solver, gamma, candidate interface, source
+   accounting and all authority gates. Reject unsupported scope or exhausted
+   projection bounds before publishing a ranking.
+2. Generate metamorphic combinations, check condition equivalence independently
+   by exhaustive small-instance evaluation, and compare candidates, per-source
+   semantic pressure and rankings with explicit numerical/tie handling. Include
+   negative controls for real work, evidence, quantity, temporal scope and validity.
+3. Commit a fixed protocol and comparison source before running unchanged B0,
+   four raw cost placements and four normalized placements. Keep original
+   episodes unchanged and diagnostic cases separate. Charge normalization and
+   graph construction; retain all outcome and cost differences.
+4. Run applicable regressions and publish one source-bound, replayable comparison
+   with traces, journals, tests, costs and a readable report. Stop there. No cost
+   policy is promoted; transport, learned conductance, generalized recovery,
+   broader normalization and duration modeling remain deferred.
+
+Status: implementation in progress; this does not complete phases 5–8.
+
+### Completed bounded milestone: executable B0-versus-B3 comparison
 
 This milestone supersedes the recovery expansion listed at the end of the
 historical increments below. Existing safety, admission, execution and recovery
