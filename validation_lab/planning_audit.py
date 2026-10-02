@@ -48,11 +48,14 @@ def check_plan(ref,root,plan):
     audit.equal(ref_state(plan['terminal']).wire(),state.wire(),'plan terminal budgets and support state')
 
 
-def check_search(task,snapshot,remaining,result,ref,*,suffix=None):
+def check_search(task,snapshot,remaining,result,ref,*,suffix=None,configuration=None):
     model=Model(task,snapshot,remaining);root=reference_state(task,snapshot,remaining)
     audit.equal(result['root'],model.root.wire(),'model root')
     audit.equal(result['snapshot_binding'],fingerprint(snapshot),'exact search snapshot')
     audit.equal(result['model_binding'],model.binding,'exact public model binding')
+    if configuration is not None:
+        audit.equal(result['arm'],configuration['arm'],'declared ordering arm')
+        audit.equal(result['limits'],configuration['limits'],'declared search limits')
     limits=Limits(**result['limits'])
     audit.require(result['work']['attempts']<=limits.attempts,'attempt bound')
     check_plan(ref,root,result['incumbent'])
@@ -112,7 +115,7 @@ def check_common(path,task,b,ref):
             audit.equal(timeless(result),timeless(fresh),'common frozen direct ranking')
             selected=result['selected']
         else:
-            visits+=check_search(task,snapshot,remaining,result,ref)
+            visits+=check_search(task,snapshot,remaining,result,ref,configuration=config)
             selected=result['incumbent']['plan'][0]
             audit.equal(row['search'],search_summary(result,ref.solve(state)['value']),'common offline search labels')
         audit.equal(row['label'],old.selected_label(ref,state,selected),'independent common decision label')
@@ -130,6 +133,9 @@ def check_common(path,task,b,ref):
 
 def check_closed(path,task,b,ref):
     entry=load(path/'result.json');result=entry['result'];config=entry['policy'];trace=rows(path/'trace.jsonl')
+    audit.equal(entry['task_id'],task['task_id'],'closed task identity')
+    audit.equal(entry['configuration'],b,'closed semantic configuration')
+    audit.equal(result['budget'],b['budget'],'closed declared semantic budget')
     audit.equal(entry['labels'],decision_labels(task,b['budget'],ref,result,trace),'closed independent decision labels')
     if config['mode']=='direct':
         with public_task(task),projection.ranking_policy(config['arm']):
@@ -138,19 +144,21 @@ def check_closed(path,task,b,ref):
         return dict(searches=0,visits=0,operations=len(result['selected']))
     searches=visits=0;previous=None;suffix=None;receipts=[];selected=[];summaries=[]
     retention_checker=Planner(task['public'],config['arm'])
+    used=dict(actions=0,operation_work=0,observation_work=0)
     with TemporaryDirectory() as tmp,ReasoningSession(task['public'],tmp) as session:
         world=ReasoningWorld(session,materialize(task));world.sample_outcomes()
         audit.equal(audit.semantic_snapshot(session.read()),audit.semantic_snapshot(result['initial_snapshot']),'planner initial public snapshot')
         for i,row in enumerate(trace):
             if row['stage']=='search':
                 audit.equal(audit.semantic_snapshot(session.read()),audit.semantic_snapshot(row['snapshot']),'planner observed state replay')
+                audit.equal(row['remaining'],{k:b['budget'][k]-used[k] for k in used},'actual remaining semantic budgets')
                 model=Model(task,row['snapshot'],row['remaining'])
                 retained=retention_checker.retained
                 expected_retention='absent' if retained is None else ('revalidated' if
                     retained[:3]==(fingerprint(row['snapshot']),model.binding,model.root.semantic()) else 'discarded_incompatible_binding')
                 audit.equal(row['result']['retention'],expected_retention,'observed revision suffix binding')
                 suffix=retained[3] if expected_retention=='revalidated' else None
-                visits+=check_search(task,row['snapshot'],row['remaining'],row['result'],ref,suffix=suffix)
+                visits+=check_search(task,row['snapshot'],row['remaining'],row['result'],ref,suffix=suffix,configuration=config)
                 state=reference_state(task,row['snapshot'],row['remaining'])
                 summaries.append(search_summary(row['result'],ref.solve(state)['value']))
                 previous=row['result'];searches+=1
@@ -161,6 +169,11 @@ def check_closed(path,task,b,ref):
                 action=action_name_wire(row['selected'])
                 audit.equal(action,previous['incumbent']['plan'][0],'execute first selected plan operation')
                 candidate=next(c for c in frontier.candidates if c.wire()==row['selected'])
+                used['actions']+=1;used['operation_work']+=operation_cost(task['public'],candidate)
+                used['observation_work']+=candidate.observation_cost
+                for key,value in used.items():
+                    audit.require(value<=b['budget'][key],'actual semantic budget exceeded')
+                    audit.equal(row['work'][key],value,'actual charged operation '+key)
                 receipt=world.execute(candidate,fingerprint(snapshot));saved=trace[i+1]['receipt']
                 audit.equal(receipt['status'],saved['status'],'actual gate result');audit.equal(saved['status'],'PASS','unexpected operation failure')
                 audit.equal(receipt['knowledge_revision'],saved['knowledge_revision'],'receipt revision')
@@ -183,6 +196,12 @@ def check_closed(path,task,b,ref):
         audit.equal(sum(r['external_weighted_loss'] for r in world.outcomes[:-1]),result['integrated_external_loss'],'integrated closed loss')
         audit.equal(old.journal_signature(session.service,task['public']['context_id']),entry['journal_signature'],'planner replay journal')
     audit.equal(selected,result['selected'],'selected operations result')
+    for key,value in used.items():audit.equal(result['work'][key],value,'total actual semantic work')
+    if result['stop_reason']=='PLANNED_STOP':audit.equal(previous['incumbent']['plan'][0],STOP,'voluntary complete-plan STOP')
+    elif result['stop_reason']=='ACTION_BUDGET':audit.equal(used['actions'],b['budget']['actions'],'request cap stop')
+    elif result['stop_reason']=='OBSERVED_GOALS':audit.require(all(g['outstanding']==0 for g in result['controller_stop_snapshot']['goals']),'certified terminal stop')
+    elif result['stop_reason']=='WALL_BUDGET':audit.require(result['controller_elapsed_ns']>=b['budget']['wall_ns'],'wall stop')
+    else:raise audit.AuditError('unsupported or failed planner stop retained: '+result['stop_reason'])
     audit.equal(summaries,entry['searches'],'closed search summaries')
     audit.equal(old.save_signature(path,task),entry['journal_signature'],'planner saved journal')
     old.check_saved_prefix(path,task,trace,result['final_snapshot'])
@@ -198,9 +217,14 @@ def audit_experiment(directory):
     audit.equal(sorted(actual),sorted(bundle['files']),'complete bundle inventory')
     for name,digest in bundle['files'].items():audit.equal(sha256(audit.artifact_path(directory,name).read_bytes()).hexdigest(),digest,'artifact '+name)
     index=load(directory/'index.json');audit.equal(len(index),156,'complete task/budget cells')
+    expected_cells={(t['task_id'],b['name']):(t,b) for t in config['tasks'] for b in config['budgets']}
+    audit.equal(sorted((c['task']['task_id'],c['configuration']['name']) for c in index),sorted(expected_cells),'complete unique cohort cells')
     closed=common=visits=searches=operations=0
     for cell in index:
-        task=cell['task'];b=cell['configuration'];ref,data=old.reference_cell(task,b)
+        task=cell['task'];b=cell['configuration']
+        audit.equal((task,b),expected_cells[(task['task_id'],b['name'])],'immutable task and semantic budget')
+        audit.equal(cell['name'],task['task_id']+'/'+b['name'],'cell path identity')
+        ref,data=old.reference_cell(task,b)
         saved=load(directory/cell['name']/'reference.json')
         audit.equal(timeless(saved),timeless(data),'independent reference DP/enumeration')
         audit.require(cell['status']=='EXACT','reference-exhausted cell retained')
@@ -208,16 +232,22 @@ def audit_experiment(directory):
         audit.equal(sorted(Path(p).name for p in cell['closed']),sorted(c['name'] for c in expected),'closed configuration matrix')
         samples=ref.sampled_states();audit.equal(len(cell['common']),len(samples),'common sample coverage')
         for relative in cell['closed']:
+            entry=load(directory/relative/'result.json')
+            audit.equal(entry['policy'],next(c for c in expected if c['name']==Path(relative).name),'full declared closed policy configuration')
             counts=check_closed(directory/relative,task,b,ref)
             closed+=1;visits+=counts['visits'];searches+=counts['searches'];operations+=counts['operations']
         for relative,(state,prefix) in zip(cell['common'],samples):
             sample=load(directory/relative/'result.json')
             audit.equal(sample['prefix'],prefix,'predeclared reference-only sampling')
             audit.equal(sorted(r['configuration']['name'] for r in sample['rankings']),sorted(c['name'] for c in expected),'common configuration matrix')
+            for row in sample['rankings']:
+                audit.equal(row['configuration'],next(c for c in expected if c['name']==row['configuration']['name']),'full declared common policy configuration')
             visits+=check_common(directory/relative,task,b,ref);common+=1
         if (closed%100)<20: print(f'audit: {closed} closed runs, {common} common states',flush=True)
-    from .planning_analysis import summarize
-    audit.equal(load(directory/'summary.json'),summarize(directory,index),'complete analysis reproduction')
+    from .planning_analysis import summarize,readable
+    summary=summarize(directory,index)
+    audit.equal(load(directory/'summary.json'),summary,'complete analysis reproduction')
+    audit.equal((directory/'comparison.md').read_text(),readable(summary,binding['experiment_revision']),'readable comparison reproduction')
     audit.require(not load(directory/'failures.json'),'retained failures require explicit correction')
     verify_sources(binding)
     return dict(status='PASS',closed=closed,common=common,closed_searches=searches,visited_closures=visits,

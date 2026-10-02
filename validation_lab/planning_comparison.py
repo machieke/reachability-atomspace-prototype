@@ -282,8 +282,10 @@ def run(output):
     verify_sources(binding)
     write(output/'execution.json',dict(status='PASS' if not failures else 'FAIL',elapsed_ns=perf_counter_ns()-started,
         cells=len(index),closed=sum(len(c['closed']) for c in index),common=sum(len(c['common']) for c in index)))
-    from .planning_analysis import summarize
-    write(output/'summary.json',summarize(output,index))
+    from .planning_analysis import summarize,readable
+    summary=summarize(output,index)
+    write(output/'summary.json',summary)
+    (output/'comparison.md').write_text(readable(summary,binding['experiment_revision']))
     seal(output)
     from .planning_audit import audit_experiment
     try: report=audit_experiment(output)

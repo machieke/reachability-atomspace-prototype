@@ -35,5 +35,17 @@ class HarnessTests(unittest.TestCase):
             path=Path(tmp)/'common';common(task,b,ref,ref.initial(),[],selected,path)
             self.assertGreater(check_common(path,task,b,ref),0)
 
+    def test_changed_search_limits_fail_even_with_same_arm_name(self):
+        from validation_lab.planning_comparison import write
+        from validation_lab.audit_pressure_comparison import AuditError
+        task=self.fixture();b=budgets()[1];ref=Reference(task,b['budget']);ref.solve()
+        main,_=configurations(dict(wall_caps_ns=[]))
+        config=next(c for c in main if c['name']=='PLAN-neutral-n4')
+        with TemporaryDirectory() as tmp:
+            path=Path(tmp)/'common';common(task,b,ref,ref.initial(),[],[config],path)
+            result=load(path/(config['name']+'.json'));result['limits']['attempts']=5
+            write(path/(config['name']+'.json'),result)
+            with self.assertRaises(AuditError):check_common(path,task,b,ref)
+
 
 if __name__=='__main__':unittest.main()

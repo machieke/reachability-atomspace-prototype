@@ -101,3 +101,36 @@ def summarize(directory,index):
                'Model/ranking/pressure/suffix subcategory times overlap inclusive search elapsed; do not sum them with controller totals.',
                'Old cohort is inspected; new cohort has twelve preregistered parents. Siblings excluded from headline aggregates.',
                'No statistical, transport, native PLN, recovery, duration or scaling claim.'])
+
+
+def readable(summary,revision):
+    lines=['# Bounded planning comparison','',f'Experimental source: `{revision}`.',
+        '', 'The shared DFS evaluates complete feasible STOP continuations. Pressure changes child order only. '
+        'Old tasks are inspected diagnostics; twelve new parents are preregistered confirmation cases. '
+        'The table excludes identifier and dominated-route siblings. No policy is promoted.', '',
+        '| Cohort | Budget | Policy | Mean episode gap | Worst gap | Mean decision regret | Query ms | Controller ms |',
+        '| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |']
+    for r in summary['aggregates']:
+        lines.append(f"| {r['cohort']} | {r['budget']} | {r['policy']} | {r['mean_gap']:.3f} | {r['max_gap']:g} | "
+            f"{r['mean_regret']:.3f} | {r['mean_query_ms']:.3f} | {r['mean_controller_ms']:.3f} |")
+    lines += ['', 'Pressure ordering versus the same planner with neutral or B0 ordering. '
+        'Favorable/neutral/unfavorable counts compare complete episode loss; lower is better.', '',
+        '| Cohort | Budget | Attempts | Comparator | Favorable | Neutral | Unfavorable | Mean loss delta | Worst delta |',
+        '| --- | --- | ---: | --- | ---: | ---: | ---: | ---: | ---: |']
+    for r in summary['pressure_comparisons']:
+        lines.append(f"| {r['cohort']} | {r['budget']} | {r['attempt_cap']} | {r['comparison']} | {r['favorable']} | "
+            f"{r['neutral']} | {r['unfavorable']} | {r['mean_loss_delta']:.3f} | {r['worst_loss_delta']:g} |")
+    lines += ['', 'Detailed parent/family results, comparisons against both direct controls, terminal external and certified loss, '
+        'requests/work, failures, bound hits, fixed-root improvement curves and first reference-optimal witnesses are in `summary.json`. '
+        'Every search prefix, ordering score and actual certified request is retained in the per-run traces. '
+        'References label recorded decisions offline and never stop the runtime search.', '',
+        'Candidate discovery includes real and speculative enumeration. Pressure construction and iteration, actual inference, '
+        'certification and persistence have separate controller categories. Model validation, B0 search, sorting, suffix validation '
+        'and other search costs remain in the detailed records. Search subcategories overlap inclusive query/controller durations; '
+        'do not add them twice. Actual peak RSS, OS scheduling attribution, individual fsync/byte attribution and real sensor latency '
+        'are unmeasured. Timings are single-run engineering measurements, with rotated arm order and no significance claim.', '',
+        'Decision regret and episode gap are distinct; overlapping decision regrets are not summed as causal explanations. '
+        'Larger search caps guarantee no worse incumbent within an identical deterministic query prefix, but not monotone '
+        'closed-loop episode loss. No adaptive transport, learned conductance, normalization expansion, numerical PLN scheduling, '
+        'generalized recovery, new objective, duration model or scaling claim.', '']
+    return '\n'.join(lines)
