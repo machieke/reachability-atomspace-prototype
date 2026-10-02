@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-b0-b3-pressure-comparison",
+  "implementation_stage": "bounded-online-numerical-pln-lifecycle-conformance",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3049,5 +3049,44 @@
     "archive_files_verified": 18558,
     "package_integrity_verified": true,
     "changed_archive_rejected": true
+  },
+  "online_numerical_pln_lifecycle": {
+    "status": "implemented-awaiting-source-bound-validation",
+    "schema": "online-pln-public/v1",
+    "scope": "bounded-grounded-online-conformance-not-stochastic-planning-or-performance-comparison",
+    "agenda": "fifo-first-ready-semantic/v1",
+    "prior_publication": "4fffa740003a121eb4fd7809c143bbdaa22419fa",
+    "protocol_commit": "1cf88ba",
+    "review": "reviews/online-pln-lifecycle-v1",
+    "command": "uv run --no-project python -m validation_lab.online_pln_conformance --output NEW_DIRECTORY",
+    "coordinator_limits": {
+      "rules": 16,
+      "current_estimates": 32,
+      "candidates": 64,
+      "tuple_visits": 128,
+      "selections": 32,
+      "work": 64,
+      "acquisitions": 16,
+      "models": 16,
+      "received_reports": 128,
+      "exposed_probes": 16
+    },
+    "authority": "unchanged-public-probability-decision-deployment-goal-APIs",
+    "numerical_modes": [
+      "finite-checker",
+      "pinned-native-PLN"
+    ],
+    "projection": "native-disposable-AtomSpace-with-quiescent-SQLite-reconstruction",
+    "fixture_count": 12,
+    "family_count": 6,
+    "seed": 0,
+    "deferred": [
+      "adaptive-transport",
+      "pressure-retuning",
+      "stochastic-planning",
+      "generalized-recovery",
+      "persistent-native-authority",
+      "large-scale-claims"
+    ]
   }
 }

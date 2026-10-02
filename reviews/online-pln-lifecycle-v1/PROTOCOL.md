@@ -23,6 +23,8 @@ visits per enumeration, 32 selected operations, 64 declared work units and 16
 acquisition units per episode. Inputs exceeding size caps are rejected; a
 truncated candidate frontier stops explicitly. Budget exhaustion retains open
 obligations, not a proof of impossibility. Deterministic fixtures use seed 0.
+Receipt-index capacities are additionally bounded at 16 independence declarations,
+128 received numeric reports and 16 currently exposed acquisition descriptors.
 
 The twelve predeclared fixtures in `fixtures.json` are siblings of one synthetic
 deployment scenario, not independent performance samples. Initial received
