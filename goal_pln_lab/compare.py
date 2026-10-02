@@ -214,6 +214,19 @@ def replay_pair(snapshot, history, limits):
     return pair
 
 
+def cross_session_semantics(row):
+    """Fresh ledgers issue independent hard-certificate identities.
+
+    Exact basis and full binding are verified against each run's snapshot above;
+    only cross-session comparison omits these two opaque hashes. Exact numerical
+    premise IDs, candidate identity/tie/cost, observations and outcomes stay exact.
+    """
+    candidate = row['selected']
+    if candidate is not None:
+        candidate = {k:v for k,v in candidate.items() if k not in ('basis','expected_binding')}
+    return candidate, row.get('result',{}).get('status'), row['after'], row['external_loss']
+
+
 def verify(output):
     output=Path(output)
     manifest=json.loads((output/'bundle.json').read_text())
@@ -270,7 +283,7 @@ def verify(output):
                 if wire(recovered)!=result['reconstruction']['authority']:
                     raise ValueError('persisted authority reconstruction differs')
         semantics[result['mode'],result['case_id'],result['budget'],result['arm']]=[
-            (r['selected'],r.get('result',{}).get('status'),r['after'],r['external_loss']) for r in rows]
+            cross_session_semantics(r) for r in rows]
     for mode,case,budget,arm in semantics:
         if arm=='Goal-scan' and semantics[mode,case,budget,arm]!=semantics[mode,case,budget,'Goal-index']:
             raise ValueError('closed-loop scan/index semantic trajectories differ')

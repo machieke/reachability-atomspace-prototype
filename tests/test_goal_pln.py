@@ -261,3 +261,34 @@ class GoalPLNTests(unittest.TestCase):
                         row=json.loads(line);snapshot=Snapshot.from_records(row['public_records'])
                         replay_pair(snapshot,history,history.limits)
                         self.assertEqual(wire(history.choose(snapshot)[1]),row['selected'])
+
+
+class GoalPLNAuditTests(unittest.TestCase):
+    def test_cross_session_hashes_only_are_normalized(self):
+        from copy import deepcopy
+        from goal_pln_lab.compare import cross_session_semantics
+        row=dict(selected=dict(kind='deduction',target='registered',premise_ids=['p1','p2','p3','p4','p5'],
+                              logical_id='logical',semantic_tie='tie',cost=1,basis='first-authority',expected_binding='first-snapshot'),
+                 result=dict(status='PASS'),after=dict(outstanding=10,decision='PASS'),external_loss=10)
+        fresh=deepcopy(row);fresh['selected'].update(basis='second-authority',expected_binding='second-snapshot')
+        self.assertEqual(cross_session_semantics(row),cross_session_semantics(fresh))
+        for field,value in (('target','different'),('premise_ids',['different']),('cost',2)):
+            changed=deepcopy(fresh);changed['selected'][field]=value
+            self.assertNotEqual(cross_session_semantics(row),cross_session_semantics(changed))
+        changed=deepcopy(fresh);changed['after']['outstanding']=0
+        self.assertNotEqual(cross_session_semantics(row),cross_session_semantics(changed))
+        # Normalization must not mutate recorded exact bindings used by replay.
+        self.assertEqual(row['selected']['basis'],'first-authority')
+
+    def test_fresh_actual_ledgers_differ_only_in_scoped_hashes(self):
+        from goal_pln_lab.compare import cross_session_semantics
+        records=[]
+        for arm in ('Goal-scan','Goal-index'):
+            with TemporaryDirectory() as d:
+                world=World(configuration()['fixtures'][0])
+                with Session(d,acquire=world.acquire) as session:
+                    world.setup(session)
+                    _,c=Agenda(arm).choose(session.read())
+                    records.append(dict(selected=wire(c),result={},after=summary(session),external_loss=world.external_loss))
+        self.assertNotEqual(records[0]['selected']['expected_binding'],records[1]['selected']['expected_binding'])
+        self.assertEqual(cross_session_semantics(records[0]),cross_session_semantics(records[1]))
