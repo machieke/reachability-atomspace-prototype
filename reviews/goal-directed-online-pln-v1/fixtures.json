@@ -1,0 +1,70 @@
+{
+  "schema": "goal-pln-cohort/v1",
+  "seed": 0,
+  "budgets": [
+    8,
+    16
+  ],
+  "fixtures": [
+    {
+      "id": "route-control",
+      "family": "selection",
+      "variant": "control"
+    },
+    {
+      "id": "route-distractors",
+      "family": "selection",
+      "variant": "distractors"
+    },
+    {
+      "id": "route-shared",
+      "family": "selection",
+      "variant": "shared"
+    },
+    {
+      "id": "path-two",
+      "family": "composition",
+      "variant": "two"
+    },
+    {
+      "id": "path-three",
+      "family": "composition",
+      "variant": "three"
+    },
+    {
+      "id": "path-alternatives",
+      "family": "composition",
+      "variant": "alternatives"
+    },
+    {
+      "id": "change-replacement",
+      "family": "changes",
+      "variant": "replacement"
+    },
+    {
+      "id": "change-producer",
+      "family": "changes",
+      "variant": "producer"
+    },
+    {
+      "id": "change-blocked",
+      "family": "changes",
+      "variant": "blocked"
+    },
+    {
+      "id": "supported-product",
+      "family": "lifecycle",
+      "variant": "product"
+    },
+    {
+      "id": "supported-monitor",
+      "family": "lifecycle",
+      "variant": "monitor"
+    },
+    {
+      "id": "supported-reopen",
+      "family": "lifecycle",
+      "variant": "reopen"
+    }
+  ]
+}

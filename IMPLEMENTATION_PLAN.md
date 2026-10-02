@@ -33,6 +33,26 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: goal-directed online PLN discovery
+
+Baseline publication `3f433ed`, measured source `0cd1f8a`, is closed and preserved.
+This increment adds separate experimental packages and a twelve-parent cohort:
+
+1. Preregister typed contract roots, directed closure, FIFO-full / Goal-scan /
+   Goal-index policies, two work budgets, public boundaries and external events.
+2. Implement read-only roots and bounded discovery; preserve full snapshots and
+   unchanged execution membership validation, certification and hard gates.
+3. Test independent scan/index parity, freshness, contrary evidence, operational
+   obligations, explicit limits and four mutation witnesses.
+4. Run identical-state replay and 144 finite/native closed-loop executions. Run
+   applicable regressions; disclose omitted full suites and all failed attempts.
+5. Publish one source-bound review bundle, costs, decision sequences, neutral and
+   negative findings; commit and push, then stop.
+
+This is not pressure, adaptive transport, learned scheduling, persistent indexing,
+full design completion, generalized recovery or a large-storage scaling claim.
+
+
 ### Completed bounded milestone: online numerical PLN/lifecycle conformance
 
 The planning comparison published at `4fffa74` (measured source `4be8091`)

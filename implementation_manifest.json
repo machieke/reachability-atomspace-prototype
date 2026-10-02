@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-online-numerical-pln-lifecycle-conformance",
+  "implementation_stage": "bounded-goal-directed-online-pln-in-progress",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3140,5 +3140,27 @@
       }
     },
     "regression_note": "Full default/native/numerical suites at b771ce8; all 19 affected coordinator tests repeated at 0cd1f8a after evaluator-public-justification correction. No runtime change; repeated executions are not extra unique tests."
+  },
+  "goal_directed_online_pln": {
+    "status": "preregistered",
+    "baseline_publication": "3f433ed1cfe31758be40128a4466935599e38714",
+    "protocol": "reviews/goal-directed-online-pln-v1/PROTOCOL.md",
+    "parents": 12,
+    "work_budgets": [
+      8,
+      16
+    ],
+    "arms": [
+      "FIFO-full",
+      "Goal-scan",
+      "Goal-index"
+    ],
+    "modes": [
+      "finite",
+      "native"
+    ],
+    "expected_executions": 144,
+    "adaptive_transport": false,
+    "persistent_index": false
   }
 }
