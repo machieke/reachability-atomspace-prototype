@@ -252,6 +252,11 @@ class OnlinePLNTests(unittest.TestCase):
         for field in ('future', 'answer', 'expected', 'fixture', 'best_candidate'):
             with self.assertRaises(TypeError):
                 Probe('sensor', 'source', 'numeric', 'target', **{field:'leak'})
+        for name in ('lineage-independent', 'lineage-copied'):
+            session, _ = self.setup_case(name)
+            justification = session.read().models[0].justification.lower()
+            self.assertFalse(any(label in justification for label in
+                ('sibling', 'fixture', 'expected outcome', 'must still fail', *(f['id'] for f in fixtures()))))
         package = Path(__file__).resolve().parents[1]/'experimental_online_pln'
         for path in package.glob('*.py'):
             for node in ast.walk(ast.parse(path.read_text())):

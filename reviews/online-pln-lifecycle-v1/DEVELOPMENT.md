@@ -20,6 +20,9 @@ run. They have not been changed in response to results.
   The implementation now uses the public context's immutable current `usable`
   beliefs. This also avoids retrying solely because an unrelated clock changed.
 - `online-pln-tests-4.log`: all 18 new seam tests passed after that correction.
+- First source-bound run at `b771ce8`: numerical/lifecycle behavior and replay
+  passed, but manual review found evaluator wording in a public independence
+  justification. This run is retained and superseded; see `CORRECTION-v1.1.md`.
 
 Logs and failed episode artifacts are included with the publication. Test logs
 from uncommitted development snapshots are labelled as such, not attributed to

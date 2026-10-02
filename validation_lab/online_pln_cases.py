@@ -60,7 +60,7 @@ class World:
                            ('root-a' if variant == 'copied' else 'root-b',))
             s.register_model(ProbabilityIndependence('declared-independence', 'ctx',
                 (left.belief_revision_id, right.belief_revision_id),
-                'trusted explicit assumption; copied sibling must still fail lineage checks'))
+                'trusted source declaration of independent report-generating processes'))
         else:
             rules = [MAIN]
             if family == 'choice':
