@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-goal-directed-online-pln-in-progress",
+  "implementation_stage": "bounded-goal-directed-online-pln-discovery",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3142,7 +3142,7 @@
     "regression_note": "Full default/native/numerical suites at b771ce8; all 19 affected coordinator tests repeated at 0cd1f8a after evaluator-public-justification correction. No runtime change; repeated executions are not extra unique tests."
   },
   "goal_directed_online_pln": {
-    "status": "preregistered",
+    "status": "complete-bounded-experiment",
     "baseline_publication": "3f433ed1cfe31758be40128a4466935599e38714",
     "protocol": "reviews/goal-directed-online-pln-v1/PROTOCOL.md",
     "parents": 12,
@@ -3161,6 +3161,39 @@
     ],
     "expected_executions": 144,
     "adaptive_transport": false,
-    "persistent_index": false
+    "persistent_index": false,
+    "source_revision": "d1d39ab0840c171d58215e5ca387a29bcb9a22d1",
+    "audit_revision": "795963c59e0bcb6d035013ebfdf16cef7c79a869",
+    "publication": "reviews/goal-directed-online-pln-v1/README.md",
+    "primary_executions": 144,
+    "diagnostic_executions": 24,
+    "matched_snapshot_pairs": 1188,
+    "selected_operations": 1044,
+    "goal_scan_index_semantic_parity": true,
+    "native_finite_semantic_parity": true,
+    "source_registration_descriptors": "registered-content/v1",
+    "task_schema": "goal-pln-task/v1",
+    "witness_schema": "goal-pln-relevance-witness/v1",
+    "execution_revalidation": "unchanged-full-enumeration",
+    "closure_limits": {
+      "nodes": 128,
+      "edges": 256,
+      "depth": 16
+    },
+    "validation": {
+      "applicable": 281,
+      "native": 87,
+      "numerical": 15,
+      "audit_correction": 2,
+      "full_default_suite_this_increment": false
+    },
+    "findings": "Some earlier task observations; no certified-terminal-loss advantage. Scoped discovery visits fewer tuples but costs more in this implementation.",
+    "deferred": [
+      "adaptive transport",
+      "learned scheduling",
+      "persistent indices",
+      "generalized recovery",
+      "large-storage claims"
+    ]
   }
 }

@@ -33,10 +33,10 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: goal-directed online PLN discovery
+### Completed bounded milestone: goal-directed online PLN discovery
 
 Baseline publication `3f433ed`, measured source `0cd1f8a`, is closed and preserved.
-This increment adds separate experimental packages and a twelve-parent cohort:
+This increment added separate experimental packages and a twelve-parent cohort:
 
 1. Preregister typed contract roots, directed closure, FIFO-full / Goal-scan /
    Goal-index policies, two work budgets, public boundaries and external events.
@@ -48,6 +48,16 @@ This increment adds separate experimental packages and a twelve-parent cohort:
    applicable regressions; disclose omitted full suites and all failed attempts.
 5. Publish one source-bound review bundle, costs, decision sequences, neutral and
    negative findings; commit and push, then stop.
+
+Completed at measured `d1d39ab`, with cross-session auditor correction `795963c`.
+All 144 primary executions and 24 rename/reorder diagnostics passed; 1,188 replay
+pairs and 1,044 selections passed audit. Goal arms have identical semantics.
+Relevance advances selected task milestones; indexed discovery costs more than
+full-scan goal selection here. No policy promotion follows. Applicable 281 tests,
+all 87 native tests, 15 numerical checks and two audit-correction tests passed.
+The full default suite was not repeated; omitted files and failed development/audit
+attempts are recorded in `reviews/goal-directed-online-pln-v1/README.md`.
+Stop here. Further indexing, pressure, transport and recovery remain backlog.
 
 This is not pressure, adaptive transport, learned scheduling, persistent indexing,
 full design completion, generalized recovery or a large-storage scaling claim.

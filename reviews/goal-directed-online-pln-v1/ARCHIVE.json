@@ -1,0 +1,11 @@
+{
+  "schema": "goal-pln-review-archive/v1",
+  "archive": "review.tar.xz",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "sha256": "e8b17df987dc9c025f2178f1205a507d122ee782b242f60614e14c4eb7437f1b",
+  "bytes": 4175112,
+  "measured_revision": "d1d39ab0840c171d58215e5ca387a29bcb9a22d1",
+  "auditor_revision": "795963c59e0bcb6d035013ebfdf16cef7c79a869"
+}

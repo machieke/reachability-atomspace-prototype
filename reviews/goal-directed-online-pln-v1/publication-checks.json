@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "archive": {
+    "status": "PASS",
+    "archive_sha256": "e8b17df987dc9c025f2178f1205a507d122ee782b242f60614e14c4eb7437f1b",
+    "archive_bytes": 4175112,
+    "parts": 1,
+    "files_verified": 1457,
+    "experiment_revision": "d1d39ab0840c171d58215e5ca387a29bcb9a22d1",
+    "limitation": "Integrity against published checksums; not publisher authentication or semantic replay."
+  },
+  "source_git_files": 155,
+  "measurement_revision": "d1d39ab0840c171d58215e5ca387a29bcb9a22d1",
+  "corrected_auditor_git_files": 3,
+  "auditor_revision": "795963c59e0bcb6d035013ebfdf16cef7c79a869",
+  "archive_mutation": {
+    "status": "REJECTED",
+    "reason": "archive checksum differs: review.tar.xz"
+  },
+  "publication_manifest_tests": {
+    "tests": 2,
+    "status": "PASS",
+    "runtime_revision": "795963c59e0bcb6d035013ebfdf16cef7c79a869",
+    "documentation": "publication worktree archived in review; not a rerun of measured execution"
+  }
+}
