@@ -1729,6 +1729,31 @@
           "artifacts/pressure-phase-counts-repeatability.log"
         ]
       }
+    },
+    "frozen_review": {
+      "status": "in-progress",
+      "frozen_revision": "3e8fd7be56362ed21944636bbe505b6a4a7aac6f",
+      "runtime_and_original_benchmark_changed": false,
+      "protocol": "reviews/b0-b3-3e8fd7b/PROTOCOL.md",
+      "full_suites_requested": [
+        "default",
+        "native integration",
+        "standalone numerical reference"
+      ],
+      "frozen_comparison_runs": 32,
+      "ablation_policies": [
+        "B0",
+        "B3-cost-both",
+        "B3-cost-route",
+        "B3-cost-queue",
+        "B3-cost-neither"
+      ],
+      "predeclared_ablation_runs": 200,
+      "original_episode_ablation_runs": 80,
+      "separate_diagnostic_runs": 120,
+      "cost_tie_break_budget_charges_and_authority_unchanged": true,
+      "analysis": "per-tick and per-goal accounting; no first-divergence causal attribution",
+      "transport_or_generalized_recovery_added": false
     }
   }
 }

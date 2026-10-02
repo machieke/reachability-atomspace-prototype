@@ -80,7 +80,7 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (1 October 2026, thirty-fifth increment): the
+Current checkpoint (2 October 2026, thirty-sixth increment in progress): the
 bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
 saved comparison auditing and reproducibility within that same subset; its full
 32-run bundle audit passes. Two fresh matrices now pass all sixteen work-limited
@@ -2370,3 +2370,32 @@ Total experiment time is 113.84 seconds, including a separately recorded
 `repeatability.md`; no performance improvement is claimed. This closes the bounded
 evaluator correction. Transport/M12, learned conductance, generalized recovery and
 the broader benchmark remain deferred.
+
+### Thirty-sixth increment: frozen review and named cost-placement ablation
+
+Freeze the existing implementation and development episodes at
+`3e8fd7be56362ed21944636bbe505b6a4a7aac6f`. No runtime correction or benchmark
+expansion is part of this increment. The review protocol and separate diagnostic
+matrix are specified in `reviews/b0-b3-3e8fd7b/PROTOCOL.md`.
+
+1. Run the full default, native integration and standalone numerical suites once
+   in a clean detached worktree at the frozen revision. Preserve all logs and
+   failures without silently retrying. Run the original 32-run comparison and
+   bind its complete source inventory to that revision.
+2. Analyze actual rich-episode sequences for both seeds and every original budget.
+   Record candidate scores, same-snapshot ranking diagnostics, observations,
+   stale replies and the full per-goal/per-tick external loss decomposition.
+   Distinguish that accounting from causal attribution to the first divergence.
+3. Commit the named factorial score ablation and fixed exploratory matrix before
+   executing it. Compare routing-plus-queue, routing-only, queue-only and neither,
+   alongside unchanged B0, using common candidates, budgets and hard gates.
+   Keep equivalent-condition depth and parallel-route cost cases separate from
+   the original benchmark. Retain every favorable, neutral and unfavorable cell.
+4. Publish one checksummed source-bound review archive containing the frozen
+   comparison, source snapshots, full-suite logs/receipts, decision analysis and
+   separate diagnostic results. Document independent verification commands,
+   update the manifest, commit and push. Stop without promoting an ablation or
+   adding transport/M12, learned conductance or generalized recovery.
+
+Status: in progress. The frozen suites run in isolation while separately tested
+diagnostic tools are prepared; this increment does not complete broader phases.
