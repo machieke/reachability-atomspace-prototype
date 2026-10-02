@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-goal-directed-online-pln-discovery",
+  "implementation_stage": "bounded-native-atomspace-recall-in-progress",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3195,5 +3195,27 @@
       "generalized recovery",
       "large-storage claims"
     ]
+  },
+  "native_atomspace_recall": {
+    "status": "preregistered",
+    "baseline_publication": "846053ae0c847a4b973747d3a1733f9bf1cd97af",
+    "protocol": "reviews/native-atomspace-recall-v1/PROTOCOL.md",
+    "parents_reused": 12,
+    "work_budgets": [
+      8,
+      16
+    ],
+    "recall_arms": [
+      "Goal-scan",
+      "Goal-native"
+    ],
+    "formula_modes": [
+      "finite",
+      "native"
+    ],
+    "expected_executions": 96,
+    "sqlite_authoritative": true,
+    "full_export_and_revalidation": true,
+    "persistent_incremental_store": false
   }
 }

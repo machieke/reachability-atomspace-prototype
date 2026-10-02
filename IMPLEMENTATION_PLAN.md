@@ -33,6 +33,24 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: native AtomSpace-backed task recall
+
+Close publication `846053a` and preserve its source, cohort, policies and reviews.
+
+1. Inspect pinned native APIs; predeclare immutable view/query schema and bounds.
+2. Implement a separate native helper/read-view adapter and Goal-native integration;
+   keep full coherent export, frozen selection semantics and authoritative execution.
+3. Test native query answers against independent scans, full matched-state parity,
+   live participation, revisions, context, incompleteness and process-failure gates.
+4. Run the unchanged 12 parents × 2 budgets × 2 recall arms × 2 formula modes (96
+   executions), applicable/native/numerical regressions, and attempt the full default
+   suite once at the frozen implementation revision.
+5. Publish one source-bound bundle, costs and limitations; commit/push and stop.
+
+No persistent/incremental native store, pressure, transport, scheduler tuning,
+large-scale claim or generalized recovery is included.
+
+
 ### Completed bounded milestone: goal-directed online PLN discovery
 
 Baseline publication `3f433ed`, measured source `0cd1f8a`, is closed and preserved.
