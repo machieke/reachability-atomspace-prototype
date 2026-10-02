@@ -30,9 +30,10 @@ from .pressure_episodes import ReasoningWorld
 
 FROZEN='3e8fd7be56362ed21944636bbe505b6a4a7aac6f'
 PROJECTION='8542ad538649fd0b967c7047057dd5cebf831be8'
+HARNESS_REVISION='decision-value/v1.1'
 OWN_FILES=['validation_lab/decision_'+x+'.py' for x in ('reference','enumeration','tasks','runtime','comparison')]+[
     'tests/test_decision_value.py','reviews/decision-value-v1/PROTOCOL.md','reviews/decision-value-v1/inventory.json',
-    'reviews/decision-value-v1/feasibility.json']
+    'reviews/decision-value-v1/feasibility.json','reviews/decision-value-v1/CORRECTION-v1.1.md']
 
 
 def write(path,value):
@@ -66,12 +67,13 @@ def source_binding():
             result[name]=sha256(blob).hexdigest()
         return result
     head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=audit.ROOT,text=True).strip()
-    return dict(frozen_revision=FROZEN,projection_revision=PROJECTION,experiment_revision=head,
+    return dict(harness_revision=HARNESS_REVISION,frozen_revision=FROZEN,projection_revision=PROJECTION,experiment_revision=head,
         frozen_files=files_at(FROZEN,audit.source_inputs()),projection_files=files_at(PROJECTION,projection.TOOL_FILES),
         experiment_files=files_at(head,OWN_FILES))
 
 
 def verify_sources(binding):
+    audit.equal(binding['harness_revision'],HARNESS_REVISION,'explicit corrected harness version')
     for key in ('frozen_files','projection_files','experiment_files'):
         for name,digest in binding[key].items():
             audit.equal(sha256((audit.ROOT/name).read_bytes()).hexdigest(),digest,'current source '+name)
@@ -124,7 +126,7 @@ def tie_info(ranks,field):
 def journal_signature(authority,context):
     state=authority.snapshot(context)
     return dict(commands=[(e.command,e.key) for e in authority._journal.entries()],
-        history=audit.belief_history(authority,context),usable=sorted(b.accepted_at_revision for b in state.usable),
+        history={str(k):v for k,v in audit.belief_history(authority,context).items()},usable=sorted(b.accepted_at_revision for b in state.usable),
         logical_time=state.logical_time,knowledge_revision=state.knowledge_revision,
         goals={g:dict(outstanding=authority.inspect_goal(g).projection.slices[0].outstanding_loss,
                       coverage=authority.inspect_goal(g).projection.slices[0].estimated_coverage)

@@ -171,6 +171,20 @@ class CertifiedHarnessTests(unittest.TestCase):
             changed=deepcopy(sample['snapshot']);changed['supports'][0]['valid_until']=3
             with self.assertRaises(ValueError): experiment.reference_state(task,changed,sample['remaining_budget'])
 
+    def test_journal_signature_json_roundtrip_across_decimal_revision_boundary(self):
+        # v1 failed after all measurements because integer keys sort numerically
+        # before serialization but decoded JSON object keys sort lexically.
+        task=TASKS['or-4'];ref=Reference(task,budgets()[0]['budget']);label=ref.solve()
+        with TemporaryDirectory() as temp:
+            path=Path(temp)/'w';witness(task,ref,label,path)
+            signature=experiment.save_signature(path,task)
+            self.assertTrue(any(int(k)>=10 for k in signature['history']))
+            decoded=json.loads(json.dumps(signature))
+            audit.equal(signature,decoded,'journal JSON roundtrip')
+            self.assertTrue(all(type(k) is str for k in signature['history']))
+            altered=deepcopy(decoded);altered['history']['2']['interpretation']='tampered'
+            with self.assertRaises(audit.AuditError): audit.equal(signature,altered,'changed belief history')
+
     def test_corrupt_prefix_and_illegal_reference_action_fail(self):
         task=TASKS['completion-0'];b=budgets()[1];ref=Reference(task,b['budget']);ref.solve()
         with TemporaryDirectory() as temp:
