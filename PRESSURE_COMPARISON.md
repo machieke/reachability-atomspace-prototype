@@ -1,5 +1,12 @@
 # Bounded B0-versus-B3 comparison
 
+The implementation and original development episodes are frozen at `3e8fd7b`
+(`b0-b3-freeze-2026-10-02`). The [independent review bundle](reviews/b0-b3-3e8fd7b/README.md)
+contains the full frozen regression results, source-bound original comparison,
+recorded decision analysis and a separate predeclared cost-placement ablation.
+It retains favorable, neutral and unfavorable results. The original runtime and
+benchmark remain unchanged; no ablation is promoted to B3.
+
 Run both controllers and write the comparison with one command:
 
 ```bash

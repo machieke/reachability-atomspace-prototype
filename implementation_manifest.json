@@ -1731,7 +1731,7 @@
       }
     },
     "frozen_review": {
-      "status": "in-progress",
+      "status": "complete",
       "frozen_revision": "3e8fd7be56362ed21944636bbe505b6a4a7aac6f",
       "runtime_and_original_benchmark_changed": false,
       "protocol": "reviews/b0-b3-3e8fd7b/PROTOCOL.md",
@@ -1753,7 +1753,298 @@
       "separate_diagnostic_runs": 120,
       "cost_tie_break_budget_charges_and_authority_unchanged": true,
       "analysis": "per-tick and per-goal accounting; no first-divergence causal attribution",
-      "transport_or_generalized_recovery_added": false
+      "transport_or_generalized_recovery_added": false,
+      "frozen_tag": "b0-b3-freeze-2026-10-02",
+      "diagnostic_revision": "54db172ff760f089476d9642118ccbc52044bc17",
+      "publication": "reviews/b0-b3-3e8fd7b/README.md",
+      "archive": "reviews/b0-b3-3e8fd7b/review.tar.gz",
+      "archive_sha256": "9242ffc1e23351ec9bd958c73a27ee75217f08131f3e650b70676eaa23fdb1e3",
+      "archive_bytes": 5305586,
+      "archive_files_verified": 731,
+      "full_suites_executed_once_at_frozen_revision": true,
+      "full_suite_results": {
+        "default": 912,
+        "native_integration": 85,
+        "standalone_reference": 15,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "full_suite_elapsed_seconds": {
+        "default": 1122.555,
+        "native_integration": 157.272
+      },
+      "diagnostic_tool_tests_passed": 9,
+      "frozen_comparison_runs_passed": 32,
+      "frozen_selections_reproduced": 155,
+      "frozen_source_files_verified": 71,
+      "ablation_runs_passed": 200,
+      "ablation_selections_reproduced": 835,
+      "ablation_ranking_calls_verified": 670,
+      "distinct_published_authorities": 232,
+      "ablation_run_elapsed_ns": 108852245833,
+      "ablation_audit_elapsed_ns": 111111252773,
+      "ablation_promoted": false,
+      "m09_detected": true,
+      "rich_work16_loss_decomposition": {
+        "B0": 72,
+        "B3": 78,
+        "answer_delta": 12,
+        "side_delta": -6,
+        "total_delta": 6,
+        "interpretation": "Full-sequence accounting, not a first-divergence causal effect"
+      },
+      "ablation_rich_integrated_losses": {
+        "B0": [
+          112,
+          72
+        ],
+        "both": [
+          102,
+          78
+        ],
+        "route": [
+          112,
+          72
+        ],
+        "queue": [
+          112,
+          72
+        ],
+        "neither": [
+          64,
+          58
+        ]
+      },
+      "ablation_loss_budget_order": [
+        "work-8",
+        "work-16"
+      ],
+      "ablation_classification_counts": [
+        {
+          "policy": "B3-cost-both",
+          "group": "frozen",
+          "mode": "work",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 2,
+          "neutral": 4,
+          "unfavorable": 2
+        },
+        {
+          "policy": "B3-cost-both",
+          "group": "frozen",
+          "mode": "time",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 4,
+          "neutral": 4,
+          "unfavorable": 0
+        },
+        {
+          "policy": "B3-cost-both",
+          "group": "diagnostic",
+          "mode": "work",
+          "reference": "B0",
+          "cells": 24,
+          "favorable": 0,
+          "neutral": 15,
+          "unfavorable": 9
+        },
+        {
+          "policy": "B3-cost-route",
+          "group": "frozen",
+          "mode": "work",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 0,
+          "neutral": 8,
+          "unfavorable": 0
+        },
+        {
+          "policy": "B3-cost-route",
+          "group": "frozen",
+          "mode": "work",
+          "reference": "B3-cost-both",
+          "cells": 8,
+          "favorable": 2,
+          "neutral": 4,
+          "unfavorable": 2
+        },
+        {
+          "policy": "B3-cost-route",
+          "group": "frozen",
+          "mode": "time",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 0,
+          "neutral": 8,
+          "unfavorable": 0
+        },
+        {
+          "policy": "B3-cost-route",
+          "group": "frozen",
+          "mode": "time",
+          "reference": "B3-cost-both",
+          "cells": 8,
+          "favorable": 0,
+          "neutral": 4,
+          "unfavorable": 4
+        },
+        {
+          "policy": "B3-cost-route",
+          "group": "diagnostic",
+          "mode": "work",
+          "reference": "B0",
+          "cells": 24,
+          "favorable": 4,
+          "neutral": 17,
+          "unfavorable": 3
+        },
+        {
+          "policy": "B3-cost-route",
+          "group": "diagnostic",
+          "mode": "work",
+          "reference": "B3-cost-both",
+          "cells": 24,
+          "favorable": 10,
+          "neutral": 14,
+          "unfavorable": 0
+        },
+        {
+          "policy": "B3-cost-queue",
+          "group": "frozen",
+          "mode": "work",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 0,
+          "neutral": 8,
+          "unfavorable": 0
+        },
+        {
+          "policy": "B3-cost-queue",
+          "group": "frozen",
+          "mode": "work",
+          "reference": "B3-cost-both",
+          "cells": 8,
+          "favorable": 2,
+          "neutral": 4,
+          "unfavorable": 2
+        },
+        {
+          "policy": "B3-cost-queue",
+          "group": "frozen",
+          "mode": "time",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 0,
+          "neutral": 8,
+          "unfavorable": 0
+        },
+        {
+          "policy": "B3-cost-queue",
+          "group": "frozen",
+          "mode": "time",
+          "reference": "B3-cost-both",
+          "cells": 8,
+          "favorable": 0,
+          "neutral": 4,
+          "unfavorable": 4
+        },
+        {
+          "policy": "B3-cost-queue",
+          "group": "diagnostic",
+          "mode": "work",
+          "reference": "B0",
+          "cells": 24,
+          "favorable": 0,
+          "neutral": 15,
+          "unfavorable": 9
+        },
+        {
+          "policy": "B3-cost-queue",
+          "group": "diagnostic",
+          "mode": "work",
+          "reference": "B3-cost-both",
+          "cells": 24,
+          "favorable": 0,
+          "neutral": 24,
+          "unfavorable": 0
+        },
+        {
+          "policy": "B3-cost-neither",
+          "group": "frozen",
+          "mode": "work",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 4,
+          "neutral": 4,
+          "unfavorable": 0
+        },
+        {
+          "policy": "B3-cost-neither",
+          "group": "frozen",
+          "mode": "work",
+          "reference": "B3-cost-both",
+          "cells": 8,
+          "favorable": 4,
+          "neutral": 4,
+          "unfavorable": 0
+        },
+        {
+          "policy": "B3-cost-neither",
+          "group": "frozen",
+          "mode": "time",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 2,
+          "neutral": 6,
+          "unfavorable": 0
+        },
+        {
+          "policy": "B3-cost-neither",
+          "group": "frozen",
+          "mode": "time",
+          "reference": "B3-cost-both",
+          "cells": 8,
+          "favorable": 2,
+          "neutral": 4,
+          "unfavorable": 2
+        },
+        {
+          "policy": "B3-cost-neither",
+          "group": "diagnostic",
+          "mode": "work",
+          "reference": "B0",
+          "cells": 24,
+          "favorable": 4,
+          "neutral": 17,
+          "unfavorable": 3
+        },
+        {
+          "policy": "B3-cost-neither",
+          "group": "diagnostic",
+          "mode": "work",
+          "reference": "B3-cost-both",
+          "cells": 24,
+          "favorable": 10,
+          "neutral": 14,
+          "unfavorable": 0
+        }
+      ],
+      "expected_operation_rejections": {
+        "comparison": {
+          "UNKNOWN": 3,
+          "STALE": 12
+        },
+        "ablation": {
+          "UNKNOWN": 39,
+          "STALE": 30
+        }
+      },
+      "unresolved_representation_depth_sensitivity": true,
+      "package_integrity_verified": true,
+      "changed_archive_rejected": true
     }
   }
 }

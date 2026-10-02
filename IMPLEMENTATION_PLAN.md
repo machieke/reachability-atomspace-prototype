@@ -80,7 +80,7 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (2 October 2026, thirty-sixth increment in progress): the
+Current checkpoint (2 October 2026, thirty-sixth increment): the
 bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
 saved comparison auditing and reproducibility within that same subset; its full
 32-run bundle audit passes. Two fresh matrices now pass all sixteen work-limited
@@ -98,6 +98,11 @@ detected and validation is complete. Existing recovery
 actions, gates and blocked unsupported cases are preserved. Transport/M12,
 learned conductance, family-complete validation, evaluator OS isolation and the
 broader phases remain deferred; this subset does not complete phases 5–8.
+The implementation and original episodes are now frozen at `3e8fd7b` with a
+published source-bound review under `reviews/b0-b3-3e8fd7b/`. Full frozen suites
+pass (912 default, 85 native, 15 numerical references). A separately committed
+200-run cost-placement ablation and trace-derived loss analysis are included;
+no ablation is promoted and no original runtime or benchmark input changed.
 
 ## Phase 0 Repository contracts
 
@@ -2397,5 +2402,51 @@ matrix are specified in `reviews/b0-b3-3e8fd7b/PROTOCOL.md`.
    update the manifest, commit and push. Stop without promoting an ablation or
    adding transport/M12, learned conductance or generalized recovery.
 
-Status: in progress. The frozen suites run in isolation while separately tested
-diagnostic tools are prepared; this increment does not complete broader phases.
+Status: complete. Frozen revision `3e8fd7be56362ed21944636bbe505b6a4a7aac6f`
+is tagged `b0-b3-freeze-2026-10-02`. The default, native and standalone numerical
+suites ran once in its clean detached worktree: 912, 85 and 15 tests pass, with
+no failures or skips. The default suite took 1122.555 seconds and native suite
+157.272 seconds. The original 32-run comparison passes; its source-bound audit
+reproduces 155 selections and verifies all 71 input files against that exact
+commit. M09 is detected. No original implementation or episode file changed.
+
+The diagnostic protocol and tools were committed and pushed as `54db172` before
+the exploratory matrix ran. Six cost-placement tests and three decision-analysis
+tests pass separately from the frozen suites. All 200 ablation runs pass over
+the predeclared 80 original-episode and 120 separate diagnostic runs. Replay
+checks 835 selections and 670 ranking calls. The run phase takes 108.85 seconds
+and its separate audit 111.11 seconds. All 232 published authorities are distinct.
+Expected replies remain recorded: 3 UNKNOWN/12 STALE in the original comparison
+and 39 UNKNOWN/30 STALE in the ablation, with no harness failures. Every evaluated
+pressure field converges within its declared bounds in these cases.
+
+The full rich work-16 sequence explains B3's integrated loss 78 versus B0's 72:
+answer support arrives two ticks later (+12 weighted loss), offset by earlier
+side support (−6), for net +6. Both finish with zero external/certified loss after
+13 requests. Candidate scores, differing observation timing, tick-4 stale
+requests, support reacquisition and later selections are retained for both seeds
+and all budgets. This is per-tick/per-goal accounting, not causal attribution to
+the first divergence. Original work-8 is favorable to B3 (102 versus 112); the
+simple control remains neutral.
+
+Routing-only and queue-only each improve rich work-16 loss to 72 but worsen
+work-8 to 112. Removing both score placements gives losses 58 and 64 respectively,
+while charging more work (17–18 operation units at work-16 versus original B3's
+15). Work-limited control outcomes remain neutral. Wall-limited comparisons
+retain unfavorable results and host-load variation; no performance significance
+or universal advantage is claimed. Full measured costs are preserved.
+
+The diagnostic cases expose unresolved representation dependence: eight redundant
+AND wrappers change every B3 policy's loss from 6 to 10 at equal operation cost,
+while B0 stays at 6. Parallel proofs confirm cost-ratio-squared scoring with both
+placements, one factor with either placement and no primary cost factor with
+neither, yet yield neutral outcome loss. Every diagnostic cell remains separate
+from the original benchmark. No ablation is promoted to production.
+
+One review archive, SHA256, safe inventory verifier, full explanation and independent
+audit commands are published under `reviews/b0-b3-3e8fd7b/`. The archive binds
+731 files, including both source snapshots, full-suite logs/receipts, original
+comparison traces and journals, analysis and separate ablations. Package integrity
+passes and a changed archive is rejected. The implementation manifest records
+the exact checksum. This closes the increment; transport/M12, learned conductance,
+generalized recovery and the broader phases remain deferred.
