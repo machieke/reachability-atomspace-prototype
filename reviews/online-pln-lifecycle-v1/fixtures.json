@@ -1,0 +1,19 @@
+{
+  "schema": "online-pln-fixtures/v1",
+  "seed": 0,
+  "scenario": "synthetic-numerical-deployment",
+  "fixtures": [
+    {"id": "choice-available", "family": "choice", "variant": "available", "expected": {"stage": "BUILT", "outstanding": 0, "effects": 1}},
+    {"id": "choice-unavailable", "family": "choice", "variant": "unavailable", "expected": {"stage": "DRAFT", "outstanding": 10, "effects": 0}},
+    {"id": "lineage-independent", "family": "lineage", "variant": "independent", "expected": {"stage": "DRAFT", "outstanding": 10, "effects": 0, "revision": "PASS", "decision": "UNKNOWN"}},
+    {"id": "lineage-copied", "family": "lineage", "variant": "copied", "expected": {"stage": "DRAFT", "outstanding": 10, "effects": 0, "revision": "UNKNOWN", "decision": "UNKNOWN"}},
+    {"id": "support-replacement", "family": "support", "variant": "replacement", "expected": {"stage": "BUILT", "outstanding": 0, "effects": 1, "old_commit": "STALE"}},
+    {"id": "support-alternative", "family": "support", "variant": "alternative", "expected": {"stage": "BUILT", "outstanding": 0, "effects": 1, "old_commit": "STALE"}},
+    {"id": "boundary-valid", "family": "boundary", "variant": "valid", "expected": {"stage": "BUILT", "outstanding": 0, "effects": 1}},
+    {"id": "boundary-joint", "family": "boundary", "variant": "joint", "expected": {"stage": "DRAFT", "outstanding": 10, "effects": 0, "deduction": "FAIL"}},
+    {"id": "race-retained", "family": "race", "variant": "retained", "expected": {"stage": "BUILT", "outstanding": 0, "effects": 1, "dispatch": "PASS"}},
+    {"id": "race-revoked", "family": "race", "variant": "revoked", "expected": {"stage": "DRAFT", "outstanding": 10, "effects": 0, "dispatch": "STALE"}},
+    {"id": "product-durable", "family": "product", "variant": "durable", "expected": {"stage": "BUILT", "outstanding": 0, "effects": 1, "decision": "STALE"}},
+    {"id": "product-reopened", "family": "product", "variant": "reopened", "expected": {"stage": "BUILT", "outstanding": 10, "effects": 1, "wrong_product": "FAIL", "decision": "STALE"}}
+  ]
+}

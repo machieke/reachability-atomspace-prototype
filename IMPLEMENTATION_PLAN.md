@@ -33,6 +33,30 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Immediate milestone: online numerical PLN/lifecycle conformance
+
+The planning comparison published at `4fffa74` (measured source `4be8091`)
+is closed. Its frozen pressure orderer did not justify its cost against neutral
+ordering in that static fragment; this is not a claim about all pressure mechanisms.
+Preserve its implementation, cohort, negative results and review artifacts.
+
+1. Predeclare twelve counterfactual fixtures in six families, coordinator bounds,
+   a versioned public observation/candidate interface and a pressure-free FIFO
+   agenda. Keep future responses and fixture expectations outside controller inputs.
+2. Connect selected report acquisition/adoption, grounded deduction and explicit
+   revision to the existing numerical ledger. Preserve five ordered premises,
+   joint feasibility, lineage, all-current decision gates and exact dispatch bases.
+3. Exercise observed products, monitoring, durability and reopening using the
+   existing deployment APIs. Distinguish autonomous selections from forced races.
+4. Run finite and pinned native cases, AtomSpace readback/reconstruction, seam
+   invariants and affected existing regressions. Publish actual failures and costs.
+5. Publish a source-bound review and one fresh-directory reproduction command;
+   then stop. No pressure retuning, stochastic planner, transport, native authority
+   redesign, generalized recovery or broader completion claim.
+
+Protocol: `reviews/online-pln-lifecycle-v1/PROTOCOL.md`. This is a bounded
+integration subset. The existing static planner contract remains unchanged.
+
 ### Completed bounded milestone: shared planning with pressure ordering
 
 The decision-value publication at `2dfe184` is closed and preserved. This new
