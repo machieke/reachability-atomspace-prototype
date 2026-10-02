@@ -58,7 +58,8 @@ flattening, canonical ordering and scoped idempotent deduplication only.
    policy is promoted; transport, learned conductance, generalized recovery,
    broader normalization and duration modeling remain deferred.
 
-Status: implementation in progress; this does not complete phases 5–8.
+Status: complete as a bounded experimental milestone. Stop here; this does not
+complete phases 5–8 or promote a cost policy.
 
 ### Completed bounded milestone: executable B0-versus-B3 comparison
 
@@ -107,7 +108,14 @@ adaptive transport, generalized recovery and large-scale claims remain deferred.
 The test harness grows with phases 1–3; phase 4 completes its coverage and wires
 the real components together. It is not a reason to defer semantic testing.
 
-Current checkpoint (2 October 2026, thirty-sixth increment): the
+Current checkpoint (2 October 2026, thirty-seventh increment): scoped Boolean
+pressure projection is implemented, tested and published as an experimental
+variant. Its 639-run comparison and all 160 normalized equivalence pairs pass;
+938 default, 85 native and 15 numerical checks pass. Original benchmark outcomes,
+the `3e8fd7b` freeze and the earlier review remain preserved. No cost placement is
+promoted, and no further milestone is started.
+
+Previous checkpoint (2 October 2026, thirty-sixth increment): the
 bounded B0/B3 milestone above is complete. The authorized follow-up strengthens
 saved comparison auditing and reproducibility within that same subset; its full
 32-run bundle audit passes. Two fresh matrices now pass all sixteen work-limited
@@ -2477,3 +2485,69 @@ comparison traces and journals, analysis and separate ablations. Package integri
 passes and a changed archive is rejected. The implementation manifest records
 the exact checksum. This closes the increment; transport/M12, learned conductance,
 generalized recovery and the broader phases remain deferred.
+
+### Thirty-seventh increment: representation-invariant pressure projection
+
+The thirty-sixth increment is closed. Frozen revision `3e8fd7b`, its tag, its
+published archive and all recorded outcomes remain unchanged. Experimental
+implementation and the fixed protocol were committed and pushed as
+`8542ad538649fd0b967c7047057dd5cebf831be8` before measurement. The extension lives
+outside the frozen runtime source inventory and changes no authority APIs,
+original episodes, solver parameters, candidate generation or cost-policy defaults.
+
+1. Add an explicitly scoped, bounded Boolean normalization layer before advisory
+   graph construction. Eliminate unary AND/OR, flatten equal operators, order
+   children and deduplicate only identical idempotent requirements in one scope.
+   Preserve occurrence mappings and revision dependencies; block the entire
+   current ranking with unchanged source accounts on projection exhaustion.
+2. Check deterministic/idempotent normalization, independent exhaustive condition
+   equivalence and generated combinations. Preserve real proof steps, evidence
+   identities, support validity and temporal scope. Reject unsupported resource,
+   evidence and temporal predicates. Keep source accounting and hard gates intact.
+3. Run unchanged B0, four raw placements and four experimental normalized
+   placements under common budgets and certified execution. Preserve the original
+   benchmark and use separate diagnostics. Charge normalization, graph building
+   and solving separately; report ties and all outcome classifications.
+4. Run the full applicable suites at the committed source, publish one checksummed
+   review with journals, traces, source archives and logs, update the manifest,
+   commit and push. Stop at the supported contract without promoting a policy or
+   adding broader normalization, transport, learned conductance or recovery.
+
+Status: complete. Seventeen new tests cover 160
+generated truth-set cases over 32 assignments each, 512 support-state/
+transformation/placement comparisons, every projection bound, mapping fidelity
+and negative controls. Default limits are 512 input occurrences, depth eight,
+512 children, 512 output occurrences and four goals; the original profile imposes
+its additional per-condition bounds. Gamma remains 0.85.
+
+The 639-run matrix passes over 639 distinct authorities: 144 original-episode
+runs and 495 separate diagnostic runs. Replay reproduces 2,757 selections and
+verifies 2,458 ranking calls. All 160 normalized equivalent-case pairs match over
+676 selected snapshots, with zero observed semantic-pressure difference and
+explicit unresolved primary ties. Frozen raw B3 reproduces wrapper attenuation;
+normalization matches the unwrapped counterpart at every AND/OR depth 0–8 and
+through the generated mixed families. Real operation depth remains present.
+
+All 32 original work-budget normalized/raw pairs retain identical requests,
+external outcomes and operation work. Each normalized placement has 12 favorable
+and 43 neutral diagnostic loss comparisons against its corresponding raw policy.
+Against B0, unfavorable diagnostic results remain: 13 for both/queue placement
+and eight for route/neither. Original wall caps retain favorable, neutral and
+unfavorable results; no timing significance is claimed. Rich work-16 normalization
+costs 3.54–6.66 ms; every cost category remains recorded. All fields converge
+within bounds. Expected operation replies include 73 UNKNOWN and 54 STALE,
+without harness failures. No ablation is promoted.
+
+The run phase takes 453.41 seconds and replay takes 604.35 seconds. The full
+default, native and numerical suites pass 938, 85 and 15 tests respectively,
+with no failures or skips. Each suite ran once in the clean experimental checkout;
+default/native suite times are 1273.434/157.689 seconds. Existing M09, deployment,
+corpus, safety and recovery regressions pass without changing their implementation.
+The review and complete validation receipts are documented in
+`reviews/pressure-projection-v1/README.md`. This remains a bounded experimental
+subset; phases 5–8, transport/M12, learned conductance, generalized recovery and
+the full benchmark remain incomplete.
+
+The published review binds 1,299 files. Archive integrity passes and a changed
+archive is rejected; the exact checksum is in `implementation_manifest.json`.
+This closes the increment at the supported normalization contract.

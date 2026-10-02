@@ -7,6 +7,11 @@ recorded decision analysis and a separate predeclared cost-placement ablation.
 It retains favorable, neutral and unfavorable results. The original runtime and
 benchmark remain unchanged; no ablation is promoted to B3.
 
+The separate [representation-invariant projection experiment](reviews/pressure-projection-v1/README.md)
+adds bounded Boolean normalization and compares raw versus normalized views under
+all four cost placements. Its command, scope, source-bound review and full results
+are documented there. The original B0/B3 command and defaults below are unchanged.
+
 Run both controllers and write the comparison with one command:
 
 ```bash

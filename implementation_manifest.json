@@ -2045,6 +2045,349 @@
       "unresolved_representation_depth_sensitivity": true,
       "package_integrity_verified": true,
       "changed_archive_rejected": true
+    },
+    "representation_projection": {
+      "status": "complete-bounded-experimental-milestone",
+      "frozen_revision": "3e8fd7be56362ed21944636bbe505b6a4a7aac6f",
+      "experimental_revision": "8542ad538649fd0b967c7047057dd5cebf831be8",
+      "command": "uv run --no-project python -m validation_lab.projection_comparison --output artifacts/projection-review",
+      "audit_command": "uv run --no-project python -m validation_lab.projection_comparison --audit BUNDLE",
+      "documentation": "reviews/pressure-projection-v1/README.md",
+      "protocol": "reviews/pressure-projection-v1/PROTOCOL.md",
+      "runtime_modules": [
+        "experimental_pressure/projection.py",
+        "experimental_pressure/ranking.py"
+      ],
+      "schema": "scoped-boolean-projection/v1",
+      "supported_transformations": [
+        "unary AND/OR elimination",
+        "same-operator associative flattening",
+        "canonical child ordering",
+        "scoped identical idempotent Boolean deduplication"
+      ],
+      "bounds": {
+        "visits": 512,
+        "depth": 8,
+        "children": 512,
+        "projected": 512,
+        "goals": 4
+      },
+      "bound_exhaustion": "ProjectionBlocked with original source accounts; no partial graph, ranking or current operation",
+      "occurrence_mappings_and_revision_dependencies": true,
+      "deterministic_and_idempotent": true,
+      "authority_writes": false,
+      "original_runtime_benchmark_and_review_changed": false,
+      "solver_and_gamma_changed": false,
+      "gamma": 0.85,
+      "source_identity_candidate_discovery_budgets_hard_gates_unchanged": true,
+      "canonical_source_accounting_verified": true,
+      "normalization_and_graph_costs_measured_and_charged": true,
+      "named_variants": [
+        "B3-normalized-both",
+        "B3-normalized-route",
+        "B3-normalized-queue",
+        "B3-normalized-neither"
+      ],
+      "kept_comparators": [
+        "B0",
+        "B3-cost-both",
+        "B3-cost-route",
+        "B3-cost-queue",
+        "B3-cost-neither"
+      ],
+      "new_tests": 17,
+      "generated_truth_set_cases": 160,
+      "assignments_per_case": 32,
+      "metamorphic_support_state_policy_comparisons": 512,
+      "full_suites_once_at_experimental_revision": true,
+      "suite_results": {
+        "default": 938,
+        "native": 85,
+        "numerical-reference": 15,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suite_test_seconds": {
+        "default": 1273.434,
+        "native": 157.689,
+        "numerical-reference": 0.037
+      },
+      "runs_passed": 639,
+      "original_episode_runs": 144,
+      "separate_diagnostic_runs": 495,
+      "distinct_authorities": 639,
+      "selections_reproduced": 2757,
+      "ranking_calls_verified": 2458,
+      "normalized_equivalence_pairs": 160,
+      "equivalent_selected_snapshots": 676,
+      "max_semantic_pressure_difference": 0.0,
+      "unresolved_tie_pair_snapshot_records": 168,
+      "numeric_allowance": "sum of solver L1 error bounds plus 1e-12",
+      "raw_wrapper_failure_reproduced": true,
+      "tested_unary_depths": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "mixed_boolean_transformations_verified": true,
+      "negative_controls": [
+        "real proof operation count",
+        "evidence identity",
+        "resource quantity unsupported/rejected",
+        "temporal scope and unsupported temporal predicates",
+        "support validity and revisions"
+      ],
+      "original_work_pairs_unchanged": 32,
+      "classification_counts": [
+        {
+          "group": "frozen",
+          "mode": "work",
+          "policy": "B3-normalized-both",
+          "reference": "B3-cost-both",
+          "cells": 8,
+          "neutral": 8
+        },
+        {
+          "group": "frozen",
+          "mode": "work",
+          "policy": "B3-normalized-both",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 2,
+          "unfavorable": 2,
+          "neutral": 4
+        },
+        {
+          "group": "frozen",
+          "mode": "work",
+          "policy": "B3-normalized-route",
+          "reference": "B3-cost-route",
+          "cells": 8,
+          "neutral": 8
+        },
+        {
+          "group": "frozen",
+          "mode": "work",
+          "policy": "B3-normalized-route",
+          "reference": "B0",
+          "cells": 8,
+          "neutral": 8
+        },
+        {
+          "group": "frozen",
+          "mode": "work",
+          "policy": "B3-normalized-queue",
+          "reference": "B3-cost-queue",
+          "cells": 8,
+          "neutral": 8
+        },
+        {
+          "group": "frozen",
+          "mode": "work",
+          "policy": "B3-normalized-queue",
+          "reference": "B0",
+          "cells": 8,
+          "neutral": 8
+        },
+        {
+          "group": "frozen",
+          "mode": "work",
+          "policy": "B3-normalized-neither",
+          "reference": "B3-cost-neither",
+          "cells": 8,
+          "neutral": 8
+        },
+        {
+          "group": "frozen",
+          "mode": "work",
+          "policy": "B3-normalized-neither",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 4,
+          "neutral": 4
+        },
+        {
+          "group": "frozen",
+          "mode": "time",
+          "policy": "B3-normalized-both",
+          "reference": "B3-cost-both",
+          "cells": 8,
+          "neutral": 7,
+          "unfavorable": 1
+        },
+        {
+          "group": "frozen",
+          "mode": "time",
+          "policy": "B3-normalized-both",
+          "reference": "B0",
+          "cells": 8,
+          "favorable": 4,
+          "neutral": 4
+        },
+        {
+          "group": "frozen",
+          "mode": "time",
+          "policy": "B3-normalized-route",
+          "reference": "B3-cost-route",
+          "cells": 8,
+          "neutral": 7,
+          "favorable": 1
+        },
+        {
+          "group": "frozen",
+          "mode": "time",
+          "policy": "B3-normalized-route",
+          "reference": "B0",
+          "cells": 8,
+          "neutral": 7,
+          "favorable": 1
+        },
+        {
+          "group": "frozen",
+          "mode": "time",
+          "policy": "B3-normalized-queue",
+          "reference": "B3-cost-queue",
+          "cells": 8,
+          "neutral": 7,
+          "unfavorable": 1
+        },
+        {
+          "group": "frozen",
+          "mode": "time",
+          "policy": "B3-normalized-queue",
+          "reference": "B0",
+          "cells": 8,
+          "neutral": 8
+        },
+        {
+          "group": "frozen",
+          "mode": "time",
+          "policy": "B3-normalized-neither",
+          "reference": "B3-cost-neither",
+          "cells": 8,
+          "neutral": 7,
+          "unfavorable": 1
+        },
+        {
+          "group": "frozen",
+          "mode": "time",
+          "policy": "B3-normalized-neither",
+          "reference": "B0",
+          "cells": 8,
+          "neutral": 6,
+          "favorable": 2
+        },
+        {
+          "group": "diagnostic",
+          "mode": "work",
+          "policy": "B3-normalized-both",
+          "reference": "B3-cost-both",
+          "cells": 55,
+          "neutral": 43,
+          "favorable": 12
+        },
+        {
+          "group": "diagnostic",
+          "mode": "work",
+          "policy": "B3-normalized-both",
+          "reference": "B0",
+          "cells": 55,
+          "neutral": 42,
+          "unfavorable": 13
+        },
+        {
+          "group": "diagnostic",
+          "mode": "work",
+          "policy": "B3-normalized-route",
+          "reference": "B3-cost-route",
+          "cells": 55,
+          "neutral": 43,
+          "favorable": 12
+        },
+        {
+          "group": "diagnostic",
+          "mode": "work",
+          "policy": "B3-normalized-route",
+          "reference": "B0",
+          "cells": 55,
+          "neutral": 42,
+          "favorable": 5,
+          "unfavorable": 8
+        },
+        {
+          "group": "diagnostic",
+          "mode": "work",
+          "policy": "B3-normalized-queue",
+          "reference": "B3-cost-queue",
+          "cells": 55,
+          "neutral": 43,
+          "favorable": 12
+        },
+        {
+          "group": "diagnostic",
+          "mode": "work",
+          "policy": "B3-normalized-queue",
+          "reference": "B0",
+          "cells": 55,
+          "neutral": 42,
+          "unfavorable": 13
+        },
+        {
+          "group": "diagnostic",
+          "mode": "work",
+          "policy": "B3-normalized-neither",
+          "reference": "B3-cost-neither",
+          "cells": 55,
+          "neutral": 43,
+          "favorable": 12
+        },
+        {
+          "group": "diagnostic",
+          "mode": "work",
+          "policy": "B3-normalized-neither",
+          "reference": "B0",
+          "cells": 55,
+          "neutral": 42,
+          "favorable": 5,
+          "unfavorable": 8
+        }
+      ],
+      "expected_operation_rejections": {
+        "UNKNOWN": 73,
+        "STALE": 54
+      },
+      "pressure_fields_all_converged": true,
+      "pressure_exhausted": [],
+      "run_phase_elapsed_ns": 453414083747,
+      "audit_elapsed_ns": 604353821104,
+      "normalization_rich_work16_range_ms": [
+        3.539,
+        6.665
+      ],
+      "m09_preserved_and_passed": true,
+      "m12_deferred_with_transport": true,
+      "archive": "reviews/pressure-projection-v1/review.tar.gz",
+      "archive_sha256": "e6c43f2f1afeeba2dba69885141d33f9a5624f4177742902f3857b5adb6e5617",
+      "archive_bytes": 18880685,
+      "archive_files_verified": 1299,
+      "package_integrity_verified": true,
+      "changed_archive_rejected": true,
+      "cost_policy_promoted": false,
+      "arbitrary_equivalence_normalization": false,
+      "adaptive_transport": false,
+      "learned_conductance": false,
+      "generalized_recovery_added": false,
+      "new_duration_model": false,
+      "general_performance_superiority_claimed": false,
+      "full_pressure_attention_transport_or_benchmark_complete": false,
+      "stop_condition": "Supported normalization contract tested; full applicable regressions pass; one source-bound comparison published; stop."
     }
   }
 }
