@@ -1,0 +1,9 @@
+{
+  "schema": "online-pln-review-archive/v1",
+  "archive": "review.tar.xz",
+  "sha256": "7629df2e54dae4fc4e5bc0dc1f410e7abea1260eb9b331aa841b276a658dc666",
+  "bytes": 3083708,
+  "parts": [
+    "review.tar.xz"
+  ]
+}

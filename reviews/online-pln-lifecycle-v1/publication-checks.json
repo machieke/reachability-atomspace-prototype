@@ -1,0 +1,63 @@
+{
+  "archive": {
+    "status": "PASS",
+    "archive_sha256": "7629df2e54dae4fc4e5bc0dc1f410e7abea1260eb9b331aa841b276a658dc666",
+    "archive_bytes": 3083708,
+    "parts": 1,
+    "files_verified": 1106,
+    "experiment_revision": "0cd1f8a53797791321ad974c67286fad0f5b37c4",
+    "limitation": "Integrity against published checksums; not publisher authentication or semantic replay."
+  },
+  "changed_archive": {
+    "status": "PASS",
+    "changed_archive_rejected": true,
+    "reason": "archive checksum differs: review.tar.xz"
+  },
+  "source_bindings": {
+    "status": "PASS",
+    "revision": "0cd1f8a53797791321ad974c67286fad0f5b37c4",
+    "git_bound_inputs": 141,
+    "runtime_unchanged_since_full_suites": true,
+    "changed_test_sources": [
+      "tests/test_online_pln.py"
+    ],
+    "method": "recomputed file hashes and git-show measured-revision bytes; diff existing runtime/tests against full-suite source",
+    "retained_original_vs_corrected": {
+      "semantic_sequences_equal": true,
+      "numeric_forecasts_equal": true,
+      "runs_compared": 24
+    },
+    "offline_checks": {
+      "selected_persisted_commits": 30,
+      "formula_calls_recomputed": 30,
+      "omitted_or_unselected_runtime_calls": 0,
+      "status": "PASS"
+    }
+  },
+  "semantic_audit": {
+    "status": "PASS",
+    "files": 291,
+    "cases": 24,
+    "selections": 152,
+    "checks": "sealed files, source/config, public frontiers/FIFO, prefix expectations, checked SQLite replay"
+  },
+  "negative_semantic_audit": [
+    {
+      "name": "changed-artifact",
+      "status": "PASS",
+      "detected": true,
+      "reason": "bundle artifact changed: finite-choice-available/trace.jsonl"
+    },
+    {
+      "name": "resealed-changed-selection",
+      "status": "PASS",
+      "detected": true,
+      "reason": "candidate enumeration or FIFO selection differs"
+    }
+  ],
+  "publication_manifest_checks": {
+    "tests": 2,
+    "status": "PASS"
+  },
+  "runtime_changed_after_measurement": false
+}

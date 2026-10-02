@@ -3051,7 +3051,7 @@
     "changed_archive_rejected": true
   },
   "online_numerical_pln_lifecycle": {
-    "status": "implemented-awaiting-source-bound-validation",
+    "status": "complete-bounded-source-bound-conformance",
     "schema": "online-pln-public/v1",
     "scope": "bounded-grounded-online-conformance-not-stochastic-planning-or-performance-comparison",
     "agenda": "fifo-first-ready-semantic/v1",
@@ -3087,6 +3087,58 @@
       "generalized-recovery",
       "persistent-native-authority",
       "large-scale-claims"
-    ]
+    ],
+    "measured_revision": "0cd1f8a53797791321ad974c67286fad0f5b37c4",
+    "initial_implementation_revision": "b771ce865dcb64d5cdcd89874a4966cf10b60ded",
+    "public_boundary_correction": "reviews/online-pln-lifecycle-v1/CORRECTION-v1.1.md",
+    "runs": 24,
+    "selected_operations": 152,
+    "formula_calls_per_mode": 15,
+    "finite_native_semantic_sequences_equal": true,
+    "source_bound_audit": {
+      "files": 291,
+      "cases": 24,
+      "selections": 152,
+      "status": "PASS"
+    },
+    "regressions": {
+      "default": {
+        "source_revision": "b771ce865dcb64d5cdcd89874a4966cf10b60ded",
+        "command": "uv run --no-project python -m unittest discover -s tests -v",
+        "tests": 981,
+        "passed": 981,
+        "elapsed_seconds": 1376.3954770243727,
+        "skipped": [],
+        "success": true
+      },
+      "native": {
+        "source_revision": "b771ce865dcb64d5cdcd89874a4966cf10b60ded",
+        "command": "uv run --no-project python -m unittest discover -s integration_tests -v",
+        "tests": 86,
+        "passed": 86,
+        "elapsed_seconds": 188.79808014119044,
+        "skipped": [],
+        "success": true
+      },
+      "numerical": {
+        "source_revision": "b771ce865dcb64d5cdcd89874a4966cf10b60ded",
+        "command": "uv run --no-project python pressure_field_lifecycle_reference_checks.py",
+        "tests": 15,
+        "passed": 15,
+        "elapsed_seconds": 0.0399100361391902,
+        "skipped": [],
+        "success": true
+      },
+      "corrected-coordinator": {
+        "source_revision": "0cd1f8a53797791321ad974c67286fad0f5b37c4",
+        "command": "uv run --no-project python -m unittest tests.test_online_pln integration_tests.test_online_pln -v",
+        "tests": 19,
+        "passed": 19,
+        "elapsed_seconds": 52.2784983641468,
+        "skipped": [],
+        "success": true
+      }
+    },
+    "regression_note": "Full default/native/numerical suites at b771ce8; all 19 affected coordinator tests repeated at 0cd1f8a after evaluator-public-justification correction. No runtime change; repeated executions are not extra unique tests."
   }
 }

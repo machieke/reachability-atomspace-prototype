@@ -33,7 +33,7 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Immediate milestone: online numerical PLN/lifecycle conformance
+### Completed bounded milestone: online numerical PLN/lifecycle conformance
 
 The planning comparison published at `4fffa74` (measured source `4be8091`)
 is closed. Its frozen pressure orderer did not justify its cost against neutral
@@ -56,6 +56,23 @@ Preserve its implementation, cohort, negative results and review artifacts.
 
 Protocol: `reviews/online-pln-lifecycle-v1/PROTOCOL.md`. This is a bounded
 integration subset. The existing static planner contract remains unchanged.
+
+Completed at measured source `0cd1f8a`: twelve predeclared counterfactual fixtures
+pass in both finite and native modes, with 152 selected operations and matching
+semantic sequences. Fifteen formula invocations per mode include actual native
+deduction/revision; all native outputs match the pinned checker. Projection and
+quiescent checked reconstruction pass without native re-inference. Blocked cases
+retain need, low-confidence revision parents remain current, stale proposals and
+dispatches are rejected, and observed completion/reopening preserve history.
+
+The full 981-test default suite, 86-test native suite and 15 numerical reference
+checks passed at `b771ce8`. A public-justification wording correction removes a
+fixture expectation from an independence declaration; the original run is retained
+and superseded, with all 19 affected coordinator tests and all 24 cases rerun at
+`0cd1f8a`. Existing runtime and other regression sources are unchanged. Exact
+revisions/counts, costs, negative outcomes and development failures are published
+under `reviews/online-pln-lifecycle-v1/`. No deferred capability is marked complete.
+This increment stops here; no automatic next implementation milestone is opened.
 
 ### Completed bounded milestone: shared planning with pressure ordering
 
