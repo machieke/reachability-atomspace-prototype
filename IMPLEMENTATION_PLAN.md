@@ -33,7 +33,7 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Immediate priority: independent bounded decision-value validation
+### Completed bounded milestone: independent decision-value validation
 
 Preserve runtime `3e8fd7b`, projection `8542ad5` and both published reviews. The
 projection milestone is closed. This evaluator-only increment tests unchanged
@@ -54,7 +54,26 @@ no policy tuning or additional normalization is authorized.
    recovery expansion, caching, scale or duration changes.
 
 Protocol: `reviews/decision-value-v1/PROTOCOL.md`; inventory and reference-only
-feasibility are adjacent. Status: implementation and pre-measurement validation.
+feasibility were committed at `d7fa062` before policy measurement. Status:
+complete at corrected harness `7bf11d5`; see `reviews/decision-value-v1/README.md`.
+The original attempt and its audit serialization failure are retained; v1.1 fixes
+JSON revision-key ordering and uses fresh authorities without any policy tuning.
+
+Accepted evidence: 132 exact reference cells; 359 sampled states/1795 rankings;
+150 certified witnesses; 660 closed-loop runs/2352 reproduced selections. The
+independent history enumerator agrees with all sampled Q labels. All operations
+PASS, with no pressure exhaustion. All 660 paired trajectories and 132 initial
+labels match the retained attempt semantically; all 1320 authorities are distinct.
+Validation: 242 applicable tests plus 15 numerical checks at `d7fa062`, then all
+14 decision-value tests at `7bf11d5`; omissions and the failed first audit are
+explicitly reported. Neither historical native nor full-suite results are
+presented as newly executed.
+
+All B3 placements improve some cases and worsen others. Their sampled-state
+agreement exceeds B0 but their aggregate parent episode gaps do not improve on
+B0. Monitoring/budget interactions and a dominated-route diagnostic are retained.
+Stop here. No policy is promoted and no subsequent search, transport, native PLN,
+normalization, recovery or scaling milestone is automatically started.
 
 ### Completed bounded milestone: representation-invariant pressure projection
 

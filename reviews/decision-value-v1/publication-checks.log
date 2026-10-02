@@ -1,0 +1,9 @@
+Post-package integrity, changed-archive rejection and final manifest checks.
+{"valid": {"status": "PASS", "archive_sha256": "6dae1f1e87749a3ae7adf442a02ddd7508689bf917cdcb45498818da5457a946", "files_verified": 7588, "frozen_revision": "3e8fd7be56362ed21944636bbe505b6a4a7aac6f", "projection_revision": "8542ad538649fd0b967c7047057dd5cebf831be8", "experiment_revision": "7bf11d5282542c870dfd270613db2b46fc031321", "limitation": "Integrity against the published checksum, not publisher authentication or semantic replay."}, "changed_archive_rejected": true}
+test_pinned_design_inputs_match (tests.test_manifest.ManifestTests.test_pinned_design_inputs_match) ... ok
+test_runtime_does_not_import_evaluator (tests.test_manifest.ManifestTests.test_runtime_does_not_import_evaluator) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.171s
+
+OK
