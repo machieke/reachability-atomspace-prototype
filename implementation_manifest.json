@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-native-atomspace-recall-complete",
+  "implementation_stage": "bounded-attention-transport-in-progress",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3284,5 +3284,20 @@
       "generalized recovery",
       "scale/performance promotion"
     ]
+  },
+  "bounded_attention_transport": {
+    "status": "preregistered",
+    "baseline_publication": "77e30ef5e51fce3b6236c1d842884738bb43733c",
+    "protocol": "reviews/bounded-attention-v1/PROTOCOL.md",
+    "modes": [
+      "WS-queue",
+      "WS-local",
+      "WS-flow"
+    ],
+    "primary_executions": 192,
+    "nonbinding_executions": 16,
+    "native_recall": true,
+    "sqlite_authoritative": true,
+    "adaptive_transport": false
   }
 }

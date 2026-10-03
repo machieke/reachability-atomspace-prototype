@@ -33,6 +33,24 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: working memory and fixed gated transport
+
+Close native-recall publication `77e30ef`; preserve its implementation, measured
+source/auditor, corrected test invocation and review bytes. The exact new subset is
+preregistered in `reviews/bounded-attention-v1/PROTOCOL.md`.
+
+1. Define counted workspace, buffers, control pins and independently bounded work.
+2. Implement incremental typed native recall, LRU retention, fixed masked transport
+   and three shared controllers without altering authority or native view lifetime.
+3. Test independent numerical transport, M12, native discovery/PLN, exact premise
+   bundles, relevant revisions, monitoring, capacity and semantic metamorphisms.
+4. Freeze source; run 192 tight-budget episodes, 16 nonbinding reference/conformance
+   runs, matched replays and applicable/native/numerical/package-qualified regressions.
+5. Publish source-bound evidence, all costs/outcomes/failures; commit/push and stop.
+
+This is fixed transport for recall ordering, not pressure execution scoring, adaptive
+SPH, full ECAN, persistence, generalized recovery or a performance promotion.
+
 ### Completed bounded milestone: native AtomSpace-backed task recall
 
 Close publication `846053a` and preserve its source, cohort, policies and reviews.
