@@ -47,6 +47,15 @@ Work budget 16, acquisitions 16, selections 32 are shared. Attempts/ages/counter
 survive workspace rebuilds. Whole snapshot changes invalidate all overlay permits,
 completeness and candidates. Microsteps do not change knowledge or native epochs.
 
+Premeasurement accounting clarification: arc payloads are also capped at 64 KiB
+(256 KiB in complete mode). Public root descriptors are capped at 64 roots/64 KiB;
+diagnostic identity history at 2048 seen IDs within the metadata byte cap; retained
+episode ages at 8192 IDs/4 MiB, attempts bounded by 32 selections. Per-decision
+event recording has 8192 events/8 MiB. There are at most 33 decision tranches.
+Interrupted jobs remain partly explored even if no queued jobs remain. These
+auxiliary caps were made explicit before outcome comparison; primary active/query
+settings, seeding, ranking, stopping and parent cases are unchanged.
+
 Eight engineering parents: control; distractors/shared inputs; AND/alternatives;
 shared intermediate; closed observation sinks (intentionally adverse transport
 geometry); eviction/revisit chain; equal replacement plus new producer boundary;
