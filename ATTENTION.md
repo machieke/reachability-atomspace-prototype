@@ -23,7 +23,7 @@ existing hash seal bind the run to its source and configuration. Replay separate
 ```sh
 uv run --no-project python -m attention_lab.compare --verify artifacts/attention-fresh
 uv run --no-project python -m unittest discover -s tests -t . -v
-uv run --no-project python -m unittest discover -s integration_tests -t . -v
+uv run --no-project python -m unittest discover -s integration_tests -v
 uv run --no-project python pressure_field_lifecycle_reference_checks.py
 ```
 

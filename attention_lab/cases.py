@@ -39,6 +39,10 @@ class World(GoalWorld):
             session.register_rule(ProbabilityRule('outside-new-producer','1',old.deduction))
             self.seams.append(dict(kind='new-producer-after-equal-replacement',rule='outside-new-producer'))
     def acquire(self,probe):
+        if self.parent['id']=='closed-sinks' and probe.probe_id.startswith('closed-'):
+            # A precondition may become satisfied later. Inspection still cannot
+            # fabricate a numerical report from this deliberately unhelpful source.
+            return dict(status='UNKNOWN',detail='inspection source has no numerical report')
         if self.parent['id']=='monitor-reopen' and probe.report_type=='product' and self.product_requests==0:
             self.product_requests+=1
             return dict(status='PASS',events=(('observation',dict(attempt_id='attempt',product_id='artifact-v1',milestone='exact_product_observed')),))

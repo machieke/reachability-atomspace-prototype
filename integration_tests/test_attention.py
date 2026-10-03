@@ -128,3 +128,11 @@ class AttentionIntegrationTests(unittest.TestCase):
                     self.assertEqual(r['outstanding'],10);self.assertIn('reopened',r['relief_kinds'])
                     rows=[json.loads(t) for t in (Path(tmp)/'case/trace.jsonl').read_text().splitlines()]
                     self.assertTrue(any(row.get('result',{}).get('status')=='FAIL' and row['selected']['target']=='product' for row in rows))
+    def test_closed_inspection_source_remains_unknown_after_use_route_opens(self):
+        with TemporaryDirectory() as tmp:
+            r=run_case(next(p for p in PARENTS if p['id']=='closed-sinks'),Path(tmp)/'case',mode='WS-flow',capacity=48,queries=48,native=True)
+            self.assertEqual(r['conformance'],'PASS',r.get('traceback'));self.assertEqual(r['outstanding'],0)
+            rows=[json.loads(t) for t in (Path(tmp)/'case/trace.jsonl').read_text().splitlines()]
+            requests=[row for row in rows if row['selected'] and row['selected']['target'].startswith('closed-')]
+            self.assertTrue(requests)
+            self.assertTrue(all(row['result']['status']=='UNKNOWN' and not row['calls'] for row in requests))
