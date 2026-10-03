@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-native-atomspace-recall-in-progress",
+  "implementation_stage": "bounded-native-atomspace-recall-complete",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -63,13 +63,21 @@
       "recovery": "checked-full-command-replay"
     },
     "atomspace": {
-      "status": "native_snapshot_projection_tested",
+      "status": "native_snapshot_projection_and_bounded_task_recall_tested",
       "commit": "c8d633bf272b838c2132c21b7c8ddf169a18dd22",
       "cogutil_commit": "64dca9083dcfa485dcb70fd6fe7ba1f80e0f4082",
       "transport": "reachability-atomspace-batch/v1",
       "record_schema": "atomspace-record/v1",
       "persistent_native_storage": false,
-      "commit_authority": false
+      "commit_authority": false,
+      "experimental_recall": {
+        "schema": "native-atomspace-recall/v1",
+        "helper": "native/atomspace_recall.cc",
+        "immutable_revision_bound": true,
+        "query_membership": "native-incoming-links-ordered-outgoing-and-values",
+        "persistent_incremental_store": false,
+        "commit_authority": false
+      }
     },
     "pln": {
       "status": "certified-numeric-admission-and-recovery-tested",
@@ -3197,7 +3205,7 @@
     ]
   },
   "native_atomspace_recall": {
-    "status": "preregistered",
+    "status": "complete-bounded-source-bound-conformance",
     "baseline_publication": "846053ae0c847a4b973747d3a1733f9bf1cd97af",
     "protocol": "reviews/native-atomspace-recall-v1/PROTOCOL.md",
     "parents_reused": 12,
@@ -3216,6 +3224,65 @@
     "expected_executions": 96,
     "sqlite_authoritative": true,
     "full_export_and_revalidation": true,
-    "persistent_incremental_store": false
+    "persistent_incremental_store": false,
+    "measured_revision": "79f4f439a510cfb6c94a831985e8daee1cfbd84e",
+    "auditor_revision": "79f4f439a510cfb6c94a831985e8daee1cfbd84e",
+    "review": "reviews/native-atomspace-recall-v1/README.md",
+    "archive_sha256": "8828be14d05f1c269f28ef869aff2bb60b85b5668f7ed09b793cf552cad689b0",
+    "archive_bytes": 3433896,
+    "executions": 96,
+    "native_read_view_queries_participate_in_task_recall": true,
+    "native_pln_executes_selected_numerical_work": true,
+    "matched_native_scan_states": 792,
+    "native_query_reference_checks": 19388,
+    "selected_operations": 696,
+    "persisted_selected_commits": 196,
+    "formulas_recomputed": 156,
+    "semantic_parity": true,
+    "primary_native_queries": 19388,
+    "primary_native_view_epochs": 396,
+    "primary_native_protocol_failures": 0,
+    "prior_tracked_files_preserved": 621,
+    "findings": "Same choices and terminal outcomes; 15 fewer tuple visits per mode, substantially greater measured selection and episode costs. One ordered descriptive pass, no speed or scale promotion.",
+    "validation": {
+      "source_revision": "79f4f439a510cfb6c94a831985e8daee1cfbd84e",
+      "full_default_initial": {
+        "run": 1006,
+        "passed": 1005,
+        "failures": 1,
+        "errors": 0,
+        "skips": 0,
+        "reason": "pre-existing package-specific mutation mock under unqualified discovery"
+      },
+      "full_default_package_qualified": {
+        "run": 1006,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "elapsed_seconds": 1242.175141848158
+      },
+      "native": {
+        "run": 103,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "elapsed_seconds": 239.8171311551705
+      },
+      "new_default_tests": 6,
+      "new_native_tests": 16,
+      "numerical": 15,
+      "qualified_mutation_diagnostic": 1,
+      "semantic_tamper_rejections": 3,
+      "archive_integrity": "PASS",
+      "altered_archive": "REJECTED",
+      "omitted_default_or_native_files": []
+    },
+    "deferred": [
+      "persistent or incremental native store",
+      "pressure or adaptive transport",
+      "learned scheduling",
+      "generalized recovery",
+      "scale/performance promotion"
+    ]
   }
 }

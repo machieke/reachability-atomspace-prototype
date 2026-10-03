@@ -1,0 +1,11 @@
+{
+  "schema": "native-recall-review-archive/v1",
+  "archive": "review.tar.xz",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "sha256": "8828be14d05f1c269f28ef869aff2bb60b85b5668f7ed09b793cf552cad689b0",
+  "bytes": 3433896,
+  "measured_revision": "79f4f439a510cfb6c94a831985e8daee1cfbd84e",
+  "auditor_revision": "79f4f439a510cfb6c94a831985e8daee1cfbd84e"
+}

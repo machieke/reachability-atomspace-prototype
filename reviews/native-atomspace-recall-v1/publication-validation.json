@@ -1,0 +1,18 @@
+{
+  "integrity": {
+    "status": "PASS",
+    "archive_sha256": "8828be14d05f1c269f28ef869aff2bb60b85b5668f7ed09b793cf552cad689b0",
+    "archive_bytes": 3433896,
+    "parts": 1,
+    "files_verified": 1050,
+    "experiment_revision": "79f4f439a510cfb6c94a831985e8daee1cfbd84e",
+    "limitation": "Integrity against published checksums; not publisher authentication or semantic replay."
+  },
+  "altered_archive": "REJECTED",
+  "altered_archive_reason": "archive checksum differs: review.tar.xz",
+  "mutation": "Append one byte to a temporary archive copy; leave published descriptor/checksums unchanged.",
+  "runtime_source_inputs_match_measured_bundle": true,
+  "source_revision": "79f4f439a510cfb6c94a831985e8daee1cfbd84e",
+  "semantic_verification": "validation/audit.json inside archive; 792 matched states and 19388 independent query checks",
+  "full_default_validation": "validation/full-default-canonical.json inside archive; 1006 passed; original failed discovery attempt retained"
+}

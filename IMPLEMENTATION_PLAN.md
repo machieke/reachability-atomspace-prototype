@@ -33,7 +33,7 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: native AtomSpace-backed task recall
+### Completed bounded milestone: native AtomSpace-backed task recall
 
 Close publication `846053a` and preserve its source, cohort, policies and reviews.
 
@@ -49,6 +49,26 @@ Close publication `846053a` and preserve its source, cohort, policies and review
 
 No persistent/incremental native store, pressure, transport, scheduler tuning,
 large-scale claim or generalized recovery is included.
+
+Completed at frozen implementation/auditor `79f4f43`. All 96 unchanged parent/
+budget/recall/formula executions pass. Actual native load/query replay agrees with
+frozen Goal-scan over 792 matched states and 19,388 independently checked query
+answers; 696 selected operations, 196 persisted selected numerical commits and
+156 formula calls pass audit. Outcomes and formula counts are unchanged. Native
+recall visits 15 fewer tuples per mode but costs substantially more in this ordered
+pass; cold rebuild and pinned-build verification dominate. No speed claim follows.
+
+The package-qualified full default suite passes 1,006 tests, the full native suite
+103, and the numerical checks 15. The initial unqualified full discovery completed
+with one pre-existing module/mock-target failure; its evidence and the passing
+package-qualified rerun are retained. Neither runtime nor historical test sources
+changed between attempts. All 621 prior tracked files except this plan and manifest,
+plus the original native build receipt, are preserved from publication `846053a`.
+
+Review: `reviews/native-atomspace-recall-v1/README.md`. Native read-view queries
+participate in task recall; native PLN executes selected numerical work; SQLite
+remains authoritative. Full export and authoritative revalidation remain. This
+bounded increment stops here; no automatic next implementation milestone is opened.
 
 
 ### Completed bounded milestone: goal-directed online PLN discovery
