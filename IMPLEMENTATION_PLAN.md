@@ -33,7 +33,7 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: working memory and fixed gated transport
+### Completed bounded milestone: working memory and fixed gated transport
 
 Close native-recall publication `77e30ef`; preserve its implementation, measured
 source/auditor, corrected test invocation and review bytes. The exact new subset is
@@ -50,6 +50,17 @@ preregistered in `reviews/bounded-attention-v1/PROTOCOL.md`.
 
 This is fixed transport for recall ordering, not pressure execution scoring, adaptive
 SPH, full ECAN, persistence, generalized recovery or a performance promotion.
+
+Closed at measured/auditor source `0134092b9766f8fc9a9a1735cee8b7f2372e830c`. See
+`reviews/bounded-attention-v1/README.md` and its source-bound archive. All 208
+corrected executions and semantic replay passed, including 132 complete-reference
+states and 16,664 independently checked microsteps. Regression results: 1,014
+default, 117 native and 15 numerical checks passed without failures/errors/skips.
+The initial 12 fixture failures, interrupted default attempt and correction remain
+archived. Primary flow outcomes versus each comparator: 60 neutral, 4 unfavorable,
+0 favorable; no policy promotion. M12 now has a scoped fixed-transport witness;
+earlier milestones' deferral records remain historical. Stop here.
+
 
 ### Completed bounded milestone: native AtomSpace-backed task recall
 

@@ -1,0 +1,11 @@
+{
+  "schema": "bounded-attention-review-archive/v1",
+  "archive": "review.tar.xz",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "sha256": "5ab5732b5e6571484cac1d483247f5d7eb8930ce938ffbd8a1891c7efc023ff9",
+  "bytes": 9108924,
+  "measured_revision": "0134092b9766f8fc9a9a1735cee8b7f2372e830c",
+  "auditor_revision": "0134092b9766f8fc9a9a1735cee8b7f2372e830c"
+}

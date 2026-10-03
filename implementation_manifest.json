@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-attention-transport-in-progress",
+  "implementation_stage": "bounded-native-attention-published",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -187,7 +187,10 @@
     "typed_infer_observe_pressure": true,
     "shared_reasoning_candidate_frontier": true,
     "bounded_b0_b3_comparison": true,
-    "pressure_source_mutation_witness": true
+    "pressure_source_mutation_witness": true,
+    "bounded_native_working_memory": true,
+    "fixed_gated_attention_transport": true,
+    "attention_gate_arithmetic_mutation_witness": true
   },
   "mutation_witnesses": [
     "M01",
@@ -200,11 +203,10 @@
     "M08",
     "M09",
     "M10",
-    "M11"
-  ],
-  "remaining_designated_mutants": [
+    "M11",
     "M12"
   ],
+  "remaining_designated_mutants": [],
   "optional_dependency_lock": "adapters.lock.json",
   "probability_schema": "probability-ledger/v1",
   "probability_certificate_schema": "probability-certificate/v1",
@@ -3286,7 +3288,7 @@
     ]
   },
   "bounded_attention_transport": {
-    "status": "preregistered",
+    "status": "complete-bounded-subset",
     "baseline_publication": "77e30ef5e51fce3b6236c1d842884738bb43733c",
     "protocol": "reviews/bounded-attention-v1/PROTOCOL.md",
     "modes": [
@@ -3298,6 +3300,77 @@
     "nonbinding_executions": 16,
     "native_recall": true,
     "sqlite_authoritative": true,
-    "adaptive_transport": false
+    "adaptive_transport": false,
+    "experiment_revision": "0134092b9766f8fc9a9a1735cee8b7f2372e830c",
+    "auditor_revision": "0134092b9766f8fc9a9a1735cee8b7f2372e830c",
+    "initial_freeze": "ee212017db068fe96cf5ad34578cbee026be0874",
+    "review": "reviews/bounded-attention-v1/README.md",
+    "archive": "reviews/bounded-attention-v1/review.tar.xz",
+    "source_files": 185,
+    "verification": {
+      "status": "PASS",
+      "replayed_states": 1120,
+      "independent_native_query_checks": 20870,
+      "independent_field_steps": 16664,
+      "executions": 208,
+      "selected_operations": 912,
+      "persisted_selected_commits": 132,
+      "formulas_recomputed": 108,
+      "stale_selections": 12,
+      "matched_complete_reference_states": 132,
+      "files": 1232,
+      "checks": "source/config/seal; matched snapshot native and candidate replay; independent source answers and dense transport/allocation ledger; complete-reference parity; exact persisted certificates; full SQLite replay; formulas and cross-session semantics",
+      "revision": "0134092b9766f8fc9a9a1735cee8b7f2372e830c",
+      "elapsed_seconds": 464.7823045090772,
+      "source_unchanged": true
+    },
+    "regressions": {
+      "default": 1014,
+      "native": 117,
+      "numerical": 15,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "source_and_tests_unchanged": true
+    },
+    "initial_attempt": {
+      "cohort_passed": 196,
+      "cohort_failed": 12,
+      "default_interrupted_after_passing_checks": 641,
+      "retained": true,
+      "correction": "opened inspection sink returns UNKNOWN/no numerical report"
+    },
+    "paired_terminal_outcomes_per_comparator": {
+      "neutral": 60,
+      "unfavorable": 4,
+      "favorable": 0
+    },
+    "m12_scope": "fixed direct-arc gate-before-arithmetic; conservative reference and live closed routes",
+    "policy_promoted": false,
+    "full_design_complete": false,
+    "stop_condition": "publish this bounded source-bound comparison and stop",
+    "deferred": [
+      "adaptive SPH/density/bandwidth",
+      "learned conductance or retention",
+      "full ECAN",
+      "pressure/utility changes",
+      "native persistence/incremental storage",
+      "generalized recovery",
+      "scaling claims"
+    ],
+    "archive_integrity": {
+      "status": "PASS",
+      "archive_sha256": "5ab5732b5e6571484cac1d483247f5d7eb8930ce938ffbd8a1891c7efc023ff9",
+      "archive_bytes": 9108924,
+      "parts": 1,
+      "files_verified": 3605,
+      "experiment_revision": "0134092b9766f8fc9a9a1735cee8b7f2372e830c",
+      "limitation": "Integrity against published checksums; not publisher authentication or semantic replay."
+    },
+    "archive_tamper_check": {
+      "status": "REJECTED",
+      "attack": "one-bit archive mutation",
+      "reason": "archive checksum differs: review.tar.xz"
+    }
   }
 }
