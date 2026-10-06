@@ -33,25 +33,35 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: shared completion-aware recall
+### Completed bounded milestone: shared completion-aware recall
 
-Preserve publication `71c32df` and measured/auditor `0134092`. The exact next
-experiment is preregistered in `reviews/completion-aware-recall-v1/PROTOCOL.md`.
+Measured implementation/auditor `53d7b0b257ea436dc043e9d497fd3c76dcd0e03c`; protocol `6993c40`.
+Preserve prior publication `71c32df` and measured/auditor `0134092` byte-for-byte
+outside this plan and the manifest (666 prior tracked files and native receipt).
+The separate [review](reviews/completion-aware-recall-v1/README.md) publishes source, traces, costs, failures,
+independent service/native/field audits and exact revision metadata.
 
-1. Reproduce and annotate the frozen alternatives discovery boundary.
-2. Add one separate shared protected-assembly service rule with conservative query
-   and preparation accounting; preserve frozen ordering, field and hard gates.
-3. Test identical public streams, negative/complete joins, bounded memory/work,
-   relevant revisions, native inference and lifecycle authority.
-4. Freeze source; run the small 2×3 comparison, affected regressions and semantic
-   reservation/native/field/authority replay. Preserve failures and all outcomes.
-5. Publish one source-bound review, commit/push and stop. No transport promotion,
-   coefficient tuning, generalized recovery or automatic next heuristic.
+1. Reproduced the unchanged frozen alternatives boundary in 12 diagnostic runs.
+2. Implemented one shared FIFO protected-assembly slot, 12/13 conservative query
+   credits including six preparation reads; controls and all original gates retained.
+3. Verified identical streams, low-activation service, negative/complete joins,
+   exact rematerialization, revision rejection, native inference and lifecycle.
+4. Ran all 192 preregistered 2×3 cells at capacity 48, q16/q48, finite/native formulas;
+   all passed conformance and semantic audit. Eight parents: two reused diagnostics,
+   six constructed variations. No fixture or policy retuning after measurement.
+5. Ran 358 applicable default, all 132 native and 15 numerical tests at the measured
+   revision: all passed, no skips. The remaining 662 default tests were omitted;
+   the old 1,014-test full-default pass is explicitly historical coverage.
+6. Preserved 6 favorable/24 neutral/2 unfavorable protected-queue comparisons;
+   protected flow vs frozen flow has 12 favorable/20 neutral; incremental flow vs
+   protected queue/local has 0 favorable/30 neutral/2 unfavorable results each.
+   Configuration/formula repeats are not independent tasks. Flow is not promoted.
+7. Published one review using the existing archive/audit tools, including initial
+   assertion failures, stale/failed operations, all measured costs and negative audits.
 
-Implementation checkpoint: steps 1–3 implemented in separate assembly namespaces.
-The 12 frozen boundary reproductions and 21 new development tests pass; two
-development semantic audits cover 10 runs. These are preliminary checks, not the
-measured regression/cohort result. Freeze the following commit for steps 4–5.
+Stop at this milestone. Full pressure/attention/transport/benchmark designs remain
+incomplete. No adaptive transport, learned retention, coefficient tuning, native
+storage redesign, generalized recovery, larger cohort or automatic next heuristic.
 
 
 ### Completed bounded milestone: working memory and fixed gated transport

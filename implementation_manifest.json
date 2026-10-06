@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "completion-aware-recall-in-progress",
+  "implementation_stage": "bounded-completion-aware-recall-compared-and-reviewed",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3374,7 +3374,7 @@
     }
   },
   "completion_aware_recall": {
-    "status": "preregistered",
+    "status": "bounded-experiment-complete",
     "baseline_publication": "71c32df66d1c08143621f1e4c6005da31fac2565",
     "protocol": "reviews/completion-aware-recall-v1/PROTOCOL.md",
     "capacity": 48,
@@ -3396,6 +3396,174 @@
     ],
     "primary_executions": 192,
     "adaptive_transport": false,
-    "policy_promoted": false
+    "policy_promoted": false,
+    "measured_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c",
+    "auditor_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c",
+    "protocol_revision": "6993c40",
+    "review": "reviews/completion-aware-recall-v1/README.md",
+    "runtime": "experimental_assembly/controller.py",
+    "comparison_command": "uv run --no-project python -m assembly_lab.compare --output /tmp/completion-recall-fresh --audit-after",
+    "source_bound_inputs": 198,
+    "source_preservation": 666,
+    "reservation": {
+      "resident_queries": 12,
+      "evicted_queries": 13,
+      "join_queries": 6,
+      "prepare_queries": 6,
+      "slots_per_tranche": 1,
+      "authority": false,
+      "unknown_response_sizes_checked_during_attempt": true
+    },
+    "conformance": "PASS",
+    "paired_terminal_loss": {
+      "incremental_flow_vs_local": {
+        "neutral": 30,
+        "unfavorable": 2
+      },
+      "incremental_flow_vs_queue": {
+        "neutral": 30,
+        "unfavorable": 2
+      },
+      "shared_flow": {
+        "favorable": 12,
+        "neutral": 20
+      },
+      "shared_queue": {
+        "favorable": 6,
+        "neutral": 24,
+        "unfavorable": 2
+      }
+    },
+    "semantic_audit": {
+      "status": "PASS",
+      "replayed_states": 1150,
+      "independent_native_query_checks": 14814,
+      "matched_frozen_states": 460,
+      "independent_field_steps": 10648,
+      "service_control_queries": 4600,
+      "service_affordability_scans": 9046,
+      "service_unaffordable_offer_observations": 3568,
+      "service_inspection_queries": 10954,
+      "service_join_attempts": 536,
+      "service_audited_tranches": 1150,
+      "executions": 192,
+      "selected_operations": 958,
+      "persisted_selected_commits": 218,
+      "formulas_recomputed": 206,
+      "service_protected": 260,
+      "service_assembly_queries": 1560,
+      "service_protected_COMPLETE_CANDIDATE": 154,
+      "service_served": 260,
+      "service_preparation_queries": 0,
+      "service_protected_NO_NEW_TUPLE": 58,
+      "service_protected_MISSING_PREMISES": 48,
+      "stale_selections": 18,
+      "files": 1166,
+      "checks": "source/config/seal; matched snapshot native and candidate replay; independent source answers and dense transport/allocation ledger; frozen policy parity; independent FIFO reservation and service ledger; exact persisted certificates; full SQLite replay; formulas and cross-session semantics"
+    },
+    "audit_counter_correction": {
+      "status": "PASS",
+      "native_queries_by_phase": {
+        "control": 2300,
+        "inspection": 10954,
+        "assembly": 1560
+      },
+      "total_native_queries": 14814,
+      "raw_audit_service_control_queries": 4600,
+      "actual_control_queries": 2300,
+      "reason": "Frozen ServiceLedger convenience counter adds both control_end summary and individual control query events; this doubles that report field only. Query balances, no-overspend checks, source-answer checks and primary analysis use actual per-query events. Raw audit.json and comparison.log remain unchanged.",
+      "coordinator_affected": false,
+      "reservation_checks_affected": false,
+      "measured_costs_affected": false,
+      "raw_auditor_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c"
+    },
+    "regressions": {
+      "applicable": {
+        "run": 358,
+        "passed": true,
+        "failures": [],
+        "errors": [],
+        "skips": [],
+        "source_unchanged": true,
+        "test_files_unchanged": true
+      },
+      "native": {
+        "run": 132,
+        "passed": true,
+        "failures": [],
+        "errors": [],
+        "skips": [],
+        "source_unchanged": true,
+        "test_files_unchanged": true
+      },
+      "numerical": {
+        "run": 15,
+        "passed": true,
+        "failures": [],
+        "errors": [],
+        "skips": [],
+        "source_unchanged": true,
+        "test_files_unchanged": true
+      }
+    },
+    "broader_default_omitted": 662,
+    "historical_default": {
+      "default_passes": 1014,
+      "revision": "0134092b9766f8fc9a9a1735cee8b7f2372e830c",
+      "not_current_measurement": true
+    },
+    "negative_audits": [
+      {
+        "attack": "unsealed-trace",
+        "status": "REJECTED",
+        "reason": "bundle artifact changed: primary-assembly-finite-alternatives-c48-q16-WS-flow/trace.jsonl"
+      },
+      {
+        "attack": "resealed-selection",
+        "status": "REJECTED",
+        "reason": "candidate/selection replay differs: primary-assembly-finite-alternatives-c48-q16-WS-flow"
+      },
+      {
+        "attack": "resealed-reservation",
+        "status": "REJECTED",
+        "reason": "discovery/field/workspace replay differs: primary-assembly-finite-alternatives-c48-q16-WS-flow"
+      },
+      {
+        "attack": "resealed-field",
+        "status": "REJECTED",
+        "reason": "discovery/field/workspace replay differs: primary-assembly-finite-alternatives-c48-q16-WS-flow"
+      },
+      {
+        "attack": "resealed-native-answer",
+        "status": "REJECTED",
+        "reason": "native receipt replay differs"
+      }
+    ],
+    "full_design_complete": false,
+    "stop_condition": "publish this bounded shared service comparison and stop",
+    "deferred": [
+      "adaptive transport",
+      "coefficient/pressure tuning",
+      "learned conductance or retention",
+      "build verification caching",
+      "incremental native storage",
+      "global planning",
+      "generalized recovery",
+      "larger cohort or scale claims"
+    ],
+    "archive_integrity": {
+      "status": "PASS",
+      "archive_sha256": "1b4a95c293a197c3500956a997f3258d751a41b0484bb23ed990f192e739ae45",
+      "archive_bytes": 7842136,
+      "parts": 1,
+      "files_verified": 2180,
+      "experiment_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c",
+      "limitation": "Integrity against published checksums; not publisher authentication or semantic replay."
+    },
+    "archive_tamper_check": {
+      "status": "REJECTED",
+      "attack": "one-bit archive mutation",
+      "reason": "archive checksum differs: review.tar.xz"
+    }
   }
 }

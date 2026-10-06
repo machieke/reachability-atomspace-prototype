@@ -1,0 +1,11 @@
+{
+  "schema": "completion-aware-recall-review-archive/v1",
+  "archive": "review.tar.xz",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "sha256": "1b4a95c293a197c3500956a997f3258d751a41b0484bb23ed990f192e739ae45",
+  "bytes": 7842136,
+  "measured_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c",
+  "auditor_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c"
+}
