@@ -1,0 +1,712 @@
+{
+  "all_assessments": {
+    "classes": [
+      {
+        "id": "a",
+        "identity": [
+          "source-a"
+        ],
+        "kind": "observation",
+        "roots": [
+          "root:a"
+        ]
+      },
+      {
+        "id": "b",
+        "identity": [
+          "source-b"
+        ],
+        "kind": "observation",
+        "roots": [
+          "root:b"
+        ]
+      },
+      {
+        "id": "derived",
+        "identity": [
+          "r-estimate",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "objection",
+        "identity": [
+          "r-objection",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "revision",
+        "identity": [
+          "model-ab"
+        ],
+        "kind": "revision",
+        "roots": []
+      }
+    ],
+    "context": "ctx",
+    "contract": [
+      "acceptance",
+      "1"
+    ],
+    "criterion": {
+      "conclusion": {
+        "positive": true,
+        "statement": {
+          "arguments": [
+            "tested",
+            "healthy"
+          ],
+          "predicate": "pln:implication"
+        }
+      },
+      "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+      "criterion_id": "forecast",
+      "max_strength": 1.0,
+      "min_confidence": 0.35,
+      "min_strength": 0.65,
+      "unit": "dimensionless-probability"
+    },
+    "id": "all_assessments",
+    "obligations": [
+      {
+        "classes": [
+          "a",
+          "b",
+          "derived",
+          "objection",
+          "revision"
+        ],
+        "id": "forecast",
+        "mode": "all"
+      }
+    ],
+    "product": "artifact-v2",
+    "required_hard_checks": [
+      "clock_alignment",
+      "contract_binding",
+      "owner",
+      "selected",
+      "operation_readiness",
+      "action_requirements",
+      "undispatched_attempt",
+      "attempt_identity",
+      "resource_capacity"
+    ],
+    "schema": "obligation-interpretation/experimental-v0",
+    "time_window": [
+      0,
+      100
+    ]
+  },
+  "alternatives": {
+    "classes": [
+      {
+        "id": "a",
+        "identity": [
+          "source-a"
+        ],
+        "kind": "observation",
+        "roots": [
+          "root:a"
+        ]
+      },
+      {
+        "id": "b",
+        "identity": [
+          "source-b"
+        ],
+        "kind": "observation",
+        "roots": [
+          "root:b"
+        ]
+      },
+      {
+        "id": "derived",
+        "identity": [
+          "r-estimate",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "objection",
+        "identity": [
+          "r-objection",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "revision",
+        "identity": [
+          "model-ab"
+        ],
+        "kind": "revision",
+        "roots": []
+      }
+    ],
+    "context": "ctx",
+    "contract": [
+      "acceptance",
+      "1"
+    ],
+    "criterion": {
+      "conclusion": {
+        "positive": true,
+        "statement": {
+          "arguments": [
+            "tested",
+            "healthy"
+          ],
+          "predicate": "pln:implication"
+        }
+      },
+      "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+      "criterion_id": "forecast",
+      "max_strength": 1.0,
+      "min_confidence": 0.35,
+      "min_strength": 0.65,
+      "unit": "dimensionless-probability"
+    },
+    "id": "alternatives",
+    "obligations": [
+      {
+        "classes": [
+          "a",
+          "b",
+          "derived",
+          "objection",
+          "revision"
+        ],
+        "id": "forecast",
+        "mode": "any"
+      }
+    ],
+    "product": "artifact-v2",
+    "required_hard_checks": [
+      "clock_alignment",
+      "contract_binding",
+      "owner",
+      "selected",
+      "operation_readiness",
+      "action_requirements",
+      "undispatched_attempt",
+      "attempt_identity",
+      "resource_capacity"
+    ],
+    "schema": "obligation-interpretation/experimental-v0",
+    "time_window": [
+      0,
+      100
+    ]
+  },
+  "historical-alternatives": {
+    "classes": [
+      {
+        "id": "received",
+        "identity": [
+          "forecast-model"
+        ],
+        "kind": "observation",
+        "roots": []
+      },
+      {
+        "id": "weak-producer",
+        "identity": [
+          "a-low-yield",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "route-producer",
+        "identity": [
+          "z-route",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      }
+    ],
+    "context": "ctx",
+    "contract": [
+      "acceptance",
+      "1"
+    ],
+    "counterfactual": true,
+    "criterion": {
+      "conclusion": {
+        "positive": true,
+        "statement": {
+          "arguments": [
+            "tested",
+            "healthy"
+          ],
+          "predicate": "pln:implication"
+        }
+      },
+      "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+      "criterion_id": "forecast",
+      "max_strength": 1.0,
+      "min_confidence": 0.35,
+      "min_strength": 0.65,
+      "unit": "dimensionless-probability"
+    },
+    "id": "historical-alternatives",
+    "obligations": [
+      {
+        "classes": [
+          "received",
+          "weak-producer",
+          "route-producer"
+        ],
+        "id": "forecast",
+        "mode": "any"
+      }
+    ],
+    "product": "artifact-v2",
+    "required_hard_checks": [
+      "clock_alignment",
+      "contract_binding",
+      "owner",
+      "selected",
+      "operation_readiness",
+      "action_requirements",
+      "undispatched_attempt",
+      "attempt_identity",
+      "resource_capacity"
+    ],
+    "schema": "obligation-interpretation/experimental-v0",
+    "time_window": [
+      0,
+      100
+    ]
+  },
+  "historical-mandatory": {
+    "classes": [
+      {
+        "id": "received",
+        "identity": [
+          "forecast-model"
+        ],
+        "kind": "observation",
+        "roots": []
+      },
+      {
+        "id": "weak-producer",
+        "identity": [
+          "a-low-yield",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "route-producer",
+        "identity": [
+          "z-route",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      }
+    ],
+    "context": "ctx",
+    "contract": [
+      "acceptance",
+      "1"
+    ],
+    "counterfactual": true,
+    "criterion": {
+      "conclusion": {
+        "positive": true,
+        "statement": {
+          "arguments": [
+            "tested",
+            "healthy"
+          ],
+          "predicate": "pln:implication"
+        }
+      },
+      "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+      "criterion_id": "forecast",
+      "max_strength": 1.0,
+      "min_confidence": 0.35,
+      "min_strength": 0.65,
+      "unit": "dimensionless-probability"
+    },
+    "id": "historical-mandatory",
+    "obligations": [
+      {
+        "classes": [
+          "received"
+        ],
+        "id": "observation",
+        "mode": "any"
+      },
+      {
+        "classes": [
+          "weak-producer",
+          "route-producer"
+        ],
+        "id": "model",
+        "mode": "all"
+      }
+    ],
+    "product": "artifact-v2",
+    "required_hard_checks": [
+      "clock_alignment",
+      "contract_binding",
+      "owner",
+      "selected",
+      "operation_readiness",
+      "action_requirements",
+      "undispatched_attempt",
+      "attempt_identity",
+      "resource_capacity"
+    ],
+    "schema": "obligation-interpretation/experimental-v0",
+    "time_window": [
+      0,
+      100
+    ]
+  },
+  "mandatory_method": {
+    "classes": [
+      {
+        "id": "a",
+        "identity": [
+          "source-a"
+        ],
+        "kind": "observation",
+        "roots": [
+          "root:a"
+        ]
+      },
+      {
+        "id": "b",
+        "identity": [
+          "source-b"
+        ],
+        "kind": "observation",
+        "roots": [
+          "root:b"
+        ]
+      },
+      {
+        "id": "derived",
+        "identity": [
+          "r-estimate",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "objection",
+        "identity": [
+          "r-objection",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "revision",
+        "identity": [
+          "model-ab"
+        ],
+        "kind": "revision",
+        "roots": []
+      }
+    ],
+    "context": "ctx",
+    "contract": [
+      "acceptance",
+      "1"
+    ],
+    "criterion": {
+      "conclusion": {
+        "positive": true,
+        "statement": {
+          "arguments": [
+            "tested",
+            "healthy"
+          ],
+          "predicate": "pln:implication"
+        }
+      },
+      "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+      "criterion_id": "forecast",
+      "max_strength": 1.0,
+      "min_confidence": 0.35,
+      "min_strength": 0.65,
+      "unit": "dimensionless-probability"
+    },
+    "id": "mandatory_method",
+    "obligations": [
+      {
+        "classes": [
+          "a",
+          "b"
+        ],
+        "id": "observed",
+        "mode": "any"
+      },
+      {
+        "classes": [
+          "derived",
+          "objection",
+          "revision"
+        ],
+        "id": "method",
+        "mode": "all"
+      }
+    ],
+    "product": "artifact-v2",
+    "required_hard_checks": [
+      "clock_alignment",
+      "contract_binding",
+      "owner",
+      "selected",
+      "operation_readiness",
+      "action_requirements",
+      "undispatched_attempt",
+      "attempt_identity",
+      "resource_capacity"
+    ],
+    "schema": "obligation-interpretation/experimental-v0",
+    "time_window": [
+      0,
+      100
+    ]
+  },
+  "required_model": {
+    "classes": [
+      {
+        "id": "a",
+        "identity": [
+          "source-a"
+        ],
+        "kind": "observation",
+        "roots": [
+          "root:a"
+        ]
+      },
+      {
+        "id": "b",
+        "identity": [
+          "source-b"
+        ],
+        "kind": "observation",
+        "roots": [
+          "root:b"
+        ]
+      },
+      {
+        "id": "derived",
+        "identity": [
+          "r-estimate",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "objection",
+        "identity": [
+          "r-objection",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "revision",
+        "identity": [
+          "model-ab"
+        ],
+        "kind": "revision",
+        "roots": []
+      }
+    ],
+    "context": "ctx",
+    "contract": [
+      "acceptance",
+      "1"
+    ],
+    "criterion": {
+      "conclusion": {
+        "positive": true,
+        "statement": {
+          "arguments": [
+            "tested",
+            "healthy"
+          ],
+          "predicate": "pln:implication"
+        }
+      },
+      "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+      "criterion_id": "forecast",
+      "max_strength": 1.0,
+      "min_confidence": 0.35,
+      "min_strength": 0.65,
+      "unit": "dimensionless-probability"
+    },
+    "id": "required_model",
+    "obligations": [
+      {
+        "classes": [
+          "a",
+          "b",
+          "derived",
+          "objection"
+        ],
+        "id": "observed",
+        "mode": "any"
+      },
+      {
+        "classes": [
+          "revision"
+        ],
+        "id": "revision-model",
+        "mode": "all"
+      }
+    ],
+    "product": "artifact-v2",
+    "required_hard_checks": [
+      "clock_alignment",
+      "contract_binding",
+      "owner",
+      "selected",
+      "operation_readiness",
+      "action_requirements",
+      "undispatched_attempt",
+      "attempt_identity",
+      "resource_capacity"
+    ],
+    "schema": "obligation-interpretation/experimental-v0",
+    "time_window": [
+      0,
+      100
+    ]
+  },
+  "two_sources": {
+    "classes": [
+      {
+        "id": "a",
+        "identity": [
+          "source-a"
+        ],
+        "kind": "observation",
+        "roots": [
+          "root:a"
+        ]
+      },
+      {
+        "id": "b",
+        "identity": [
+          "source-b"
+        ],
+        "kind": "observation",
+        "roots": [
+          "root:b"
+        ]
+      },
+      {
+        "id": "derived",
+        "identity": [
+          "r-estimate",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "objection",
+        "identity": [
+          "r-objection",
+          "1"
+        ],
+        "kind": "deduction",
+        "roots": []
+      },
+      {
+        "id": "revision",
+        "identity": [
+          "model-ab"
+        ],
+        "kind": "revision",
+        "roots": []
+      }
+    ],
+    "context": "ctx",
+    "contract": [
+      "acceptance",
+      "1"
+    ],
+    "criterion": {
+      "conclusion": {
+        "positive": true,
+        "statement": {
+          "arguments": [
+            "tested",
+            "healthy"
+          ],
+          "predicate": "pln:implication"
+        }
+      },
+      "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+      "criterion_id": "forecast",
+      "max_strength": 1.0,
+      "min_confidence": 0.35,
+      "min_strength": 0.65,
+      "unit": "dimensionless-probability"
+    },
+    "id": "two_sources",
+    "obligations": [
+      {
+        "classes": [
+          "a",
+          "derived",
+          "objection",
+          "revision"
+        ],
+        "id": "source-a",
+        "mode": "any"
+      },
+      {
+        "classes": [
+          "b"
+        ],
+        "id": "source-b",
+        "mode": "any"
+      }
+    ],
+    "product": "artifact-v2",
+    "required_hard_checks": [
+      "clock_alignment",
+      "contract_binding",
+      "owner",
+      "selected",
+      "operation_readiness",
+      "action_requirements",
+      "undispatched_attempt",
+      "attempt_identity",
+      "resource_capacity"
+    ],
+    "schema": "obligation-interpretation/experimental-v0",
+    "time_window": [
+      0,
+      100
+    ]
+  }
+}
