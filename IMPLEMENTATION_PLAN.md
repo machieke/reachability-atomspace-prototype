@@ -33,6 +33,20 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: explicit decision obligations in shadow mode
+
+Preserve publication `3d84c66` and measured/auditor `53d7b0b`. Follow the fixed
+[shadow protocol](reviews/decision-obligations-shadow-v1/PROTOCOL.md).
+
+1. Freeze task-role interpretations and eleven small semantic parent structures.
+2. Implement detached complete-snapshot capture/evaluation and independent reference.
+3. Verify frozen-policy parity, witnesses, lineage, freshness, bounds, nonmutation
+   and rejection of shadow summaries by real authorization APIs.
+4. Freeze/run the small finite cohort, focused native examples and applicable
+   regressions; publish all policy disagreements and costs in one source-bound review.
+5. Decide which declared task meanings each interpretation fits, document unresolved
+   production requirements, commit/push and stop. Live all-current authority remains.
+
 ### Completed bounded milestone: shared completion-aware recall
 
 Measured implementation/auditor `53d7b0b257ea436dc043e9d497fd3c76dcd0e03c`; protocol `6993c40`.

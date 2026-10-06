@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-completion-aware-recall-compared-and-reviewed",
+  "implementation_stage": "decision-obligations-shadow-in-progress",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3567,5 +3567,13 @@
     },
     "review_publication_revision": "fc8ff9b84c8fc4cd4f69d9f597f56a3dcdaa8f45",
     "publication_receipt": "reviews/completion-aware-recall-v1/PUBLICATION.json"
+  },
+  "decision_obligations_shadow": {
+    "status": "preregistered",
+    "protocol": "reviews/decision-obligations-shadow-v1/PROTOCOL.md",
+    "baseline_publication": "3d84c6671804e7dacd8aa68c49cadc667fccce16",
+    "parents": 11,
+    "shadow_only": true,
+    "production_policy_changed": false
   }
 }
