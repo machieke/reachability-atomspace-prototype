@@ -1,0 +1,38 @@
+{
+  "schema": "obligation-work-bridge-publication/v1",
+  "publication_revision": "dee33c6a0c4731fa1e506299e52e04064a4da20a",
+  "measured_revision": "2322512c61f3ff387abcb402f1638c25b92f9add",
+  "auditor_revision": "2322512c61f3ff387abcb402f1638c25b92f9add",
+  "archive_sha256": "6791329e5050d816277eb16c6f18d07de6dbe3ba8c83e363cbe8b764ca622ae1",
+  "archive_bytes": 1524132,
+  "checks": {
+    "integrity": {
+      "status": "PASS",
+      "archive_sha256": "6791329e5050d816277eb16c6f18d07de6dbe3ba8c83e363cbe8b764ca622ae1",
+      "archive_bytes": 1524132,
+      "parts": 1,
+      "files_verified": 1111,
+      "experiment_revision": "2322512c61f3ff387abcb402f1638c25b92f9add",
+      "limitation": "Integrity against published checksums; not publisher authentication or semantic replay."
+    },
+    "extracted_semantic_audit": {
+      "status": "PASS",
+      "revision": "2322512c61f3ff387abcb402f1638c25b92f9add",
+      "development_allow_dirty": false,
+      "views": 42,
+      "prefixes": 32,
+      "node_occurrences": 374,
+      "edge_occurrences": 389,
+      "authority_reconstructions": 8,
+      "formula_calls": 8,
+      "new_native_cohort_formula_calls": 3,
+      "limitation": "source/graph conformance; no authentication, calibrated safety or autonomous outcome claim"
+    },
+    "archive_mutation": {
+      "rejected": true,
+      "reason": "archive checksum differs: review.tar.xz"
+    }
+  },
+  "boundary": "Bounded read-only obligation-to-work integration complete. Frozen A/B, live all-current authority and observed-goal accounting unchanged. No policy promotion or scheduler/pressure/transport/recovery continuation.",
+  "binding": "Publication commit contains the immutable archive and review. This receipt is a following commit to avoid self-referential hashing."
+}
