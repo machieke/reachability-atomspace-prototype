@@ -48,6 +48,8 @@ class ObligationTests(unittest.TestCase):
         for strength in (.649,.65,1.):
             s=self.session();report(s,strength=strength,confidence=.35);cap,_=capture(s.service)
             self.assertEqual(evaluate(cap,manifests()['alternatives'],'A')[0].data()['numerical_status'],cap.data()['live_criterion_statuses'][0])
+            checks=evaluate(cap,manifests()['alternatives'],'A')[0].data()['checks']
+            self.assertEqual(next(c['status'] for c in checks if c['name']=='universal_confidence_floor'),'PASS')
         s=self.session();report(s);cap,_=capture(s.service);d=cap.data();d['registry']['certificates']=[]
         self.assertEqual(evaluate(immutable(d),manifests()['alternatives'])[0].status,'FAIL')
         d=cap.data();d.pop('registry');self.assertEqual(evaluate(immutable(d),manifests()['alternatives'])[0].status,'UNKNOWN')

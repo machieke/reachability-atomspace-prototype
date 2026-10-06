@@ -129,7 +129,8 @@ def _evaluate(snapshot,manifest,interpretation='B',bounds=Bounds()):
     local.append('UNKNOWN' if opposite['current'] else 'PASS')
     curr=[r for r in records if r['current'] and r['orientation']=='same']
     local.append('FAIL' if any(r['disposition']=='strength_objection' for r in curr) else 'PASS' if curr else 'UNKNOWN')
-    if interpretation=='A':local.append('PASS' if curr and all(r['adequate'] for r in curr) else 'UNKNOWN')
+    confidence_status='PASS' if curr and all(r['belief']['proposal']['support']['truth']['confidence']>=floor for r in curr) else 'UNKNOWN'
+    if interpretation=='A':local.append(confidence_status)
     else:
         for r in records:
             if r['current'] and not r['eligible_classes']:local.append('UNKNOWN');check('unclassified:'+r['id'],'UNKNOWN','relevant current record retained without an eligible declared role')
@@ -147,7 +148,7 @@ def _evaluate(snapshot,manifest,interpretation='B',bounds=Bounds()):
     check('same_literal_ledger',same['status'],'complete current versus retired/missing authoritative views')
     check('opposite_literal','UNKNOWN' if opposite['current'] else 'PASS','every current opposite estimate retained; no complementary model')
     check('strength_objections','FAIL' if any(r['disposition']=='strength_objection' for r in curr) else 'PASS','all current same-literal strengths inspected regardless of confidence')
-    if interpretation=='A':check('universal_confidence_floor','PASS' if curr and all(r['adequate'] for r in curr) else 'UNKNOWN','every current same-literal assessment must meet the unchanged floor')
+    if interpretation=='A':check('universal_confidence_floor',confidence_status,'every current same-literal assessment must meet the unchanged floor')
     else:
         for o in obligations:check('obligation:'+o['id'],o['status'],'declared '+o['mode']+' requirement; all qualifying IDs recorded')
     return finish(numeric)
