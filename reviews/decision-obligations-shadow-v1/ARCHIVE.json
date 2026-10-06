@@ -1,0 +1,11 @@
+{
+  "archive": "review.tar.xz",
+  "auditor_revision": "5161e19b73f89676edf0b9f772200c12eee02ef1",
+  "bytes": 3793952,
+  "measured_revision": "5161e19b73f89676edf0b9f772200c12eee02ef1",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "schema": "decision-obligations-shadow-review-archive/v1",
+  "sha256": "ab5da4b282ff81fcf9cecb5167d7d26191fa767b675d8374b50232314ba84433"
+}

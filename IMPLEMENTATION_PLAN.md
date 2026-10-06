@@ -33,19 +33,51 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: explicit decision obligations in shadow mode
+### Completed bounded milestone: explicit decision obligations in shadow mode
 
-Preserve publication `3d84c66` and measured/auditor `53d7b0b`. Follow the fixed
-[shadow protocol](reviews/decision-obligations-shadow-v1/PROTOCOL.md).
+Measured implementation/auditor `5161e19b73f89676edf0b9f772200c12eee02ef1`.
+Protocol `ce4ae40` and exact role mappings `f67a4a0` were frozen before evaluating B.
+Preserve publication `3d84c66`, measured/auditor `53d7b0b`, its original/corrected
+review and all 689 prior tracked files outside this plan and the manifest.
 
-1. Freeze task-role interpretations and eleven small semantic parent structures.
-2. Implement detached complete-snapshot capture/evaluation and independent reference.
-3. Verify frozen-policy parity, witnesses, lineage, freshness, bounds, nonmutation
-   and rejection of shadow summaries by real authorization APIs.
-4. Freeze/run the small finite cohort, focused native examples and applicable
-   regressions; publish all policy disagreements and costs in one source-bound review.
-5. Decide which declared task meanings each interpretation fits, document unresolved
-   production requirements, commit/push and stop. Live all-current authority remains.
+1. Implemented bounded immutable full-authority capture and a detached evaluator:
+   A reproduces all-current numerical acceptance; B uses explicitly declared
+   alternative witnesses or mandatory assessments. Both inspect every current
+   same/opposite record. Scope, provenance, hard checks and exhaustion remain closed.
+2. Checked independent finite predicates and Boolean tables, actual inspector
+   parity, all witnesses/lineage, parent-child coexistence, freshness, nonmutation
+   and typed rejection of shadow PASS by the real execution/registration APIs.
+3. Ran eleven parent structures, including the reused historical native anchor,
+   and three focused native reconstructions. All 54 pairs pass; 45 complete-input
+   pairs have 31 agreements, nine A UNKNOWN/B PASS and five A PASS/B UNKNOWN.
+   Nine separate scope/bound diagnostics remain closed. No statistical safety or
+   improved-decision-quality claim follows from these policy disagreements.
+4. Actual adverse deduction changes both policies from PASS to FAIL with exact
+   evidence lists and observed goal outcomes unchanged. Native arithmetic and
+   AtomSpace reconstruction agree with existing interfaces. No counterfactual
+   action is executed and all new cohort goal losses stay ten.
+5. Final frozen regressions: 314 applicable default and 72 applicable native
+   tests pass, zero failures/skips. Omitted: 721 default, 65 native and the separate
+   15 pressure numerical checks. Exact inventories and development failures are
+   preserved. A reporting-attribution fix superseded the first frozen prerelease;
+   its source/results remain archived and all final cohort judgments are unchanged.
+6. Published one source-bound review with 1,574 files, complete record catalog,
+   source/configuration, captures, journals, raw native calls, timings, regression
+   receipts and replay. All 14 final SQLite states and 90 independent comparisons
+   pass; six semantic/inventory mutations and an altered archive are rejected.
+
+Decision: all-current fits independently mandatory current assessments;
+obligation-qualified support fits explicitly interchangeable witnesses with
+separately specified mandatory requirements. Neither is recommended as a general
+production policy. Applicability/role ownership, trusted scope/completeness,
+unknown sources, independence assumptions, contradiction handling and empirical
+calibration remain unresolved. Live all-current authority is unchanged.
+
+Review: `reviews/decision-obligations-shadow-v1/README.md`. Reproduce with
+`uv run --no-project python -m obligations_lab.compare run --output artifacts/obligations-local`.
+This closes only the bounded shadow semantic experiment. No production promotion,
+new threshold, confidence aggregation, parent retirement, scheduler/transport
+iteration, native storage optimization or generalized recovery work follows.
 
 ### Completed bounded milestone: shared completion-aware recall
 

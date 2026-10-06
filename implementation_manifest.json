@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "decision-obligations-shadow-in-progress",
+  "implementation_stage": "decision-obligations-shadow-reviewed",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3569,11 +3569,78 @@
     "publication_receipt": "reviews/completion-aware-recall-v1/PUBLICATION.json"
   },
   "decision_obligations_shadow": {
-    "status": "preregistered",
+    "status": "complete-bounded-shadow-experiment",
     "protocol": "reviews/decision-obligations-shadow-v1/PROTOCOL.md",
+    "protocol_commit": "ce4ae40",
+    "role_mapping_commit": "f67a4a0",
+    "measured_revision": "5161e19b73f89676edf0b9f772200c12eee02ef1",
+    "auditor_revision": "5161e19b73f89676edf0b9f772200c12eee02ef1",
     "baseline_publication": "3d84c6671804e7dacd8aa68c49cadc667fccce16",
+    "preserved_prior_files": 689,
+    "review": "reviews/decision-obligations-shadow-v1/README.md",
+    "archive_sha256": "ab5da4b282ff81fcf9cecb5167d7d26191fa767b675d8374b50232314ba84433",
+    "archive_bytes": 3793952,
+    "archive_files": 1574,
     "parents": 11,
+    "new_native_reconstructions": 3,
+    "authoritative_captures": 26,
+    "diagnostic_perturbations": 9,
+    "assessment_pairs": 54,
+    "complete_input_judgments": {
+      "pairs": 45,
+      "same": 31,
+      "A_UNKNOWN_B_PASS": 9,
+      "A_PASS_B_UNKNOWN": 5
+    },
+    "audit": {
+      "status": "PASS",
+      "independent_reference_checks": 90,
+      "record_inspections": 95,
+      "witness_occurrences": 57,
+      "sqlite_reconstructions": 14,
+      "cohort_formula_calls": 7,
+      "new_native_cohort_formula_calls": 3,
+      "rejected_bundle_mutations": 6,
+      "rejected_archive_mutations": 1
+    },
+    "final_regressions": {
+      "default": 314,
+      "native": 72,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "new_default_tests_included": 15,
+      "new_native_tests_included": 5
+    },
+    "omitted": {
+      "default_tests": 721,
+      "native_tests": 65,
+      "pressure_numerical_tests": 15,
+      "scheduler_matrix": true
+    },
+    "superseded_prerelease": {
+      "revision": "81a648a8a4a971744eddb5a0481a9101abf87ddc",
+      "reason": "confidence-check reporting attribution; overall cohort judgments unchanged",
+      "preserved_in_archive": true
+    },
     "shadow_only": true,
-    "production_policy_changed": false
+    "production_policy_changed": false,
+    "production_policy_recommended": false,
+    "empirical_safety_claim": false,
+    "unresolved": [
+      "normative role ownership",
+      "trusted applicability and complete scope",
+      "unclassified source handling",
+      "independence assumptions",
+      "contradiction handling",
+      "empirical calibration"
+    ],
+    "deferred": [
+      "versioned production execution-policy integration",
+      "scheduler/transport tuning",
+      "generalized recovery",
+      "native storage optimization",
+      "full pressure/attention/benchmark design"
+    ]
   }
 }
