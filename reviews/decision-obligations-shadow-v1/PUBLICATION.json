@@ -1,0 +1,38 @@
+{
+  "schema": "decision-obligations-shadow-publication/v1",
+  "publication_revision": "98d1aa70581bb326df5b0da5e95de20d256812a3",
+  "measured_revision": "5161e19b73f89676edf0b9f772200c12eee02ef1",
+  "auditor_revision": "5161e19b73f89676edf0b9f772200c12eee02ef1",
+  "archive_sha256": "ab5da4b282ff81fcf9cecb5167d7d26191fa767b675d8374b50232314ba84433",
+  "archive_bytes": 3793952,
+  "checks": {
+    "integrity": {
+      "status": "PASS",
+      "archive_sha256": "ab5da4b282ff81fcf9cecb5167d7d26191fa767b675d8374b50232314ba84433",
+      "archive_bytes": 3793952,
+      "parts": 1,
+      "files_verified": 1574,
+      "experiment_revision": "5161e19b73f89676edf0b9f772200c12eee02ef1",
+      "limitation": "Integrity against published checksums; not publisher authentication or semantic replay."
+    },
+    "extracted_semantic_audit": {
+      "status": "PASS",
+      "development_allow_dirty": false,
+      "revision": "5161e19b73f89676edf0b9f772200c12eee02ef1",
+      "pairs": 54,
+      "independent_reference_checks": 90,
+      "records": 95,
+      "witnesses": 57,
+      "sqlite_reconstructions": 14,
+      "formula_calls": 7,
+      "new_native_formula_calls": 3,
+      "limitation": "Semantic replay and checked authority journals, not an external safety or data-truth oracle; timing values are descriptive measurements."
+    },
+    "archive_mutation": {
+      "rejected": true,
+      "reason": "archive checksum differs: review.tar.xz"
+    }
+  },
+  "boundary": "Detached semantic experiment complete. Existing all-current execution policy remains authoritative. No production promotion or scheduler/transport/recovery continuation.",
+  "binding": "Publication commit contains the immutable archive and review. This receipt is a following commit to avoid self-referential hashing."
+}
