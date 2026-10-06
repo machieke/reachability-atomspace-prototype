@@ -33,6 +33,21 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: contract-bound obligation-to-work bridge
+
+Follow `/tmp/codex_next_obligation_work_bridge.md` and the committed
+`reviews/obligation-work-bridge-v1/PROTOCOL.md` / `task.json`.
+
+1. Freeze the synthetic task and six controlled event sequences before measurement.
+2. Add detached coherent inventory/state acquisition and a bounded advisory graph;
+   retain frozen A/B judgments, all objections, missing AND premises and OR routes.
+3. Check independent expectations, identity/nonduplication, freshness, unavailable
+   routes, exact scope/bounds, nonmutation and typed permission rejection.
+4. Freeze/run applicable regressions, six finite/two focused native sequences and
+   source-bound replay; publish all records, costs, failures and omissions.
+5. Stop at the work explanation. Preserve 259bc0f and all prior frozen evidence;
+   no live policy, scheduler, pressure/transport, recovery or storage work follows.
+
 ### Completed bounded milestone: explicit decision obligations in shadow mode
 
 Measured implementation/auditor `5161e19b73f89676edf0b9f772200c12eee02ef1`.

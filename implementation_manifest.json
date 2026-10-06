@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "decision-obligations-shadow-reviewed",
+  "implementation_stage": "obligation-work-bridge-preregistered",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3642,5 +3642,14 @@
       "native storage optimization",
       "full pressure/attention/benchmark design"
     ]
+  },
+  "obligation_work_bridge": {
+    "status": "preregistered",
+    "protocol": "reviews/obligation-work-bridge-v1/PROTOCOL.md",
+    "task": "reviews/obligation-work-bridge-v1/task.json",
+    "baseline": "259bc0fc4dc88eeb6d085b47d3a17b86cf8208fe",
+    "parents": 6,
+    "shadow_only": true,
+    "production_policy_changed": false
   }
 }
