@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "obligation-work-bridge-preregistered",
+  "implementation_stage": "obligation-work-bridge-reviewed",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3644,12 +3644,88 @@
     ]
   },
   "obligation_work_bridge": {
-    "status": "preregistered",
+    "status": "complete-bounded-read-only-integration",
     "protocol": "reviews/obligation-work-bridge-v1/PROTOCOL.md",
     "task": "reviews/obligation-work-bridge-v1/task.json",
+    "protocol_commit": "45fb871863025f282df36a74ba5810fe6a826616",
+    "measured_revision": "2322512c61f3ff387abcb402f1638c25b92f9add",
+    "auditor_revision": "2322512c61f3ff387abcb402f1638c25b92f9add",
     "baseline": "259bc0fc4dc88eeb6d085b47d3a17b86cf8208fe",
+    "preserved_shadow_review_publication": "98d1aa70581bb326df5b0da5e95de20d256812a3",
+    "preserved_frozen_evaluators": "5161e19b73f89676edf0b9f772200c12eee02ef1",
+    "preserved_prior_files": 717,
+    "native_build_receipts_unchanged": true,
+    "review": "reviews/obligation-work-bridge-v1/README.md",
+    "archive_sha256": "6791329e5050d816277eb16c6f18d07de6dbe3ba8c83e363cbe8b764ca622ae1",
+    "archive_bytes": 1524132,
+    "archive_files": 1111,
     "parents": 6,
+    "new_native_reconstructions": 2,
+    "authoritative_prefixes": 27,
+    "diagnostic_inputs": 5,
+    "role_prefix_views": 42,
+    "complete_explanations": 37,
+    "incomplete_diagnostic_views": 5,
+    "counted_occurrences": {
+      "nodes": 374,
+      "edges": 389,
+      "operations": 50,
+      "obligations": 88,
+      "limitation": "Repeated prefix/role counts, not independent samples, executions or goal demand."
+    },
+    "audit": {
+      "status": "PASS",
+      "authority_reconstructions": 8,
+      "cohort_formula_calls": 8,
+      "new_native_cohort_formula_calls": 3,
+      "rejected_bundle_mutations": 8,
+      "rejected_archive_mutations": 1,
+      "extracted_semantic_replay": "PASS"
+    },
+    "final_regressions": {
+      "default": 346,
+      "native": 74,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "new_default_tests_included": 14,
+      "new_native_tests_included": 2,
+      "default_elapsed_seconds": 81.124,
+      "native_elapsed_seconds": 63.442
+    },
+    "omitted": {
+      "default_tests": 703,
+      "default_modules": 50,
+      "native_tests": 65,
+      "native_modules": 13,
+      "pressure_numerical_tests": 15,
+      "scheduler_transport_matrices": true,
+      "exact_inventory": "validation/inventory.json in the review archive"
+    },
+    "development_failures": {
+      "assertion_occurrences": 4,
+      "distinct_assertion_defects": 1,
+      "configuration_import_failures": 1,
+      "preserved_in_archive": true
+    },
+    "supported_fragment": "One registered producer step plus direct public observation routes; deeper inference explicitly incomplete.",
+    "identity": "Semantic obligation key separate from complete snapshot and registry binding; shared operations do not multiply executions.",
+    "cohort_executor_effects": 0,
+    "cohort_observed_goal_loss": 10,
     "shadow_only": true,
-    "production_policy_changed": false
+    "production_policy_changed": false,
+    "authority_changed": false,
+    "controllers_consume_work_view": false,
+    "observed_relief_manufactured": false,
+    "empirical_safety_claim": false,
+    "performance_improvement_claim": false,
+    "deferred": [
+      "production policy promotion",
+      "scheduler/pressure/transport iteration",
+      "generalized recovery",
+      "empirical calibration",
+      "native storage redesign",
+      "full pressure/attention/benchmark design"
+    ]
   }
 }

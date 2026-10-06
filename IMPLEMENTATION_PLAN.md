@@ -33,20 +33,42 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: contract-bound obligation-to-work bridge
+### Completed bounded milestone: contract-bound obligation-to-work bridge
 
-Follow `/tmp/codex_next_obligation_work_bridge.md` and the committed
-`reviews/obligation-work-bridge-v1/PROTOCOL.md` / `task.json`.
+Measured implementation/auditor `2322512c61f3ff387abcb402f1638c25b92f9add`;
+task and six event sequences preregistered at `45fb871`. Preserve closure `259bc0f`,
+review publication `98d1aa7`, frozen A/B evaluators `5161e19` and all previous
+corrections/omissions. All 717 prior tracked files outside this plan and manifest
+remain byte-identical, as do native build receipts.
 
-1. Freeze the synthetic task and six controlled event sequences before measurement.
-2. Add detached coherent inventory/state acquisition and a bounded advisory graph;
-   retain frozen A/B judgments, all objections, missing AND premises and OR routes.
-3. Check independent expectations, identity/nonduplication, freshness, unavailable
-   routes, exact scope/bounds, nonmutation and typed permission rejection.
-4. Freeze/run applicable regressions, six finite/two focused native sequences and
-   source-bound replay; publish all records, costs, failures and omissions.
-5. Stop at the work explanation. Preserve 259bc0f and all prior frozen evidence;
-   no live policy, scheduler, pressure/transport, recovery or storage work follows.
+1. Implemented detached coherent inventory/state acquisition and a bounded,
+   read-only work view with separate frozen A/B judgments and actual goal/lifecycle.
+2. Preserved canonical obligation identities, shared operation references, exact
+   registered producers, coherent OR routes, complete AND premises, all objections,
+   unclassified evidence, live blocks and unknown/unavailable routes. One producer
+   step is supported; deeper inference is explicitly incomplete.
+3. Checked independent graph/witness expectations, repeated reads, nonduplication,
+   any/all and mandatory presence, freshness, scope/bounds, nonmutation and real
+   permission rejection. Already materialized weak work is not an adequacy repair.
+4. Ran 346 applicable default and 74 applicable native tests once at the frozen
+   source: all 420 passed, zero failures/errors/skips. Explicitly omitted 703
+   default, 65 native, the separate 15 pressure numerical checks and scheduling
+   matrices. Development failures and exact coverage inventories remain archived.
+5. Ran six finite sequences and two focused native reconstructions: 27 authoritative
+   prefixes, five diagnostic inputs and 42 role/prefix views. All 37 supported
+   explanations conform; five scope/bound diagnostics are explicitly incomplete.
+   Eight actual formula calls include three fresh native calls. Executor effects
+   remain zero and observed goal loss remains ten throughout the cohort.
+6. Published a source-bound archive of 1,111 files with complete inputs, event-prefix
+   table, work graphs, costs, journals and raw native results. Extracted replay
+   checks all eight final authority states; eight bundle mutations and one altered
+   archive are rejected. Explanation completeness is not task completion.
+
+Review: `reviews/obligation-work-bridge-v1/README.md`. Reproduce with
+`uv run --no-project python -m work_bridge_lab.compare run --output artifacts/work-bridge-local`.
+Stop at this bounded integration/conformance milestone. No production policy
+promotion, scheduler/pressure/transport iteration, generalized recovery, empirical
+calibration or storage redesign follows. Full design completion remains deferred.
 
 ### Completed bounded milestone: explicit decision obligations in shadow mode
 

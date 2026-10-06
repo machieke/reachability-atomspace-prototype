@@ -1,0 +1,11 @@
+{
+  "archive": "review.tar.xz",
+  "auditor_revision": "2322512c61f3ff387abcb402f1638c25b92f9add",
+  "bytes": 1524132,
+  "measured_revision": "2322512c61f3ff387abcb402f1638c25b92f9add",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "schema": "obligation-work-bridge-review-archive/v1",
+  "sha256": "6791329e5050d816277eb16c6f18d07de6dbe3ba8c83e363cbe8b764ca622ae1"
+}
