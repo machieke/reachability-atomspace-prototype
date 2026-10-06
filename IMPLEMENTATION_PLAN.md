@@ -48,6 +48,11 @@ experiment is preregistered in `reviews/completion-aware-recall-v1/PROTOCOL.md`.
 5. Publish one source-bound review, commit/push and stop. No transport promotion,
    coefficient tuning, generalized recovery or automatic next heuristic.
 
+Implementation checkpoint: steps 1–3 implemented in separate assembly namespaces.
+The 12 frozen boundary reproductions and 21 new development tests pass; two
+development semantic audits cover 10 runs. These are preliminary checks, not the
+measured regression/cohort result. Freeze the following commit for steps 4–5.
+
 
 ### Completed bounded milestone: working memory and fixed gated transport
 
