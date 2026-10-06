@@ -3564,6 +3564,8 @@
       "status": "REJECTED",
       "attack": "one-bit archive mutation",
       "reason": "archive checksum differs: review.tar.xz"
-    }
+    },
+    "review_publication_revision": "fc8ff9b84c8fc4cd4f69d9f597f56a3dcdaa8f45",
+    "publication_receipt": "reviews/completion-aware-recall-v1/PUBLICATION.json"
   }
 }

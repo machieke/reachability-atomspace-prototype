@@ -1,0 +1,61 @@
+{
+  "schema": "completion-aware-recall-publication/v1",
+  "review_publication_revision": "fc8ff9b84c8fc4cd4f69d9f597f56a3dcdaa8f45",
+  "measured_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c",
+  "auditor_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c",
+  "protocol_revision": "6993c40660026938a1b3244aa556a6c484afcd37",
+  "archive": {
+    "schema": "completion-aware-recall-review-archive/v1",
+    "archive": "review.tar.xz",
+    "parts": [
+      "review.tar.xz"
+    ],
+    "sha256": "1b4a95c293a197c3500956a997f3258d751a41b0484bb23ed990f192e739ae45",
+    "bytes": 7842136,
+    "measured_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c",
+    "auditor_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c"
+  },
+  "archive_verification": {
+    "status": "PASS",
+    "archive_sha256": "1b4a95c293a197c3500956a997f3258d751a41b0484bb23ed990f192e739ae45",
+    "archive_bytes": 7842136,
+    "parts": 1,
+    "files_verified": 2180,
+    "experiment_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c",
+    "limitation": "Integrity against published checksums; not publisher authentication or semantic replay."
+  },
+  "archive_tamper_check": {
+    "status": "REJECTED",
+    "attack": "one-bit archive mutation",
+    "reason": "archive checksum differs: review.tar.xz"
+  },
+  "files_at_publication": {
+    "ARCHIVE.json": "e6012aa6516b3b15a4e0315023192243467d578c26095a9ea3ad48bd2b6b0016",
+    "BOUNDARY.md": "3a95d5e11d3e53f4e0bad5790f43669bfd62143c631efc2e2faf5d327954e6f0",
+    "COSTS.md": "b732572ae1073ce3c1354f9c57ded7ad4f4123bc2d9586462fd72fdbeba6e8a3",
+    "PROTOCOL.md": "d604ccb04740abddb2f30b62d6475b1b5d62bb0ff20578ee0d0ce0fee685f315",
+    "README.md": "169d1e4d55602ff96df22e03e497971e4472bb1482faeb7cca7b0a4e97a3c67f",
+    "SEQUENCES.md": "e6257d3d399b60b8586e05fc083d3d98ef53d36d2d137d4b5144e7a7172afe7b",
+    "SHA256SUMS": "09b40981cf7416acf46b50aedf784c119d4aae4e276257af684f963edb19a50d",
+    "VALIDATION.md": "4a13709f55d628c6e1f353e0c2fe2b921e1f76cb6e64cf8cb62378cc28cddf5c",
+    "review.tar.xz": "1b4a95c293a197c3500956a997f3258d751a41b0484bb23ed990f192e739ae45",
+    "verify_review.py": "27b8b42419c4a6861558c1e5629b2be1a5c4d17b355c333b49251fcc36169f54"
+  },
+  "audit_counter_correction": {
+    "status": "PASS",
+    "native_queries_by_phase": {
+      "control": 2300,
+      "inspection": 10954,
+      "assembly": 1560
+    },
+    "total_native_queries": 14814,
+    "raw_audit_service_control_queries": 4600,
+    "actual_control_queries": 2300,
+    "reason": "Frozen ServiceLedger convenience counter adds both control_end summary and individual control query events; this doubles that report field only. Query balances, no-overspend checks, source-answer checks and primary analysis use actual per-query events. Raw audit.json and comparison.log remain unchanged.",
+    "coordinator_affected": false,
+    "reservation_checks_affected": false,
+    "measured_costs_affected": false,
+    "raw_auditor_revision": "53d7b0b257ea436dc043e9d497fd3c76dcd0e03c"
+  },
+  "note": "This receipt follows the immutable review publication commit; it identifies that commit without a self-referential archive hash. Raw frozen auditor output remains preserved."
+}
