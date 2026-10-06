@@ -33,6 +33,22 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: shared completion-aware recall
+
+Preserve publication `71c32df` and measured/auditor `0134092`. The exact next
+experiment is preregistered in `reviews/completion-aware-recall-v1/PROTOCOL.md`.
+
+1. Reproduce and annotate the frozen alternatives discovery boundary.
+2. Add one separate shared protected-assembly service rule with conservative query
+   and preparation accounting; preserve frozen ordering, field and hard gates.
+3. Test identical public streams, negative/complete joins, bounded memory/work,
+   relevant revisions, native inference and lifecycle authority.
+4. Freeze source; run the small 2×3 comparison, affected regressions and semantic
+   reservation/native/field/authority replay. Preserve failures and all outcomes.
+5. Publish one source-bound review, commit/push and stop. No transport promotion,
+   coefficient tuning, generalized recovery or automatic next heuristic.
+
+
 ### Completed bounded milestone: working memory and fixed gated transport
 
 Close native-recall publication `77e30ef`; preserve its implementation, measured

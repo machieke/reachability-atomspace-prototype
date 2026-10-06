@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "bounded-native-attention-published",
+  "implementation_stage": "completion-aware-recall-in-progress",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3372,5 +3372,30 @@
       "attack": "one-bit archive mutation",
       "reason": "archive checksum differs: review.tar.xz"
     }
+  },
+  "completion_aware_recall": {
+    "status": "preregistered",
+    "baseline_publication": "71c32df66d1c08143621f1e4c6005da31fac2565",
+    "protocol": "reviews/completion-aware-recall-v1/PROTOCOL.md",
+    "capacity": 48,
+    "query_budgets": [
+      16,
+      48
+    ],
+    "parents": 8,
+    "diagnostic_parents": 2,
+    "new_parent_structures": 6,
+    "contracts": [
+      "frozen",
+      "assembly"
+    ],
+    "orderers": [
+      "WS-queue",
+      "WS-local",
+      "WS-flow"
+    ],
+    "primary_executions": 192,
+    "adaptive_transport": false,
+    "policy_promoted": false
   }
 }
