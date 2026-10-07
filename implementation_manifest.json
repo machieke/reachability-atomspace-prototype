@@ -4293,7 +4293,7 @@
     ]
   },
   "native_multihop_recall": {
-    "status": "preregistered",
+    "status": "bounded_complete",
     "baseline": "c4686bc6fb100c324874f12f2f98d66aa2f0e9d7",
     "protocol": "reviews/native-multihop-v1/PROTOCOL.md",
     "core_executions": 24,
@@ -4308,6 +4308,59 @@
       "increased depth",
       "generalized recovery",
       "scaling claims"
-    ]
+    ],
+    "measured_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226",
+    "preregistration": "55ec450",
+    "review": "reviews/native-multihop-v1/README.md",
+    "archive": {
+      "archive": "review.tar.xz",
+      "auditor_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226",
+      "bytes": 7236856,
+      "measured_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226",
+      "parts": [
+        "review.tar.xz"
+      ],
+      "schema": "native-multihop-review-archive/v1",
+      "sha256": "2b828c012187e77bf5db43d4ed9102aace32778eb87a12b48544869df35e863c"
+    },
+    "archive_files": 1383,
+    "validation": {
+      "default": 473,
+      "native": 125,
+      "total": 598
+    },
+    "omitted": {
+      "integration_tests_omitted": 48,
+      "tests_omitted": 642
+    },
+    "separate_pressure_checks_omitted": 15,
+    "comparison": {
+      "executions": 24,
+      "parent_structures": 6,
+      "matched_pairs": 12,
+      "observed_completions": 16,
+      "unresolved": 8,
+      "recorded_formula_calls": 60,
+      "original_native_formula_calls": 30,
+      "native_query_reexecutions": 12880,
+      "native_epochs": 264,
+      "decision_rows": 528,
+      "selections": 324,
+      "authority_certificates": 1096
+    },
+    "wall_comparison": {
+      "favorable": 0,
+      "neutral": 0,
+      "unfavorable": 12
+    },
+    "cost_scope": "Descriptive serial timing; full cold rebuild and validator/frontier overhead retained; no performance or memory-bound claim",
+    "mutations_rejected": 13,
+    "publication_checks": {
+      "integrity": "PASS",
+      "extracted_recorded_replay": "PASS",
+      "altered_archive_rejected": true
+    },
+    "preserved_files": 825,
+    "native_build_receipts_unchanged": true
   }
 }

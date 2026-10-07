@@ -33,22 +33,43 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: native multi-hop discovery parity
+### Completed bounded milestone: native multi-hop discovery parity
 
-Preserve closure `c4686bc`, measured scanner/consumer `b509d2b`, all existing
-fixtures, authority, reviews and native build receipts. Protocol:
-`reviews/native-multihop-v1/PROTOCOL.md`.
+Measured implementation/auditor `068770ea5f7970bfaf65aabfdae3fcfe3d983226`; protocol preregistered at
+`55ec450`. Preserved closure `c4686bc`, scanner/consumer `b509d2b`, frozen fixtures,
+authority, world and previous reviews. All 825 earlier files outside this
+plan/manifest and both native build receipts remain unchanged.
 
-1. Register the fixed 24-run retrieval × formula-mode × parent comparison.
-2. Add a separately named native record-access/projector adapter that supplies
-   the existing typed work view to the unchanged consumer. No scanner fallback.
-3. Test causal query use, binding/replacement, complete dependencies, failure
-   distinctions and unchanged authority; retain every development failure.
-4. Freeze source, run applicable regressions once, execute the cohort and audit
-   matched snapshots, real outcomes, native receipts and complete cost accounting.
-5. Publish one source-bound archive, update the bounded manifest, commit/push and
-   stop. No transport, storage redesign, expanded depth or generalized recovery.
+1. Added separate native query access/projection/observer adapters, supplying the
+   original typed work view to the unchanged consumer. Complete snapshot loading,
+   full A/B and discarded one-step graph validation remain charged. Actual native
+   responses determine discovery membership; there is no scan fallback.
+2. Enforced coherent capture/view epochs, exact current/historical identities,
+   complete AND dependencies, declared depth and failure distinctions. Fatal
+   native failures remain latched until explicit rebuild; accepted/uncertain
+   external control retains priority and headroom. No new authority is granted.
+3. Ran 473 default and 125 native tests once at the frozen source: all 598 passed,
+   zero failures/errors/skips, unchanged hashes, wrapper exits zero. Explicitly
+   omitted 642 default, 48 native and 15 pressure numerical checks. Preserved
+   development failures/corrections and the older wrapper exit 143 anomaly.
+4. Ran all 24 retrieval × formula × parent executions. All 12 retrieval pairs
+   match, with 16 completions and eight unresolved outcomes. Audit replayed 528
+   decision rows, 324 selections, 60 recorded formulas (30 originally native),
+   1,096 certificates and 24 SQLite/executor reconstructions. It reexecuted 12,880
+   native queries and 264 native graphs; fresh PLN calls during audit are zero.
+5. Thirteen altered-copy witnesses were rejected. One source-bound review archive
+   is published under `reviews/native-multihop-v1/`; integrity, extracted recorded
+   semantic replay and altered-archive rejection passed. See manifest for SHA256.
 
+Native retrieval took 160.989 total episode seconds versus scan's 71.913 in this
+serial descriptive pass: zero favorable, zero neutral and 12 unfavorable wall
+comparisons. All 12 goal-loss comparisons are neutral. Full costs remain visible;
+RSS/peak/native memory and serialization copies remain unmeasured. No speed,
+bounded-total-memory, scheduler superiority or generalization claim.
+
+Stopped at integration parity. No adaptive transport, working-set scheduler,
+new depth/family, incremental or persistent native storage, calibration,
+supersession, generalized recovery or optimization round was implemented.
 
 ### Completed bounded milestone: bounded online multi-hop numerical PLN
 

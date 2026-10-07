@@ -1,0 +1,11 @@
+{
+  "archive": "review.tar.xz",
+  "auditor_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226",
+  "bytes": 7236856,
+  "measured_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "schema": "native-multihop-review-archive/v1",
+  "sha256": "2b828c012187e77bf5db43d4ed9102aace32778eb87a12b48544869df35e863c"
+}
