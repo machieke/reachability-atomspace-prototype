@@ -1,0 +1,47 @@
+{
+  "schema": "closed-loop-obligations-publication/v1",
+  "publication_revision": "3b89d63f74af95c582e1b8d490eda63ec93adab7",
+  "measured_revision": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+  "auditor_revision": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+  "archive_sha256": "19a040f5a8024ee6a22645714a5ef3343507d6e96dbc1eba27f0d7bcc095a19b",
+  "archive_bytes": 1681248,
+  "checks": {
+    "integrity": {
+      "status": "PASS",
+      "archive_sha256": "19a040f5a8024ee6a22645714a5ef3343507d6e96dbc1eba27f0d7bcc095a19b",
+      "archive_bytes": 1681248,
+      "parts": 1,
+      "files_verified": 848,
+      "experiment_revision": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+      "limitation": "Integrity against published checksums; not publisher authentication or semantic replay."
+    },
+    "extracted_semantic_audit": {
+      "status": "PASS",
+      "revision": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+      "development_allow_dirty": false,
+      "episodes": 12,
+      "rows": 66,
+      "selections": 54,
+      "authority_reconstructions": 12,
+      "formula_calls": 14,
+      "new_native_formula_calls": 7,
+      "stale_requests": 2,
+      "limitation": "Source/selection/receipt conformance and recorded arithmetic replay; not fresh native execution, independent environment truth, authentication or empirical safety."
+    },
+    "extracted_receipt_audit": {
+      "status": "PASS",
+      "current_frontier_revalidations": 54,
+      "actual_environment_response_matches": 22,
+      "ordered_formula_inputs": 14,
+      "executor_journal_reconstructions": 12,
+      "limitation": "Recorded source-response consistency and simulated executor effects, not independent real-world truth."
+    },
+    "archive_mutation": {
+      "rejected": true,
+      "reason": "archive checksum differs: review.tar.xz"
+    }
+  },
+  "regression_wrapper_anomaly": "All 421 default tests and source/hash checks completed with a durable passing receipt; tool wrapper subsequently reported exit 143, cause unestablished. The 79-test native invocation exited zero. No suites rerun.",
+  "boundary": "Bounded experimental work-view consumer complete. Frozen bridge/A/B and original live authority preserved. No automatic policy promotion, tuning, transport, deeper planning, supersession, generalized recovery or storage redesign.",
+  "binding": "Publication commit contains the immutable archive and review. This following receipt avoids self-referential hashing."
+}
