@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "obligation-work-bridge-reviewed",
+  "implementation_stage": "closed-loop-obligations-preregistered",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3727,5 +3727,17 @@
       "native storage redesign",
       "full pressure/attention/benchmark design"
     ]
+  },
+  "closed_loop_obligations": {
+    "status": "preregistered",
+    "baseline": "8d264f3c316b4932824dbfce2f5a6a1eaf8523e0",
+    "protocol": "reviews/closed-loop-obligations-v1/PROTOCOL.md",
+    "task": "reviews/closed-loop-obligations-v1/task.json",
+    "parents": 6,
+    "modes": [
+      "finite",
+      "native"
+    ],
+    "production_policy_changed": false
   }
 }

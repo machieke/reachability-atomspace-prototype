@@ -1,0 +1,660 @@
+{
+  "schema": "closed-loop-obligations-protocol/v1",
+  "seed": 0,
+  "tasks": {
+    "deduction": {
+      "classes": [
+        {
+          "id": "a",
+          "identity": [
+            "source-a"
+          ],
+          "kind": "observation",
+          "roots": [
+            "root:a"
+          ]
+        },
+        {
+          "id": "b",
+          "identity": [
+            "source-b"
+          ],
+          "kind": "observation",
+          "roots": [
+            "root:b"
+          ]
+        },
+        {
+          "id": "derived",
+          "identity": [
+            "r-estimate",
+            "1"
+          ],
+          "kind": "deduction",
+          "roots": []
+        },
+        {
+          "id": "objection",
+          "identity": [
+            "r-objection",
+            "1"
+          ],
+          "kind": "deduction",
+          "roots": []
+        },
+        {
+          "id": "revision",
+          "identity": [
+            "model-ab"
+          ],
+          "kind": "revision",
+          "roots": []
+        },
+        {
+          "id": "competing",
+          "kind": "deduction",
+          "identity": [
+            "r-competing",
+            "1"
+          ],
+          "roots": []
+        }
+      ],
+      "context": "ctx",
+      "contract": [
+        "acceptance",
+        "1"
+      ],
+      "criterion": {
+        "conclusion": {
+          "positive": true,
+          "statement": {
+            "arguments": [
+              "tested",
+              "healthy"
+            ],
+            "predicate": "pln:implication"
+          }
+        },
+        "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+        "criterion_id": "forecast",
+        "max_strength": 1.0,
+        "min_confidence": 0.35,
+        "min_strength": 0.65,
+        "unit": "dimensionless-probability"
+      },
+      "id": "closed-loop-deduction",
+      "obligations": [
+        {
+          "classes": [
+            "a",
+            "b",
+            "derived",
+            "objection",
+            "competing",
+            "revision"
+          ],
+          "id": "forecast",
+          "mode": "any"
+        },
+        {
+          "id": "method-assessment",
+          "mode": "all",
+          "classes": [
+            "derived"
+          ]
+        }
+      ],
+      "product": "artifact-v2",
+      "required_hard_checks": [
+        "clock_alignment",
+        "contract_binding",
+        "owner",
+        "selected",
+        "operation_readiness",
+        "action_requirements",
+        "undispatched_attempt",
+        "attempt_identity",
+        "resource_capacity"
+      ],
+      "schema": "obligation-interpretation/experimental-v0",
+      "time_window": [
+        0,
+        100
+      ],
+      "work_task": {
+        "attempt_id": "attempt",
+        "author": "synthetic-research-task-owner (local test label; not authentication)",
+        "execution_contract": [
+          "deploy",
+          "1"
+        ],
+        "goal_id": "goal",
+        "lifecycle_episode": "episode",
+        "operation_id": "deploy",
+        "revision": "deduction/v1",
+        "task_episode": "closed-loop-episode",
+        "task_id": "closed-loop-assessment"
+      }
+    },
+    "shared": {
+      "classes": [
+        {
+          "id": "a",
+          "identity": [
+            "source-a"
+          ],
+          "kind": "observation",
+          "roots": [
+            "root:a"
+          ]
+        },
+        {
+          "id": "b",
+          "identity": [
+            "source-b"
+          ],
+          "kind": "observation",
+          "roots": [
+            "root:b"
+          ]
+        },
+        {
+          "id": "derived",
+          "identity": [
+            "r-estimate",
+            "1"
+          ],
+          "kind": "deduction",
+          "roots": []
+        },
+        {
+          "id": "objection",
+          "identity": [
+            "r-objection",
+            "1"
+          ],
+          "kind": "deduction",
+          "roots": []
+        },
+        {
+          "id": "revision",
+          "identity": [
+            "model-ab"
+          ],
+          "kind": "revision",
+          "roots": []
+        },
+        {
+          "id": "revision-review",
+          "identity": [
+            "model-ab"
+          ],
+          "kind": "revision",
+          "roots": []
+        },
+        {
+          "id": "competing",
+          "kind": "deduction",
+          "identity": [
+            "r-competing",
+            "1"
+          ],
+          "roots": []
+        }
+      ],
+      "context": "ctx",
+      "contract": [
+        "acceptance",
+        "1"
+      ],
+      "criterion": {
+        "conclusion": {
+          "positive": true,
+          "statement": {
+            "arguments": [
+              "tested",
+              "healthy"
+            ],
+            "predicate": "pln:implication"
+          }
+        },
+        "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+        "criterion_id": "forecast",
+        "max_strength": 1.0,
+        "min_confidence": 0.35,
+        "min_strength": 0.65,
+        "unit": "dimensionless-probability"
+      },
+      "id": "closed-loop-shared",
+      "obligations": [
+        {
+          "classes": [
+            "a",
+            "b",
+            "derived",
+            "objection",
+            "competing",
+            "revision"
+          ],
+          "id": "forecast",
+          "mode": "any"
+        },
+        {
+          "classes": [
+            "revision"
+          ],
+          "id": "method-assessment",
+          "mode": "all"
+        },
+        {
+          "classes": [
+            "revision-review"
+          ],
+          "id": "method-review",
+          "mode": "any"
+        }
+      ],
+      "product": "artifact-v2",
+      "required_hard_checks": [
+        "clock_alignment",
+        "contract_binding",
+        "owner",
+        "selected",
+        "operation_readiness",
+        "action_requirements",
+        "undispatched_attempt",
+        "attempt_identity",
+        "resource_capacity"
+      ],
+      "schema": "obligation-interpretation/experimental-v0",
+      "time_window": [
+        0,
+        100
+      ],
+      "work_task": {
+        "attempt_id": "attempt",
+        "author": "synthetic-research-task-owner (local test label; not authentication)",
+        "execution_contract": [
+          "deploy",
+          "1"
+        ],
+        "goal_id": "goal",
+        "lifecycle_episode": "episode",
+        "operation_id": "deploy",
+        "revision": "shared/v1",
+        "task_episode": "closed-loop-episode",
+        "task_id": "closed-loop-assessment"
+      }
+    },
+    "blocked": {
+      "classes": [
+        {
+          "id": "a",
+          "identity": [
+            "source-a"
+          ],
+          "kind": "observation",
+          "roots": [
+            "root:a"
+          ]
+        },
+        {
+          "id": "b",
+          "identity": [
+            "source-b"
+          ],
+          "kind": "observation",
+          "roots": [
+            "root:b"
+          ]
+        },
+        {
+          "id": "derived",
+          "identity": [
+            "r-estimate",
+            "1"
+          ],
+          "kind": "deduction",
+          "roots": []
+        },
+        {
+          "id": "objection",
+          "identity": [
+            "r-objection",
+            "1"
+          ],
+          "kind": "deduction",
+          "roots": []
+        },
+        {
+          "id": "revision",
+          "identity": [
+            "model-ab"
+          ],
+          "kind": "revision",
+          "roots": []
+        },
+        {
+          "id": "competing",
+          "kind": "deduction",
+          "identity": [
+            "r-competing",
+            "1"
+          ],
+          "roots": []
+        }
+      ],
+      "context": "ctx",
+      "contract": [
+        "acceptance",
+        "1"
+      ],
+      "criterion": {
+        "conclusion": {
+          "positive": true,
+          "statement": {
+            "arguments": [
+              "tested",
+              "healthy"
+            ],
+            "predicate": "pln:implication"
+          }
+        },
+        "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+        "criterion_id": "forecast",
+        "max_strength": 1.0,
+        "min_confidence": 0.35,
+        "min_strength": 0.65,
+        "unit": "dimensionless-probability"
+      },
+      "id": "closed-loop-blocked",
+      "obligations": [
+        {
+          "classes": [
+            "a",
+            "b",
+            "derived",
+            "objection",
+            "competing",
+            "revision"
+          ],
+          "id": "forecast",
+          "mode": "any"
+        },
+        {
+          "classes": [
+            "revision"
+          ],
+          "id": "method-assessment",
+          "mode": "all"
+        }
+      ],
+      "product": "artifact-v2",
+      "required_hard_checks": [
+        "clock_alignment",
+        "contract_binding",
+        "owner",
+        "selected",
+        "operation_readiness",
+        "action_requirements",
+        "undispatched_attempt",
+        "attempt_identity",
+        "resource_capacity"
+      ],
+      "schema": "obligation-interpretation/experimental-v0",
+      "time_window": [
+        0,
+        100
+      ],
+      "work_task": {
+        "attempt_id": "attempt",
+        "author": "synthetic-research-task-owner (local test label; not authentication)",
+        "execution_contract": [
+          "deploy",
+          "1"
+        ],
+        "goal_id": "goal",
+        "lifecycle_episode": "episode",
+        "operation_id": "deploy",
+        "revision": "blocked/v1",
+        "task_episode": "closed-loop-episode",
+        "task_id": "closed-loop-assessment"
+      }
+    },
+    "sources": {
+      "classes": [
+        {
+          "id": "a",
+          "identity": [
+            "source-a"
+          ],
+          "kind": "observation",
+          "roots": [
+            "root:a"
+          ]
+        },
+        {
+          "id": "b",
+          "identity": [
+            "source-b"
+          ],
+          "kind": "observation",
+          "roots": [
+            "root:b"
+          ]
+        },
+        {
+          "id": "derived",
+          "identity": [
+            "r-estimate",
+            "1"
+          ],
+          "kind": "deduction",
+          "roots": []
+        },
+        {
+          "id": "objection",
+          "identity": [
+            "r-objection",
+            "1"
+          ],
+          "kind": "deduction",
+          "roots": []
+        },
+        {
+          "id": "revision",
+          "identity": [
+            "model-ab"
+          ],
+          "kind": "revision",
+          "roots": []
+        },
+        {
+          "id": "competing",
+          "kind": "deduction",
+          "identity": [
+            "r-competing",
+            "1"
+          ],
+          "roots": []
+        }
+      ],
+      "context": "ctx",
+      "contract": [
+        "acceptance",
+        "1"
+      ],
+      "criterion": {
+        "conclusion": {
+          "positive": true,
+          "statement": {
+            "arguments": [
+              "tested",
+              "healthy"
+            ],
+            "predicate": "pln:implication"
+          }
+        },
+        "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+        "criterion_id": "forecast",
+        "max_strength": 1.0,
+        "min_confidence": 0.35,
+        "min_strength": 0.65,
+        "unit": "dimensionless-probability"
+      },
+      "id": "closed-loop-sources",
+      "obligations": [
+        {
+          "classes": [
+            "a",
+            "derived",
+            "objection",
+            "revision",
+            "competing"
+          ],
+          "id": "forecast",
+          "mode": "any"
+        },
+        {
+          "classes": [
+            "b"
+          ],
+          "id": "source-b",
+          "mode": "any"
+        }
+      ],
+      "product": "artifact-v2",
+      "required_hard_checks": [
+        "clock_alignment",
+        "contract_binding",
+        "owner",
+        "selected",
+        "operation_readiness",
+        "action_requirements",
+        "undispatched_attempt",
+        "attempt_identity",
+        "resource_capacity"
+      ],
+      "schema": "obligation-interpretation/experimental-v0",
+      "time_window": [
+        0,
+        100
+      ],
+      "work_task": {
+        "attempt_id": "attempt",
+        "author": "synthetic-research-task-owner (local test label; not authentication)",
+        "execution_contract": [
+          "deploy",
+          "1"
+        ],
+        "goal_id": "goal",
+        "lifecycle_episode": "episode",
+        "operation_id": "deploy",
+        "revision": "sources/v1",
+        "task_episode": "closed-loop-episode",
+        "task_id": "closed-loop-assessment"
+      }
+    }
+  },
+  "parents": [
+    {
+      "id": "positive",
+      "task": "deduction"
+    },
+    {
+      "id": "shared",
+      "task": "shared"
+    },
+    {
+      "id": "blocked",
+      "task": "blocked"
+    },
+    {
+      "id": "unavailable",
+      "task": "sources"
+    },
+    {
+      "id": "freshness",
+      "task": "deduction"
+    },
+    {
+      "id": "adverse",
+      "task": "sources"
+    }
+  ],
+  "modes": [
+    "finite",
+    "native"
+  ],
+  "limits": {
+    "rules": 16,
+    "estimates": 32,
+    "candidates": 64,
+    "tuple_visits": 128,
+    "selections": 32,
+    "work": 64,
+    "acquisitions": 16
+  },
+  "review": {
+    "scope": "all current registered one-step deduction/revision producers of exact criterion or its opposite, all coherent current tuples, plus every received relevant report",
+    "revision": "finite-review/v1",
+    "optional": "other public producers remain visible but unexamined; no inference closure"
+  },
+  "ordering": "priority classes: accepted-operation control/monitoring, relevant pending adoption, graph work, fresh authorization; within each class first-ready FIFO then existing semantic_tie; relevant basis/opportunity attempted once",
+  "values": {
+    "deduction_strengths": [
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "deduction_confidence": 0.8,
+    "adequate_source": [
+      0.7,
+      0.8
+    ],
+    "weak_source": [
+      0.7,
+      0.2
+    ],
+    "adverse_strengths": [
+      0.5,
+      0.5,
+      0.1,
+      0.8,
+      0.1
+    ],
+    "adverse_confidence": 0.05
+  },
+  "environment": {
+    "positive": "r-estimate(test ed via staged) missing last premise, competing r-competing via cached complete; explicit root per report; acquire missing report only on request",
+    "shared": "source-a/root:a and source-b/root:b adequate; model-ab exact two parents shared by two obligations",
+    "blocked": "same model, a confidence .2 retained",
+    "unavailable": "source-a adequate, source-b opportunity unknown; request returns UNKNOWN unavailable",
+    "freshness": "positive setup; once after r-estimate selection before execute register rule revision 2; task role remains pinned to revision 1",
+    "adverse": "adequate source-a and source-b; registered r-objection/tested-weak-healthy reveals adverse conclusion; review required before dispatch",
+    "operations": "after accepted dispatch tick 1 and publish product; after correct product publish health; after each of first two health receipts advance time and publish next opportunity; three independent sample roots via existing API"
+  },
+  "boundaries": [
+    "copied/unclassified report",
+    "unknown source",
+    "unadopted opposite report",
+    "support replacement before execute",
+    "exact model parent revocation",
+    "new required review after reservation",
+    "in-flight numerical block and incomplete view monitoring",
+    "wrong product",
+    "missing health",
+    "later unhealthy reopening",
+    "uncertain dispatch reconciliation",
+    "deeper route",
+    "tiny bound",
+    "shared identity",
+    "duplicate reads/unrelated ticks",
+    "typed permission rejection",
+    "matched mandatory-role perturbation"
+  ],
+  "claims": "bounded controller conformance only; simulated observation port; no comparative, safety, scalability or policy promotion claim"
+}

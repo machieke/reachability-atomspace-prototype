@@ -33,6 +33,21 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: closed-loop execution of declared assessment work
+
+Follow `/tmp/codex_next_closed_loop_obligation_execution.md`; freeze the task,
+six finite/native episode pairs, review scope and budgets in
+`reviews/closed-loop-obligations-v1/PROTOCOL.md` and `task.json` before execution.
+
+1. Preserve the completed bridge, frozen A/B and previous controllers/reviews.
+2. Add one public-candidate consumer with coherent captures, FIFO work selection,
+   pending-report adoption, exact route mapping and bounded basis-aware retries.
+3. Delegate execution/reconciliation and outcome monitoring to existing APIs;
+   complete required finite review before dispatch and retain every live blocker.
+4. Test independent choices, freshness, authority, adverse/missing observations
+   and native boundaries; freeze and run applicable suites plus twelve episodes.
+5. Publish a source-bound trace/cost/failure/omission bundle, commit/push and stop.
+
 ### Completed bounded milestone: contract-bound obligation-to-work bridge
 
 Measured implementation/auditor `2322512c61f3ff387abcb402f1638c25b92f9add`;
