@@ -4291,5 +4291,23 @@
       "native storage redesign",
       "full pressure/attention/benchmark design"
     ]
+  },
+  "native_multihop_recall": {
+    "status": "preregistered",
+    "baseline": "c4686bc6fb100c324874f12f2f98d66aa2f0e9d7",
+    "protocol": "reviews/native-multihop-v1/PROTOCOL.md",
+    "core_executions": 24,
+    "retrieval_arms": [
+      "MH-scan",
+      "MH-native"
+    ],
+    "scope": "native query membership integration; unchanged consumer, fixtures, formulas and authority",
+    "deferred": [
+      "adaptive transport",
+      "incremental native storage",
+      "increased depth",
+      "generalized recovery",
+      "scaling claims"
+    ]
   }
 }

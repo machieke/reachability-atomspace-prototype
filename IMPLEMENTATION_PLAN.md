@@ -33,6 +33,23 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: native multi-hop discovery parity
+
+Preserve closure `c4686bc`, measured scanner/consumer `b509d2b`, all existing
+fixtures, authority, reviews and native build receipts. Protocol:
+`reviews/native-multihop-v1/PROTOCOL.md`.
+
+1. Register the fixed 24-run retrieval × formula-mode × parent comparison.
+2. Add a separately named native record-access/projector adapter that supplies
+   the existing typed work view to the unchanged consumer. No scanner fallback.
+3. Test causal query use, binding/replacement, complete dependencies, failure
+   distinctions and unchanged authority; retain every development failure.
+4. Freeze source, run applicable regressions once, execute the cohort and audit
+   matched snapshots, real outcomes, native receipts and complete cost accounting.
+5. Publish one source-bound archive, update the bounded manifest, commit/push and
+   stop. No transport, storage redesign, expanded depth or generalized recovery.
+
+
 ### Completed bounded milestone: bounded online multi-hop numerical PLN
 
 Measured implementation/auditor `b509d2b8d7388a570b5a666e1c845b95d207ad20`;
