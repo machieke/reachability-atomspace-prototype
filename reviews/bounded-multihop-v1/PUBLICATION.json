@@ -1,0 +1,61 @@
+{
+  "schema": "bounded-multihop-publication/v1",
+  "publication_revision": "626c06e868a41ffb7e8b3dcdb3bb21577a94a22f",
+  "measured_revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20",
+  "auditor_revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20",
+  "preregistered_revision": "0d7fba14937d88a69813dc94d511c57d504a2440",
+  "preserved_publication": "716b4c098bd9242bdb5957675f473a58ce2c11ca",
+  "archive_sha256": "829748da499c8753271cc39ec8e5f39829b5f0820cf2bb96884f62fd7fe338ea",
+  "archive_bytes": 4758192,
+  "checks": {
+    "integrity": {
+      "archive_bytes": 4758192,
+      "archive_sha256": "829748da499c8753271cc39ec8e5f39829b5f0820cf2bb96884f62fd7fe338ea",
+      "experiment_revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20",
+      "files_verified": 1164,
+      "limitation": "Integrity against published checksums; not publisher authentication or semantic replay.",
+      "parts": 1,
+      "status": "PASS"
+    },
+    "extracted_semantic_audit": {
+      "admitted_goal_predicate_replays": 264,
+      "authority_certificates": 548,
+      "development_allow_dirty": false,
+      "episodes": 12,
+      "executor_reconstructions": 12,
+      "formula_calls": 30,
+      "limitation": "Bounded structural/ancestry/fixture witness, physical recurrence and actual admitted-observation replay; not fresh native execution during audit, real-world truth or calibrated safety.",
+      "native_formula_calls": 15,
+      "physical_samples": 84,
+      "physical_ticks": 108,
+      "public_rows": 264,
+      "revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20",
+      "selections": 162,
+      "status": "PASS"
+    },
+    "archive_mutation": {
+      "reason": "archive checksum differs: review.tar.xz",
+      "rejected": true
+    }
+  },
+  "regressions": {
+    "default": 462,
+    "native": 86,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "default_wrapper_exit": 0,
+    "native_wrapper_exit": 0,
+    "source_and_test_hashes_unchanged": true
+  },
+  "related_native_boundary": {
+    "status": "PASS",
+    "native_calls": 1,
+    "commit_status": "STALE",
+    "included_in_core_counts": false,
+    "evidence": "validation/late-native/receipt.json inside archive"
+  },
+  "prior_wrapper_anomaly": "Earlier default-wrapper exit 143 remains preserved at 173c772 and 716b4c0; not reclassified by current clean runs.",
+  "boundary": "Bounded registered multi-hop extension complete through real depth three. Original one-step bridge/consumer, A/B, numerical authority, independent world and native builds preserved. No automatic more-depth work, tuning, confidence consolidation, policy promotion, transport, effect repair, generalized recovery or storage redesign.",
+  "binding": "Publication commit contains the immutable archive and review. This following receipt avoids self-referential hashing."
+}
