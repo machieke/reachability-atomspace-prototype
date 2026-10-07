@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "closed-loop-obligations-preregistered",
+  "implementation_stage": "closed-loop-obligations-reviewed",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3729,15 +3729,120 @@
     ]
   },
   "closed_loop_obligations": {
-    "status": "preregistered",
+    "status": "complete-bounded-experimental-consumer",
     "baseline": "8d264f3c316b4932824dbfce2f5a6a1eaf8523e0",
+    "preserved_bridge_measured_revision": "2322512c61f3ff387abcb402f1638c25b92f9add",
+    "preserved_bridge_review": "dee33c6",
     "protocol": "reviews/closed-loop-obligations-v1/PROTOCOL.md",
     "task": "reviews/closed-loop-obligations-v1/task.json",
+    "protocol_commit": "1d10fbf",
+    "selector_correction_commit": "42479113242730ad18c2096ff5a2d337e71c8451",
+    "correction": "Distinct selector IDs for unchanged intended shared eligibility; malformed declaration failures preserved before corrected measurements.",
+    "measured_revision": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+    "auditor_revision": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+    "review": "reviews/closed-loop-obligations-v1/README.md",
+    "archive_sha256": "19a040f5a8024ee6a22645714a5ef3343507d6e96dbc1eba27f0d7bcc095a19b",
+    "archive_bytes": 1681248,
+    "archive_files": 848,
+    "preserved_prior_files": 743,
+    "native_build_receipts_unchanged": true,
     "parents": 6,
     "modes": [
       "finite",
       "native"
     ],
-    "production_policy_changed": false
+    "core_episodes": 12,
+    "core_conformance": "PASS",
+    "work_status_rows": 66,
+    "selected_operations": 54,
+    "operation_work_charges": 54,
+    "acquisition_charges": 22,
+    "formula_calls": 14,
+    "new_native_formula_calls": 7,
+    "stale_requests_rejected": 2,
+    "observed_completion_runs": 4,
+    "unresolved_runs": 8,
+    "simulated_executor_effects": 4,
+    "cohort_elapsed_ns": 17158322288,
+    "limits": {
+      "selections": 32,
+      "work": 64,
+      "acquisitions": 16,
+      "numeric_headroom_reserved": {
+        "selections": 8,
+        "work": 8,
+        "acquisitions": 4
+      }
+    },
+    "audit": {
+      "status": "PASS",
+      "authority_reconstructions": 12,
+      "current_frontier_revalidations": 54,
+      "environment_response_matches": 22,
+      "ordered_formula_inputs": 14,
+      "executor_journal_reconstructions": 12,
+      "rejected_bundle_mutations": 8,
+      "rejected_archive_mutations": 1,
+      "extracted_semantic_replay": "PASS",
+      "extracted_receipt_replay": "PASS"
+    },
+    "final_regressions": {
+      "default": 421,
+      "native": 79,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "new_default_tests_included": 20,
+      "new_native_tests_included": 4,
+      "default_elapsed_seconds": 199.29004493076354,
+      "native_elapsed_seconds": 91.9851647298783,
+      "source_and_test_hashes_unchanged": true,
+      "default_wrapper_exit": 143,
+      "native_wrapper_exit": 0,
+      "wrapper_anomaly": "Default wrapper exit 143 followed a complete OK log and durable 421-test passing receipt. Cause unestablished; retained separately; no rerun."
+    },
+    "omitted": {
+      "default_tests": 648,
+      "default_modules": 47,
+      "native_tests": 64,
+      "native_modules": 12,
+      "pressure_numerical_tests": 15,
+      "pressure_attention_transport_matrices": true,
+      "exact_inventory": "validation/inventory.json inside archive"
+    },
+    "development_failures": {
+      "malformed_declaration_assertions": 4,
+      "reference_field_path_exceptions": 1,
+      "preserved_in_archive": true
+    },
+    "scope": "One-step bridge-driven work with explicit receipt adoption and original lifecycle controls; ephemeral FIFO and finite current producer review.",
+    "experimental_task_selection_changed": true,
+    "production_policy_changed": false,
+    "production_policy_B_promoted": false,
+    "frozen_bridge_or_evaluators_changed": false,
+    "original_controllers_changed": false,
+    "authority_changed": false,
+    "observed_outcomes": "Existing simulated exact-product/health/durability/completion interfaces only; numerical satisfaction and acknowledgments do not create relief.",
+    "claims_excluded": [
+      "general decision quality",
+      "empirical safety",
+      "scheduler superiority",
+      "global inference closure",
+      "scalability",
+      "native retrieval performance",
+      "policy-B production readiness"
+    ],
+    "deferred": [
+      "policy promotion",
+      "parameter tuning",
+      "pressure/transport",
+      "larger task matrix",
+      "deeper proof planning",
+      "evidence supersession",
+      "persistent restart/resume redesign",
+      "generalized recovery",
+      "native storage redesign",
+      "full pressure/attention/benchmark design"
+    ]
   }
 }

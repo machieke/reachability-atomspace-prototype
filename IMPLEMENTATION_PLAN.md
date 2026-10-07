@@ -33,20 +33,47 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: closed-loop execution of declared assessment work
+### Completed bounded milestone: closed-loop execution of declared assessment work
 
-Follow `/tmp/codex_next_closed_loop_obligation_execution.md`; freeze the task,
-six finite/native episode pairs, review scope and budgets in
-`reviews/closed-loop-obligations-v1/PROTOCOL.md` and `task.json` before execution.
+Measured implementation/auditor `d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8`.
+Preregistration `1d10fbf`; selector-identity correction `4247911` preserves intended
+eligibility/requirements, values and thresholds. The malformed original declaration
+and all development failures remain in the review. Preserve closure `8d264f3`,
+bridge source `2322512`, review `dee33c6`, all 743 prior tracked files outside this
+plan/manifest, and both native build receipts unchanged.
 
-1. Preserve the completed bridge, frozen A/B and previous controllers/reviews.
-2. Add one public-candidate consumer with coherent captures, FIFO work selection,
-   pending-report adoption, exact route mapping and bounded basis-aware retries.
-3. Delegate execution/reconciliation and outcome monitoring to existing APIs;
-   complete required finite review before dispatch and retain every live blocker.
-4. Test independent choices, freshness, authority, adverse/missing observations
-   and native boundaries; freeze and run applicable suites plus twelve episodes.
-5. Publish a source-bound trace/cost/failure/omission bundle, commit/push and stop.
+1. Added a separate public-only consumer with coherent full captures, frozen A/B
+   and bridge evaluation, FIFO selection, exact current candidate/ordered-tuple
+   mapping, outcome-independent pending-report adoption and bounded basis retries.
+2. Required finite review of all current registered one-step criterion/opposite
+   producers and pending relevant reports before dispatch. Existing controls retain
+   accepted/uncertain actions and product/health monitoring, even under later blocks.
+   No work view or B result becomes a permission; all old live gates remain intact.
+3. Tested actual information-to-completion, shared operations, weak/adverse blocks,
+   missing/copied/unknown observations, support/registry freshness, new review work,
+   malformed/deeper/bound cases, matched-state task perturbation, typed rejection,
+   monitoring headroom, uncertain reconciliation and outcome reopening.
+4. Ran 421 applicable default and 79 applicable native tests once at frozen source:
+   all 500 passed, zero failures/errors/skips. The default tool wrapper reported
+   exit 143 after its complete passing receipt; cause unknown and separately
+   preserved, with no rerun. Native wrapper exited zero. Explicitly omitted 648
+   default, 64 native, separate 15 pressure numerical checks and broader matrices.
+5. Ran six parents in finite/native modes: all twelve conformed, with 66 work/status
+   rows, 54 selected operations and 14 formula calls including seven fresh native
+   calls. Positive/shared cases reached observed completion in both modes. Eight
+   negative executions retained unresolved outcomes; two stale requests were rejected.
+6. Published an 848-file source-bound archive with raw traces, full frontiers/work
+   views, receipts, costs, journals, failures and omissions. Extracted replay checks
+   twelve authoritative states; receipt checks verify 54 current revalidations,
+   22 environment responses, 14 ordered formula inputs and twelve executor journals.
+   Eight bundle mutations and one altered archive were rejected.
+
+Review: `reviews/closed-loop-obligations-v1/README.md`. Reproduce with
+`uv run --no-project python -m work_loop_lab.compare run --output artifacts/work-loop-local`.
+This establishes bounded consumer conformance under simulated acquisition, not
+general decision quality, safety, scalability or production policy-B readiness.
+Stop here: no policy promotion, tuning, pressure/transport, larger matrix, deeper
+planning, evidence supersession, generalized recovery or native-storage redesign.
 
 ### Completed bounded milestone: contract-bound obligation-to-work bridge
 

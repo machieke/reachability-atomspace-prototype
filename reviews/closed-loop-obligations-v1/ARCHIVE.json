@@ -1,0 +1,11 @@
+{
+  "archive": "review.tar.xz",
+  "auditor_revision": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+  "bytes": 1681248,
+  "measured_revision": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "schema": "closed-loop-obligations-review-archive/v1",
+  "sha256": "19a040f5a8024ee6a22645714a5ef3343507d6e96dbc1eba27f0d7bcc095a19b"
+}
