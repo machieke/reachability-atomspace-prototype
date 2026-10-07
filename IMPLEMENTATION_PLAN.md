@@ -33,6 +33,22 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: observation-independent world validation
+
+Follow `/tmp/codex_next_independent_world_validation.md`; preregister six environments,
+fixed logical time, budgets and physical goals in `reviews/independent-world-v1/`.
+
+1. Preserve 173c772 and freeze the existing consumer, bridge, A/B, task roles,
+   numerical/native code, authority and all prior evidence including exit 143.
+2. Implement an evaluator-owned physical state machine linked to actual executor
+   effects, a passive instantaneous measurement port and a bounded event driver.
+3. Check independent physical references, observer invariance, no-command/blocked
+   controls, lost acknowledgment, truthful adverse reports and goal separation.
+4. Freeze/run applicable finite/native regressions and twelve core executions;
+   report physical loss, accepted evidence and observation-based completion separately.
+5. Publish source-bound public/private traces, costs, failures and omissions;
+   commit/push and stop without tuning the consumer or expanding its capabilities.
+
 ### Completed bounded milestone: closed-loop execution of declared assessment work
 
 Measured implementation/auditor `d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8`.

@@ -1,0 +1,193 @@
+{
+  "schema": "independent-world-protocol/v1",
+  "seed": 0,
+  "baseline": "173c772fb96b5a42d94fda9b4f05d6f4f60719f9",
+  "consumer_revision": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+  "task_reference": "reviews/closed-loop-obligations-v1/task.json#tasks/deduction",
+  "numeric_setup": "work_loop_lab.cases.World(positive).initialize only; never its acquire/after/outcome methods",
+  "modes": [
+    "finite",
+    "native"
+  ],
+  "horizon_inclusive": 8,
+  "tick_duration": 1,
+  "max_operations_per_tick": 8,
+  "limits": {
+    "rules": 16,
+    "estimates": 32,
+    "candidates": 64,
+    "tuple_visits": 128,
+    "selections": 32,
+    "work": 64,
+    "acquisitions": 16
+  },
+  "public_opportunities": {
+    "product": [
+      0,
+      1,
+      4
+    ],
+    "health": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "availability": "unknown regardless of hidden state or channel availability"
+  },
+  "physical_goal": {
+    "product": "artifact-v2",
+    "consecutive_healthy_ticks": 3,
+    "deficit_units": 10
+  },
+  "initial": {
+    "installed": null,
+    "healthy": false,
+    "operation": "absent"
+  },
+  "order": [
+    "due accepted-command effects sorted by request identity",
+    "exogenous events in declaration order",
+    "record physical goal at t",
+    "publish clock and account existing goal; publish scheduled descriptors",
+    "at most eight unchanged-consumer selections through existing APIs",
+    "link newly accepted executor effects with due time acceptance+delay, never local PASS alone",
+    "record physical and authoritative outcomes; continue through horizon even after completion/quiescence"
+  ],
+  "parents": [
+    {
+      "id": "observable",
+      "delay": 1,
+      "installed": "artifact-v2",
+      "effect": "complete",
+      "events": [],
+      "outages": {},
+      "expected": {
+        "first_physical": 3,
+        "first_completion": 3,
+        "J_world": 30,
+        "final_physical": 0
+      }
+    },
+    {
+      "id": "unobservable",
+      "delay": 1,
+      "installed": "artifact-v2",
+      "effect": "complete",
+      "events": [],
+      "outages": {
+        "product": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": {
+        "first_physical": 3,
+        "first_completion": null,
+        "J_world": 30,
+        "final_physical": 0
+      }
+    },
+    {
+      "id": "delayed",
+      "delay": 4,
+      "installed": "artifact-v2",
+      "effect": "complete",
+      "events": [],
+      "outages": {},
+      "expected": {
+        "first_physical": 6,
+        "first_completion": 6,
+        "J_world": 60,
+        "final_physical": 0
+      }
+    },
+    {
+      "id": "wrong-artifact",
+      "delay": 1,
+      "installed": "artifact-v1",
+      "effect": "complete",
+      "events": [],
+      "outages": {},
+      "expected": {
+        "first_physical": null,
+        "first_completion": null,
+        "J_world": 90,
+        "final_physical": 10
+      }
+    },
+    {
+      "id": "early-failure",
+      "delay": 1,
+      "installed": "artifact-v2",
+      "effect": "complete",
+      "events": [
+        {
+          "tick": 1,
+          "healthy": false
+        }
+      ],
+      "outages": {},
+      "expected": {
+        "first_physical": null,
+        "first_completion": null,
+        "J_world": 90,
+        "final_physical": 10
+      }
+    },
+    {
+      "id": "regression",
+      "delay": 1,
+      "installed": "artifact-v2",
+      "effect": "complete",
+      "events": [
+        {
+          "tick": 6,
+          "healthy": false
+        }
+      ],
+      "outages": {
+        "health": [
+          6
+        ]
+      },
+      "expected": {
+        "first_physical": 3,
+        "first_completion": 3,
+        "J_world": 60,
+        "final_physical": 10
+      }
+    }
+  ],
+  "boundaries": [
+    "no accepted command/polling only",
+    "live A blocked task reused verbatim",
+    "lost reply and duplicate idempotent acceptance",
+    "failed physical effect",
+    "passive order/count/outage invariance at fixed physical inputs and sample times",
+    "observer removed",
+    "physical transition cannot mutate authoritative evidence or permission",
+    "truthful adverse observation",
+    "historical completion and later reopening",
+    "frozen missing-premise/stale/uncertain/B-not-authority regressions"
+  ],
+  "unsupported": [
+    "delayed/out-of-order sensor delivery",
+    "noisy sensors/calibration",
+    "arbitrary effect multiplicity or multiple deployment attempts",
+    "crash resume",
+    "new observation contracts"
+  ],
+  "claims": "deterministic synthetic environmental validation of one unchanged consumer; not correction of old conformance, controller comparison, calibrated inference or real-world safety"
+}

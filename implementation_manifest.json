@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "closed-loop-obligations-reviewed",
+  "implementation_stage": "independent-world-preregistered",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3844,5 +3844,13 @@
       "native storage redesign",
       "full pressure/attention/benchmark design"
     ]
+  },
+  "independent_world_validation": {
+    "status": "preregistered",
+    "baseline": "173c772fb96b5a42d94fda9b4f05d6f4f60719f9",
+    "protocol": "reviews/independent-world-v1/PROTOCOL.md",
+    "environments": "reviews/independent-world-v1/environments.json",
+    "parents": 6,
+    "consumer_changed": false
   }
 }
