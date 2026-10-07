@@ -1,0 +1,58 @@
+{
+  "revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+  "original_receipts": {
+    "adapter-build.json": {
+      "sha256": "901131ba9cb0c0d81ca9fa7025e45375c5ab4254af5581ef15cef4a762949934",
+      "equal_previous_published_receipt": true
+    },
+    "recall-build.json": {
+      "sha256": "e571f11a8b5e404aa93c4ba9ba6fd777d726ea1e43d5d079e0ea5183ef389835",
+      "equal_previous_published_receipt": true
+    },
+    "fresh_postrun_complete_verification": "e571f11a8b5e404aa93c4ba9ba6fd777d726ea1e43d5d079e0ea5183ef389835"
+  },
+  "generation_bytes": [
+    104162888
+  ],
+  "host_loader_sha256": [
+    "cfd44e4341767033532d1483c8250d200ad4cdf535d0abc19064ae34cdc51ca0"
+  ],
+  "uncovered_host_libraries": [
+    "/usr/lib/x86_64-linux-gnu/libc-2.31.so",
+    "/usr/lib/x86_64-linux-gnu/libdl-2.31.so",
+    "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+    "/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0",
+    "/usr/lib/x86_64-linux-gnu/libm-2.31.so",
+    "/usr/lib/x86_64-linux-gnu/libpthread-2.31.so",
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32"
+  ],
+  "epoch_accounting": {
+    "MH-scan": {
+      "views": 0,
+      "replacements": 0,
+      "exact_binding_reuses": 0,
+      "load_bytes": 0,
+      "public_export_bytes": 0,
+      "max_atoms_per_view": 0,
+      "max_source_records_per_view": 0
+    },
+    "MH-native-strict": {
+      "views": 528,
+      "replacements": 504,
+      "exact_binding_reuses": 0,
+      "load_bytes": 241104212,
+      "public_export_bytes": 76003016,
+      "max_atoms_per_view": 1146,
+      "max_source_records_per_view": 30
+    },
+    "MH-native-session": {
+      "views": 528,
+      "replacements": 504,
+      "exact_binding_reuses": 0,
+      "load_bytes": 241104212,
+      "public_export_bytes": 76003016,
+      "max_atoms_per_view": 1146,
+      "max_source_records_per_view": 30
+    }
+  }
+}

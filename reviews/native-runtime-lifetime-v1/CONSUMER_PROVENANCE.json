@@ -1,0 +1,9 @@
+{
+  "actual_consumer_revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20",
+  "checked_against_sealed_source_manifest": true,
+  "consumer_source": "experimental_multihop/consumer.py",
+  "inherited_informational_field": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+  "measured_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+  "scope": "Publication clarification only. The inherited hardcoded label identifies the earlier work-loop base, not the actual multi-hop Consumer class. Authoritative identity is the measured revision and exact source-file manifest; the auditor does not use this informational label. Frozen sources, cohort and metadata are preserved.",
+  "sha256": "3ec9c16ed98f2aff48a0db15b88d9c368edc4cdcb133a9789dff6ed96b68c19a"
+}

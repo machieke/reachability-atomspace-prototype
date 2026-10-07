@@ -4374,7 +4374,7 @@
     }
   },
   "native_runtime_lifetime": {
-    "status": "preregistered",
+    "status": "complete_bounded_experimental",
     "baseline": "c08877577fe1daab010d73d65315378212848150",
     "protocol": "reviews/native-runtime-lifetime-v1/PROTOCOL.md",
     "executions": 72,
@@ -4384,6 +4384,188 @@
       "MH-native-strict",
       "MH-native-session"
     ],
-    "scope": "runtime verification lifetime only; fresh immutable knowledge view each changed binding"
+    "scope": "runtime verification lifetime only; fresh immutable knowledge view each changed binding",
+    "consumer_provenance": {
+      "inherited_informational_field": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8",
+      "consumer_source": "experimental_multihop/consumer.py",
+      "actual_consumer_revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20",
+      "sha256": "3ec9c16ed98f2aff48a0db15b88d9c368edc4cdcb133a9789dff6ed96b68c19a",
+      "checked_against_sealed_source_manifest": true,
+      "measured_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+      "scope": "Publication clarification only. The inherited hardcoded label identifies the earlier work-loop base, not the actual multi-hop Consumer class. Authoritative identity is the measured revision and exact source-file manifest; the auditor does not use this informational label. Frozen sources, cohort and metadata are preserved."
+    },
+    "measured_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+    "preregistration": "aab9673",
+    "review": "reviews/native-runtime-lifetime-v1/README.md",
+    "archive": {
+      "archive": "review.tar.xz",
+      "auditor_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+      "bytes": 12557728,
+      "measured_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+      "parts": [
+        "review.tar.xz"
+      ],
+      "schema": "native-runtime-lifetime-review-archive/v1",
+      "sha256": "65b5fe2ce1380ec63948752f1842e9f592a58bff9ffd4e5fde0f3211b363d8e5"
+    },
+    "validation": {
+      "passed": 630,
+      "default": 476,
+      "native": 154,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "omitted_default": 642,
+      "omitted_native": 48,
+      "omitted_pressure_reference": 15,
+      "altered_copy_witnesses": 17
+    },
+    "audit": {
+      "admitted_goal_predicate_replays": 1584,
+      "authority_certificates": 3288,
+      "closed_loop_pairs": 48,
+      "development_allow_dirty": false,
+      "episodes": 72,
+      "executor_reconstructions": 72,
+      "formula_calls": 180,
+      "fresh_native_pln_invocations_during_audit": 0,
+      "limitation": "Bounded structural/ancestry/fixture witness, physical recurrence and actual admitted-observation replay; native queries reexecuted separately from recorded formula checks; no fresh PLN invocation during audit, real-world truth or calibrated safety.",
+      "native_audit": {
+        "fresh_generation_integrity_checks_during_replay": 0,
+        "fresh_strict_runtime_verifications": 1056,
+        "matched_native_graph_reexecutions": 1056,
+        "native_epochs": 1056,
+        "native_query_reexecutions": 51520,
+        "native_rows": 1056,
+        "query_request_bytes": 10685640,
+        "query_response_bytes": 7591632,
+        "recorded_generation_checks": 24,
+        "recorded_launch_mapping_checks": 528,
+        "recorded_native_query_invocations": 51520,
+        "recorded_query_answers": 51520
+      },
+      "native_formula_calls": 90,
+      "physical_samples": 504,
+      "physical_ticks": 648,
+      "public_rows": 1584,
+      "recorded_formula_checks": 180,
+      "revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+      "selections": 972,
+      "status": "PASS"
+    },
+    "epoch_accounting": {
+      "MH-native-session": {
+        "exact_binding_reuses": 0,
+        "load_bytes": 241104212,
+        "max_atoms_per_view": 1146,
+        "max_source_records_per_view": 30,
+        "public_export_bytes": 76003016,
+        "replacements": 504,
+        "views": 528
+      },
+      "MH-native-strict": {
+        "exact_binding_reuses": 0,
+        "load_bytes": 241104212,
+        "max_atoms_per_view": 1146,
+        "max_source_records_per_view": 30,
+        "public_export_bytes": 76003016,
+        "replacements": 504,
+        "views": 528
+      },
+      "MH-scan": {
+        "exact_binding_reuses": 0,
+        "load_bytes": 0,
+        "max_atoms_per_view": 0,
+        "max_source_records_per_view": 0,
+        "public_export_bytes": 0,
+        "replacements": 0,
+        "views": 0
+      }
+    },
+    "paired_wall_time_signs": {
+      "scan": {
+        "0": {
+          "unfavorable": 12
+        },
+        "1": {
+          "unfavorable": 12
+        }
+      },
+      "strict": {
+        "0": {
+          "favorable": 12
+        },
+        "1": {
+          "favorable": 12
+        }
+      }
+    },
+    "elapsed_ns_by_arm": {
+      "MH-native-session": 234062323662,
+      "MH-native-strict": 322242694321,
+      "MH-scan": 145109861814
+    },
+    "publication_checks": {
+      "corrupted_archive": {
+        "reason": "archive checksum differs: review.tar.xz",
+        "rejected": true
+      },
+      "elapsed_ns": 249589887752,
+      "extracted_recorded_replay": {
+        "admitted_goal_predicate_replays": 1584,
+        "authority_certificates": 3288,
+        "closed_loop_pairs": 48,
+        "development_allow_dirty": false,
+        "episodes": 72,
+        "executor_reconstructions": 72,
+        "formula_calls": 180,
+        "fresh_native_pln_invocations_during_audit": 0,
+        "limitation": "Bounded structural/ancestry/fixture witness, physical recurrence and actual admitted-observation replay; native queries reexecuted separately from recorded formula checks; no fresh PLN invocation during audit, real-world truth or calibrated safety.",
+        "native_audit": {
+          "fresh_generation_integrity_checks_during_replay": 0,
+          "fresh_strict_runtime_verifications": 0,
+          "matched_native_graph_reexecutions": 0,
+          "native_epochs": 1056,
+          "native_query_reexecutions": 0,
+          "native_rows": 1056,
+          "query_request_bytes": 10685640,
+          "query_response_bytes": 7591632,
+          "recorded_generation_checks": 24,
+          "recorded_launch_mapping_checks": 528,
+          "recorded_native_query_invocations": 51520,
+          "recorded_query_answers": 51520
+        },
+        "native_formula_calls": 90,
+        "physical_samples": 504,
+        "physical_ticks": 648,
+        "public_rows": 1584,
+        "recorded_formula_checks": 180,
+        "revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+        "selections": 972,
+        "status": "PASS"
+      },
+      "integrity": {
+        "archive_bytes": 12557728,
+        "archive_sha256": "65b5fe2ce1380ec63948752f1842e9f592a58bff9ffd4e5fde0f3211b363d8e5",
+        "experiment_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+        "files_verified": 2271,
+        "limitation": "Integrity against published checksums; not publisher authentication or semantic replay.",
+        "parts": 1,
+        "status": "PASS"
+      },
+      "note": "Original source-bound audit reexecutes native queries. Extracted archive check replays recorded queries, arithmetic, frozen consumer and SQLite without repeating fresh native queries or fresh PLN."
+    },
+    "stopped": true,
+    "deferred": [
+      "selective invalidation",
+      "runtime pooling",
+      "persistent/incremental AtomSpace",
+      "cross-view query caching",
+      "new planner or depth",
+      "adaptive transport",
+      "policy B promotion",
+      "source supersession",
+      "generalized recovery"
+    ]
   }
 }

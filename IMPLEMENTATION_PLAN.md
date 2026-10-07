@@ -33,22 +33,42 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: verified runtime lifetime with fresh views
+### Completed bounded milestone: verified runtime lifetime with fresh views
 
-Preserve closure `c088775` and measured native-discovery implementation `068770e`.
-Protocol: `reviews/native-runtime-lifetime-v1/PROTOCOL.md`.
+Measured implementation/auditor `fa6c2674bc5977475f1aad9e6c884405ef7b7414`; preregistration `aab9673`.
+Review: `reviews/native-runtime-lifetime-v1/README.md` and one source-bound archive.
+Preserved closure `c088775` and every earlier implementation/review/build receipt.
 
-1. Inspect loader resolution and register a bounded session generation contract.
-2. Implement a separate sealed-artifact lifetime adapter. Keep every knowledge
-   view cold and every existing policy, query and authority gate unchanged.
-3. Test artifact integrity, actual library use, view freshness, lineage and
-   failures; retain all development failures and corrections.
-4. Freeze code, run applicable regressions once, then two counterbalanced sweeps
-   of three arms × two formula modes × six parents (72 executions). Audit exact
-   semantics and actual queries; charge preparation, guards, cleanup and residuals.
-5. Publish one source-bound review, commit/push and stop. No storage redesign,
-   pooling, planner/depth/transport extension or generalized recovery.
+- The separate MH-native-session arm cryptographically prepares one sealed runtime
+  generation per episode. Explicit glibc loading suppresses original RPATH;
+  every cold helper's covered mapped artifacts are checked against that generation.
+  Kernel seals protect bytes; alias/descriptor/generation drift fails closed.
+  Host dependencies and accidental-drift threat scope are documented.
+- Changed knowledge bindings retain fresh projection, helper, full load/readback,
+  query namespace and exact authority. Native intermediate/current-support reuse,
+  descendant retirement, stale rejection, explicit rebuild and budget continuity
+  are tested. No query caching across snapshots or changed consumer policy.
+- 630 applicable frozen regressions passed once (476 default,
+  154 native), without errors/failures/skips. Exact omitted coverage remains
+  explicit: 642 default, 48 native and 15 standalone pressure checks.
+- Two serial counterbalanced sweeps ran all 72 cells over six fixed parents,
+  three arms and two formula modes. All conformed, with 48 paired semantic
+  checks, 48 completions and 24 unresolved outcomes; query/operation/goal
+  semantics were neutral. Every wall-time pair and two-sweep range is reported.
+- Audit: 51,520 fresh native query reexecutions, 180 recorded arithmetic checks,
+  90 originally fresh native PLN calls, 3,288 persisted certificates.
+  Fresh PLN calls during audit: zero. Recorded runtime mapping/provenance checks
+  remain distinct from original cryptographic preparation and fresh strict queries.
+- All 17 altered-copy witnesses rejected. Archive integrity, extracted recorded
+  replay and corrupted-archive rejection passed; extracted replay performs zero
+  fresh native queries/PLN. Previous failures and development corrections remain.
+- Disjoint coarse costs, nested fine timers, verification/copy/guard/cleanup work,
+  command elapsed time, cold-view counts, fixed-snapshot diagnostic and memory
+  omissions are published. No production or broad performance claim.
 
+This bounded increment is complete. Stop: no pooling, selective invalidation,
+persistent/incremental storage, cross-view query cache, planner/depth/transport,
+policy-B promotion, source supersession or generalized recovery continuation.
 
 ### Completed bounded milestone: native multi-hop discovery parity
 

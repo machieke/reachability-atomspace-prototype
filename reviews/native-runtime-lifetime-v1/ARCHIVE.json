@@ -1,0 +1,11 @@
+{
+  "archive": "review.tar.xz",
+  "auditor_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+  "bytes": 12557728,
+  "measured_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "schema": "native-runtime-lifetime-review-archive/v1",
+  "sha256": "65b5fe2ce1380ec63948752f1842e9f592a58bff9ffd4e5fde0f3211b363d8e5"
+}
