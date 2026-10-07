@@ -1,0 +1,76 @@
+{
+  "schema": "native-multihop-publication-receipt/v1",
+  "publication_revision": "f8007edc6bbe1619187cc68a17419335731c1d2e",
+  "measured_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226",
+  "preregistration": "55ec450",
+  "archive": {
+    "archive": "review.tar.xz",
+    "auditor_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226",
+    "bytes": 7236856,
+    "measured_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226",
+    "parts": [
+      "review.tar.xz"
+    ],
+    "schema": "native-multihop-review-archive/v1",
+    "sha256": "2b828c012187e77bf5db43d4ed9102aace32778eb87a12b48544869df35e863c"
+  },
+  "publication_checks": {
+    "corrupted_archive": {
+      "reason": "archive checksum differs: review.tar.xz",
+      "rejected": true
+    },
+    "elapsed_ns": 189410541773,
+    "extracted_recorded_replay": {
+      "admitted_goal_predicate_replays": 528,
+      "authority_certificates": 1096,
+      "closed_loop_pairs": 12,
+      "development_allow_dirty": false,
+      "episodes": 24,
+      "executor_reconstructions": 24,
+      "formula_calls": 60,
+      "fresh_native_pln_invocations_during_audit": 0,
+      "limitation": "Bounded structural/ancestry/fixture witness, physical recurrence and actual admitted-observation replay; native queries reexecuted separately from recorded formula checks; no fresh PLN invocation during audit, real-world truth or calibrated safety.",
+      "native_audit": {
+        "matched_native_graph_reexecutions": 0,
+        "native_epochs": 264,
+        "native_query_reexecutions": 0,
+        "native_rows": 264,
+        "query_request_bytes": 2671410,
+        "query_response_bytes": 1897908,
+        "recorded_native_query_invocations": 12880,
+        "recorded_query_answers": 12880
+      },
+      "native_formula_calls": 30,
+      "physical_samples": 168,
+      "physical_ticks": 216,
+      "public_rows": 528,
+      "recorded_formula_checks": 60,
+      "revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226",
+      "selections": 324,
+      "status": "PASS"
+    },
+    "integrity": {
+      "archive_bytes": 7236856,
+      "archive_sha256": "2b828c012187e77bf5db43d4ed9102aace32778eb87a12b48544869df35e863c",
+      "experiment_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226",
+      "files_verified": 1383,
+      "limitation": "Integrity against published checksums; not publisher authentication or semantic replay.",
+      "parts": 1,
+      "status": "PASS"
+    },
+    "note": "Original source-bound audit reexecutes native queries. Extracted archive check replays recorded queries, arithmetic, frozen consumer and SQLite without repeating fresh native queries or fresh PLN."
+  },
+  "epoch_accounting": {
+    "epochs": 264,
+    "replacements": 252,
+    "exact_binding_reuses": 0,
+    "load_bytes": 120552106,
+    "public_export_bytes": 38001508,
+    "max_atoms_per_view": 1146,
+    "max_source_records_per_view": 30
+  },
+  "epoch_accounting_source": "Summed open_view receipt counts and replaced flags from the sealed native-events.json files; exact-binding reuses from sealed result native_costs. Full source loading remains charged; these byte/atom counts are not RSS or peak-memory measurements.",
+  "artifact_verification_note": "Run verify_review.py in the published review directory containing ARCHIVE.json, SHA256SUMS and review.tar.xz. That directory is published after the measured implementation commit.",
+  "stop": "Bounded native membership integration complete. No policy, storage, depth, transport or generalized recovery continuation.",
+  "recorded_at": "2026-10-07T14:35:57.341803+00:00"
+}

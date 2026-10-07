@@ -4361,6 +4361,16 @@
       "altered_archive_rejected": true
     },
     "preserved_files": 825,
-    "native_build_receipts_unchanged": true
+    "native_build_receipts_unchanged": true,
+    "publication_revision": "f8007edc6bbe1619187cc68a17419335731c1d2e",
+    "epoch_accounting": {
+      "epochs": 264,
+      "replacements": 252,
+      "exact_binding_reuses": 0,
+      "load_bytes": 120552106,
+      "public_export_bytes": 38001508,
+      "max_atoms_per_view": 1146,
+      "max_source_records_per_view": 30
+    }
   }
 }
