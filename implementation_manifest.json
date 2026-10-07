@@ -4372,5 +4372,18 @@
       "max_atoms_per_view": 1146,
       "max_source_records_per_view": 30
     }
+  },
+  "native_runtime_lifetime": {
+    "status": "preregistered",
+    "baseline": "c08877577fe1daab010d73d65315378212848150",
+    "protocol": "reviews/native-runtime-lifetime-v1/PROTOCOL.md",
+    "executions": 72,
+    "sweeps": 2,
+    "arms": [
+      "MH-scan",
+      "MH-native-strict",
+      "MH-native-session"
+    ],
+    "scope": "runtime verification lifetime only; fresh immutable knowledge view each changed binding"
   }
 }

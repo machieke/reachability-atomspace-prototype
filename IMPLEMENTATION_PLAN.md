@@ -33,6 +33,23 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: verified runtime lifetime with fresh views
+
+Preserve closure `c088775` and measured native-discovery implementation `068770e`.
+Protocol: `reviews/native-runtime-lifetime-v1/PROTOCOL.md`.
+
+1. Inspect loader resolution and register a bounded session generation contract.
+2. Implement a separate sealed-artifact lifetime adapter. Keep every knowledge
+   view cold and every existing policy, query and authority gate unchanged.
+3. Test artifact integrity, actual library use, view freshness, lineage and
+   failures; retain all development failures and corrections.
+4. Freeze code, run applicable regressions once, then two counterbalanced sweeps
+   of three arms × two formula modes × six parents (72 executions). Audit exact
+   semantics and actual queries; charge preparation, guards, cleanup and residuals.
+5. Publish one source-bound review, commit/push and stop. No storage redesign,
+   pooling, planner/depth/transport extension or generalized recovery.
+
+
 ### Completed bounded milestone: native multi-hop discovery parity
 
 Measured implementation/auditor `068770ea5f7970bfaf65aabfdae3fcfe3d983226`; protocol preregistered at
