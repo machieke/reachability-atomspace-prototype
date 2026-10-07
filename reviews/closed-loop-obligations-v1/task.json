@@ -43,7 +43,16 @@
           "roots": []
         },
         {
-          "id": "revision",
+          "id": "competing",
+          "kind": "deduction",
+          "identity": [
+            "r-competing",
+            "1"
+          ],
+          "roots": []
+        },
+        {
+          "id": "forecast-revision",
           "identity": [
             "model-ab"
           ],
@@ -51,12 +60,12 @@
           "roots": []
         },
         {
-          "id": "competing",
-          "kind": "deduction",
+          "id": "mandatory-derived",
           "identity": [
-            "r-competing",
+            "r-estimate",
             "1"
           ],
+          "kind": "deduction",
           "roots": []
         }
       ],
@@ -92,7 +101,7 @@
             "derived",
             "objection",
             "competing",
-            "revision"
+            "forecast-revision"
           ],
           "id": "forecast",
           "mode": "any"
@@ -101,7 +110,7 @@
           "id": "method-assessment",
           "mode": "all",
           "classes": [
-            "derived"
+            "mandatory-derived"
           ]
         }
       ],
@@ -201,6 +210,14 @@
             "1"
           ],
           "roots": []
+        },
+        {
+          "id": "forecast-revision",
+          "identity": [
+            "model-ab"
+          ],
+          "kind": "revision",
+          "roots": []
         }
       ],
       "context": "ctx",
@@ -235,7 +252,7 @@
             "derived",
             "objection",
             "competing",
-            "revision"
+            "forecast-revision"
           ],
           "id": "forecast",
           "mode": "any"
@@ -343,6 +360,14 @@
             "1"
           ],
           "roots": []
+        },
+        {
+          "id": "forecast-revision",
+          "identity": [
+            "model-ab"
+          ],
+          "kind": "revision",
+          "roots": []
         }
       ],
       "context": "ctx",
@@ -377,7 +402,7 @@
             "derived",
             "objection",
             "competing",
-            "revision"
+            "forecast-revision"
           ],
           "id": "forecast",
           "mode": "any"
