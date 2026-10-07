@@ -33,6 +33,27 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: bounded online multi-hop numerical PLN
+
+Follow `/tmp/codex_next_bounded_multihop_pln.md`. Preserve publication `716b4c0`,
+measured world `b121275`, review `9a6a605`, the frozen one-step bridge/consumer,
+all authority/native/world contracts and all earlier evidence.
+
+1. Develop a separately named experimental extension for complete registered
+   deduction dependencies of real depth at most three. Preserve original control,
+   report/FIFO priorities, exact candidates, budgets and monitoring headroom.
+2. Check structurally varied source fixtures and explicit finite joint witnesses
+   in labeled development. Then preregister at most six parents, roles, events,
+   review scope and budgets before measured runs; never retune after measurement.
+3. Test independent structural references, no phantom estimates, sharing, cycles,
+   bounds, exact support replacement/invalidation, stale native results, adverse
+   review, one-hop parity and unchanged independent-world outcomes.
+4. Freeze/run applicable old and new default/native suites once, execute six
+   finite/native parents, replay and mutate their source-bound evidence.
+5. Publish costs, actual depths/ancestry, outcomes, failures and omissions; commit,
+   push and stop. No more depth, new formulas, truth model, pressure/transport,
+   delayed sensors, generalized recovery, policy promotion or storage redesign.
+
 ### Completed bounded milestone: observation-independent world validation
 
 Measured implementation/auditor `b12127556d6d1fe4a7c152dba85f5d71df266194`;

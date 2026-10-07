@@ -1,0 +1,2907 @@
+{
+  "schema": "bounded-multihop-cohort/v1",
+  "seed": 0,
+  "baseline": "716b4c098bd9242bdb5957675f473a58ce2c11ca",
+  "modes": [
+    "finite",
+    "native"
+  ],
+  "parents": [
+    {
+      "id": "two-hop",
+      "manifest": {
+        "classes": [
+          {
+            "id": "r-final",
+            "kind": "deduction",
+            "identity": [
+              "r-final",
+              "1"
+            ],
+            "roots": []
+          }
+        ],
+        "context": "ctx",
+        "contract": [
+          "acceptance",
+          "1"
+        ],
+        "criterion": {
+          "conclusion": {
+            "positive": true,
+            "statement": {
+              "arguments": [
+                "tested",
+                "healthy"
+              ],
+              "predicate": "pln:implication"
+            }
+          },
+          "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+          "criterion_id": "forecast",
+          "max_strength": 1.0,
+          "min_confidence": 0.35,
+          "min_strength": 0.65,
+          "unit": "dimensionless-probability"
+        },
+        "id": "multihop-two-hop",
+        "obligations": [
+          {
+            "id": "declared-final-review",
+            "mode": "all",
+            "classes": [
+              "r-final"
+            ]
+          }
+        ],
+        "product": "artifact-v2",
+        "required_hard_checks": [
+          "clock_alignment",
+          "contract_binding",
+          "owner",
+          "selected",
+          "operation_readiness",
+          "action_requirements",
+          "undispatched_attempt",
+          "attempt_identity",
+          "resource_capacity"
+        ],
+        "schema": "obligation-interpretation/experimental-v0",
+        "time_window": [
+          0,
+          100
+        ],
+        "work_task": {
+          "attempt_id": "attempt",
+          "author": "synthetic-research-task-owner (local test label; not authentication)",
+          "execution_contract": [
+            "deploy",
+            "1"
+          ],
+          "goal_id": "goal",
+          "lifecycle_episode": "episode",
+          "operation_id": "deploy",
+          "revision": "two-hop/v1",
+          "task_episode": "multihop-episode",
+          "task_id": "bounded-multihop"
+        },
+        "multihop_review": {
+          "revision": "registered-multihop-review/v1",
+          "max_depth": 3,
+          "roots": "criterion-and-opposite",
+          "cycles": "incomplete"
+        }
+      },
+      "rules": [
+        {
+          "rule_id": "r-mid",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "b",
+            "r": "c"
+          }
+        },
+        {
+          "rule_id": "r-final",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "c",
+            "r": "healthy"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "leaf-0",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "b",
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-0",
+          "missing": true
+        },
+        {
+          "id": "leaf-1",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "c",
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.96875,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-1",
+          "missing": false
+        },
+        {
+          "id": "leaf-2",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "tested",
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.875,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-2",
+          "missing": false
+        },
+        {
+          "id": "leaf-3",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-3",
+          "missing": false
+        },
+        {
+          "id": "leaf-4",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-4",
+          "missing": false
+        },
+        {
+          "id": "leaf-5",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-5",
+          "missing": false
+        },
+        {
+          "id": "leaf-6",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "tested"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-6",
+          "missing": false
+        }
+      ],
+      "joint_witness": {
+        "propositions": [
+          "tested",
+          "b",
+          "c",
+          "healthy"
+        ],
+        "cells": [
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "mass": "3255/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "mass": "105/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "mass": "7/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "mass": "217/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "mass": "31/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "mass": "1/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              0
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              1
+            ],
+            "mass": "465/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "mass": "465/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              1
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "mass": "1/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "mass": "31/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "mass": "217/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "mass": "7/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "mass": "105/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "mass": "3255/8192"
+          }
+        ],
+        "scope": "all declared source strengths and derived chain conditionals"
+      },
+      "numeric_channel": "truthful-declared-report",
+      "public_changes": []
+    },
+    {
+      "id": "three-hop",
+      "manifest": {
+        "classes": [
+          {
+            "id": "r-final",
+            "kind": "deduction",
+            "identity": [
+              "r-final",
+              "1"
+            ],
+            "roots": []
+          }
+        ],
+        "context": "ctx",
+        "contract": [
+          "acceptance",
+          "1"
+        ],
+        "criterion": {
+          "conclusion": {
+            "positive": true,
+            "statement": {
+              "arguments": [
+                "tested",
+                "healthy"
+              ],
+              "predicate": "pln:implication"
+            }
+          },
+          "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+          "criterion_id": "forecast",
+          "max_strength": 1.0,
+          "min_confidence": 0.35,
+          "min_strength": 0.65,
+          "unit": "dimensionless-probability"
+        },
+        "id": "multihop-three-hop",
+        "obligations": [
+          {
+            "id": "declared-final-review",
+            "mode": "all",
+            "classes": [
+              "r-final"
+            ]
+          }
+        ],
+        "product": "artifact-v2",
+        "required_hard_checks": [
+          "clock_alignment",
+          "contract_binding",
+          "owner",
+          "selected",
+          "operation_readiness",
+          "action_requirements",
+          "undispatched_attempt",
+          "attempt_identity",
+          "resource_capacity"
+        ],
+        "schema": "obligation-interpretation/experimental-v0",
+        "time_window": [
+          0,
+          100
+        ],
+        "work_task": {
+          "attempt_id": "attempt",
+          "author": "synthetic-research-task-owner (local test label; not authentication)",
+          "execution_contract": [
+            "deploy",
+            "1"
+          ],
+          "goal_id": "goal",
+          "lifecycle_episode": "episode",
+          "operation_id": "deploy",
+          "revision": "three-hop/v1",
+          "task_episode": "multihop-episode",
+          "task_id": "bounded-multihop"
+        },
+        "multihop_review": {
+          "revision": "registered-multihop-review/v1",
+          "max_depth": 3,
+          "roots": "criterion-and-opposite",
+          "cycles": "incomplete"
+        }
+      },
+      "rules": [
+        {
+          "rule_id": "r-mid",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "b",
+            "r": "c"
+          }
+        },
+        {
+          "rule_id": "r-next",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "c",
+            "r": "d"
+          }
+        },
+        {
+          "rule_id": "r-final",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "d",
+            "r": "healthy"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "leaf-0",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "b",
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-0",
+          "missing": true
+        },
+        {
+          "id": "leaf-1",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "c",
+                "d"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-1",
+          "missing": false
+        },
+        {
+          "id": "leaf-2",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "d",
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-2",
+          "missing": false
+        },
+        {
+          "id": "leaf-3",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "tested",
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-3",
+          "missing": false
+        },
+        {
+          "id": "leaf-4",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-4",
+          "missing": false
+        },
+        {
+          "id": "leaf-5",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-5",
+          "missing": false
+        },
+        {
+          "id": "leaf-6",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "d"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-6",
+          "missing": false
+        },
+        {
+          "id": "leaf-7",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-7",
+          "missing": false
+        },
+        {
+          "id": "leaf-8",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "tested"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-8",
+          "missing": false
+        }
+      ],
+      "joint_witness": {
+        "propositions": [
+          "tested",
+          "b",
+          "c",
+          "d",
+          "healthy"
+        ],
+        "cells": [
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "mass": "50625/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              0,
+              1
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              1,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              0,
+              1
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "mass": "1/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              1,
+              1
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              0,
+              1
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              1,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              1,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              0,
+              0
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              0,
+              1
+            ],
+            "mass": "1/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              1,
+              0
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              1,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              1,
+              0
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              1,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              0,
+              0
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              0,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mass": "50625/131072"
+          }
+        ],
+        "scope": "all declared source strengths and derived chain conditionals"
+      },
+      "numeric_channel": "truthful-declared-report",
+      "public_changes": []
+    },
+    {
+      "id": "shared",
+      "manifest": {
+        "classes": [
+          {
+            "id": "r-final",
+            "kind": "deduction",
+            "identity": [
+              "r-final",
+              "1"
+            ],
+            "roots": []
+          },
+          {
+            "id": "r-short",
+            "kind": "deduction",
+            "identity": [
+              "r-short",
+              "1"
+            ],
+            "roots": []
+          }
+        ],
+        "context": "ctx",
+        "contract": [
+          "acceptance",
+          "1"
+        ],
+        "criterion": {
+          "conclusion": {
+            "positive": true,
+            "statement": {
+              "arguments": [
+                "tested",
+                "healthy"
+              ],
+              "predicate": "pln:implication"
+            }
+          },
+          "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+          "criterion_id": "forecast",
+          "max_strength": 1.0,
+          "min_confidence": 0.35,
+          "min_strength": 0.65,
+          "unit": "dimensionless-probability"
+        },
+        "id": "multihop-shared",
+        "obligations": [
+          {
+            "id": "declared-final-review",
+            "mode": "all",
+            "classes": [
+              "r-final",
+              "r-short"
+            ]
+          }
+        ],
+        "product": "artifact-v2",
+        "required_hard_checks": [
+          "clock_alignment",
+          "contract_binding",
+          "owner",
+          "selected",
+          "operation_readiness",
+          "action_requirements",
+          "undispatched_attempt",
+          "attempt_identity",
+          "resource_capacity"
+        ],
+        "schema": "obligation-interpretation/experimental-v0",
+        "time_window": [
+          0,
+          100
+        ],
+        "work_task": {
+          "attempt_id": "attempt",
+          "author": "synthetic-research-task-owner (local test label; not authentication)",
+          "execution_contract": [
+            "deploy",
+            "1"
+          ],
+          "goal_id": "goal",
+          "lifecycle_episode": "episode",
+          "operation_id": "deploy",
+          "revision": "shared/v1",
+          "task_episode": "multihop-episode",
+          "task_id": "bounded-multihop"
+        },
+        "multihop_review": {
+          "revision": "registered-multihop-review/v1",
+          "max_depth": 3,
+          "roots": "criterion-and-opposite",
+          "cycles": "incomplete"
+        }
+      },
+      "rules": [
+        {
+          "rule_id": "r-mid",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "b",
+            "r": "c"
+          }
+        },
+        {
+          "rule_id": "r-next",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "c",
+            "r": "d"
+          }
+        },
+        {
+          "rule_id": "r-final",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "d",
+            "r": "healthy"
+          }
+        },
+        {
+          "rule_id": "r-short",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "c",
+            "r": "healthy"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "leaf-0",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "b",
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-0",
+          "missing": true
+        },
+        {
+          "id": "leaf-1",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "c",
+                "d"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-1",
+          "missing": false
+        },
+        {
+          "id": "leaf-2",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "c",
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.8828125,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-2",
+          "missing": false
+        },
+        {
+          "id": "leaf-3",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "d",
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-3",
+          "missing": false
+        },
+        {
+          "id": "leaf-4",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "tested",
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-4",
+          "missing": false
+        },
+        {
+          "id": "leaf-5",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-5",
+          "missing": false
+        },
+        {
+          "id": "leaf-6",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-6",
+          "missing": false
+        },
+        {
+          "id": "leaf-7",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "d"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-7",
+          "missing": false
+        },
+        {
+          "id": "leaf-8",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-8",
+          "missing": false
+        },
+        {
+          "id": "leaf-9",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "tested"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-9",
+          "missing": false
+        }
+      ],
+      "joint_witness": {
+        "propositions": [
+          "tested",
+          "b",
+          "c",
+          "d",
+          "healthy"
+        ],
+        "cells": [
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "mass": "50625/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              0,
+              1
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              1,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              0,
+              1
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "mass": "1/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              1,
+              1
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              0,
+              1
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              1,
+              0
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              1,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              0,
+              0
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              0,
+              1
+            ],
+            "mass": "1/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              1,
+              0
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              1,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              1,
+              0
+            ],
+            "mass": "15/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              1,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              0,
+              0
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              0,
+              1
+            ],
+            "mass": "225/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            "mass": "3375/131072"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mass": "50625/131072"
+          }
+        ],
+        "scope": "all declared source strengths and derived chain conditionals"
+      },
+      "numeric_channel": "truthful-declared-report",
+      "public_changes": []
+    },
+    {
+      "id": "unavailable",
+      "manifest": {
+        "classes": [
+          {
+            "id": "r-final",
+            "kind": "deduction",
+            "identity": [
+              "r-final",
+              "1"
+            ],
+            "roots": []
+          }
+        ],
+        "context": "ctx",
+        "contract": [
+          "acceptance",
+          "1"
+        ],
+        "criterion": {
+          "conclusion": {
+            "positive": true,
+            "statement": {
+              "arguments": [
+                "tested",
+                "healthy"
+              ],
+              "predicate": "pln:implication"
+            }
+          },
+          "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+          "criterion_id": "forecast",
+          "max_strength": 1.0,
+          "min_confidence": 0.35,
+          "min_strength": 0.65,
+          "unit": "dimensionless-probability"
+        },
+        "id": "multihop-unavailable",
+        "obligations": [
+          {
+            "id": "declared-final-review",
+            "mode": "all",
+            "classes": [
+              "r-final"
+            ]
+          }
+        ],
+        "product": "artifact-v2",
+        "required_hard_checks": [
+          "clock_alignment",
+          "contract_binding",
+          "owner",
+          "selected",
+          "operation_readiness",
+          "action_requirements",
+          "undispatched_attempt",
+          "attempt_identity",
+          "resource_capacity"
+        ],
+        "schema": "obligation-interpretation/experimental-v0",
+        "time_window": [
+          0,
+          100
+        ],
+        "work_task": {
+          "attempt_id": "attempt",
+          "author": "synthetic-research-task-owner (local test label; not authentication)",
+          "execution_contract": [
+            "deploy",
+            "1"
+          ],
+          "goal_id": "goal",
+          "lifecycle_episode": "episode",
+          "operation_id": "deploy",
+          "revision": "unavailable/v1",
+          "task_episode": "multihop-episode",
+          "task_id": "bounded-multihop"
+        },
+        "multihop_review": {
+          "revision": "registered-multihop-review/v1",
+          "max_depth": 3,
+          "roots": "criterion-and-opposite",
+          "cycles": "incomplete"
+        }
+      },
+      "rules": [
+        {
+          "rule_id": "r-mid",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "b",
+            "r": "c"
+          }
+        },
+        {
+          "rule_id": "r-final",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "c",
+            "r": "healthy"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "leaf-0",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "b",
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-0",
+          "missing": true
+        },
+        {
+          "id": "leaf-1",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "c",
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-1",
+          "missing": false
+        },
+        {
+          "id": "leaf-2",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "tested",
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-2",
+          "missing": false
+        },
+        {
+          "id": "leaf-3",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-3",
+          "missing": false
+        },
+        {
+          "id": "leaf-4",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-4",
+          "missing": false
+        },
+        {
+          "id": "leaf-5",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-5",
+          "missing": false
+        },
+        {
+          "id": "leaf-6",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "tested"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-6",
+          "missing": false
+        }
+      ],
+      "joint_witness": {
+        "propositions": [
+          "tested",
+          "b",
+          "c",
+          "healthy"
+        ],
+        "cells": [
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "mass": "3375/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "mass": "1/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              0
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              1
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              1
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "mass": "1/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "mass": "3375/8192"
+          }
+        ],
+        "scope": "all declared source strengths and derived chain conditionals"
+      },
+      "numeric_channel": "UNKNOWN",
+      "public_changes": []
+    },
+    {
+      "id": "replacement",
+      "manifest": {
+        "classes": [
+          {
+            "id": "r-final",
+            "kind": "deduction",
+            "identity": [
+              "r-final",
+              "1"
+            ],
+            "roots": []
+          }
+        ],
+        "context": "ctx",
+        "contract": [
+          "acceptance",
+          "1"
+        ],
+        "criterion": {
+          "conclusion": {
+            "positive": true,
+            "statement": {
+              "arguments": [
+                "tested",
+                "healthy"
+              ],
+              "predicate": "pln:implication"
+            }
+          },
+          "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+          "criterion_id": "forecast",
+          "max_strength": 1.0,
+          "min_confidence": 0.35,
+          "min_strength": 0.65,
+          "unit": "dimensionless-probability"
+        },
+        "id": "multihop-replacement",
+        "obligations": [
+          {
+            "id": "declared-final-review",
+            "mode": "all",
+            "classes": [
+              "r-final"
+            ]
+          }
+        ],
+        "product": "artifact-v2",
+        "required_hard_checks": [
+          "clock_alignment",
+          "contract_binding",
+          "owner",
+          "selected",
+          "operation_readiness",
+          "action_requirements",
+          "undispatched_attempt",
+          "attempt_identity",
+          "resource_capacity"
+        ],
+        "schema": "obligation-interpretation/experimental-v0",
+        "time_window": [
+          0,
+          100
+        ],
+        "work_task": {
+          "attempt_id": "attempt",
+          "author": "synthetic-research-task-owner (local test label; not authentication)",
+          "execution_contract": [
+            "deploy",
+            "1"
+          ],
+          "goal_id": "goal",
+          "lifecycle_episode": "episode",
+          "operation_id": "deploy",
+          "revision": "replacement/v1",
+          "task_episode": "multihop-episode",
+          "task_id": "bounded-multihop"
+        },
+        "multihop_review": {
+          "revision": "registered-multihop-review/v1",
+          "max_depth": 3,
+          "roots": "criterion-and-opposite",
+          "cycles": "incomplete"
+        }
+      },
+      "rules": [
+        {
+          "rule_id": "r-mid",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "b",
+            "r": "c"
+          }
+        },
+        {
+          "rule_id": "r-final",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "c",
+            "r": "healthy"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "leaf-0",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "b",
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-0",
+          "missing": true
+        },
+        {
+          "id": "leaf-1",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "c",
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-1",
+          "missing": false
+        },
+        {
+          "id": "leaf-2",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "tested",
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-2",
+          "missing": false
+        },
+        {
+          "id": "leaf-3",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-3",
+          "missing": false
+        },
+        {
+          "id": "leaf-4",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-4",
+          "missing": false
+        },
+        {
+          "id": "leaf-5",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-5",
+          "missing": false
+        },
+        {
+          "id": "leaf-6",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "tested"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-6",
+          "missing": false
+        }
+      ],
+      "joint_witness": {
+        "propositions": [
+          "tested",
+          "b",
+          "c",
+          "healthy"
+        ],
+        "cells": [
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "mass": "3375/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "mass": "1/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              0
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              1
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              1
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "mass": "1/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "mass": "3375/8192"
+          }
+        ],
+        "scope": "all declared source strengths and derived chain conditionals"
+      },
+      "numeric_channel": "truthful-declared-report",
+      "public_changes": [
+        {
+          "tick": 0,
+          "after_slot": 2,
+          "kind": "equal-valued-upstream-replacement",
+          "target": "leaf-0",
+          "replacement_id": "replacement-leaf",
+          "replacement_root": "root:replacement-leaf",
+          "classification": "forced-between-operation-invalidation-boundary"
+        }
+      ]
+    },
+    {
+      "id": "adverse",
+      "manifest": {
+        "classes": [
+          {
+            "id": "r-final",
+            "kind": "deduction",
+            "identity": [
+              "r-final",
+              "1"
+            ],
+            "roots": []
+          },
+          {
+            "id": "r-adverse",
+            "kind": "deduction",
+            "identity": [
+              "r-adverse",
+              "1"
+            ],
+            "roots": []
+          }
+        ],
+        "context": "ctx",
+        "contract": [
+          "acceptance",
+          "1"
+        ],
+        "criterion": {
+          "conclusion": {
+            "positive": true,
+            "statement": {
+              "arguments": [
+                "tested",
+                "healthy"
+              ],
+              "predicate": "pln:implication"
+            }
+          },
+          "confidence_semantics": "pln-evidence-adequacy-floor/v1",
+          "criterion_id": "forecast",
+          "max_strength": 1.0,
+          "min_confidence": 0.35,
+          "min_strength": 0.65,
+          "unit": "dimensionless-probability"
+        },
+        "id": "multihop-adverse",
+        "obligations": [
+          {
+            "id": "declared-final-review",
+            "mode": "all",
+            "classes": [
+              "r-final",
+              "r-adverse"
+            ]
+          }
+        ],
+        "product": "artifact-v2",
+        "required_hard_checks": [
+          "clock_alignment",
+          "contract_binding",
+          "owner",
+          "selected",
+          "operation_readiness",
+          "action_requirements",
+          "undispatched_attempt",
+          "attempt_identity",
+          "resource_capacity"
+        ],
+        "schema": "obligation-interpretation/experimental-v0",
+        "time_window": [
+          0,
+          100
+        ],
+        "work_task": {
+          "attempt_id": "attempt",
+          "author": "synthetic-research-task-owner (local test label; not authentication)",
+          "execution_contract": [
+            "deploy",
+            "1"
+          ],
+          "goal_id": "goal",
+          "lifecycle_episode": "episode",
+          "operation_id": "deploy",
+          "revision": "adverse/v1",
+          "task_episode": "multihop-episode",
+          "task_id": "bounded-multihop"
+        },
+        "multihop_review": {
+          "revision": "registered-multihop-review/v1",
+          "max_depth": 3,
+          "roots": "criterion-and-opposite",
+          "cycles": "incomplete"
+        }
+      },
+      "rules": [
+        {
+          "rule_id": "r-mid",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "b",
+            "r": "c"
+          }
+        },
+        {
+          "rule_id": "r-final",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "c",
+            "r": "healthy"
+          }
+        },
+        {
+          "rule_id": "r-adverse",
+          "revision": "1",
+          "deduction": {
+            "p": "tested",
+            "q": "x",
+            "r": "healthy"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "leaf-0",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "b",
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-0",
+          "missing": true
+        },
+        {
+          "id": "leaf-1",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "c",
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-1",
+          "missing": false
+        },
+        {
+          "id": "leaf-2",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "tested",
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-2",
+          "missing": false
+        },
+        {
+          "id": "leaf-3",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "b"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-3",
+          "missing": false
+        },
+        {
+          "id": "leaf-4",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "c"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-4",
+          "missing": false
+        },
+        {
+          "id": "leaf-5",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-5",
+          "missing": false
+        },
+        {
+          "id": "leaf-6",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "tested"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:leaf-6",
+          "missing": false
+        },
+        {
+          "id": "adverse-0",
+          "literal": {
+            "statement": {
+              "predicate": "pln:proposition",
+              "arguments": [
+                "x"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.5,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:adverse-0",
+          "missing": false
+        },
+        {
+          "id": "adverse-1",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "tested",
+                "x"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.9375,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:adverse-1",
+          "missing": false
+        },
+        {
+          "id": "adverse-2",
+          "literal": {
+            "statement": {
+              "predicate": "pln:implication",
+              "arguments": [
+                "x",
+                "healthy"
+              ]
+            },
+            "positive": true
+          },
+          "strength": 0.0625,
+          "confidence": 0.96875,
+          "source": "forecast-model",
+          "root": "root:adverse-2",
+          "missing": false
+        }
+      ],
+      "joint_witness": {
+        "propositions": [
+          "tested",
+          "b",
+          "c",
+          "healthy"
+        ],
+        "cells": [
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "mass": "3375/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "mass": "1/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              0
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              0,
+              1,
+              1,
+              1
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              0,
+              1
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "mass": "1/8192"
+          },
+          {
+            "bits": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "mass": "15/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "mass": "225/8192"
+          },
+          {
+            "bits": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "mass": "3375/8192"
+          }
+        ],
+        "scope": "chain sources and Markov-derived conditionals; adverse branch is a separate estimate family"
+      },
+      "numeric_channel": "truthful-declared-report",
+      "public_changes": []
+    }
+  ],
+  "limits": {
+    "rules": 16,
+    "estimates": 32,
+    "candidates": 64,
+    "tuple_visits": 128,
+    "selections": 32,
+    "work": 64,
+    "acquisitions": 16
+  },
+  "review_depth": 3,
+  "world": "unchanged world_lab observable, ticks 0..8, 8 operations/tick, product opportunities 0/1/4, health 1..8",
+  "policy": "unchanged floor .35 and strength interval [.65,1]; all current criterion/opposite records",
+  "initial_derivation_depth": 0
+}

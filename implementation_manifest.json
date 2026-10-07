@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "independent-world-bounded-validation-complete",
+  "implementation_stage": "bounded-multihop-preregistered",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -4057,5 +4057,16 @@
       7,
       8
     ]
+  },
+  "bounded_multihop_validation": {
+    "status": "preregistered",
+    "baseline": "716b4c098bd9242bdb5957675f473a58ce2c11ca",
+    "protocol": "reviews/bounded-multihop-v1/PROTOCOL.md",
+    "fixtures": "reviews/bounded-multihop-v1/fixtures.json",
+    "parents": 6,
+    "max_depth": 3,
+    "original_consumer_changed": false,
+    "authority_changed": false,
+    "world_changed": false
   }
 }
