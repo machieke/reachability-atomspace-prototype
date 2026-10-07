@@ -1,6 +1,6 @@
 {
   "schema": "rd-implementation-manifest/0.1",
-  "implementation_stage": "independent-world-preregistered",
+  "implementation_stage": "independent-world-bounded-validation-complete",
   "development_python": "3.11.14",
   "tested_sqlite": "3.50.4",
   "runtime_dependencies": [],
@@ -3846,11 +3846,216 @@
     ]
   },
   "independent_world_validation": {
-    "status": "preregistered",
+    "status": "complete-bounded",
     "baseline": "173c772fb96b5a42d94fda9b4f05d6f4f60719f9",
     "protocol": "reviews/independent-world-v1/PROTOCOL.md",
     "environments": "reviews/independent-world-v1/environments.json",
     "parents": 6,
-    "consumer_changed": false
+    "consumer_changed": false,
+    "measured_revision": "b12127556d6d1fe4a7c152dba85f5d71df266194",
+    "auditor_revision": "b12127556d6d1fe4a7c152dba85f5d71df266194",
+    "preregistration_revision": "326c7fe9ac3c863eb025404d795fdb35332a5169",
+    "review": "reviews/independent-world-v1/README.md",
+    "archive_sha256": "715441c6155e3946aa964ada724fe0c1713633b669f53e0be0a4c38fc9282b25",
+    "archive_bytes": 5085208,
+    "archive_files": 1399,
+    "prior_files_unchanged": 770,
+    "native_build_receipts_unchanged": true,
+    "authority_changed": false,
+    "bridge_or_evaluators_changed": false,
+    "production_policy_B_promoted": false,
+    "max_operations_per_tick": 8,
+    "limits": {
+      "selections": 32,
+      "work": 64,
+      "acquisitions": 16
+    },
+    "modes": [
+      "finite",
+      "native"
+    ],
+    "executions": 12,
+    "physical_ticks": 108,
+    "public_rows": 280,
+    "selections": 172,
+    "acquisitions": 106,
+    "formula_calls": 24,
+    "new_native_formula_calls": 12,
+    "actual_executor_effects": 12,
+    "selected_statuses": {
+      "PASS": 148,
+      "UNKNOWN": 20,
+      "FAIL": 4
+    },
+    "historical_completions": 6,
+    "final_observed_successes": 4,
+    "final_physical_successes": 6,
+    "audit": {
+      "status": "PASS",
+      "persisted_certificates": 510,
+      "admitted_goal_predicate_replays": 280,
+      "product_health_measurements": 94,
+      "executor_reconstructions": 12,
+      "rejected_bundle_mutations": 8,
+      "rejected_archive_mutations": 1,
+      "extracted_semantic_replay": "PASS"
+    },
+    "final_regressions": {
+      "default": 439,
+      "native": 82,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "new_default_tests": 18,
+      "new_native_tests": 3,
+      "default_elapsed_seconds": 305.6230939589441,
+      "native_elapsed_seconds": 123.03580621816218,
+      "source_and_test_hashes_unchanged": true,
+      "default_wrapper_exit": 0,
+      "native_wrapper_exit": 0,
+      "prior_exit_143_preserved": true
+    },
+    "omitted": {
+      "default_tests": 648,
+      "default_modules": 47,
+      "native_tests": 64,
+      "native_modules": 12,
+      "pressure_numerical_tests": 15,
+      "broader_unchanged_matrices": true,
+      "exact_inventory": "validation/inventory.json inside archive"
+    },
+    "development_failures": {
+      "test_assertion_failures": 1,
+      "audit_replay_failures": 1,
+      "diagnostic_serialization_failures": 1,
+      "persisted_certificate_export_corrected": true,
+      "preserved_in_archive": true
+    },
+    "outcomes": [
+      {
+        "parent": "observable",
+        "J_certified": 30,
+        "J_world": 30,
+        "achievement_to_completion_lag": 0,
+        "final_observed_failure": false,
+        "final_observed_loss": 0,
+        "final_physical_deficit": 0,
+        "first_observed_completion": 3,
+        "first_physical_goal": 3,
+        "historical_completion": true,
+        "physically_unsatisfied_ticks": 3,
+        "recognition": []
+      },
+      {
+        "parent": "unobservable",
+        "J_certified": 90,
+        "J_world": 30,
+        "achievement_to_completion_lag": null,
+        "final_observed_failure": false,
+        "final_observed_loss": 10,
+        "final_physical_deficit": 0,
+        "first_observed_completion": null,
+        "first_physical_goal": 3,
+        "historical_completion": false,
+        "physically_unsatisfied_ticks": 3,
+        "recognition": []
+      },
+      {
+        "parent": "delayed",
+        "J_certified": 60,
+        "J_world": 60,
+        "achievement_to_completion_lag": 0,
+        "final_observed_failure": false,
+        "final_observed_loss": 0,
+        "final_physical_deficit": 0,
+        "first_observed_completion": 6,
+        "first_physical_goal": 6,
+        "historical_completion": true,
+        "physically_unsatisfied_ticks": 6,
+        "recognition": []
+      },
+      {
+        "parent": "wrong-artifact",
+        "J_certified": 90,
+        "J_world": 90,
+        "achievement_to_completion_lag": null,
+        "final_observed_failure": false,
+        "final_observed_loss": 10,
+        "final_physical_deficit": 10,
+        "first_observed_completion": null,
+        "first_physical_goal": null,
+        "historical_completion": false,
+        "physically_unsatisfied_ticks": 9,
+        "recognition": []
+      },
+      {
+        "parent": "early-failure",
+        "J_certified": 90,
+        "J_world": 90,
+        "achievement_to_completion_lag": null,
+        "final_observed_failure": true,
+        "final_observed_loss": 10,
+        "final_physical_deficit": 10,
+        "first_observed_completion": null,
+        "first_physical_goal": null,
+        "historical_completion": false,
+        "physically_unsatisfied_ticks": 9,
+        "recognition": []
+      },
+      {
+        "parent": "regression",
+        "J_certified": 60,
+        "J_world": 60,
+        "achievement_to_completion_lag": 0,
+        "final_observed_failure": true,
+        "final_observed_loss": 10,
+        "final_physical_deficit": 10,
+        "first_observed_completion": 3,
+        "first_physical_goal": 3,
+        "historical_completion": true,
+        "physically_unsatisfied_ticks": 6,
+        "recognition": [
+          {
+            "change": 6,
+            "first_adverse_sample": 7,
+            "lag": 1
+          }
+        ]
+      }
+    ],
+    "scope": "Independent clocked deterministic physics, actual idempotent simulator effects, passive truthful instantaneous measurements, unchanged in-process consumer; physical and observed goals evaluated separately.",
+    "claims_excluded": [
+      "controller comparison",
+      "pressure benefit",
+      "real-world safety",
+      "probability calibration",
+      "continuous-time health",
+      "retrieval performance",
+      "production policy readiness"
+    ],
+    "deferred": [
+      "delayed/out-of-order/noisy sensors",
+      "arbitrary effect multiplicity or multiple attempts",
+      "crash resume",
+      "new observation contracts",
+      "policy promotion",
+      "tuning",
+      "pressure/transport",
+      "deeper planning",
+      "generalized recovery",
+      "native storage redesign",
+      "full pressure/attention/benchmark design"
+    ],
+    "logical_ticks": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
   }
 }

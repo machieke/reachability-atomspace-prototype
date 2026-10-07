@@ -33,21 +33,46 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: observation-independent world validation
+### Completed bounded milestone: observation-independent world validation
 
-Follow `/tmp/codex_next_independent_world_validation.md`; preregister six environments,
-fixed logical time, budgets and physical goals in `reviews/independent-world-v1/`.
+Measured implementation/auditor `b12127556d6d1fe4a7c152dba85f5d71df266194`;
+six environments and fixed event schedule preregistered at `326c7fe`. Preserve
+closure `173c772`, measured consumer `d2a6b66`, publication `3b89d63`, all previous
+failures/corrections/omissions and the unresolved prior wrapper exit 143. All 770
+prior tracked files outside this plan/manifest and both native build receipts
+remain unchanged.
 
-1. Preserve 173c772 and freeze the existing consumer, bridge, A/B, task roles,
-   numerical/native code, authority and all prior evidence including exit 143.
-2. Implement an evaluator-owned physical state machine linked to actual executor
-   effects, a passive instantaneous measurement port and a bounded event driver.
-3. Check independent physical references, observer invariance, no-command/blocked
-   controls, lost acknowledgment, truthful adverse reports and goal separation.
-4. Freeze/run applicable finite/native regressions and twelve core executions;
-   report physical loss, accepted evidence and observation-based completion separately.
-5. Publish source-bound public/private traces, costs, failures and omissions;
-   commit/push and stop without tuning the consumer or expanding its capabilities.
+1. Added a private physical state machine linked to exact actual simulator effects,
+   passive instantaneous product/health measurements and a fixed tick driver. One
+   unchanged consumer retains its attempts, budgets and FIFO history across idle
+   ticks and past historical completion. No hidden truth writes authority.
+2. Tested independent physical references, fixed-command/time observer invariance,
+   passive reads, no-command/live-A-blocked controls, lost reply/idempotent duplicate,
+   delayed/failed effects, truthful adverse reports, goal separation and reopening.
+3. Ran 439 applicable default and 82 native tests once at the frozen revision:
+   all 521 passed, zero failures/errors/skips, unchanged source/test hashes and
+   wrapper exits zero. Explicitly omitted 648 default, 64 native, the separate
+   15 pressure numerical checks and broader unchanged matrices.
+4. Ran six parents in finite/native modes: twelve conforming executions, 108 physical
+   ticks, 280 public decision/status rows, 172 selected operations, 106 acquisitions
+   and 24 formula calls including twelve fresh native calls. Observable/delayed
+   controls complete; unobservable physical success remains uncertified; wrong
+   artifact/early failure remain unresolved; regression preserves historical BUILT
+   while loss reopens. Retain 20 UNKNOWN responses and four wrong-product rejections.
+5. Published a 1,399-file source-bound archive with public choices, private physical
+   events/samples, receipts, all 510 persisted certificates, journals, costs, tests,
+   failures and omissions. Extracted replay reproduces physical/observed outcomes,
+   unchanged selection and twelve executor journals. Eight bundle mutations and
+   one altered archive are rejected. Development assertion/auditor defects and
+   their corrections remain documented separately.
+
+Review: `reviews/independent-world-v1/README.md`. Reproduce all twelve executions:
+`uv run --no-project python -m world_lab.compare run --output artifacts/independent-world-local`.
+This is a bounded deterministic environmental validation of one unchanged consumer,
+not a correction of old conformance or a scheduler, calibration or safety result.
+Stop here. Delayed/noisy observations, multiple effects/attempts, crash resume,
+policy promotion, tuning, pressure/transport, deeper planning, generalized recovery,
+native-storage redesign and the full pressure/attention/benchmark design remain deferred.
 
 ### Completed bounded milestone: closed-loop execution of declared assessment work
 

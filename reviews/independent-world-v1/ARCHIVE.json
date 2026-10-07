@@ -1,0 +1,11 @@
+{
+  "archive": "review.tar.xz",
+  "auditor_revision": "b12127556d6d1fe4a7c152dba85f5d71df266194",
+  "bytes": 5085208,
+  "measured_revision": "b12127556d6d1fe4a7c152dba85f5d71df266194",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "schema": "independent-world-review-archive/v1",
+  "sha256": "715441c6155e3946aa964ada724fe0c1713633b669f53e0be0a4c38fc9282b25"
+}
