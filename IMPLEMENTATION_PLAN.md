@@ -33,26 +33,51 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: bounded online multi-hop numerical PLN
+### Completed bounded milestone: bounded online multi-hop numerical PLN
 
-Follow `/tmp/codex_next_bounded_multihop_pln.md`. Preserve publication `716b4c0`,
-measured world `b121275`, review `9a6a605`, the frozen one-step bridge/consumer,
-all authority/native/world contracts and all earlier evidence.
+Measured implementation/auditor `b509d2b8d7388a570b5a666e1c845b95d207ad20`;
+fixtures, roles, bounded review and budgets preregistered at `0d7fba1` after labeled
+development. Preserve closure `716b4c0`, measured world `b121275`, review `9a6a605`,
+all 797 earlier tracked files outside this plan/manifest, both native build receipts,
+and all earlier failures/corrections/omissions including wrapper exit 143.
 
-1. Develop a separately named experimental extension for complete registered
-   deduction dependencies of real depth at most three. Preserve original control,
-   report/FIFO priorities, exact candidates, budgets and monitoring headroom.
-2. Check structurally varied source fixtures and explicit finite joint witnesses
-   in labeled development. Then preregister at most six parents, roles, events,
-   review scope and budgets before measured runs; never retune after measurement.
-3. Test independent structural references, no phantom estimates, sharing, cycles,
-   bounds, exact support replacement/invalidation, stale native results, adverse
-   review, one-hop parity and unchanged independent-world outcomes.
-4. Freeze/run applicable old and new default/native suites once, execute six
-   finite/native parents, replay and mutate their source-bound evidence.
-5. Publish costs, actual depths/ancestry, outcomes, failures and omissions; commit,
-   push and stop. No more depth, new formulas, truth model, pressure/transport,
-   delayed sensors, generalized recovery, policy promotion or storage redesign.
+1. Added separately named experimental multi-hop work discovery and consumer,
+   reusing frozen capture/A/B and one-step validation. Symbolic templates, complete
+   AND/OR dependencies, exact executable five-premise tuples and committed results
+   remain distinct. Registered depth is bounded at three; cycles, deeper routes,
+   incomplete inventory and exhausted bounds remain explicitly incomplete.
+2. Preserved original control/report priorities, FIFO, retry identities, budgets,
+   monitoring headroom, all authority/formulas and the independent physical world.
+   Existing ledger invalidation retires exact descendants; equal replacements need
+   fresh adoption/computation. Shared ancestry never grants independent weight.
+3. Checked independent structural/ancestry references and explicit four/five-variable
+   fixture joint witnesses. Tested actual depths two/three, shared intermediate,
+   missing inputs, support/rule changes, unrelated survival, new producers, stale
+   native completion, copied roots, objections, one-hop parity and old scope limits.
+4. Ran 462 applicable default and 86 native tests once at frozen source: all 548
+   passed, zero failures/errors/skips, unchanged hashes and wrapper exits zero.
+   Explicitly omitted 648 default, 64 native, the separate 15 pressure numerical
+   checks and broader unchanged matrices. Retained an additional forced native-return
+   diagnostic: one actual native result returned after revocation and could not commit.
+5. Ran six parents in finite/native modes: twelve conforming executions, 264 public
+   decision/status rows, 162 selections, 96 acquisitions, 30 actual formula calls
+   including 15 fresh native calls, and 108 physical ticks. Eight positive executions
+   reach observed completion; unavailable/adverse cases remain unresolved. Shared
+   work uses four calls at depth three; replacement uses three calls at depth two.
+   Four positive structures have equal modeled J_world/J_certified of 30; negative
+   structures retain 90. No scheduler or calibration benefit is inferred.
+6. Published a 1,164-file source-bound archive with full inputs/graphs, exact choices,
+   native calls, all 548 persisted certificates, ancestry/invalidation, journals,
+   physical/observed histories, costs, development evidence and omitted coverage.
+   Extracted replay passes; nine bundle mutations and one altered archive reject.
+
+Review: `reviews/bounded-multihop-v1/README.md`. Run all twelve executions with
+`uv run --no-project python -m multihop_lab.compare run --output artifacts/multihop-local`.
+This extends a registered numerical work fragment, not global probabilistic
+consistency, calibrated confidence, native retrieval or general cognitive performance.
+Stop here. More depth, arbitrary rule discovery, confidence consolidation, new
+formulas, policy promotion, pressure/transport, delayed/noisy sensors, effect repair,
+supersession, generalized recovery and native-storage redesign remain deferred.
 
 ### Completed bounded milestone: observation-independent world validation
 

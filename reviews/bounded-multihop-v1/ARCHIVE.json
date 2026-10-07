@@ -1,0 +1,11 @@
+{
+  "archive": "review.tar.xz",
+  "auditor_revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20",
+  "bytes": 4758192,
+  "measured_revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "schema": "bounded-multihop-review-archive/v1",
+  "sha256": "829748da499c8753271cc39ec8e5f39829b5f0820cf2bb96884f62fd7fe338ea"
+}
