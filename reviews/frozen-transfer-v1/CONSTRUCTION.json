@@ -1,0 +1,3403 @@
+{
+  "status": "PASS",
+  "parents": [
+    {
+      "parent": "A1-right-composition",
+      "family": "A",
+      "status": "PASS",
+      "ordered_topology_sha256": "140b84f3f193ba05323b028482cdb5e77fe3ebceceee12e14e08b1a805c7e6ef",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.7765070596378791,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "31/1024",
+              "31/16384",
+              "1/64",
+              "225/16384",
+              "0",
+              "465/16384",
+              "7471/16384"
+            ]
+          }
+        ],
+        "max_depth": 2,
+        "potential_estimates": 9,
+        "target_estimates": [
+          {
+            "id": "finite:650ead65465996eeb9b3876d3875f1e7bd7047af48a72c625a88aa4724d22e4a",
+            "truth": {
+              "strength": 0.9119873046875,
+              "confidence": 0.7765070596378791,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "A2-two-sided",
+      "family": "A",
+      "status": "PASS",
+      "ordered_topology_sha256": "b0ae23528c7b6cee9832b2e89f9bdae552b33c2b03cb49d913d4b7203f0f10be",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06",
+        "input-07",
+        "input-08"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-03",
+              "root:input-07",
+              "root:input-08"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.6846111292916734,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08"
+            ],
+            "joint_cells": [
+              "225/512",
+              "31/1024",
+              "961/262144",
+              "31/1024",
+              "6975/262144",
+              "0",
+              "6975/262144",
+              "116161/262144"
+            ]
+          }
+        ],
+        "max_depth": 2,
+        "potential_estimates": 12,
+        "target_estimates": [
+          {
+            "id": "finite:c0b74101bcd27acb21e67e15867778d093147a1d9253f43163816115c8fa93a5",
+            "truth": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.6846111292916734,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "A3-shared-suffix-review",
+      "family": "A",
+      "status": "PASS",
+      "ordered_topology_sha256": "347fccea89e5f1b3a52dcd5bfdac84889d04687ed3fbae7ceedb080a375e64a5",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06",
+        "input-07",
+        "input-08",
+        "input-09"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.7765070596378791,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "31/1024",
+              "31/16384",
+              "1/64",
+              "225/16384",
+              "0",
+              "465/16384",
+              "7471/16384"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.7765070596378791,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.6645958610886294,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 3,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "7215/16384",
+              "721/16384",
+              "721/262144",
+              "1/64",
+              "3375/262144",
+              "0",
+              "10815/262144",
+              "116161/262144"
+            ]
+          },
+          {
+            "rule": "r03",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.75302398323754,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-08",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "225/512",
+              "31/1024",
+              "961/262144",
+              "31/1024",
+              "6975/262144",
+              "0",
+              "6975/262144",
+              "116161/262144"
+            ]
+          }
+        ],
+        "max_depth": 3,
+        "potential_estimates": 14,
+        "target_estimates": [
+          {
+            "id": "finite:c539c24f4aad423df60776e467be5eac106a65cb2f6d397babd114692832ade3",
+            "truth": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.6645958610886294,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-09"
+            ]
+          },
+          {
+            "id": "finite:b45141093fd6c42e312e785cc0f8659d62ec99c4d84ee9192b62abbf9c5cb107",
+            "truth": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.75302398323754,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-08",
+              "root:input-09"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "A4-intermediate-alternatives",
+      "family": "A",
+      "status": "PASS",
+      "ordered_topology_sha256": "a384116ae3cbf40f98065d5ade8cc7bd53d28ab2e1aa104b89365e5ad0fea087",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06",
+        "input-07",
+        "input-08",
+        "input-09"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.8541030287742615,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-05",
+              "root:input-07",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "31/1024",
+              "31/16384",
+              "1/64",
+              "225/16384",
+              "0",
+              "465/16384",
+              "7471/16384"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.8541030287742615,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-05",
+              "root:input-08",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "1/64",
+              "31/16384",
+              "31/1024",
+              "465/16384",
+              "0",
+              "225/16384",
+              "7471/16384"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.8541030287742615,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.7310085991122222,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "7215/16384",
+              "1/64",
+              "721/262144",
+              "721/16384",
+              "10815/262144",
+              "0",
+              "3375/262144",
+              "116161/262144"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.8541030287742615,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.7310085991122222,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-08",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "7215/16384",
+              "1/64",
+              "721/262144",
+              "721/16384",
+              "10815/262144",
+              "0",
+              "3375/262144",
+              "116161/262144"
+            ]
+          }
+        ],
+        "max_depth": 2,
+        "potential_estimates": 14,
+        "target_estimates": [
+          {
+            "id": "finite:1f58ad059f50907af41d05e751e95f8d46757c0ba763d22a053af49f7571e999",
+            "truth": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.7310085991122222,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-09"
+            ]
+          },
+          {
+            "id": "finite:514f72a89a7f385f7b1375a68ca55dd378ab94396b931e82d57511137f8cf23b",
+            "truth": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.7310085991122222,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-08",
+              "root:input-09"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "B1-mixed-opportunities",
+      "family": "B",
+      "status": "PASS",
+      "ordered_topology_sha256": "7daa1de33f1751a119ccdfdd742d5638f316063750112ba80ca86a1dc922f741",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06",
+        "input-07",
+        "input-08",
+        "input-09",
+        "input-10",
+        "input-11"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.8291325010359287,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-08"
+            ],
+            "joint_cells": [
+              "7215/16384",
+              "721/16384",
+              "721/262144",
+              "1/64",
+              "3375/262144",
+              "0",
+              "10815/262144",
+              "116161/262144"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.8862380981445312,
+                "confidence": 0.8291325010359287,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.862098217010498,
+              "confidence": 0.6896008468804804,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-08",
+              "root:input-09",
+              "root:input-11"
+            ],
+            "joint_cells": [
+              "112065/262144",
+              "14911/262144",
+              "14911/4194304",
+              "1/64",
+              "50625/4194304",
+              "0",
+              "223665/4194304",
+              "1807951/4194304"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r03",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.862098217010498,
+              "confidence": 0.7310085991122222,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-10",
+              "root:input-11"
+            ],
+            "joint_cells": [
+              "6975/16384",
+              "31/1024",
+              "22351/4194304",
+              "721/16384",
+              "162225/4194304",
+              "0",
+              "104625/4194304",
+              "1807951/4194304"
+            ]
+          }
+        ],
+        "max_depth": 2,
+        "potential_estimates": 16,
+        "target_estimates": [
+          {
+            "id": "finite:3e13c35921523af91bc46814086036d15b15809656cdd85f4f096a95199115b5",
+            "truth": {
+              "strength": 0.862098217010498,
+              "confidence": 0.6896008468804804,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-08",
+              "root:input-09",
+              "root:input-11"
+            ]
+          },
+          {
+            "id": "finite:f381cf019152c214e0e11e96688c37c6fc1424c3a4c7a40ac088b3be84f7e2d8",
+            "truth": {
+              "strength": 0.862098217010498,
+              "confidence": 0.7310085991122222,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-10",
+              "root:input-11"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "B2-source-role-copies",
+      "family": "B",
+      "status": "PASS",
+      "ordered_topology_sha256": "1c1b208bce1bfdbc9d6d2349f3ca009ad95573ad6489fbdaafd1f7d07fc833e9",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06",
+        "input-07",
+        "input-08",
+        "input-09",
+        "copied-channel-b"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.8541030287742615,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-06"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "31/1024",
+              "31/16384",
+              "1/64",
+              "225/16384",
+              "0",
+              "465/16384",
+              "7471/16384"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.8541030287742615,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.7310085991122222,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:channel-a",
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-06",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "7215/16384",
+              "721/16384",
+              "721/262144",
+              "1/64",
+              "3375/262144",
+              "0",
+              "10815/262144",
+              "116161/262144"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.8291325010359287,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:channel-b",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "7215/16384",
+              "1/64",
+              "721/262144",
+              "721/16384",
+              "10815/262144",
+              "0",
+              "3375/262144",
+              "116161/262144"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.8291325010359287,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:channel-a",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "7215/16384",
+              "1/64",
+              "721/262144",
+              "721/16384",
+              "10815/262144",
+              "0",
+              "3375/262144",
+              "116161/262144"
+            ]
+          }
+        ],
+        "max_depth": 2,
+        "potential_estimates": 15,
+        "target_estimates": [
+          {
+            "id": "finite:efda26195781a3fe3dfad22f28e2e3a23e2fe591573382376f7ebf0007a1035e",
+            "truth": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.7310085991122222,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:channel-a",
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-06",
+              "root:input-09"
+            ]
+          },
+          {
+            "id": "finite:4c79472c82436062c3b5b2a2d15ea33f227d373dd61ede4b1dc4d7f1936dc482",
+            "truth": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.8291325010359287,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:channel-b",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-09"
+            ]
+          },
+          {
+            "id": "finite:6a950d8027f221ff63eb1eb46ca8c548eb697007609f1201c405789832cc7429",
+            "truth": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.8291325010359287,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:channel-a",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-09"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "B3-low-confidence-branch",
+      "family": "B",
+      "status": "PASS",
+      "ordered_topology_sha256": "4c2233b973a14fe21ddb2f8755e100d00511832835de044dd6bdf8ec2c5a1913",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06",
+        "input-07",
+        "input-08",
+        "input-09",
+        "input-10"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-03",
+              "root:input-09",
+              "root:input-10"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.125,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.11364364624023438,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-07"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.11364364624023438,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.10019445930811344,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "1/64",
+              "31/16384",
+              "31/1024",
+              "465/16384",
+              "0",
+              "225/16384",
+              "7471/16384"
+            ]
+          },
+          {
+            "rule": "r03",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.10019445930811344,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.862098217010498,
+              "confidence": 0.07560568912271541,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 3,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-10"
+            ],
+            "joint_cells": [
+              "6975/16384",
+              "721/16384",
+              "22351/4194304",
+              "31/1024",
+              "104625/4194304",
+              "0",
+              "162225/4194304",
+              "1807951/4194304"
+            ]
+          }
+        ],
+        "max_depth": 3,
+        "potential_estimates": 15,
+        "target_estimates": [
+          {
+            "id": "finite:4df2c422dae41c13d9dac9dc51374663247748c12a447b962e7ed5332b100e71",
+            "truth": {
+              "strength": 0.862098217010498,
+              "confidence": 0.07560568912271541,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-10"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "B4-acquisition-headroom",
+      "family": "B",
+      "status": "PASS",
+      "ordered_topology_sha256": "84b8ed13c729527451cef6a2337fca5cd217bc06f26f97d6a71b91ce2d659be7",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06",
+        "input-07",
+        "input-08",
+        "input-09",
+        "input-10"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-03",
+              "root:input-09",
+              "root:input-10"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.7765070596378791,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-05",
+              "root:input-09",
+              "root:input-10"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "1/64",
+              "31/16384",
+              "31/1024",
+              "465/16384",
+              "0",
+              "225/16384",
+              "7471/16384"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r03",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.7765070596378791,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.862098217010498,
+              "confidence": 0.5859440907010445,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 3,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-10"
+            ],
+            "joint_cells": [
+              "6975/16384",
+              "31/1024",
+              "22351/4194304",
+              "721/16384",
+              "162225/4194304",
+              "0",
+              "104625/4194304",
+              "1807951/4194304"
+            ]
+          }
+        ],
+        "max_depth": 3,
+        "potential_estimates": 15,
+        "target_estimates": [
+          {
+            "id": "finite:0556f5b28c0aafa9a94322849ed29a265686ad927586e897077bcf4f3a439891",
+            "truth": {
+              "strength": 0.862098217010498,
+              "confidence": 0.5859440907010445,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-10"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "C1-shared-replacement",
+      "family": "C",
+      "status": "PASS",
+      "ordered_topology_sha256": "7ac062d558df5056cbbf8ca55266bf4f2f9f4de9585c89d4462ac3d80a749a2a",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06",
+        "input-07",
+        "input-08",
+        "input-09",
+        "input-10",
+        "input-11",
+        "input-12"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.8541030287742615,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-02",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "31/1024",
+              "31/16384",
+              "1/64",
+              "225/16384",
+              "0",
+              "465/16384",
+              "7471/16384"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.8541030287742615,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-03",
+              "root:input-04",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "1/64",
+              "31/16384",
+              "31/1024",
+              "465/16384",
+              "0",
+              "225/16384",
+              "7471/16384"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.8541030287742615,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.7310085991122222,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "7215/16384",
+              "721/16384",
+              "721/262144",
+              "1/64",
+              "3375/262144",
+              "0",
+              "10815/262144",
+              "116161/262144"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.8541030287742615,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.7310085991122222,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-03",
+              "root:input-04",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09"
+            ],
+            "joint_cells": [
+              "7215/16384",
+              "721/16384",
+              "721/262144",
+              "1/64",
+              "3375/262144",
+              "0",
+              "10815/262144",
+              "116161/262144"
+            ]
+          },
+          {
+            "rule": "r03",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.8862380981445312,
+                "confidence": 0.7310085991122222,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.862098217010498,
+              "confidence": 0.6079898549325564,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 3,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-09",
+              "root:input-10",
+              "root:input-12"
+            ],
+            "joint_cells": [
+              "112065/262144",
+              "14911/262144",
+              "14911/4194304",
+              "1/64",
+              "50625/4194304",
+              "0",
+              "223665/4194304",
+              "1807951/4194304"
+            ]
+          },
+          {
+            "rule": "r03",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.8862380981445312,
+                "confidence": 0.7310085991122222,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.862098217010498,
+              "confidence": 0.6079898549325564,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 3,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-03",
+              "root:input-04",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-10",
+              "root:input-12"
+            ],
+            "joint_cells": [
+              "112065/262144",
+              "14911/262144",
+              "14911/4194304",
+              "1/64",
+              "50625/4194304",
+              "0",
+              "223665/4194304",
+              "1807951/4194304"
+            ]
+          },
+          {
+            "rule": "r04",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.8541030287742615,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.862098217010498,
+              "confidence": 0.7089014842197154,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-02",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-09",
+              "root:input-11",
+              "root:input-12"
+            ],
+            "joint_cells": [
+              "6975/16384",
+              "721/16384",
+              "22351/4194304",
+              "31/1024",
+              "104625/4194304",
+              "0",
+              "162225/4194304",
+              "1807951/4194304"
+            ]
+          },
+          {
+            "rule": "r04",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.8541030287742615,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.862098217010498,
+              "confidence": 0.7089014842197154,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-03",
+              "root:input-04",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-11",
+              "root:input-12"
+            ],
+            "joint_cells": [
+              "6975/16384",
+              "721/16384",
+              "22351/4194304",
+              "31/1024",
+              "104625/4194304",
+              "0",
+              "162225/4194304",
+              "1807951/4194304"
+            ]
+          }
+        ],
+        "max_depth": 3,
+        "potential_estimates": 21,
+        "target_estimates": [
+          {
+            "id": "finite:8eb76a81e6a73f212fd0263feeef0395931ee4b858cc07db2e98f838eb603588",
+            "truth": {
+              "strength": 0.862098217010498,
+              "confidence": 0.6079898549325564,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-09",
+              "root:input-10",
+              "root:input-12"
+            ]
+          },
+          {
+            "id": "finite:84c60c0cb82f7166caba0c3b6d5d5d45ad426f0209e551ca8ed980e205eb6f83",
+            "truth": {
+              "strength": 0.862098217010498,
+              "confidence": 0.6079898549325564,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-03",
+              "root:input-04",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-10",
+              "root:input-12"
+            ]
+          },
+          {
+            "id": "finite:c058377c953795312e7fb8690bd1aea9ccb3f887a498d4be9a0bd90bf6a781da",
+            "truth": {
+              "strength": 0.862098217010498,
+              "confidence": 0.7089014842197154,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-02",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-09",
+              "root:input-11",
+              "root:input-12"
+            ]
+          },
+          {
+            "id": "finite:c4f5cf3bc1cc67e3a9df679206a956479d18af1f790083429ede43a4fc71c26a",
+            "truth": {
+              "strength": 0.862098217010498,
+              "confidence": 0.7089014842197154,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-03",
+              "root:input-04",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-11",
+              "root:input-12"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "C2-late-adverse-route",
+      "family": "C",
+      "status": "PASS",
+      "ordered_topology_sha256": "55d44c33f36bb6a45b881089f724152ef31d0b78f68cd9c8f673d0449fa620e3",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-07",
+        "input-08",
+        "input-09",
+        "input-10",
+        "input-11"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-03",
+              "root:input-09",
+              "root:input-11"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.8541030287742615,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-08"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "31/1024",
+              "31/16384",
+              "1/64",
+              "225/16384",
+              "0",
+              "465/16384",
+              "7471/16384"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.8541030287742615,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.862098217010498,
+              "confidence": 0.6444971959347394,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-08",
+              "root:input-09",
+              "root:input-11"
+            ],
+            "joint_cells": [
+              "6975/16384",
+              "721/16384",
+              "22351/4194304",
+              "31/1024",
+              "104625/4194304",
+              "0",
+              "162225/4194304",
+              "1807951/4194304"
+            ]
+          },
+          {
+            "rule": "r03",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.8862380981445312,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.0625,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.16204166412353516,
+              "confidence": 0.05198210524395108,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-10",
+              "root:input-11"
+            ],
+            "joint_cells": [
+              "50625/2097152",
+              "878663/2097152",
+              "14911/262144",
+              "14911/2097152",
+              "0",
+              "104377/2097152",
+              "107969/262144",
+              "1/32"
+            ]
+          }
+        ],
+        "max_depth": 2,
+        "potential_estimates": 16,
+        "target_estimates": [
+          {
+            "id": "finite:6597d56622d427d89f7bc38eb277a814a013755280249282c2aceb2c6d99da94",
+            "truth": {
+              "strength": 0.862098217010498,
+              "confidence": 0.6444971959347394,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-08",
+              "root:input-09",
+              "root:input-11"
+            ]
+          },
+          {
+            "id": "finite:52429eb8946c652def0fbea1d8484a8ecfda0246a5170a83c016d992e296f77a",
+            "truth": {
+              "strength": 0.16204166412353516,
+              "confidence": 0.05198210524395108,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-10",
+              "root:input-11"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "C3-replacement-unobservable",
+      "family": "C",
+      "status": "PASS",
+      "ordered_topology_sha256": "8b3f66b5d18f1b7edbe3033a24d060fd0bbdfcf19b9e9be467c9cd0e6b3a2efb",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06",
+        "input-07",
+        "input-08"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-05"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.9119873046875,
+              "confidence": 0.7765070596378791,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-05",
+              "root:input-07",
+              "root:input-08"
+            ],
+            "joint_cells": [
+              "465/1024",
+              "31/1024",
+              "31/16384",
+              "1/64",
+              "225/16384",
+              "0",
+              "465/16384",
+              "7471/16384"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.9119873046875,
+                "confidence": 0.7765070596378791,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.6645958610886294,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 3,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08"
+            ],
+            "joint_cells": [
+              "7215/16384",
+              "1/64",
+              "721/262144",
+              "721/16384",
+              "10815/262144",
+              "0",
+              "3375/262144",
+              "116161/262144"
+            ]
+          }
+        ],
+        "max_depth": 3,
+        "potential_estimates": 12,
+        "target_estimates": [
+          {
+            "id": "finite:f7556801f40db09c59be9c7d4eb2f1eefc83c564e83d2b329acaea9aa8138470",
+            "truth": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.6645958610886294,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    },
+    {
+      "parent": "C4-regression-reassessment",
+      "family": "C",
+      "status": "PASS",
+      "ordered_topology_sha256": "8d7c1cb8f80c0ba92c5ddb32aef2e2550db2f36fcc23c717ce19794455b311ba",
+      "joint_source_checks": [
+        "input-00",
+        "input-01",
+        "input-02",
+        "input-03",
+        "input-04",
+        "input-05",
+        "input-06",
+        "input-07",
+        "input-08",
+        "input-09",
+        "input-10",
+        "input-11",
+        "input-12"
+      ],
+      "numerical": {
+        "applications": [
+          {
+            "rule": "r00",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-03",
+              "root:input-11",
+              "root:input-12"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r01",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-07"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r02",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.96875,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.939453125,
+              "confidence": 0.8807382583618164,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 1,
+            "roots": [
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-10"
+            ],
+            "joint_cells": [
+              "15/32",
+              "1/64",
+              "1/1024",
+              "1/64",
+              "15/1024",
+              "0",
+              "15/1024",
+              "481/1024"
+            ]
+          },
+          {
+            "rule": "r03",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8862380981445312,
+              "confidence": 0.6846111292916734,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 2,
+            "roots": [
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-10"
+            ],
+            "joint_cells": [
+              "225/512",
+              "31/1024",
+              "961/262144",
+              "31/1024",
+              "6975/262144",
+              "0",
+              "6975/262144",
+              "116161/262144"
+            ]
+          },
+          {
+            "rule": "r04",
+            "inputs": [
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.5,
+                "confidence": 0.96875,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.939453125,
+                "confidence": 0.8807382583618164,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              },
+              {
+                "strength": 0.8862380981445312,
+                "confidence": 0.6846111292916734,
+                "truth_model": "trueagi-pln-stv-finite-k1/v1"
+              }
+            ],
+            "output": {
+              "strength": 0.8394670784473419,
+              "confidence": 0.5020146003964466,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "depth": 3,
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-10",
+              "root:input-11",
+              "root:input-12"
+            ],
+            "joint_cells": [
+              "108225/262144",
+              "14911/262144",
+              "462241/67108864",
+              "31/1024",
+              "1569375/67108864",
+              "0",
+              "3354975/67108864",
+              "28167841/67108864"
+            ]
+          }
+        ],
+        "max_depth": 3,
+        "potential_estimates": 18,
+        "target_estimates": [
+          {
+            "id": "finite:8207e9c9c23d69ab39d9c6e3a6637437b6d1cab529e270182ac95f96a86d1fc1",
+            "truth": {
+              "strength": 0.8394670784473419,
+              "confidence": 0.5020146003964466,
+              "truth_model": "trueagi-pln-stv-finite-k1/v1"
+            },
+            "roots": [
+              "root:input-00",
+              "root:input-01",
+              "root:input-02",
+              "root:input-03",
+              "root:input-04",
+              "root:input-05",
+              "root:input-06",
+              "root:input-07",
+              "root:input-08",
+              "root:input-09",
+              "root:input-10",
+              "root:input-11",
+              "root:input-12"
+            ]
+          }
+        ],
+        "feasibility": "conditional finite derivability only; source availability, timing, authority and controller work are not proven feasible"
+      },
+      "task_feasibility": "UNKNOWN: finite derivability is not an executable same-information policy witness"
+    }
+  ],
+  "no_controller_execution": true,
+  "old_shapes": 4,
+  "limitations": "Twelve constructed input structures, not twelve independent population samples; numerical evidence is conditional and local. No optimal or same-information task-feasibility policy is supplied."
+}
