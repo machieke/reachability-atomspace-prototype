@@ -1,0 +1,209 @@
+{
+  "archive": {
+    "archive": "review.tar.xz",
+    "auditor_revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a",
+    "bytes": 4572736,
+    "measured_revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a",
+    "parts": [
+      "review.tar.xz"
+    ],
+    "schema": "frozen-transfer-review-archive/v1",
+    "sha256": "8b681348a2502160a5512cdbbcbf0921753cdb91ffbea6e2a669984b309ee326"
+  },
+  "archive_build_process_exit": 0,
+  "archive_build_session": 91741,
+  "baseline_record": "52c74dbfce08f9bcd3184b06ba9399f90a7015cf",
+  "consumer": {
+    "path": "experimental_multihop/consumer.py",
+    "revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20",
+    "sha256": "3ec9c16ed98f2aff48a0db15b88d9c368edc4cdcb133a9789dff6ed96b68c19a"
+  },
+  "current_orchestration": "Individual phase commands; no shared long outer pipeline",
+  "inventory_tool_exit": {
+    "exit_code": 0,
+    "note": "command completed in its initial tool call",
+    "session_id": null
+  },
+  "measured_revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a",
+  "phase_command_exits": {
+    "audit": 0,
+    "comparison": 0,
+    "default": 0,
+    "inventory": 0,
+    "native": 0,
+    "preservation": 0
+  },
+  "phase_command_receipts": {
+    "audit": {
+      "command": [
+        "/home/purplezky/work/takopi/reachability-atomspace-prototype/.venv/bin/python3",
+        "-m",
+        "transfer_lab.compare",
+        "audit",
+        "artifacts/frozen-transfer-v1/comparison",
+        "--output",
+        "artifacts/frozen-transfer-v1/validation/audit"
+      ],
+      "elapsed_ns": 227895197556,
+      "exit_code": 0,
+      "revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a"
+    },
+    "comparison": {
+      "command": [
+        "/home/purplezky/work/takopi/reachability-atomspace-prototype/.venv/bin/python3",
+        "-m",
+        "transfer_lab.compare",
+        "run",
+        "--output",
+        "artifacts/frozen-transfer-v1/comparison"
+      ],
+      "elapsed_ns": 239076345499,
+      "exit_code": 0,
+      "revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a"
+    },
+    "default": {
+      "command": [
+        "/home/purplezky/work/takopi/reachability-atomspace-prototype/.venv/bin/python3",
+        "-m",
+        "transfer_lab.validate",
+        "default",
+        "--output",
+        "artifacts/frozen-transfer-v1/validation"
+      ],
+      "elapsed_ns": 341418820148,
+      "exit_code": 0,
+      "revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a"
+    },
+    "inventory": {
+      "command": [
+        "/home/purplezky/work/takopi/reachability-atomspace-prototype/.venv/bin/python3",
+        "-m",
+        "transfer_lab.validate",
+        "inventory",
+        "--output",
+        "artifacts/frozen-transfer-v1/validation"
+      ],
+      "elapsed_ns": 283317986,
+      "exit_code": 0,
+      "revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a"
+    },
+    "native": {
+      "command": [
+        "/home/purplezky/work/takopi/reachability-atomspace-prototype/.venv/bin/python3",
+        "-m",
+        "transfer_lab.validate",
+        "native",
+        "--output",
+        "artifacts/frozen-transfer-v1/validation"
+      ],
+      "elapsed_ns": 253995796582,
+      "exit_code": 0,
+      "revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a"
+    },
+    "preservation": {
+      "command": [
+        "/home/purplezky/work/takopi/reachability-atomspace-prototype/.venv/bin/python3",
+        "-m",
+        "transfer_lab.validate",
+        "preservation",
+        "--output",
+        "artifacts/frozen-transfer-v1/validation"
+      ],
+      "elapsed_ns": 4600749989,
+      "exit_code": 0,
+      "revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a"
+    }
+  },
+  "phase_tool_exits": {
+    "audit": {
+      "exit_code": 0,
+      "session_id": 12254
+    },
+    "comparison": {
+      "exit_code": 0,
+      "session_id": 21257
+    },
+    "default": {
+      "exit_code": 0,
+      "session_id": 17468
+    },
+    "native": {
+      "exit_code": 0,
+      "session_id": 31884
+    },
+    "preservation": {
+      "exit_code": 0,
+      "session_id": 13326
+    }
+  },
+  "preregistration": "8dac6c7542298e3edfb603703e06c14dca00b197",
+  "preserved_publication": "d50baa1e9604c9e3df1ea4ead3e18a92fe24b7ec",
+  "previous_outer_shell": {
+    "cause": "unresolved; original evidence unchanged, no historical suites repeated to alter receipt",
+    "child_exits": 0,
+    "child_phases": 8,
+    "publication": "reviews/native-snapshot-payload-v1/PUBLICATION.json",
+    "reported_exit": 143,
+    "session_id": 91861
+  },
+  "publication_check_process_exit": 0,
+  "publication_check_session": 22201,
+  "publication_checks": {
+    "corrupted_archive": {
+      "reason": "archive checksum differs: review.tar.xz",
+      "rejected": true
+    },
+    "elapsed_ns": 176518384641,
+    "extracted_recorded_replay": {
+      "admitted_goal_predicate_replays": 518,
+      "authority_certificates": 1130,
+      "closed_loop_pairs": 12,
+      "development_allow_dirty": false,
+      "episodes": 24,
+      "executor_reconstructions": 24,
+      "formula_calls": 104,
+      "fresh_native_pln_invocations_during_audit": 0,
+      "limitation": "Bounded structural/ancestry/fixture witness, physical recurrence and actual admitted-observation replay; native queries reexecuted separately from recorded formula checks; no fresh PLN invocation during audit, real-world truth or calibrated safety.",
+      "native_audit": {
+        "fresh_session_preparations": 0,
+        "matched_native_graph_reexecutions": 0,
+        "native_epochs": 259,
+        "native_query_reexecutions": 0,
+        "native_rows": 259,
+        "original_closed_generations_reverified": 0,
+        "query_request_bytes": 3228988,
+        "query_response_bytes": 2403126,
+        "recorded_generation_checks": 12,
+        "recorded_launch_mapping_checks": 259,
+        "recorded_native_query_invocations": 15635,
+        "recorded_query_answers": 15635
+      },
+      "native_formula_calls": 104,
+      "physical_samples": 118,
+      "physical_ticks": 216,
+      "public_rows": 518,
+      "recorded_formula_checks": 104,
+      "revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a",
+      "selections": 312,
+      "status": "PASS"
+    },
+    "integrity": {
+      "archive_bytes": 4572736,
+      "archive_sha256": "8b681348a2502160a5512cdbbcbf0921753cdb91ffbea6e2a669984b309ee326",
+      "experiment_revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a",
+      "files_verified": 906,
+      "limitation": "Integrity against published checksums; not publisher authentication or semantic replay.",
+      "parts": 1,
+      "status": "PASS"
+    },
+    "note": "Original source-bound audit reexecutes native queries. Extracted archive check replays recorded queries, arithmetic, frozen consumer and SQLite without repeating fresh native queries or fresh PLN."
+  },
+  "publication_format_check": {
+    "command": "git diff --cached --check",
+    "detail": "SEQUENCES.md has a trailing blank line at EOF; documentation-only whitespace, retained with the archived review",
+    "exit_code": 2
+  },
+  "publication_revision": "216a09170d066af2bb72296ed690ebd9822d6d53",
+  "schema": "frozen-transfer-publication-receipt/v1",
+  "stopped": true
+}

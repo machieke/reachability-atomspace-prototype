@@ -33,24 +33,37 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: frozen integrated-loop transfer evaluation
+### Completed bounded milestone: frozen integrated-loop transfer evaluation
 
-Preserve payload publication `d50baa1` and measured source `28f9dad`.
-Baseline controller/world/capture/policy/backend/auditor identities are recorded
-before implementation in `reviews/frozen-transfer-v1/BASELINE.json`.
+Measured source/evaluator `c28a7dce95f446a6e2590c1910a9e7c1fe6d423a`; cohort preregistration `8dac6c7`.
+Review: `reviews/frozen-transfer-v1/README.md`, with per-parent sequences and one
+source-bound archive. Preserve payload publication d50baa1 and measured 28f9dad.
 
-1. Declare twelve new input structures in three families and validate them using
-   independent structural and finite numerical checks, before controller runs.
-2. Commit the cohort, roles, schedules, unchanged bounds and thin evaluator/input
-   adapters. Run only familiar positive/negative wiring smoke cases beforehand.
-3. Freeze source; run applicable regressions once and exactly 24 primary native-PLN
-   executions (scan versus full-session native discovery), order counterbalanced.
-4. Audit matched-state retrieval/candidates/decisions/authority and physical versus
-   recognized outcomes; retain unresolved, adverse and failed construction cases.
-5. Publish one source-bound review/archive and replay receipt; commit, push and stop.
+- Twelve new ordered dependency structures in three families were declared and
+  independently checked before controller execution. No seeded intermediate or
+  target beliefs, no new-parent tuning, unchanged controller/world/policies/bounds.
+- Exactly 24 primary executions: frozen scanner versus full-session native recall,
+  actual native PLN in both, arm order counterbalanced by parent. No compact or
+  runtime optimization matrix, extra timing sweep or alternate cognitive policy.
+- 639 applicable tests passed once at frozen source (485 default, 154 native),
+  with no errors/failures/skips. Explicit omissions: 648 default,
+  75 native and 15 standalone pressure checks, plus historical
+  large matrices/mutations not repeated. Prior outer-shell 143 remains unresolved.
+- Retrieval parity passed 12 complete-history/candidate/operation/certificate
+  comparisons. Per arm: 12/12 conformed; 6 historical recognized completions,
+  5 final recognized successes; 7 historical physical completions,
+  6 final physical successes. Conformance is not task success.
+- 104 actual native PLN calls in primary runs; 104 recorded arithmetic checks and
+  15,635 fresh native discovery queries in the audit. Fresh audit PLN: zero.
+  Physical/recognized losses, unresolved roles, unavailable requests, budget stops,
+  replacements, monitoring gaps, exact inputs and complete costs are retained.
+- Archive integrity, extracted recorded replay and corrupted-archive rejection pass.
+  Conditional finite derivability is not a same-information task-feasibility oracle;
+  missed opportunities/optimality and pressure or cognitive superiority remain unproven.
 
-No runtime/payload optimization, controller changes, pressure/transport, additional
-reasoning depth, policy promotion, generalized recovery or benchmark expansion.
+Stop after this evaluation. Future work needs a separate hypothesis from an observed
+limitation. No runtime/payload optimization, new scheduler/transport/depth/policies,
+persistent storage, generalized recovery or larger benchmark continuation.
 
 ### Completed bounded milestone: duplicated native snapshot payload
 
