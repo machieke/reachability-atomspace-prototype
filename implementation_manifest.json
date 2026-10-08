@@ -4567,5 +4567,18 @@
       "source supersession",
       "generalized recovery"
     ]
+  },
+  "native_snapshot_payload": {
+    "status": "preregistered",
+    "baseline": "d2446bfcc7c7183a00b16dc656126a37435d6800",
+    "protocol": "reviews/native-snapshot-payload-v1/PROTOCOL.md",
+    "arms": [
+      "MH-scan",
+      "MH-native-session-full",
+      "MH-native-session-compact"
+    ],
+    "executions": 72,
+    "sweeps": 2,
+    "scope": "duplicate whole-snapshot native embedding only; all sources, structured data, cold views and authority retained"
   }
 }

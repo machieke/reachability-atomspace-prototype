@@ -33,6 +33,22 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: duplicated native snapshot payload
+
+Preserve closure `d2446bf` and runtime implementation/auditor `fa6c267`.
+Protocol: `reviews/native-snapshot-payload-v1/PROTOCOL.md`.
+
+1. Declare the compact envelope and exact query/representation contract.
+2. Implement a separate payload-only projection and backend; retain the full
+   scanner/session paths, every source structure, cold view and authority gate.
+3. Test all nine native query forms against original sources and full native
+   projection, tight bounds, tampering, revision binding and actual inference.
+4. Freeze source/auditor; run applicable suites once and two serial counterbalanced
+   sweeps of three arms × two modes × six parents (72 executions). Audit exact
+   query/operation/outcome parity and complete payload/elapsed costs.
+5. Publish one source-bound review with failures/omissions/provenance; commit,
+   push and stop without another optimization or capability expansion.
+
 ### Completed bounded milestone: verified runtime lifetime with fresh views
 
 Measured implementation/auditor `fa6c2674bc5977475f1aad9e6c884405ef7b7414`; preregistration `aab9673`.
