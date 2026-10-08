@@ -1,0 +1,116 @@
+{
+  "publication_baseline": "d50baa1e9604c9e3df1ea4ead3e18a92fe24b7ec",
+  "preserved_payload_measured_revision": "28f9dad3543de46725121f8b48079d020991e566",
+  "recorded_before_new_implementation": true,
+  "files": {
+    "experimental_multihop/consumer.py": {
+      "sha256": "3ec9c16ed98f2aff48a0db15b88d9c368edc4cdcb133a9789dff6ed96b68c19a",
+      "last_change_revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20"
+    },
+    "experimental_multihop/project.py": {
+      "sha256": "b8cf8869d1188973e0eb6cd83cf35aa2e8fb18eca0435b9a25200571e166ce8c",
+      "last_change_revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20"
+    },
+    "experimental_online_pln/agenda.py": {
+      "sha256": "7f4e925cb4cabc13aee8c0fa6fa2ec26bc3200b6e2f9eb156e6957b5a430d6f3",
+      "last_change_revision": "b771ce865dcb64d5cdcd89874a4966cf10b60ded"
+    },
+    "experimental_online_pln/session.py": {
+      "sha256": "9a9e83de98eebb0b4357db22ab9ae1cfe9fc8cf6b2d160c5f2908bf04dbce1e5",
+      "last_change_revision": "b771ce865dcb64d5cdcd89874a4966cf10b60ded"
+    },
+    "experimental_work_loop/consumer.py": {
+      "sha256": "872cd68ad312912c436a2e5ed2a251a17dfbc65b43a1d40636e43ac5b73e4b8c",
+      "last_change_revision": "d2a6b6605eaefc32f0c56e2a7c0d5e9bf11cffb8"
+    },
+    "experimental_obligations/evaluate.py": {
+      "sha256": "057b4c7293b8cd45912dd44afd606b11262f83abbdbce8ade51e54641275aa6e",
+      "last_change_revision": "5161e19b73f89676edf0b9f772200c12eee02ef1"
+    },
+    "experimental_obligations/capture.py": {
+      "sha256": "ae5dfb75ce49b9661157b1cf23a2e81e3c03af6198e0730f9bb5ee2ee6a066aa",
+      "last_change_revision": "81a648a8a4a971744eddb5a0481a9101abf87ddc"
+    },
+    "experimental_work_bridge/capture.py": {
+      "sha256": "92d691eae16c64f3706ef9beaf583c79cf9da3b1d3c75d9f849b68e9cd038aec",
+      "last_change_revision": "2322512c61f3ff387abcb402f1638c25b92f9add"
+    },
+    "experimental_runtime_lifetime/backend.py": {
+      "sha256": "8e32e3a2a604476ed933702285febf5efdc7540a674f1549221086460fce4a5a",
+      "last_change_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414"
+    },
+    "experimental_runtime_lifetime/generation.py": {
+      "sha256": "685f7fba77b608661e732053bcd934dd5db89b3b05d2c225a307afea0cedfcac",
+      "last_change_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414"
+    },
+    "experimental_runtime_lifetime/observe.py": {
+      "sha256": "f9a667e1e5cb4203737b6c045706060b474a3cade0f9ec9c021a61a35a6d99c8",
+      "last_change_revision": "fa6c2674bc5977475f1aad9e6c884405ef7b7414"
+    },
+    "experimental_native_multihop/project.py": {
+      "sha256": "2fb3590811fccc8809f311a003f088779b0a25d147c7550df1979be04f211c91",
+      "last_change_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226"
+    },
+    "experimental_native_multihop/access.py": {
+      "sha256": "e8471eab43510fbc44ca8b9be7f89034f304b5bb37083d01e3365e492f5ebc31",
+      "last_change_revision": "068770ea5f7970bfaf65aabfdae3fcfe3d983226"
+    },
+    "experimental_native_recall/schema.py": {
+      "sha256": "a9b420930278bdecf9d3c69893a4be85fac29099f72013310a14b96ff5310a01",
+      "last_change_revision": "79f4f439a510cfb6c94a831985e8daee1cfbd84e"
+    },
+    "reachability/probability_formula.py": {
+      "sha256": "928fed901b39613e01c1a43d85e092d3e28d265cf2b58fd2dee382d48eaa61e5",
+      "last_change_revision": "f5dd1f2401dce2625e073757f5297013b76557b7"
+    },
+    "world_lab/world.py": {
+      "sha256": "5d3c36149bc08d319f085a36b93a357f3b8b0ecfb2508e9ce0fe4ddbf0f31093",
+      "last_change_revision": "b12127556d6d1fe4a7c152dba85f5d71df266194"
+    },
+    "world_lab/adapter.py": {
+      "sha256": "c69a948844825e4651fdbf74566d164a5024e9887137cd1d2d4f4ca56f5471a5",
+      "last_change_revision": "b12127556d6d1fe4a7c152dba85f5d71df266194"
+    },
+    "world_lab/reference.py": {
+      "sha256": "3b63b94c915f2cccbcd2b464210c2685cd11ffcd9334e7d2786d95e92438394b",
+      "last_change_revision": "b12127556d6d1fe4a7c152dba85f5d71df266194"
+    },
+    "multihop_lab/reference.py": {
+      "sha256": "92c05d65f45edb9108fe30d31c3372cbecd237955ae3b433efd869ebbc6cd948",
+      "last_change_revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20"
+    },
+    "snapshot_payload_lab/audit.py": {
+      "sha256": "d29dcc37588c2d24c891d345773c92dcf303a205aebb17b6432b06919155e938",
+      "last_change_revision": "28f9dad3543de46725121f8b48079d020991e566"
+    },
+    "snapshot_payload_lab/row_audit.py": {
+      "sha256": "65f960b20dae3003722876dbd0e49e587a1d3d44314a0c8aa0e6d3367fab9a45",
+      "last_change_revision": "28f9dad3543de46725121f8b48079d020991e566"
+    },
+    "snapshot_payload_lab/retrieval_audit.py": {
+      "sha256": "25739f73d12ffcb6db99ed5549efe41f7a3c6aeaa1221cb0113446d49cf33879",
+      "last_change_revision": "28f9dad3543de46725121f8b48079d020991e566"
+    },
+    "adapters.lock.json": {
+      "sha256": "373850b8382999d4e8c600f43608d1a404ff57ee20966c93c2b8988bba1bb0d3",
+      "last_change_revision": "62c5fa083bb044cc0528a9a36fe16da97180f2b2"
+    }
+  },
+  "native_build_receipts": {
+    "adapter-build.json": "901131ba9cb0c0d81ca9fa7025e45375c5ab4254af5581ef15cef4a762949934",
+    "recall-build.json": "e571f11a8b5e404aa93c4ba9ba6fd777d726ea1e43d5d079e0ea5183ef389835"
+  },
+  "controller_identity": "experimental_multihop/consumer.py; source identities above are distinct from publication revisions",
+  "prior_outer_shell_exit": 143,
+  "prior_child_phase_exits": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "prior_outer_cause": "unresolved"
+}

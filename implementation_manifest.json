@@ -5127,5 +5127,14 @@
       "skips": 0,
       "targeted_mutations": 11
     }
+  },
+  "frozen_transfer_evaluation": {
+    "status": "baseline_recorded",
+    "baseline": "d50baa1e9604c9e3df1ea4ead3e18a92fe24b7ec",
+    "identity_record": "reviews/frozen-transfer-v1/BASELINE.json",
+    "scope": "twelve new parent inputs, unchanged integrated controller, two retrieval arms, native PLN in both",
+    "parents": 12,
+    "primary_executions": 24,
+    "controller_changes": false
   }
 }

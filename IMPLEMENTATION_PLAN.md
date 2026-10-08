@@ -33,6 +33,25 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
+### Active bounded milestone: frozen integrated-loop transfer evaluation
+
+Preserve payload publication `d50baa1` and measured source `28f9dad`.
+Baseline controller/world/capture/policy/backend/auditor identities are recorded
+before implementation in `reviews/frozen-transfer-v1/BASELINE.json`.
+
+1. Declare twelve new input structures in three families and validate them using
+   independent structural and finite numerical checks, before controller runs.
+2. Commit the cohort, roles, schedules, unchanged bounds and thin evaluator/input
+   adapters. Run only familiar positive/negative wiring smoke cases beforehand.
+3. Freeze source; run applicable regressions once and exactly 24 primary native-PLN
+   executions (scan versus full-session native discovery), order counterbalanced.
+4. Audit matched-state retrieval/candidates/decisions/authority and physical versus
+   recognized outcomes; retain unresolved, adverse and failed construction cases.
+5. Publish one source-bound review/archive and replay receipt; commit, push and stop.
+
+No runtime/payload optimization, controller changes, pressure/transport, additional
+reasoning depth, policy promotion, generalized recovery or benchmark expansion.
+
 ### Completed bounded milestone: duplicated native snapshot payload
 
 Measured implementation/auditor `28f9dad3543de46725121f8b48079d020991e566`; preregistration `f4d2e39`.
