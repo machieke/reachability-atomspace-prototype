@@ -1,0 +1,11 @@
+{
+  "archive": "review.tar.xz",
+  "auditor_revision": "28f9dad3543de46725121f8b48079d020991e566",
+  "bytes": 11400036,
+  "measured_revision": "28f9dad3543de46725121f8b48079d020991e566",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "schema": "native-snapshot-payload-review-archive/v1",
+  "sha256": "d836a00acc5f0cc8917afc1449ca03d8936b291ff60e1d8811870c2b0ac32f17"
+}
