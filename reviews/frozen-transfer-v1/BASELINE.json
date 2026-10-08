@@ -112,5 +112,39 @@
     0,
     0
   ],
-  "prior_outer_cause": "unresolved"
+  "prior_outer_cause": "unresolved",
+  "explicit_live_policy_files": {
+    "files": {
+      "reachability/probability.py": {
+        "sha256": "35f59ce1301f2ca53d0833e9f83874718fe29cef7f945f4eeba9787f587f35fe",
+        "last_change_revision": "f5dd1f2401dce2625e073757f5297013b76557b7"
+      },
+      "reachability/probability_model.py": {
+        "sha256": "2799ebac52194ecc351c7d53cfcdfbfbbcd383fcaac333385c9dfd1150ee6068",
+        "last_change_revision": "f5dd1f2401dce2625e073757f5297013b76557b7"
+      },
+      "reachability/decisions.py": {
+        "sha256": "2b7faf21f773b160586c5bea520d5e6c682eb04ab2d910e6e4d6768e24d76210",
+        "last_change_revision": "29f947a22aa036974f30555d5425a5ba53a9d347"
+      },
+      "reachability/decision_model.py": {
+        "sha256": "1aaacf83d33300b925f0419f1a34cfbb2037188dffd761e1439b580b2c5685c9",
+        "last_change_revision": "29f947a22aa036974f30555d5425a5ba53a9d347"
+      },
+      "reachability/execution.py": {
+        "sha256": "50ddc4eed4e4da91b825ca28840b2345977e2b16f4306aa0a4e3e74e1afb7203",
+        "last_change_revision": "7cc8c84fc63e688027e6f00c66343c7f57243508"
+      },
+      "reachability/execution_model.py": {
+        "sha256": "45c533d8d06d6d7042e6c593545474c6dbcc2d8f48cc46a04518bc84465f10d8",
+        "last_change_revision": "a44dc890bb78d29c98ab1f65d528209787d1cc66"
+      },
+      "reachability/goal_logic.py": {
+        "sha256": "7eb79fbeca3adaf958c0b823da0d9a643b42ea7aafd7103fc5c92417c1f43f64",
+        "last_change_revision": "9be167a12ababbe165ccc10100f2f4b0e4301e93"
+      }
+    },
+    "recorded_after_input_preregistration": true,
+    "note": "Resolved unchanged paths from the previously recorded complete d50baa1 repository baseline; no policy changes. Initial named-file inventory recorded advisory policy and formulas but omitted these explicit live policy paths."
+  }
 }
