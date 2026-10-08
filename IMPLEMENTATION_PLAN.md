@@ -33,21 +33,42 @@ adapter, executable benchmark, or measured performance results.
 
 ## Phase overview
 
-### Active bounded milestone: duplicated native snapshot payload
+### Completed bounded milestone: duplicated native snapshot payload
 
-Preserve closure `d2446bf` and runtime implementation/auditor `fa6c267`.
-Protocol: `reviews/native-snapshot-payload-v1/PROTOCOL.md`.
+Measured implementation/auditor `28f9dad3543de46725121f8b48079d020991e566`; preregistration `f4d2e39`.
+Review: `reviews/native-snapshot-payload-v1/README.md` and one source-bound archive.
+Preserved closure `d2446bf`, original implementations, builds, receipts and reviews.
 
-1. Complete: declare the compact envelope and exact query/representation contract.
-2. Complete: implement a separate payload-only projection and backend; retain the full
-   scanner/session paths, every source structure, cold view and authority gate.
-3. Development passed: test all nine native query forms against original sources and full native
-   projection, tight bounds, tampering, revision binding and actual inference.
-4. Freeze source/auditor; run applicable suites once and two serial counterbalanced
-   sweeps of three arms × two modes × six parents (72 executions). Audit exact
-   query/operation/outcome parity and complete payload/elapsed costs.
-5. Publish one source-bound review with failures/omissions/provenance; commit,
-   push and stop without another optimization or capability expansion.
+- Compact projection replaces only the duplicate whole-capture StringValues with
+  an explicitly external full-capture digest/length/binding envelope. Complete
+  source payloads, structural representations, registered content, all nine query
+  forms, full input caps, cold changed-binding views and hard authority remain.
+- 663 applicable tests passed once at frozen source (482 default,
+  181 native), without failures/errors/skips. Omitted coverage remains
+  explicit: 642 default, 48 native, 15 standalone pressure checks
+  and the previous 17 whole-cohort runtime mutation reruns (historical evidence).
+- 1536 independent full/compact query pairs cover all nine forms, absent
+  answers, alternatives/history, exact payloads/details and tight bounds.
+  All 11 new targeted resealed source/envelope/query mutations rejected.
+- 72 executions in two serial counterbalanced sweeps conformed, with
+  48 scan/native pair checks, 48 completions and 24 unresolved outcomes.
+  Decisions, exact inputs, observations, loss and budget sequences matched.
+- Core audit reexecutes 51,520 discovery queries through the frozen full
+  projection and checks 180 recorded arithmetic calls, 90 originally actual
+  native PLN calls and 3,288 persisted certificates. Audit native PLN: zero.
+- All payload/elapsed costs and individual paired times are published, including
+  hashing, validation, runtime guards, wire accounting and unchanged capture work.
+  Wire/content/archive bytes are distinct; native RSS and peak memory unmeasured.
+- Archive integrity, extracted recorded replay and corrupt-archive rejection pass.
+  Replay checks recorded generation provenance, not closed original kernel seals.
+  Consumer metadata now identifies the actual unchanged multi-hop source/hash.
+- All eight phase subprocesses exited zero; the outer shell session returned
+  143. This unresolved discrepancy is recorded, without repeating the frozen
+  suites or calling the outer wrapper a clean pass. Publication checks exited zero.
+
+Stop here: no scheduler/depth, adaptive transport, helper pooling, persistent or
+incremental AtomSpace, cross-view cache, selective invalidation, policy promotion,
+source supersession, generalized recovery or further optimization chain.
 
 ### Completed bounded milestone: verified runtime lifetime with fresh views
 
