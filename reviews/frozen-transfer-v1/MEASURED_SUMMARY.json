@@ -1,0 +1,255 @@
+{
+  "arms": {
+    "TRANSFER-native": {
+      "conformed": 12,
+      "elapsed_ns": 131041006829,
+      "executions": 12,
+      "final_physical_success": 6,
+      "final_recognized_success": 5,
+      "formula_calls": 52,
+      "historical_physical_completion": 7,
+      "historical_recognized_completion": 6,
+      "recognized_loss": 810,
+      "world_loss": 710
+    },
+    "TRANSFER-scan": {
+      "conformed": 12,
+      "elapsed_ns": 83003539669,
+      "executions": 12,
+      "final_physical_success": 6,
+      "final_recognized_success": 5,
+      "formula_calls": 52,
+      "historical_physical_completion": 7,
+      "historical_recognized_completion": 6,
+      "recognized_loss": 810,
+      "world_loss": 710
+    }
+  },
+  "audit": {
+    "admitted_goal_predicate_replays": 518,
+    "authority_certificates": 1130,
+    "closed_loop_pairs": 12,
+    "development_allow_dirty": false,
+    "episodes": 24,
+    "executor_reconstructions": 24,
+    "formula_calls": 104,
+    "fresh_native_pln_invocations_during_audit": 0,
+    "limitation": "Bounded structural/ancestry/fixture witness, physical recurrence and actual admitted-observation replay; native queries reexecuted separately from recorded formula checks; no fresh PLN invocation during audit, real-world truth or calibrated safety.",
+    "native_audit": {
+      "fresh_session_preparations": 12,
+      "matched_native_graph_reexecutions": 259,
+      "native_epochs": 259,
+      "native_query_reexecutions": 15635,
+      "native_rows": 259,
+      "original_closed_generations_reverified": 0,
+      "query_request_bytes": 3228988,
+      "query_response_bytes": 2403126,
+      "recorded_generation_checks": 12,
+      "recorded_launch_mapping_checks": 259,
+      "recorded_native_query_invocations": 15635,
+      "recorded_query_answers": 15635
+    },
+    "native_formula_calls": 104,
+    "physical_samples": 118,
+    "physical_ticks": 216,
+    "public_rows": 518,
+    "recorded_formula_checks": 104,
+    "revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a",
+    "selections": 312,
+    "status": "PASS"
+  },
+  "build_preservation": {
+    "adapter-build.json": {
+      "equal_preserved_receipt": true,
+      "sha256": "901131ba9cb0c0d81ca9fa7025e45375c5ab4254af5581ef15cef4a762949934"
+    },
+    "fresh_postrun_verification": "e571f11a8b5e404aa93c4ba9ba6fd777d726ea1e43d5d079e0ea5183ef389835",
+    "recall-build.json": {
+      "equal_preserved_receipt": true,
+      "sha256": "e571f11a8b5e404aa93c4ba9ba6fd777d726ea1e43d5d079e0ea5183ef389835"
+    }
+  },
+  "consumer": {
+    "path": "experimental_multihop/consumer.py",
+    "revision": "b509d2b8d7388a570b5a666e1c845b95d207ad20",
+    "sha256": "3ec9c16ed98f2aff48a0db15b88d9c368edc4cdcb133a9789dff6ed96b68c19a"
+  },
+  "operation_statuses": {
+    "PASS": 294,
+    "UNKNOWN": 18
+  },
+  "parent_structures": 12,
+  "parity": {
+    "opaque_fields": [
+      "basis",
+      "certificate_id",
+      "event_id",
+      "expected_binding",
+      "fingerprint",
+      "goal_fingerprint",
+      "instance_id",
+      "intent_id",
+      "monitor_id",
+      "post_certificate_id",
+      "pre_certificate_id",
+      "request_fingerprint",
+      "request_id",
+      "reservation_id",
+      "revision_id",
+      "snapshot_digest"
+    ],
+    "parents": [
+      {
+        "certificate_counts": {
+          "completion": 1,
+          "execution": 1,
+          "hard": 32,
+          "probability": 18
+        },
+        "parent": "A1-right-composition",
+        "rows": 27,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 1,
+          "execution": 1,
+          "hard": 20,
+          "probability": 24
+        },
+        "parent": "A2-two-sided",
+        "rows": 25,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 1,
+          "execution": 1,
+          "hard": 32,
+          "probability": 28
+        },
+        "parent": "A3-shared-suffix-review",
+        "rows": 27,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 1,
+          "execution": 1,
+          "hard": 32,
+          "probability": 28
+        },
+        "parent": "A4-intermediate-alternatives",
+        "rows": 27,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 0,
+          "execution": 0,
+          "hard": 4,
+          "probability": 26
+        },
+        "parent": "B1-mixed-opportunities",
+        "rows": 14,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 0,
+          "execution": 0,
+          "hard": 4,
+          "probability": 30
+        },
+        "parent": "B2-source-role-copies",
+        "rows": 13,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 0,
+          "execution": 0,
+          "hard": 4,
+          "probability": 30
+        },
+        "parent": "B3-low-confidence-branch",
+        "rows": 15,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 0,
+          "execution": 0,
+          "hard": 4,
+          "probability": 22
+        },
+        "parent": "B4-acquisition-headroom",
+        "rows": 16,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 1,
+          "execution": 1,
+          "hard": 20,
+          "probability": 48
+        },
+        "parent": "C1-shared-replacement",
+        "rows": 29,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 0,
+          "execution": 0,
+          "hard": 4,
+          "probability": 32
+        },
+        "parent": "C2-late-adverse-route",
+        "rows": 14,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 0,
+          "execution": 1,
+          "hard": 4,
+          "probability": 32
+        },
+        "parent": "C3-replacement-unobservable",
+        "rows": 21,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      },
+      {
+        "certificate_counts": {
+          "completion": 1,
+          "execution": 1,
+          "hard": 30,
+          "probability": 44
+        },
+        "parent": "C4-regression-reassessment",
+        "rows": 31,
+        "scope": "whole public histories, complete frontiers, eligible priorities/ages, exact selections/inputs, calls/results, all certificate content, observed outcomes and budgets; per-authority identity checks retained independently",
+        "status": "PASS"
+      }
+    ],
+    "status": "PASS"
+  },
+  "primary_executions": 24,
+  "prior_outer_cause": "unresolved; old evidence not rerun",
+  "prior_outer_shell_exit": 143,
+  "publication_baseline": "d50baa1e9604c9e3df1ea4ead3e18a92fe24b7ec",
+  "revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a",
+  "suite_passes": 639
+}

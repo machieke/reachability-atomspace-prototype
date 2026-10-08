@@ -1,0 +1,11 @@
+{
+  "archive": "review.tar.xz",
+  "auditor_revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a",
+  "bytes": 4572736,
+  "measured_revision": "c28a7dce95f446a6e2590c1910a9e7c1fe6d423a",
+  "parts": [
+    "review.tar.xz"
+  ],
+  "schema": "frozen-transfer-review-archive/v1",
+  "sha256": "8b681348a2502160a5512cdbbcbf0921753cdb91ffbea6e2a669984b309ee326"
+}
