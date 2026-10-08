@@ -38,10 +38,10 @@ adapter, executable benchmark, or measured performance results.
 Preserve closure `d2446bf` and runtime implementation/auditor `fa6c267`.
 Protocol: `reviews/native-snapshot-payload-v1/PROTOCOL.md`.
 
-1. Declare the compact envelope and exact query/representation contract.
-2. Implement a separate payload-only projection and backend; retain the full
+1. Complete: declare the compact envelope and exact query/representation contract.
+2. Complete: implement a separate payload-only projection and backend; retain the full
    scanner/session paths, every source structure, cold view and authority gate.
-3. Test all nine native query forms against original sources and full native
+3. Development passed: test all nine native query forms against original sources and full native
    projection, tight bounds, tampering, revision binding and actual inference.
 4. Freeze source/auditor; run applicable suites once and two serial counterbalanced
    sweeps of three arms × two modes × six parents (72 executions). Audit exact

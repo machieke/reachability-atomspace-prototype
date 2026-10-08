@@ -4569,7 +4569,7 @@
     ]
   },
   "native_snapshot_payload": {
-    "status": "preregistered",
+    "status": "implemented; frozen validation pending",
     "baseline": "d2446bfcc7c7183a00b16dc656126a37435d6800",
     "protocol": "reviews/native-snapshot-payload-v1/PROTOCOL.md",
     "arms": [
